@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "tsc --build tsconfig.json . && eslint -c .eslintrc.js .",
+    "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}"
   },
   "dependencies": {
     "react": "16.11.0",
@@ -47,5 +48,16 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && tsc --build tsconfig.json && lint-staged",
+      "pre-push": "jest tests/"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint -c .eslintrc.js"
+    ]
   }
 }
