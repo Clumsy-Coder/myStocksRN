@@ -69,9 +69,6 @@
   },
   "exclude": [
     "node_modules",
-    "babel.config.js",
-    "metro.config.ts",
-    "jest.config.js",
     "test-results/",
     "**/*.test.ts"
   ]
