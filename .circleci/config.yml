@@ -49,6 +49,29 @@ jobs:
           name: Restore node_modules
           key: node-v1-{{ checksum "package.json" }}-{{ arch }}
       - run: yarn run lint
+  test-node:
+    working_directory: ~/myStocksRN
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore yarn lock file
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      - restore_cache:
+          name: Restore node_modules
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      - run:
+          name: jest tests
+          command: |
+            mkdir -p test-results
+            yarn test
+          environment:
+            JEST_JUNIT_OUTPUT: test-results/junit/junit.xml
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
   # android:
 
 # --------------------------------------------------------------------------------------------------
@@ -67,6 +90,6 @@ workflows:
       - lint:
           requires:
             - node
-      # - test-node:
+      - test-node
       #     requires:
       #       - lint
