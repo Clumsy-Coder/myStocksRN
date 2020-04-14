@@ -1,0 +1,59 @@
+version: 2.1
+# --------------------------------------------------------------------------------------------------
+#
+#      ██╗ ██████╗ ██████╗ ███████╗
+#      ██║██╔═══██╗██╔══██╗██╔════╝
+#      ██║██║   ██║██████╔╝███████╗
+# ██   ██║██║   ██║██╔══██╗╚════██║
+# ╚█████╔╝╚██████╔╝██████╔╝███████║
+#  ╚════╝  ╚═════╝ ╚═════╝ ╚══════╝
+
+jobs:
+  node:
+    working_directory: ~/myStocksRN
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore yarn lock file
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      - restore_cache:
+          name: Restore node_modules
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      - run: yarn install
+      - save_cache:
+          name: Save yarn.lock file
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+          paths:
+            - ~/.cache/yarn
+      - save_cache:
+          name: Save node_modules
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: ~/myStocksRN
+          paths:
+            - node_modules
+  # android:
+
+# --------------------------------------------------------------------------------------------------
+# ██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗███████╗██╗      ██████╗ ██╗    ██╗
+# ██║    ██║██╔═══██╗██╔══██╗██║ ██╔╝██╔════╝██║     ██╔═══██╗██║    ██║
+# ██║ █╗ ██║██║   ██║██████╔╝█████╔╝ █████╗  ██║     ██║   ██║██║ █╗ ██║
+# ██║███╗██║██║   ██║██╔══██╗██╔═██╗ ██╔══╝  ██║     ██║   ██║██║███╗██║
+# ╚███╔███╔╝╚██████╔╝██║  ██║██║  ██╗██║     ███████╗╚██████╔╝╚███╔███╔╝
+#  ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚══════╝ ╚═════╝  ╚══╝╚══╝
+
+workflows:
+  version: 2
+  build_android:
+    jobs:
+      - node
+      # - lint:
+      #     requires:
+      #       - node
+      # - test-node:
+      #     requires:
+      #       - lint
