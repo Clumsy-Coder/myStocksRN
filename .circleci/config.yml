@@ -1,4 +1,36 @@
 version: 2.1
+
+# ██████╗ ███████╗███████╗███████╗██████╗ ███████╗███╗   ██╗ ██████╗███████╗███████╗
+# ██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗██╔════╝████╗  ██║██╔════╝██╔════╝██╔════╝
+# ██████╔╝█████╗  █████╗  █████╗  ██████╔╝█████╗  ██╔██╗ ██║██║     █████╗  ███████╗
+# ██╔══██╗██╔══╝  ██╔══╝  ██╔══╝  ██╔══██╗██╔══╝  ██║╚██╗██║██║     ██╔══╝  ╚════██║
+# ██║  ██║███████╗██║     ███████╗██║  ██║███████╗██║ ╚████║╚██████╗███████╗███████║
+# ╚═╝  ╚═╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝╚══════╝╚══════╝
+
+references:
+  projectWorkspace: &projectWorkspace ~/myStocksRN
+  androidWorkspace: &androidWorkspace ~/myStocksRN/android
+  saveYarnLockfile: &saveYarnLockfile
+    save_cache:
+      name: Save yarn.lock file
+      key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      paths:
+        - ~/.cache/yarn
+  saveNodeModules: &saveNodeModules
+    save_cache:
+      name: Save node_modules
+      key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      paths:
+        - node_modules
+  restoreYarnLockfile: &restoreYarnLockfile
+    restore_cache:
+      name: Restore yarn lock file
+      key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+  restoreNodeModules: &restoreNodeModules
+    restore_cache:
+      name: Restore node_modules
+      key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+
 # --------------------------------------------------------------------------------------------------
 #
 #      ██╗ ██████╗ ██████╗ ███████╗
@@ -10,32 +42,48 @@ version: 2.1
 
 jobs:
   node:
-    working_directory: ~/myStocksRN
+    working_directory: *projectWorkspace
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
-      - restore_cache:
-          name: Restore yarn lock file
-          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-      - restore_cache:
-          name: Restore node_modules
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      - *restoreYarnLockfile
+      - *restoreNodeModules
       - run: yarn install
-      - save_cache:
-          name: Save yarn.lock file
-          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-          paths:
-            - ~/.cache/yarn
-      - save_cache:
-          name: Save node_modules
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
-          paths:
-            - node_modules
+      - *saveYarnLockfile
+      - *saveNodeModules
       - persist_to_workspace:
           root: ~/myStocksRN
           paths:
             - node_modules
+  lint:
+    working_directory: *projectWorkspace
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - *restoreYarnLockfile
+      - *restoreNodeModules
+      - run: yarn lint
+  test-node:
+    working_directory: *projectWorkspace
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - *restoreYarnLockfile
+      - *restoreNodeModules
+      - run:
+          name: jest tests
+          command: |
+            mkdir -p test-results
+            yarn test
+          environment:
+            JEST_JUNIT_OUTPUT: test-results/junit/junit.xml
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
   # android:
 
 # --------------------------------------------------------------------------------------------------
@@ -51,9 +99,9 @@ workflows:
   build_android:
     jobs:
       - node
-      # - lint:
-      #     requires:
-      #       - node
-      # - test-node:
-      #     requires:
-      #       - lint
+      - lint:
+          requires:
+            - node
+      - test-node:
+          requires:
+            - lint
