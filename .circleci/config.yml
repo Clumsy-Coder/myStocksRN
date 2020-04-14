@@ -36,6 +36,19 @@ jobs:
           root: ~/myStocksRN
           paths:
             - node_modules
+  lint:
+    working_directory: ~/myStocksRN
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore yarn lock file
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      - restore_cache:
+          name: Restore node_modules
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      - run: yarn run lint
   # android:
 
 # --------------------------------------------------------------------------------------------------
@@ -51,9 +64,9 @@ workflows:
   build_android:
     jobs:
       - node
-      # - lint:
-      #     requires:
-      #       - node
+      - lint:
+          requires:
+            - node
       # - test-node:
       #     requires:
       #       - lint
