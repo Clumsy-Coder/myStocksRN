@@ -90,6 +90,6 @@ workflows:
       - lint:
           requires:
             - node
-      - test-node
-      #     requires:
-      #       - lint
+      - test-node:
+          requires:
+            - lint
