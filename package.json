@@ -52,7 +52,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged && tsc --build tsconfig.json && lint-staged",
-      "pre-push": "jest tests/"
+      "pre-push": "jest"
     }
   },
   "lint-staged": {
