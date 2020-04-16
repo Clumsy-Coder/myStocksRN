@@ -3,12 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "tsc --build tsconfig.json . && eslint -c .eslintrc.js .",
-    "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}"
+    "lint:eslint": "eslint -c .eslintrc.js .",
+    "lint:tsc": "tsc --build tsconfig.json .",
+    "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}",
+    "ios": "react-native run-ios",
+    "android:clean": "cd ./android && ./gradlew clean && cd ..",
+    "android:debug": "react-native run-android --variant debug",
+    "android:release": "react-native run-android --variant release",
+    "build:android:all": "cd ./android && ./gradlew assemble && cd ..",
+    "build:android:debug": "cd ./android && ./gradlew assembleDebug && cd ..",
+    "build:android:release": "cd ./android && ./gradlew assembleRelease && cd ..",
+    "fastlane:android:debug": "",
+    "fastlane:android:release": ""
   },
   "dependencies": {
     "react": "16.11.0",
