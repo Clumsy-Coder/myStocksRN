@@ -16,8 +16,9 @@
     "build:android:all": "cd ./android && ./gradlew assemble && cd ..",
     "build:android:debug": "cd ./android && ./gradlew assembleDebug && cd ..",
     "build:android:release": "cd ./android && ./gradlew assembleRelease && cd ..",
-    "fastlane:android:debug": "",
-    "fastlane:android:release": ""
+    "fastlane:android:all": "cd ./android && bundle exec fastlane assemble_build && cd ..",
+    "fastlane:android:debug": "cd ./android && bundle exec fastlane assemble_debug_build && cd ..",
+    "fastlane:android:release": "cd ./android && bundle exec fastlane assemble_release_build && cd .."
   },
   "dependencies": {
     "react": "16.11.0",
