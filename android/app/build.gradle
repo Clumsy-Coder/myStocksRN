@@ -120,6 +120,15 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
+/**
+ * Load release keystore properties.
+ * Properties are stored in <project_root>/android/release-keystore.properties
+ * Used for building a production app.
+ */
+def keyStorePropertiesFile = rootProject.file("./release-keystore.properties")
+def keyStoreProperties = new Properties()
+keyStoreProperties.load(new FileInputStream(keyStorePropertiesFile))
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -134,6 +143,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     splits {
         abi {
@@ -150,6 +160,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            // release key is located in
+            // <project_root>/android/app/release.keystore
+            storeFile file(keyStoreProperties['RELEASE_KEY_STORE'])
+            keyAlias keyStoreProperties['RELEASE_KEY_ALIAS_NAME']
+            keyPassword keyStoreProperties['RELEASE_KEY_ALIAS_PASSWORD']
+            storePassword keyStoreProperties['RELEASE_KEY_STORE_PASSWORD']
+        }
     }
     buildTypes {
         debug {
@@ -158,9 +176,9 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
