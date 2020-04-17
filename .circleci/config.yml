@@ -139,6 +139,12 @@ jobs:
     <<: *android_config
     steps:
       - checkout
+      - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls -lah
+          command: ls -lah
       - *restore_gradle_cache
       - *restore_gems_cache
       - *ruby_dependencies
