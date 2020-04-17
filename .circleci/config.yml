@@ -71,11 +71,12 @@ references:
       key: *gems_key
   create_keystore_properties: &create_keystore_properties
     run:
-      name: Create keystore properties
-        command: printf 'RELEASE_KEY_STORE=%s' $RELEASE_KEY_STORE >> release-keystore.properties
-        command: printf 'RELEASE_KEY_ALIAS_NAME=%s' $RELEASE_KEY_ALIAS_NAME >> release-keystore.properties
-        command: printf 'RELEASE_KEY_ALIAS_PASSWORD=%s' $RELEASE_KEY_ALIAS_PASSWORD >> release-keystore.properties
-        command: printf 'RELEASE_KEY_STORE_PASSWORD=%s' $RELEASE_KEY_STORE_PASSWORD >> release-keystore.properties
+      name: Create Android keystore properties file
+      command: |
+        printf 'RELEASE_KEY_STORE=%s' $RELEASE_KEY_STORE >> release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_NAME=%s' $RELEASE_KEY_ALIAS_NAME >> release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_PASSWORD=%s' $RELEASE_KEY_ALIAS_PASSWORD >> release-keystore.properties
+        printf 'RELEASE_KEY_STORE_PASSWORD=%s' $RELEASE_KEY_STORE_PASSWORD >> release-keystore.properties
   decode_android_key: &decode_android_key
     run:
       name: Decode Android key store
