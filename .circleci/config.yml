@@ -69,7 +69,7 @@ references:
       name: Save Ruby Gems cache
       key: *gems_key
       paths:
-        - ~/myStocksRN/android/vendor/bundle
+        - vendor/bundle
   restore_gradle_cache: &restore_gradle_cache
     restore_cache:
       name: Restore Gradle cache
@@ -82,14 +82,14 @@ references:
     run:
       name: Create Android keystore properties file
       command: |
-        printf 'RELEASE_KEY_STORE=%s\n' $RELEASE_KEY_STORE >> ~/myStocksRN/android/release-keystore.properties
-        printf 'RELEASE_KEY_ALIAS_NAME=%s\n' $RELEASE_KEY_ALIAS_NAME >> ~/myStocksRN/android/release-keystore.properties
-        printf 'RELEASE_KEY_ALIAS_PASSWORD=%s\n' $RELEASE_KEY_ALIAS_PASSWORD >> ~/myStocksRN/android/release-keystore.properties
-        printf 'RELEASE_KEY_STORE_PASSWORD=%s\n' $RELEASE_KEY_STORE_PASSWORD >> ~/myStocksRN/android/release-keystore.properties
+        printf 'RELEASE_KEY_STORE=%s\n' $RELEASE_KEY_STORE >> release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_NAME=%s\n' $RELEASE_KEY_ALIAS_NAME >> release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_PASSWORD=%s\n' $RELEASE_KEY_ALIAS_PASSWORD >> release-keystore.properties
+        printf 'RELEASE_KEY_STORE_PASSWORD=%s\n' $RELEASE_KEY_STORE_PASSWORD >> release-keystore.properties
   decode_android_key: &decode_android_key
     run:
       name: Decode Android key store
-      command: echo $KEYSTORE | base64 -d | tee keystore ~/myStocksRN/android/app/release.keystore > /dev/null
+      command: echo $KEYSTORE | base64 -d | tee keystore app/release.keystore > /dev/null
 
 # --------------------------------------------------------------------------------------------------
 #
