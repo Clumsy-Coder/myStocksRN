@@ -138,7 +138,8 @@ jobs:
   generate-android-release:
     <<: *android_config
     steps:
-      - checkout
+      - checkout:
+          path: *projectWorkspace # checkout code in ~/myStocksRN , but cd to dir ~/myStocksRN
       - run:
           name: pwd
           command: pwd
