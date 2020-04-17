@@ -13,23 +13,23 @@ references:
   saveYarnLockfile: &saveYarnLockfile
     save_cache:
       name: Save yarn.lock file
-      key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      key: yarn-v1-{{ checksum "~/myStocksRN/yarn.lock" }}-{{ arch }}
       paths:
         - ~/.cache/yarn
   saveNodeModules: &saveNodeModules
     save_cache:
       name: Save node_modules
-      key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      key: node-v1-{{ checksum "~/myStocksRN/package.json" }}-{{ arch }}
       paths:
         - ~/myStocksRN/node_modules
   restoreYarnLockfile: &restoreYarnLockfile
     restore_cache:
       name: Restore yarn lock file
-      key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      key: yarn-v1-{{ checksum "~/myStocksRN/yarn.lock" }}-{{ arch }}
   restoreNodeModules: &restoreNodeModules
     restore_cache:
       name: Restore node_modules
-      key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      key: node-v1-{{ checksum "~/myStocksRN/package.json" }}-{{ arch }}
 
   #  +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+
   #  |a n d r o i d   r e f e r e n c e s|
