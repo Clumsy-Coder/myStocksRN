@@ -164,6 +164,11 @@ jobs:
       - run:
           name: pwd && ls -lah
           command: pwd && ls -lah
+      - run:
+          name: Install NodeJS
+          command: |
+            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+            sudo apt-get install -y nodejs
       - *android_dependencies
       - *save_gradle_cache
       - *save_gems_cache
