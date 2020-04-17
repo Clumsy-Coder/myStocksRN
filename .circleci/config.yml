@@ -77,10 +77,10 @@ references:
     run:
       name: Create Android keystore properties file
       command: |
-        printf 'RELEASE_KEY_STORE=%s' $RELEASE_KEY_STORE >> ~/myStocksRN/android/release-keystore.properties
-        printf 'RELEASE_KEY_ALIAS_NAME=%s' $RELEASE_KEY_ALIAS_NAME >> ~/myStocksRN/android/release-keystore.properties
-        printf 'RELEASE_KEY_ALIAS_PASSWORD=%s' $RELEASE_KEY_ALIAS_PASSWORD >> ~/myStocksRN/android/release-keystore.properties
-        printf 'RELEASE_KEY_STORE_PASSWORD=%s' $RELEASE_KEY_STORE_PASSWORD >> ~/myStocksRN/android/release-keystore.properties
+        printf 'RELEASE_KEY_STORE=%s\n' $RELEASE_KEY_STORE >> ~/myStocksRN/android/release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_NAME=%s\n' $RELEASE_KEY_ALIAS_NAME >> ~/myStocksRN/android/release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_PASSWORD=%s\n' $RELEASE_KEY_ALIAS_PASSWORD >> ~/myStocksRN/android/release-keystore.properties
+        printf 'RELEASE_KEY_STORE_PASSWORD=%s\n' $RELEASE_KEY_STORE_PASSWORD >> ~/myStocksRN/android/release-keystore.properties
   decode_android_key: &decode_android_key
     run:
       name: Decode Android key store
@@ -161,6 +161,9 @@ jobs:
       - *ruby_dependencies
       - *create_keystore_properties
       - *decode_android_key
+      - run:
+          name: pwd && ls -lah
+          command: pwd && ls -lah
       - *android_dependencies
       - *save_gradle_cache
       - *save_gems_cache
