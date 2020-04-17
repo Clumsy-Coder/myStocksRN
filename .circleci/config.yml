@@ -35,7 +35,7 @@ references:
   #  |a n d r o i d   r e f e r e n c e s|
   #  +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+
   android_config: &android_config
-    working_directory: *androidWorkspace
+    working_directory: *projectWorkspace
     docker:
       - image: circleci/android:api-28-node
     environment:
@@ -142,16 +142,16 @@ jobs:
   generate-android-release:
     <<: *android_config
     steps:
-      - checkout:
-          path: *projectWorkspace # checkout code in ~/myStocksRN , but cd to dir ~/myStocksRN
+      - checkout
       - run:
-          name: pwd
-          command: pwd
+          name: pwd && ls -lah
+          command: pwd && ls -lah
       - *restoreYarnLockfile
       - *restoreNodeModules
+      - run: cd ./android
       - run:
-          name: ls -lah
-          command: ls -lah
+          name: pwd && ls -lah
+          command: pwd && ls -lah
       - *restore_gradle_cache
       - *restore_gems_cache
       - *ruby_dependencies
