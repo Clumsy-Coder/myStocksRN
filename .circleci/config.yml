@@ -30,7 +30,12 @@ references:
     restore_cache:
       name: Restore node_modules
       key: node-v1-{{ checksum "~/myStocksRN/package.json" }}-{{ arch }}
-
+  installNodeJS: &installNodeJS
+    run:
+      name: Install NodeJS
+      command: |
+        curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+        sudo apt-get install -y nodejs
   #  +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+
   #  |a n d r o i d   r e f e r e n c e s|
   #  +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+
@@ -147,36 +152,18 @@ jobs:
     <<: *android_config
     steps:
       - checkout:
-          path: *projectWorkspace # checkout code in ~/myStocksRN , but cd to dir ~/myStocksRN
+          path: *projectWorkspace # checkout code in ~/myStocksRN , but cd to dir ~/myStocksRN/android
       - *restoreYarnLockfile
       - *restoreNodeModules
-      - run:
-          name: pwd && ls -lah ~/myStocksRN
-          command: pwd && ls -lah ~/myStocksRN
-      - run:
-          name: pwd && ls -lah
-          command: pwd && ls -lah
       - *restore_gradle_cache
       - *restore_gems_cache
       - *ruby_dependencies
       - *create_keystore_properties
       - *decode_android_key
-      - run:
-          name: pwd && ls -lah
-          command: pwd && ls -lah
-      - run:
-          name: Install NodeJS
-          command: |
-            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-            sudo apt-get install -y nodejs
+      - *installNodeJS
       - *android_dependencies
       - *save_gradle_cache
       - *save_gems_cache
-      - run:
-          name: Install NodeJS
-          command: |
-            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-            sudo apt-get install -y nodejs
       - run:
           name: Generate Android Release APK build
           command: bundle exec fastlane assemble_release_build
