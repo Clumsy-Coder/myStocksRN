@@ -77,14 +77,14 @@ references:
     run:
       name: Create Android keystore properties file
       command: |
-        printf 'RELEASE_KEY_STORE=%s' $RELEASE_KEY_STORE >> release-keystore.properties
-        printf 'RELEASE_KEY_ALIAS_NAME=%s' $RELEASE_KEY_ALIAS_NAME >> release-keystore.properties
-        printf 'RELEASE_KEY_ALIAS_PASSWORD=%s' $RELEASE_KEY_ALIAS_PASSWORD >> release-keystore.properties
-        printf 'RELEASE_KEY_STORE_PASSWORD=%s' $RELEASE_KEY_STORE_PASSWORD >> release-keystore.properties
+        printf 'RELEASE_KEY_STORE=%s' $RELEASE_KEY_STORE >> ~/myStocksRN/android/release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_NAME=%s' $RELEASE_KEY_ALIAS_NAME >> ~/myStocksRN/android/release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_PASSWORD=%s' $RELEASE_KEY_ALIAS_PASSWORD >> ~/myStocksRN/android/release-keystore.properties
+        printf 'RELEASE_KEY_STORE_PASSWORD=%s' $RELEASE_KEY_STORE_PASSWORD >> ~/myStocksRN/android/release-keystore.properties
   decode_android_key: &decode_android_key
     run:
       name: Decode Android key store
-      command: echo $KEYSTORE | base64 -d | tee keystore app/keystore > /dev/null
+      command: echo $KEYSTORE | base64 -d | tee keystore ~/myStocksRN/android/app/release.keystore > /dev/null
 
 # --------------------------------------------------------------------------------------------------
 #
@@ -148,11 +148,11 @@ jobs:
     steps:
       - checkout:
           path: *projectWorkspace # checkout code in ~/myStocksRN , but cd to dir ~/myStocksRN
+      - *restoreYarnLockfile
+      - *restoreNodeModules
       - run:
           name: pwd && ls -lah ~/myStocksRN
           command: pwd && ls -lah ~/myStocksRN
-      - *restoreYarnLockfile
-      - *restoreNodeModules
       - run:
           name: pwd && ls -lah
           command: pwd && ls -lah
