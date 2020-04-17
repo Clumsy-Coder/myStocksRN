@@ -54,20 +54,24 @@ references:
   gems_key: &gems_key gems-{{ checksum "Gemfile.lock" }}
   save_gradle_cache: &save_gradle_cache
     save_cache:
+      name: Save Gradle cache
       key: *gradle_key
       paths:
         - ~/.gradle
         - ~/.m2
   save_gems_cache: &save_gems_cache
     save_cache:
+      name: Save Ruby Gems cache
       key: *gems_key
       paths:
         - vendor/bundle
   restore_gradle_cache: &restore_gradle_cache
     restore_cache:
+      name: Restore Gradle cache
       key: *gradle_key
   restore_gems_cache: &restore_gems_cache
     restore_cache:
+      name: Restore Ruby Gems cache
       key: *gems_key
   create_keystore_properties: &create_keystore_properties
     run:
