@@ -183,7 +183,7 @@ jobs:
       - store_artifacts:
           path: app/build/outputs/apk/
       - store_test_results:
-          path: app/build/report/
+          path: app/build/reports/
 
 # --------------------------------------------------------------------------------------------------
 # ██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗███████╗██╗      ██████╗ ██╗    ██╗
