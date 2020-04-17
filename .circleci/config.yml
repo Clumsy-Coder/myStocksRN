@@ -10,26 +10,155 @@ version: 2.1
 references:
   projectWorkspace: &projectWorkspace ~/myStocksRN
   androidWorkspace: &androidWorkspace ~/myStocksRN/android
+
+  # Save yarn cache
+  # Reduces build duration
+  # Assuming working directory is ~/myStocksRN/
   saveYarnLockfile: &saveYarnLockfile
     save_cache:
       name: Save yarn.lock file
-      key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      key: yarn-v1-{{ checksum "~/myStocksRN/yarn.lock" }}-{{ arch }}
       paths:
         - ~/.cache/yarn
+
+  # Save node_modules to cache
+  # Reduces build duration
+  # Assuming working directory is ~/myStocksRN/
   saveNodeModules: &saveNodeModules
     save_cache:
       name: Save node_modules
-      key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      key: node-v1-{{ checksum "~/myStocksRN/package.json" }}-{{ arch }}
       paths:
-        - node_modules
+        - ~/myStocksRN/node_modules
+
+  # Restore yarn cache
+  # Assuming working directory is ~/myStocksRN/
   restoreYarnLockfile: &restoreYarnLockfile
     restore_cache:
       name: Restore yarn lock file
-      key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      key: yarn-v1-{{ checksum "~/myStocksRN/yarn.lock" }}-{{ arch }}
+
+  # Restore node_modules cache
+  # Assuming working directory is ~/myStocksRN/
   restoreNodeModules: &restoreNodeModules
     restore_cache:
       name: Restore node_modules
-      key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      key: node-v1-{{ checksum "~/myStocksRN/package.json" }}-{{ arch }}
+
+  # Install NodeJS
+  # Required for building Android APK
+  # Used in 'generate-android-release' job
+  installNodeJS: &installNodeJS
+    run:
+      name: Install NodeJS
+      command: |
+        curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+
+  #  +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+
+  #  |a n d r o i d   r e f e r e n c e s|
+  #  +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+
+  # Android Building config.
+  # NOTE: react native requires NDK and NodeJS installed.
+  # NDK is already installed from the Docker Image.
+  # NodeJS is installed when running 'generate-android-release' job.
+  # NOTE: limit RAM use to 2GB.
+  android_config: &android_config
+    working_directory: *androidWorkspace
+    docker:
+      - image: circleci/android:api-28-ndk
+    environment:
+      TERM: dumb
+      _JAVA_OPTIONS: '-Xmx2048m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m"'
+
+  # Install Ruby Gems in <project_root>/android folder.
+  # <project_root>/android/vendor/bundle folder MUST be cached to reduce build duration.
+  #   'save_gems_cache' reference will cache the folder.
+  # job 'generate-android-release' will run Fastlane to build the Android APK.
+  # Assuming working directory is ~/myStocksRN/android
+  ruby_dependencies: &ruby_dependencies
+    run:
+      name: Download Ruby Dependencies
+      command: bundle check || bundle install --path vendor/bundle
+
+  # Gradle dependencies used for building Android APK.
+  # It MUST be cached to reduce the build duration.
+  #   'save_gradle_cache' reference will cache the folder.
+  # Assuming working directory is ~/myStocksRN/android
+  android_dependencies: &android_dependencies
+    run:
+      name: Download Android Dependencies
+      command: ./gradlew androidDependencies
+
+  # A checksum used for creating or restoring Android dependencies.
+  # The checksum will ensure whether to use existing cache or save a new one.
+  # Assuming working directory is ~/myStocksRN/android
+  gradle_key: &gradle_key jars-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+
+  # A checksum used for creating or restoring Ruby Gems.
+  # The checksum will ensure whether to use existing cache or save a new one.
+  # Assuming working directory is ~/myStocksRN/android
+  gems_key: &gems_key gems-{{ checksum "Gemfile.lock" }}
+
+  # Save Android dependencies created by Gradle to cache.
+  # It MUST be cached to reduce the build duration.
+  # Assuming working directory is ~/myStocksRN/android
+  save_gradle_cache: &save_gradle_cache
+    save_cache:
+      name: Save Gradle cache
+      key: *gradle_key
+      paths:
+        - ~/.gradle
+        - ~/.m2
+
+  # Save Ruby Gems to cache.
+  # It MUST be cached to reduce build duration.
+  # The cache is used for running Fastlane, which is used for building Android APK.
+  # Assuming working directory is ~/myStocksRN/android
+  save_gems_cache: &save_gems_cache
+    save_cache:
+      name: Save Ruby Gems cache
+      key: *gems_key
+      paths:
+        - vendor/bundle
+
+  # Restore the Android dependencies.
+  # Used for building Android APK
+  # Assuming working directory is ~/myStocksRN/android
+  restore_gradle_cache: &restore_gradle_cache
+    restore_cache:
+      name: Restore Gradle cache
+      key: *gradle_key
+
+  # Restore Ruby Gems
+  # Used for running Fastlane which is used for building Android APK
+  # It's restored to <project_root>/android folder
+  # Assuming working directory is ~/myStocksRN/android
+  restore_gems_cache: &restore_gems_cache
+    restore_cache:
+      name: Restore Ruby Gems cache
+      key: *gems_key
+
+  # Generate a properties file that contains the credentials used building Android APK.
+  # NOTE: the credentials must NEVER be checked into version control for privacy.
+  # Assuming working directory is ~/myStocksRN/android
+  create_keystore_properties: &create_keystore_properties
+    run:
+      name: Create Android keystore properties file
+      command: |
+        printf 'RELEASE_KEY_STORE=%s\n' $RELEASE_KEY_STORE >> release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_NAME=%s\n' $RELEASE_KEY_ALIAS_NAME >> release-keystore.properties
+        printf 'RELEASE_KEY_ALIAS_PASSWORD=%s\n' $RELEASE_KEY_ALIAS_PASSWORD >> release-keystore.properties
+        printf 'RELEASE_KEY_STORE_PASSWORD=%s\n' $RELEASE_KEY_STORE_PASSWORD >> release-keystore.properties
+
+  # Decode release keystore file
+  # Assuming working directory is ~/myStocksRN/android
+  # NOTE: make sure the output is being redirected to '/dev/null' for privacy
+  decode_android_key: &decode_android_key
+    run:
+      name: Decode Android key store
+      command: echo $KEYSTORE | base64 -d | tee keystore app/release.keystore > /dev/null
 
 # --------------------------------------------------------------------------------------------------
 #
@@ -84,7 +213,33 @@ jobs:
           path: test-results
       - store_artifacts:
           path: test-results
-  # android:
+      - persist_to_workspace:
+          root: ~/myStocksRN
+          paths:
+            - node_modules
+  generate-android-release:
+    <<: *android_config
+    steps:
+      - checkout:
+          path: *projectWorkspace # checkout code in ~/myStocksRN , but cd to dir ~/myStocksRN/android
+      - *restoreYarnLockfile
+      - *restoreNodeModules
+      - *restore_gradle_cache
+      - *restore_gems_cache
+      - *ruby_dependencies
+      - *create_keystore_properties
+      - *decode_android_key
+      - *installNodeJS # required for React Native and Typescript compiler to work
+      - *android_dependencies
+      - *save_gradle_cache
+      - *save_gems_cache
+      - run:
+          name: Generate Android Release APK build
+          command: bundle exec fastlane assemble_release_build
+      - store_artifacts:
+          path: app/build/outputs/apk/
+      - store_test_results:
+          path: app/build/reports/
 
 # --------------------------------------------------------------------------------------------------
 # ██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗███████╗██╗      ██████╗ ██╗    ██╗
@@ -105,3 +260,6 @@ workflows:
       - test-node:
           requires:
             - lint
+      - generate-android-release:
+          requires:
+            - test-node
