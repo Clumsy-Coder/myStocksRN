@@ -64,3 +64,4 @@ project-todo
 android/release-keystore.properties
 android/.bundle
 android/vendor
+.env
