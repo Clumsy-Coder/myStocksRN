@@ -89,6 +89,7 @@ export interface IStockChart {
   // uVolume: number; // Unadjusted data for historical dates
 }
 
+// ---------------------------------------------------------------------------------------------- //
 // used for Stocks reducer
 export interface IStockState {
   [symbol: string]: {
@@ -97,11 +98,11 @@ export interface IStockState {
       data: IStockQuote | null;
       error?: any;
     };
-    // chart: {
-    //   fetching: boolean;
-    //   data: IStockChart[];
-    //   error?: any;
-    // };
+    chart?: {
+      fetching: boolean;
+      data: IStockChart[] | null;
+      error?: any;
+    };
   };
 }
 
@@ -123,6 +124,7 @@ export enum ActionTypesEnum {
 // ---------------------------------------------------------------------------------------------- //
 // action creators
 
+// get stock quote action creator
 // called to initiate the fetching process
 export interface IGetStockQuoteAC {
   type: ActionTypesEnum.GET_STOCK_QUOTE;
@@ -143,7 +145,7 @@ export interface IGetStockQuoteFulfilledAC {
 }
 
 // called only in redux saga to handle side effects
-export interface IGetStockChartRejectedAC {
+export interface IGetStockQuoteRejectedAC {
   type: ActionTypesEnum.GET_STOCK_QUOTE_REJECTED;
   readonly stockSymbol: string;
   readonly error: any;
@@ -153,15 +155,42 @@ export type StockQuoteAction =
   | IGetStockQuoteAC
   | IGetStockQuotePendingAC
   | IGetStockQuoteFulfilledAC
-  | IGetStockChartRejectedAC;
+  | IGetStockQuoteRejectedAC;
 
-export interface IGetStockChartActionCreator {
-  type:
-    | ActionTypesEnum.GET_STOCK_CHART
-    | ActionTypesEnum.GET_STOCK_CHART_PENDING
-    | ActionTypesEnum.GET_STOCK_CHART_FULFILLED
-    | ActionTypesEnum.GET_STOCK_CHART_REJECTED;
-  readonly payload: string; // stock symbol
+// ---------------------------------------------------------------------------------------------- //
+// get stock chart action creator
+// called to initiate the fetching process
+export interface IGetStockChartAC {
+  type: ActionTypesEnum.GET_STOCK_CHART;
+  readonly stockSymbol: string;
 }
 
-export type StockActionTypes = StockQuoteAction | IGetStockChartActionCreator;
+// called only in redux saga to handle side effects
+export interface IGetStockChartPendingAC {
+  type: ActionTypesEnum.GET_STOCK_CHART_PENDING;
+  readonly stockSymbol: string;
+}
+
+// called only in redux saga to handle side effects
+export interface IGetStockChartFulfilledAC {
+  type: ActionTypesEnum.GET_STOCK_CHART_FULFILLED;
+  readonly stockSymbol: string;
+  readonly payload: { data: IStockChart[] };
+}
+
+// called only in redux saga to handle side effects
+export interface IGetStockChartRejectedAC {
+  type: ActionTypesEnum.GET_STOCK_CHART_REJECTED;
+  readonly stockSymbol: string;
+  readonly error: any;
+}
+
+export type StockChartAction =
+  | IGetStockChartAC
+  | IGetStockChartPendingAC
+  | IGetStockChartFulfilledAC
+  | IGetStockChartRejectedAC;
+
+// ---------------------------------------------------------------------------------------------- //
+// all Stock action creators
+export type StockActionTypes = StockQuoteAction | StockChartAction;
