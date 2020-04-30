@@ -43,6 +43,46 @@ const reducer = (state = initialState, action: StockActionTypes): IStockState =>
         },
       };
     }
+    case ActionTypesEnum.GET_STOCK_CHART_PENDING: {
+      return {
+        ...state,
+        [action.stockSymbol]: {
+          ...state[action.stockSymbol],
+          chart: {
+            fetching: true,
+            data: null,
+            error: null,
+          },
+        },
+      };
+    }
+    case ActionTypesEnum.GET_STOCK_CHART_FULFILLED: {
+      return {
+        ...state,
+        [action.stockSymbol]: {
+          ...state[action.stockSymbol],
+          chart: {
+            fetching: false,
+            data: action.payload.data,
+            error: null,
+          },
+        },
+      };
+    }
+    case ActionTypesEnum.GET_STOCK_CHART_REJECTED: {
+      return {
+        ...state,
+        [action.stockSymbol]: {
+          ...state[action.stockSymbol],
+          chart: {
+            fetching: false,
+            data: null,
+            error: action.error,
+          },
+        },
+      };
+    }
+
     default: {
       return state;
     }
