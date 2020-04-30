@@ -7,7 +7,7 @@ const reducer = (state = initialState, action: StockActionTypes): IStockState =>
     case ActionTypesEnum.GET_STOCK_QUOTE_PENDING: {
       return {
         ...state,
-        [action.payload]: {
+        [action.stockSymbol]: {
           quote: {
             fetching: false,
             data: null,
@@ -17,10 +17,28 @@ const reducer = (state = initialState, action: StockActionTypes): IStockState =>
       };
     }
     case ActionTypesEnum.GET_STOCK_QUOTE_FULFILLED: {
-      return state;
+      return {
+        ...state,
+        [action.stockSymbol]: {
+          quote: {
+            fetching: false,
+            data: action.payload.data,
+            error: null,
+          },
+        },
+      };
     }
     case ActionTypesEnum.GET_STOCK_QUOTE_REJECTED: {
-      return state;
+      return {
+        ...state,
+        [action.stockSymbol]: {
+          quote: {
+            fetching: false,
+            data: null,
+            error: action.error,
+          },
+        },
+      };
     }
     default: {
       return state;
