@@ -8,6 +8,7 @@ const reducer = (state = initialState, action: StockActionTypes): IStockState =>
       return {
         ...state,
         [action.stockSymbol]: {
+          ...state[action.stockSymbol],
           quote: {
             fetching: false,
             data: null,
@@ -20,6 +21,7 @@ const reducer = (state = initialState, action: StockActionTypes): IStockState =>
       return {
         ...state,
         [action.stockSymbol]: {
+          ...state[action.stockSymbol],
           quote: {
             fetching: false,
             data: action.payload.data,
@@ -32,6 +34,7 @@ const reducer = (state = initialState, action: StockActionTypes): IStockState =>
       return {
         ...state,
         [action.stockSymbol]: {
+          ...state[action.stockSymbol],
           quote: {
             fetching: false,
             data: null,
