@@ -123,16 +123,39 @@ export enum ActionTypesEnum {
 // ---------------------------------------------------------------------------------------------- //
 // action creators
 
-export interface IGetStockQuoteAction {
-  type:
-    | ActionTypesEnum.GET_STOCK_QUOTE
-    | ActionTypesEnum.GET_STOCK_QUOTE_PENDING
-    | ActionTypesEnum.GET_STOCK_QUOTE_FULFILLED
-    | ActionTypesEnum.GET_STOCK_QUOTE_REJECTED;
-  readonly payload: string; // stock symbol
+// called to initiate the fetching process
+export interface IGetStockQuoteAC {
+  type: ActionTypesEnum.GET_STOCK_QUOTE;
+  readonly stockSymbol: string; // stock symbol
 }
 
-export interface IGetStockChartAction {
+// called only in redux saga to handle side effects
+export interface IGetStockQuotePendingAC {
+  type: ActionTypesEnum.GET_STOCK_QUOTE_PENDING;
+  readonly stockSymbol: string;
+}
+
+// called only in redux saga to handle side effects
+export interface IGetStockQuoteFulfilledAC {
+  type: ActionTypesEnum.GET_STOCK_QUOTE_FULFILLED;
+  readonly stockSymbol: string;
+  readonly payload: { data: IStockQuote };
+}
+
+// called only in redux saga to handle side effects
+export interface IGetStockChartRejectedAC {
+  type: ActionTypesEnum.GET_STOCK_QUOTE_REJECTED;
+  readonly stockSymbol: string;
+  readonly error: any;
+}
+
+export type StockQuoteAction =
+  | IGetStockQuoteAC
+  | IGetStockQuotePendingAC
+  | IGetStockQuoteFulfilledAC
+  | IGetStockChartRejectedAC;
+
+export interface IGetStockChartActionCreator {
   type:
     | ActionTypesEnum.GET_STOCK_CHART
     | ActionTypesEnum.GET_STOCK_CHART_PENDING
@@ -141,4 +164,4 @@ export interface IGetStockChartAction {
   readonly payload: string; // stock symbol
 }
 
-export type StockActionTypes = IGetStockQuoteAction | IGetStockChartAction;
+export type StockActionTypes = StockQuoteAction | IGetStockChartActionCreator;
