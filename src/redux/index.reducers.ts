@@ -2,8 +2,9 @@ import { combineReducers } from 'redux';
 
 import StockReducer from 'src/redux/Stocks/Reducer';
 
-const reducers = {
+const rootReducer = combineReducers({
   Stocks: StockReducer,
-};
+});
 
-export default combineReducers(reducers);
+export default rootReducer;
+export type RootState = ReturnType<typeof rootReducer>;

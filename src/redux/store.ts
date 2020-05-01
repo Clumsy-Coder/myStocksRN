@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 
 import { BUILD_VERSION } from 'react-native-dotenv';
-import reducers from 'src/redux/index.reducers';
+import rootReducer from 'src/redux/index.reducers';
 
 const middleware = [];
 
@@ -11,6 +11,6 @@ if (BUILD_VERSION === 'development') {
   middleware.push(logger);
 }
 
-const store = createStore(reducers, applyMiddleware(...middleware));
+const store = createStore(rootReducer, applyMiddleware(...middleware));
 
 export default store;
