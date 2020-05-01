@@ -62,6 +62,7 @@
     "prettier": "^2.0.4",
     "pretty-quick": "^2.0.1",
     "react-test-renderer": "^16.13.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "remote-redux-devtools": "^0.5.16",
     "typescript": "^3.8.3"
