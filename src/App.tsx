@@ -17,6 +17,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { Provider } from 'react-redux';
+
+import store from 'src/redux/store';
+
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -60,7 +64,7 @@ declare const global: { HermesInternal: null | {} };
 
 const App = () => {
   return (
-    <>
+    <Provider store={store}>
       <StatusBar barStyle='dark-content' />
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior='automatic' style={styles.scrollView}>
@@ -100,7 +104,7 @@ const App = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </Provider>
   );
 };
 
