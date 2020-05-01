@@ -1,15 +1,11 @@
-import {
-  IGetStockQuoteAC,
-  IGetStockChartActionCreator,
-  ActionTypesEnum,
-} from 'src/redux/Stocks/Types';
+import { IGetStockQuoteAC, IGetStockChartAC, ActionTypesEnum } from 'src/redux/Stocks/Types';
 
-export const fetchStockQuote = (symbol: string): IGetStockQuoteAC => ({
+export const fetchStockQuote = (stockSymbol: string): IGetStockQuoteAC => ({
   type: ActionTypesEnum.GET_STOCK_QUOTE,
-  stockSymbol: symbol,
+  stockSymbol,
 });
 
-export const fetchStockChart = (symbol: string): IGetStockChartActionCreator => ({
+export const fetchStockChart = (stockSymbol: string): IGetStockChartAC => ({
   type: ActionTypesEnum.GET_STOCK_CHART,
-  payload: symbol,
+  stockSymbol,
 });
