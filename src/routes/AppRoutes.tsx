@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import NavigationRoutePath from 'src/routes/RoutePath.enum';
@@ -13,14 +13,24 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 export const HomeStackNavigator = () => (
-  <Stack.Navigator initialRouteName={NavigationRoutePath.Home}>
+  <Stack.Navigator
+    initialRouteName={NavigationRoutePath.Home}
+    screenOptions={{
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+    }}
+  >
     <Stack.Screen name={NavigationRoutePath.Home} component={HomeScreen} />
     <Stack.Screen name={NavigationRoutePath.StockDetails} component={StockDetailsScreen} />
   </Stack.Navigator>
 );
 
 export const SettingStackNavigator = () => (
-  <Stack.Navigator initialRouteName={NavigationRoutePath.Settings}>
+  <Stack.Navigator
+    initialRouteName={NavigationRoutePath.Settings}
+    screenOptions={{
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+    }}
+  >
     <Stack.Screen name={NavigationRoutePath.Settings} component={SettingsScreen} />
     <Stack.Screen name={NavigationRoutePath.About} component={AboutScreen} />
   </Stack.Navigator>
