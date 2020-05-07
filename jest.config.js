@@ -35,4 +35,17 @@ module.exports = {
       },
     ],
   ],
+  transform: {
+    '^.+\\.js$': '<rootDir>/node_modules/react-native/jest/preprocessor.js',
+    '\\.(ts|tsx)$': 'ts-jest',
+  },
+  globals: {
+    'ts-jest': {
+      tsConfig: 'tsconfig.jest.json',
+      babelConfig: true,
+    },
+  },
+  setupFiles: ['./jest.setup.js', './node_modules/react-native-gesture-handler/jestSetup.js'],
+  transformIgnorePatterns: ['node_modules/(?!(jest-)?react-native|@?react-navigation)'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
 };

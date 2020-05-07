@@ -160,6 +160,16 @@ references:
       name: Decode Android key store
       command: echo $KEYSTORE | base64 -d | tee keystore app/release.keystore > /dev/null
 
+  # Generate .env file
+  # Assuming working directory is ~/myStocksRN/android
+  # File to be placed in ~/myStocksRN/
+  generate_env_file: &generate_env_file
+    run:
+      name: Generate .ENV file
+      command: |
+        printf 'BUILD_VERSION=%s\n' $(echo $CIRCLE_SHA1 | cut -c -7) >> ../.env
+        printf 'API_KEY=%s\n' $API_KEY >> ../.env
+
 # --------------------------------------------------------------------------------------------------
 #
 #      ██╗ ██████╗ ██████╗ ███████╗
@@ -233,6 +243,7 @@ jobs:
       - *android_dependencies
       - *save_gradle_cache
       - *save_gems_cache
+      - *generate_env_file
       - run:
           name: Generate Android Release APK build
           command: bundle exec fastlane assemble_release_build
