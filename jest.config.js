@@ -47,4 +47,5 @@ module.exports = {
   },
   setupFiles: ['./jest.setup.js', './node_modules/react-native-gesture-handler/jestSetup.js'],
   transformIgnorePatterns: ['node_modules/(?!(jest-)?react-native|@?react-navigation)'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
 };
