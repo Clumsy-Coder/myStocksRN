@@ -8,9 +8,10 @@ import HomeScreen from 'src/screens/Home';
 import StockDetailsScreen from 'src/screens/StockDetails';
 import SettingsScreen from 'src/screens/Settings';
 import AboutScreen from 'src/screens/About';
+import { RootStackParamList, RootDrawerParamList } from 'src/routes/AppRouteTypes';
 
-const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 export const HomeStackNavigator = () => (
   <Stack.Navigator
