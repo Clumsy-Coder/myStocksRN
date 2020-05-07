@@ -49,4 +49,9 @@ describe('Essential files', () => {
     const filepath = path.resolve(DIR_BASE, 'metro.config.js');
     expect(fs.existsSync(filepath)).toBe(true);
   });
+
+  it('src/configs/app.json file should exist', () => {
+    const filepath = path.resolve(DIR_BASE, 'src', 'configs', 'app.json');
+    expect(fs.existsSync(filepath)).toBe(true);
+  });
 });
