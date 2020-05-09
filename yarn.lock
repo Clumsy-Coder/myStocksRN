@@ -1213,6 +1213,21 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
+"@microsoft/tsdoc-config@0.13.3":
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@microsoft/tsdoc-config/-/tsdoc-config-0.13.3.tgz#c35ab50289f5a5ca44338d10baa2f8526ca9b061"
+  integrity sha512-6v2JUsfQIr2KStZgRusIuJmNvXX/xZMkzXA9YKY99hpj7uuAeAsHeKTe07D8t7hKlz79qCZMmg6ptJ55dYP9Xg==
+  dependencies:
+    "@microsoft/tsdoc" "0.12.19"
+    ajv "~6.10.2"
+    jju "~1.4.0"
+    resolve "~1.12.0"
+
+"@microsoft/tsdoc@0.12.19", "@microsoft/tsdoc@^0.12.19":
+  version "0.12.19"
+  resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.12.19.tgz#2173ccb92469aaf62031fa9499d21b16d07f9b57"
+  integrity sha512-IpgPxHrNxZiMNUSXqR1l/gePKPkfAmIKoDRP9hp7OwjU29ZR8WCJsOJ8iBKgw0Qk+pFwR+8Y1cy8ImLY6e9m4A==
+
 "@react-native-community/cli-debugger-ui@^4.7.0":
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.7.0.tgz#4a8689f56b99378b24bbbf0ff6a89869d667f013"
@@ -1813,6 +1828,16 @@ ajv@^6.10.0, ajv@^6.10.2, ajv@^6.5.5:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     opencollective-postinstall "^2.0.2"
+    uri-js "^4.2.2"
+
+ajv@~6.10.2:
+  version "6.10.2"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.10.2.tgz#d3cea04d6b017b2894ad69040fec8b623eb4bd52"
+  integrity sha512-TXtUUEYHuaTEbLZWIKUr5pmBuhDLy+8KYtPYdcV8qC+pOZL+NKqYwvWSRrVXHn+ZmRRAu8vJTAznH7Oag6RVRw==
+  dependencies:
+    fast-deep-equal "^2.0.1"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
 anser@^1.4.9:
@@ -3574,12 +3599,25 @@ eslint-plugin-react@7.19.0, eslint-plugin-react@^7.19.0:
     string.prototype.matchall "^4.0.2"
     xregexp "^4.3.0"
 
+eslint-plugin-redux-saga@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-redux-saga/-/eslint-plugin-redux-saga-1.1.3.tgz#56e530f109b7f1c7ad8b9ad2e419b83eca63fcc6"
+  integrity sha512-fWvibCMWi7xPAgtAk3gaTgC9/x+tEEKAyNPpJkXPyvNqyGZSNGf+1h2HqA1zYXDWUBxvt7hDnz3ljLbQV3WVwA==
+
 eslint-plugin-relay@1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-relay/-/eslint-plugin-relay-1.4.1.tgz#5af2ac13e24bd01ad17b6a4014204918d65021cd"
   integrity sha512-yb+p+4AxZTi2gXN7cZRfXMBFlRa5j6TtiVeq3yHXyy+tlgYNpxi/dDrP1+tcUTNP9vdaJovnfGZ5jp6kMiH9eg==
   dependencies:
     graphql "^14.0.0"
+
+eslint-plugin-tsdoc@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-tsdoc/-/eslint-plugin-tsdoc-0.2.4.tgz#b4e554838b9d0b09acd0955b6d9a0dd00978dc93"
+  integrity sha512-iUHb4SkithNERIfrHGWAdsR0cjHplF9F9Mop4cnDSplAw/0oKyPb9eDjcqwFfO4E2pz+JLv24TzgM7gFAGqO9A==
+  dependencies:
+    "@microsoft/tsdoc" "0.12.19"
+    "@microsoft/tsdoc-config" "0.13.3"
 
 eslint-scope@^5.0.0:
   version "5.0.0"
@@ -3866,6 +3904,11 @@ fancy-log@^1.3.2:
     color-support "^1.1.3"
     parse-node-version "^1.0.0"
     time-stamp "^1.0.0"
+
+fast-deep-equal@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
+  integrity sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=
 
 fast-deep-equal@^3.1.1:
   version "3.1.1"
@@ -5397,6 +5440,11 @@ jetifier@^1.6.2:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-1.6.5.tgz#ea87324a4230bef20a9651178ecab978ee54a8cb"
   integrity sha512-T7yzBSu9PR+DqjYt+I0KVO1XTb1QhAfHnXV5Nd3xpbXM6Xg4e3vP60Q4qkNU8Fh6PHC2PivPUNN3rY7G2MxcDQ==
+
+jju@~1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/jju/-/jju-1.4.0.tgz#a3abe2718af241a2b2904f84a625970f389ae32a"
+  integrity sha1-o6vicYryQaKykE+EpiWXDzia4yo=
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -7320,6 +7368,11 @@ react-native@0.62.2:
     use-subscription "^1.0.0"
     whatwg-fetch "^3.0.0"
 
+react-redux-typescript-scripts@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/react-redux-typescript-scripts/-/react-redux-typescript-scripts-1.6.2.tgz#5425374e134eee848968bc35901abc5a9b084f7e"
+  integrity sha512-nASG+t4r7fy7Ov+3R0Lw/tSzAQAeqSlV6qXrz/au0Q3/Gs50oXGJHrz3WWMzPRs2mN/gPV6afgXNMOCQMuhQGA==
+
 react-redux@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.0.tgz#f970f62192b3981642fec46fd0db18a074fe879d"
@@ -7687,6 +7740,13 @@ resolve@^1.10.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.15.1, resolve@^1.3
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.16.1.tgz#49fac5d8bacf1fd53f200fa51247ae736175832c"
   integrity sha512-rmAglCSqWWMrrBv/XM6sW0NuRFiKViw/W4d9EbC4pt+49H8JwHy+mcGmALTEg504AUDcLTvb1T2q3E9AnmY+ig==
+  dependencies:
+    path-parse "^1.0.6"
+
+resolve@~1.12.0:
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.12.3.tgz#96d5253df8005ce19795c14338f2a013c38a8c15"
+  integrity sha512-hF6+hAPlxjqHWrw4p1rF3Wztbgxd4AjA5VlUzY5zcTb4J8D3JK4/1RjU48pHz2PJWzGVsLB1VWZkvJzhK2CCOA==
   dependencies:
     path-parse "^1.0.6"
 

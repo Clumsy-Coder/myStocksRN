@@ -1,12 +1,22 @@
 module.exports = {
   root: true,
   extends: [
-    '@react-native-community',
+    'eslint:recommended',
     'airbnb-typescript',
+    '@react-native-community',
     'prettier',
-    'prettier/@typescript-eslint',
+    'prettier/babel',
     'prettier/react',
+    'prettier/@typescript-eslint',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'plugin:redux-saga/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:jest/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -17,7 +27,16 @@ module.exports = {
     project: './tsconfig.json',
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['react', 'jest'],
+  plugins: [
+    '@typescript-eslint/eslint-plugin',
+    '@typescript-eslint',
+    'eslint-plugin-tsdoc',
+    'react',
+    'redux-saga',
+    'prettier',
+    'jest',
+    'jsx-a11y',
+  ],
   rules: {
     'react/jsx-one-expression-per-line': ['off'],
     'max-len': [
@@ -30,11 +49,12 @@ module.exports = {
       },
     ],
     'react/jsx-props-no-spreading': ['off'],
+    'tsdoc/syntax': 'warn',
   },
   settings: {
     'import/resolver': {
       'babel-module': {},
     },
   },
-  ignorePatterns: ['test-results'],
+  ignorePatterns: ['test-results', 'metro.config.js'],
 };
