@@ -3,22 +3,23 @@ import axios, { AxiosResponse } from 'axios';
 
 import * as stocksActions from 'src/redux/Stocks/Actions';
 import { fetchStockQuoteUrl } from 'src/share/Utilities';
-import { IStockQuote, IGetStockQuoteAC, ActionTypesEnum } from 'src/redux/Stocks/Types';
+import { StockQuote, FetchStockQuoteAC, ActionTypesEnum } from 'src/redux/Stocks/Types';
 
 /**
  * Initiate the fetching of stock quote.
- * It will dispatch GET_STOCK_QUOTE_PENDING action.
- * Once the fetching is successful, it will dispatch GET_STOCK_QUOTE_FULFILLED action.
- * If the fetching failed, it will dispatch GET_STOCK_QUOTE_REJECTED action.
+ * It will dispatch FETCH_STOCK_QUOTE_PENDING action.
+ * Once the fetching is successful, it will dispatch FETCH_STOCK_QUOTE_FULFILLED action.
+ * If the fetching failed, it will dispatch FETCH_STOCK_QUOTE_REJECTED action.
  *
- * @param action Fetch Stock quote action creator
+ * @param action - Fetch stock quote action creator
+ * @returns
  */
-export function* fetchStockQuoteSaga(action: IGetStockQuoteAC) {
+export function* fetchStockQuoteSaga(action: FetchStockQuoteAC) {
   const url = yield fetchStockQuoteUrl(action.stockSymbol.toUpperCase());
-  yield put(stocksActions.fetchStockQuotePending(action.stockSymbol));
 
   try {
-    const response: AxiosResponse<IStockQuote> = yield axios.get(url);
+    yield put(stocksActions.fetchStockQuotePending(action.stockSymbol));
+    const response: AxiosResponse<StockQuote> = yield axios.get(url);
     yield put(stocksActions.fetchStockQuoteFulfilled(action.stockSymbol, response.data));
   } catch (error) {
     yield put(stocksActions.fetchStockQuoteRejected(action.stockSymbol, error));
@@ -26,5 +27,5 @@ export function* fetchStockQuoteSaga(action: IGetStockQuoteAC) {
 }
 
 export default function* watchStocksSagas() {
-  yield takeEvery(ActionTypesEnum.GET_STOCK_QUOTE, fetchStockQuoteSaga);
+  yield takeEvery(ActionTypesEnum.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
 }

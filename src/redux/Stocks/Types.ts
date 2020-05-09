@@ -1,10 +1,18 @@
+/*
+██████╗  █████╗ ████████╗ █████╗     ██████╗  ██████╗ ███╗   ███╗ █████╗ ██╗███╗   ██╗
+██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██╔══██╗██╔═══██╗████╗ ████║██╔══██╗██║████╗  ██║
+██║  ██║███████║   ██║   ███████║    ██║  ██║██║   ██║██╔████╔██║███████║██║██╔██╗ ██║
+██║  ██║██╔══██║   ██║   ██╔══██║    ██║  ██║██║   ██║██║╚██╔╝██║██╔══██║██║██║╚██╗██║
+██████╔╝██║  ██║   ██║   ██║  ██║    ██████╔╝╚██████╔╝██║ ╚═╝ ██║██║  ██║██║██║ ╚████║
+╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝    ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
+
+*/
+
 /**
  * Data format when fetching stock quote
  * check https://iexcloud.io/docs/api/#quote
- *
- * @interface IStockQuote
  */
-export interface IStockQuote {
+export interface StockQuote {
   symbol: string; // stock ticker. ex: AAPL
   companyName: string; // company name
   primaryExchange: string; // Refers to the primary listing exchange for the symbol
@@ -67,10 +75,8 @@ export interface IStockQuote {
  * check https://iexcloud.io/docs/api/#charts
  * check https://iexcloud.io/docs/api/#historical-prices
  * check https://iexcloud.io/docs/api/#intraday-prices
- *
- * @interface IStockChart
  */
-export interface IStockChart {
+export interface StockChart {
   date: string; // Formatted as YYYY-MM-DD
   open: number; // Adjusted data for historical dates. Split adjusted only
   close: number; // Adjusted data for historical dates. Split adjusted only
@@ -90,107 +96,173 @@ export interface IStockChart {
 }
 
 // ---------------------------------------------------------------------------------------------- //
-// used for Stocks reducer
-export interface IStockState {
+/*
+██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗███████╗██████╗
+██╔══██╗██╔════╝██╔══██╗██║   ██║██╔════╝██╔════╝██╔══██╗
+██████╔╝█████╗  ██║  ██║██║   ██║██║     █████╗  ██████╔╝
+██╔══██╗██╔══╝  ██║  ██║██║   ██║██║     ██╔══╝  ██╔══██╗
+██║  ██║███████╗██████╔╝╚██████╔╝╚██████╗███████╗██║  ██║
+╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚══════╝╚═╝  ╚═╝
+
+*/
+
+/**
+ * Stocks reducer state
+ */
+export interface StockState {
   [symbol: string]: {
     quote: {
-      fetching: Boolean;
-      data: IStockQuote | null;
-      error?: any;
+      fetching: boolean;
+      data?: StockQuote;
+      error?: Error;
     };
     chart?: {
       fetching: boolean;
-      data: IStockChart[] | null;
-      error?: any;
+      data?: StockChart[];
+      error?: Error;
     };
   };
 }
 
 // ---------------------------------------------------------------------------------------------- //
-// action types
+/*
+ █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
+██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║    ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝
+███████║██║        ██║   ██║██║   ██║██╔██╗ ██║       ██║    ╚████╔╝ ██████╔╝█████╗  ███████╗
+██╔══██║██║        ██║   ██║██║   ██║██║╚██╗██║       ██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ╚════██║
+██║  ██║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║       ██║      ██║   ██║     ███████╗███████║
+╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝       ╚═╝      ╚═╝   ╚═╝     ╚══════╝╚══════╝
 
+*/
+
+/**
+ * Stocks action types
+ */
 export enum ActionTypesEnum {
-  GET_STOCK_QUOTE = 'STOCKS/GET_STOCK_QUOTE',
-  GET_STOCK_QUOTE_PENDING = 'STOCKS/GET_STOCK_QUOTE_PENDING',
-  GET_STOCK_QUOTE_FULFILLED = 'STOCKS/GET_STOCK_QUOTE_FULFILLED',
-  GET_STOCK_QUOTE_REJECTED = 'STOCKS/GET_STOCK_QUOTE_REJECTED',
+  FETCH_STOCK_QUOTE = 'STOCKS/FETCH_STOCK_QUOTE',
+  FETCH_STOCK_QUOTE_PENDING = 'STOCKS/FETCH_STOCK_QUOTE_PENDING',
+  FETCH_STOCK_QUOTE_FULFILLED = 'STOCKS/FETCH_STOCK_QUOTE_FULFILLED',
+  FETCH_STOCK_QUOTE_REJECTED = 'STOCKS/FETCH_STOCK_QUOTE_REJECTED',
 
-  GET_STOCK_CHART = 'STOCKS/GET_STOCK_CHART',
-  GET_STOCK_CHART_PENDING = 'STOCKS/GET_STOCK_CHART_PENDING',
-  GET_STOCK_CHART_FULFILLED = 'STOCKS/GET_STOCK_CHART_FULFILLED',
-  GET_STOCK_CHART_REJECTED = 'STOCKS/GET_STOCK_CHART_REJECTED',
+  FETCH_STOCK_CHART = 'STOCKS/FETCH_STOCK_CHART',
+  FETCH_STOCK_CHART_PENDING = 'STOCKS/FETCH_STOCK_CHART_PENDING',
+  FETCH_STOCK_CHART_FULFILLED = 'STOCKS/FETCH_STOCK_CHART_FULFILLED',
+  FETCH_STOCK_CHART_REJECTED = 'STOCKS/FETCH_STOCK_CHART_REJECTED',
 }
 
 // ---------------------------------------------------------------------------------------------- //
-// action creators
+/*
+ █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗     ██████╗██████╗ ███████╗ █████╗ ████████╗ ██████╗ ██████╗ ███████╗
+██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║    ██╔════╝██╔══██╗██╔════╝██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗██╔════╝
+███████║██║        ██║   ██║██║   ██║██╔██╗ ██║    ██║     ██████╔╝█████╗  ███████║   ██║   ██║   ██║██████╔╝███████╗
+██╔══██║██║        ██║   ██║██║   ██║██║╚██╗██║    ██║     ██╔══██╗██╔══╝  ██╔══██║   ██║   ██║   ██║██╔══██╗╚════██║
+██║  ██║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║    ╚██████╗██║  ██║███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║███████║
+╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝
 
-// get stock quote action creator
-// called to initiate the fetching process
-export interface IGetStockQuoteAC {
-  type: ActionTypesEnum.GET_STOCK_QUOTE;
+*/
+
+/**
+ * Fetch Stock Quote action creator.
+ */
+export interface FetchStockQuoteAC {
+  type: ActionTypesEnum.FETCH_STOCK_QUOTE;
   readonly stockSymbol: string; // stock symbol
 }
 
-// called only in redux saga to handle side effects
-export interface IGetStockQuotePendingAC {
-  type: ActionTypesEnum.GET_STOCK_QUOTE_PENDING;
+/**
+ * Fetch Stock Quote pending action creator
+ */
+export interface FetchStockQuotePendingAC {
+  type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING;
   readonly stockSymbol: string;
 }
 
-// called only in redux saga to handle side effects
-export interface IGetStockQuoteFulfilledAC {
-  type: ActionTypesEnum.GET_STOCK_QUOTE_FULFILLED;
+/**
+ * Fetch Stock Quote fulfilled action creator
+ */
+export interface FetchStockQuoteFulfilledAC {
+  type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED;
   readonly stockSymbol: string;
-  readonly payload: { data: IStockQuote };
+  readonly payload: { data: StockQuote };
 }
 
-// called only in redux saga to handle side effects
-export interface IGetStockQuoteRejectedAC {
-  type: ActionTypesEnum.GET_STOCK_QUOTE_REJECTED;
+/**
+ * Fetch Stock Quote rejected action creator
+ */
+export interface FetchStockQuoteRejectedAC {
+  type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED;
   readonly stockSymbol: string;
-  readonly error: any;
+  readonly error: Error;
 }
 
+/**
+ * Union of action creators for Stock Quote
+ * Check {@link FetchStockQuoteAC}
+ * Check {@link FetchStockQuotePendingAC}
+ * Check {@link FetchStockQuoteFulfilledAC}
+ * Check {@link FetchStockQuoteRejectedAC}
+ */
 export type StockQuoteAction =
-  | IGetStockQuoteAC
-  | IGetStockQuotePendingAC
-  | IGetStockQuoteFulfilledAC
-  | IGetStockQuoteRejectedAC;
+  | FetchStockQuoteAC
+  | FetchStockQuotePendingAC
+  | FetchStockQuoteFulfilledAC
+  | FetchStockQuoteRejectedAC;
 
 // ---------------------------------------------------------------------------------------------- //
 // get stock chart action creator
-// called to initiate the fetching process
-export interface IGetStockChartAC {
-  type: ActionTypesEnum.GET_STOCK_CHART;
+
+/**
+ * Fetch Stock Chart action creator
+ */
+export interface FetchStockChartAC {
+  type: ActionTypesEnum.FETCH_STOCK_CHART;
   readonly stockSymbol: string;
 }
 
-// called only in redux saga to handle side effects
-export interface IGetStockChartPendingAC {
-  type: ActionTypesEnum.GET_STOCK_CHART_PENDING;
+/**
+ * Fetch Stock Chart pending action creator
+ */
+export interface FetchStockChartPendingAC {
+  type: ActionTypesEnum.FETCH_STOCK_CHART_PENDING;
   readonly stockSymbol: string;
 }
 
-// called only in redux saga to handle side effects
-export interface IGetStockChartFulfilledAC {
-  type: ActionTypesEnum.GET_STOCK_CHART_FULFILLED;
+/**
+ * Fetch Stock Chart fulfilled action creator
+ */
+export interface FetchStockChartFulfilledAC {
+  type: ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED;
   readonly stockSymbol: string;
-  readonly payload: { data: IStockChart[] };
+  readonly payload: { data: StockChart[] };
 }
 
-// called only in redux saga to handle side effects
-export interface IGetStockChartRejectedAC {
-  type: ActionTypesEnum.GET_STOCK_CHART_REJECTED;
+/**
+ * Fetch Stock Chart rejected action creator
+ */
+export interface FetchStockChartRejectedAC {
+  type: ActionTypesEnum.FETCH_STOCK_CHART_REJECTED;
   readonly stockSymbol: string;
-  readonly error: any;
+  readonly error: Error;
 }
 
+/**
+ * Union of action creators for Stock Chart
+ * Check {@link FetchStockChartAC}
+ * Check {@link FetchStockChartPendingAC}
+ * Check {@link FetchStockChartFulfilledAC}
+ * Check {@link FetchStockChartRejectedAC}
+ */
 export type StockChartAction =
-  | IGetStockChartAC
-  | IGetStockChartPendingAC
-  | IGetStockChartFulfilledAC
-  | IGetStockChartRejectedAC;
+  | FetchStockChartAC
+  | FetchStockChartPendingAC
+  | FetchStockChartFulfilledAC
+  | FetchStockChartRejectedAC;
 
 // ---------------------------------------------------------------------------------------------- //
-// all Stock action creators
+/**
+ * Union of action creators for StockQuoteAction and StockChartAction
+ *
+ * Check {@link StockQuoteAction}
+ * Check {@link StockChartAction}
+ */
 export type StockActionTypes = StockQuoteAction | StockChartAction;

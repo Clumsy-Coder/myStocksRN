@@ -1,11 +1,11 @@
 import {
-  IGetStockQuoteAC,
-  IGetStockChartAC,
+  FetchStockQuoteAC,
+  FetchStockChartAC,
   ActionTypesEnum,
-  IGetStockQuotePendingAC,
-  IGetStockQuoteFulfilledAC,
-  IStockQuote,
-  IGetStockQuoteRejectedAC,
+  FetchStockQuotePendingAC,
+  FetchStockQuoteFulfilledAC,
+  StockQuote,
+  FetchStockQuoteRejectedAC,
 } from 'src/redux/Stocks/Types';
 
 /**
@@ -13,8 +13,8 @@ import {
  * ONLY to be called by the front end.
  * @param stockSymbol Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockQuote = (stockSymbol: string): IGetStockQuoteAC => ({
-  type: ActionTypesEnum.GET_STOCK_QUOTE,
+export const fetchStockQuote = (stockSymbol: string): FetchStockQuoteAC => ({
+  type: ActionTypesEnum.FETCH_STOCK_QUOTE,
   stockSymbol,
 });
 
@@ -24,8 +24,8 @@ export const fetchStockQuote = (stockSymbol: string): IGetStockQuoteAC => ({
  * Only used for internal use.
  * @param stockSymbol Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockQuotePending = (stockSymbol: string): IGetStockQuotePendingAC => ({
-  type: ActionTypesEnum.GET_STOCK_QUOTE_PENDING,
+export const fetchStockQuotePending = (stockSymbol: string): FetchStockQuotePendingAC => ({
+  type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING,
   stockSymbol,
 });
 
@@ -38,9 +38,9 @@ export const fetchStockQuotePending = (stockSymbol: string): IGetStockQuotePendi
  */
 export const fetchStockQuoteFulfilled = (
   stockSymbol: string,
-  payload: IStockQuote,
-): IGetStockQuoteFulfilledAC => ({
-  type: ActionTypesEnum.GET_STOCK_QUOTE_FULFILLED,
+  payload: StockQuote,
+): FetchStockQuoteFulfilledAC => ({
+  type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED,
   stockSymbol,
   payload: { data: payload },
 });
@@ -55,15 +55,15 @@ export const fetchStockQuoteFulfilled = (
 export const fetchStockQuoteRejected = (
   stockSymbol: string,
   error: Error,
-): IGetStockQuoteRejectedAC => ({
-  type: ActionTypesEnum.GET_STOCK_QUOTE_REJECTED,
+): FetchStockQuoteRejectedAC => ({
+  type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED,
   stockSymbol,
   error,
 });
 
 // ---------------------------------------------------------------------------------------------- //
 
-export const fetchStockChart = (stockSymbol: string): IGetStockChartAC => ({
-  type: ActionTypesEnum.GET_STOCK_CHART,
+export const fetchStockChart = (stockSymbol: string): FetchStockChartAC => ({
+  type: ActionTypesEnum.FETCH_STOCK_CHART,
   stockSymbol,
 });
