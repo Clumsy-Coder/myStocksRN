@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { put, takeEvery } from 'redux-saga/effects';
 import axios, { AxiosResponse } from 'axios';
 
