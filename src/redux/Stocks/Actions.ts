@@ -11,7 +11,7 @@ import {
 /**
  * Fetch stock quote action creator.
  * ONLY to be called by the front end.
- * @param stockSymbol Company stock symbol in uppercase. Ex: AAPL
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
 export const fetchStockQuote = (stockSymbol: string): FetchStockQuoteAC => ({
   type: ActionTypesEnum.FETCH_STOCK_QUOTE,
@@ -22,7 +22,7 @@ export const fetchStockQuote = (stockSymbol: string): FetchStockQuoteAC => ({
  * Fetch stock quote pending action creator.
  * ONLY to be called by redux saga.
  * Only used for internal use.
- * @param stockSymbol Company stock symbol in uppercase. Ex: AAPL
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
 export const fetchStockQuotePending = (stockSymbol: string): FetchStockQuotePendingAC => ({
   type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING,
@@ -33,8 +33,8 @@ export const fetchStockQuotePending = (stockSymbol: string): FetchStockQuotePend
  * Fetch stock quote fulfilled action creator.
  * ONLY to be called by redux saga.
  * Only used internal use.
- * @param stockSymbol Company stock symbol in uppercase. Ex: AAPL
- * @param payload data fetched
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param payload - data fetched
  */
 export const fetchStockQuoteFulfilled = (
   stockSymbol: string,
@@ -49,8 +49,8 @@ export const fetchStockQuoteFulfilled = (
  * Fetch stock quote rejected action creator.
  * ONLY to be called by redux saga.
  * Only used for internal use.
- * @param stockSymbol Company stock symbol in uppercase. Ex: AAPL
- * @param error error message
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param error - error message
  */
 export const fetchStockQuoteRejected = (
   stockSymbol: string,
