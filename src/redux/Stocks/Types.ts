@@ -106,22 +106,28 @@ export interface StockChart {
 
 */
 
+export interface StockQuoteData {
+  fetching: boolean;
+  data?: StockQuote;
+  error?: Error;
+}
+
+export interface StockChartData {
+  fetching: boolean;
+  data?: StockChart[];
+  error?: Error;
+}
+
+export interface StockData {
+  quote: StockQuoteData;
+  chart?: StockChartData;
+}
+
 /**
  * Stocks reducer state
  */
 export interface StockState {
-  [symbol: string]: {
-    quote: {
-      fetching: boolean;
-      data?: StockQuote;
-      error?: Error;
-    };
-    chart?: {
-      fetching: boolean;
-      data?: StockChart[];
-      error?: Error;
-    };
-  };
+  [symbol: string]: StockData;
 }
 
 // ---------------------------------------------------------------------------------------------- //
