@@ -10,8 +10,8 @@ const reducer = (state = initialState, action: StockActionTypes): StockState => 
         [action.stockSymbol]: {
           ...state[action.stockSymbol],
           quote: {
-            fetching: false,
-            data: undefined,
+            fetching: true,
+            // data: undefined,
             error: undefined,
           },
         },
