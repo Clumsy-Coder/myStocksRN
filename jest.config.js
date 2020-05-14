@@ -19,13 +19,21 @@ module.exports = {
   coverageReporters: ['text', 'html'],
   reporters: [
     'default',
+    // [
+    //   'jest-html-reporter',
+    //   {
+    //     pageTitle: 'Test Report',
+    //     outputPath: './test-results/test-reports.html',
+    //     includeFailureMsg: true,
+    //     theme: 'darkTheme',
+    //   },
+    // ],
     [
-      'jest-html-reporter',
+      'jest-html-reporters',
       {
-        pageTitle: 'Test Report',
-        outputPath: './test-results/test-reports.html',
-        includeFailureMsg: true,
-        theme: 'darkTheme',
+        publicPath: './test-results/',
+        filename: 'test-report.html',
+        expand: true,
       },
     ],
     [
