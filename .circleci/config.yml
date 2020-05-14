@@ -208,6 +208,8 @@ jobs:
     working_directory: *projectWorkspace
     docker:
       - image: circleci/node:latest
+    orbs:
+      codecov: codecov/codecov@1.0.2
     steps:
       - checkout
       - *restoreYarnLockfile
@@ -219,6 +221,8 @@ jobs:
             yarn test
           environment:
             JEST_JUNIT_OUTPUT: test-results/junit/junit.xml
+      - codecov/upload:
+          file: test-results/junit/junit.xml
       - store_test_results:
           path: test-results
       - store_artifacts:
