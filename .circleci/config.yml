@@ -178,7 +178,8 @@ references:
 # ██   ██║██║   ██║██╔══██╗╚════██║
 # ╚█████╔╝╚██████╔╝██████╔╝███████║
 #  ╚════╝  ╚═════╝ ╚═════╝ ╚══════╝
-
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   node:
     working_directory: *projectWorkspace
@@ -208,8 +209,6 @@ jobs:
     working_directory: *projectWorkspace
     docker:
       - image: circleci/node:latest
-    orbs:
-      codecov: codecov/codecov@1.0.2
     steps:
       - checkout
       - *restoreYarnLockfile
