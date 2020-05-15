@@ -70,6 +70,5 @@
   "exclude": [
     "node_modules",
     "test-results/",
-    "**/*.test.ts"
   ]
 }

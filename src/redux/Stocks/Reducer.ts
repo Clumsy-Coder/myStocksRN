@@ -1,23 +1,23 @@
-import { ActionTypesEnum, IStockState, StockActionTypes } from 'src/redux/Stocks/Types';
+import { ActionTypesEnum, StockState, StockActionTypes } from 'src/redux/Stocks/Types';
 
-const initialState: IStockState = {};
+const initialState: StockState = {};
 
-const reducer = (state = initialState, action: StockActionTypes): IStockState => {
+const reducer = (state = initialState, action: StockActionTypes): StockState => {
   switch (action.type) {
-    case ActionTypesEnum.GET_STOCK_QUOTE_PENDING: {
+    case ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING: {
       return {
         ...state,
         [action.stockSymbol]: {
           ...state[action.stockSymbol],
           quote: {
-            fetching: false,
-            data: null,
-            error: null,
+            fetching: true,
+            // data: undefined,
+            error: undefined,
           },
         },
       };
     }
-    case ActionTypesEnum.GET_STOCK_QUOTE_FULFILLED: {
+    case ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED: {
       return {
         ...state,
         [action.stockSymbol]: {
@@ -25,38 +25,38 @@ const reducer = (state = initialState, action: StockActionTypes): IStockState =>
           quote: {
             fetching: false,
             data: action.payload.data,
-            error: null,
+            error: undefined,
           },
         },
       };
     }
-    case ActionTypesEnum.GET_STOCK_QUOTE_REJECTED: {
+    case ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED: {
       return {
         ...state,
         [action.stockSymbol]: {
           ...state[action.stockSymbol],
           quote: {
             fetching: false,
-            data: null,
+            data: undefined,
             error: action.error,
           },
         },
       };
     }
-    case ActionTypesEnum.GET_STOCK_CHART_PENDING: {
+    case ActionTypesEnum.FETCH_STOCK_CHART_PENDING: {
       return {
         ...state,
         [action.stockSymbol]: {
           ...state[action.stockSymbol],
           chart: {
             fetching: true,
-            data: null,
-            error: null,
+            data: undefined,
+            error: undefined,
           },
         },
       };
     }
-    case ActionTypesEnum.GET_STOCK_CHART_FULFILLED: {
+    case ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED: {
       return {
         ...state,
         [action.stockSymbol]: {
@@ -64,19 +64,19 @@ const reducer = (state = initialState, action: StockActionTypes): IStockState =>
           chart: {
             fetching: false,
             data: action.payload.data,
-            error: null,
+            error: undefined,
           },
         },
       };
     }
-    case ActionTypesEnum.GET_STOCK_CHART_REJECTED: {
+    case ActionTypesEnum.FETCH_STOCK_CHART_REJECTED: {
       return {
         ...state,
         [action.stockSymbol]: {
           ...state[action.stockSymbol],
           chart: {
             fetching: false,
-            data: null,
+            data: undefined,
             error: action.error,
           },
         },

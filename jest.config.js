@@ -5,6 +5,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.{js,jsx, ts, tsx}',
+    './src/**',
     '!**/node_modules/**',
     '!**/android/**',
     '!**/ios/**',
@@ -13,19 +14,29 @@ module.exports = {
     '!metro.config.js',
     '!babel.config.js',
     '!jest.config.js',
-    '!**/test-results/**',
+    '!./test-results/**',
+    '!./src/configs/**',
+    '!./src/**/**/tests/**/*.test.ts.snap',
   ],
-  coverageDirectory: './test-results/coverage/',
-  coverageReporters: ['text', 'html'],
+  // coverageDirectory: './test-results/coverage/',
+  coverageReporters: ['text', 'text-summary', 'lcov', 'clover', 'json'],
   reporters: [
     'default',
+    // [
+    //   'jest-html-reporter',
+    //   {
+    //     pageTitle: 'Test Report',
+    //     outputPath: './test-results/test-reports.html',
+    //     includeFailureMsg: true,
+    //     theme: 'darkTheme',
+    //   },
+    // ],
     [
-      'jest-html-reporter',
+      'jest-html-reporters',
       {
-        pageTitle: 'Test Report',
-        outputPath: './test-results/test-reports.html',
-        includeFailureMsg: true,
-        theme: 'darkTheme',
+        publicPath: './test-results/',
+        filename: 'test-report.html',
+        expand: true,
       },
     ],
     [

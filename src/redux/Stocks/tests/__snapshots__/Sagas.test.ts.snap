@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stocks Saga Stocks quote watcher Should fire on STOCKS/FETCH_STOCK_QUOTE action in case failure 1`] = `
+Object {
+  "fork": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "STOCKS/FETCH_STOCK_QUOTE",
+          "@@redux-saga-test-plan/json/function/fetchStockQuoteSaga",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeEvery",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          Object {
+            "stockSymbol": "AAPL",
+            "type": "STOCKS/FETCH_STOCK_QUOTE",
+          },
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/fetchStockQuoteSaga",
+      },
+      "type": "FORK",
+    },
+  ],
+  "take": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_QUOTE",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_QUOTE",
+      },
+      "type": "TAKE",
+    },
+  ],
+}
+`;
+
+exports[`Stocks Saga Stocks quote watcher Should fire on STOCKS/FETCH_STOCK_QUOTE action in case success 1`] = `
+Object {
+  "fork": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "STOCKS/FETCH_STOCK_QUOTE",
+          "@@redux-saga-test-plan/json/function/fetchStockQuoteSaga",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeEvery",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          Object {
+            "stockSymbol": "AAPL",
+            "type": "STOCKS/FETCH_STOCK_QUOTE",
+          },
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/fetchStockQuoteSaga",
+      },
+      "type": "FORK",
+    },
+  ],
+  "take": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_QUOTE",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_QUOTE",
+      },
+      "type": "TAKE",
+    },
+  ],
+}
+`;
