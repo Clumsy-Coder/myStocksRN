@@ -7,6 +7,9 @@ describe('Stocks selectors', () => {
     it('Handle with empty store', () => {
       const store: RootState = {
         Stocks: {},
+        Favorites: {
+          symbols: [],
+        },
       };
       const expected = {};
 
@@ -109,6 +112,9 @@ describe('Stocks selectors', () => {
               },
             },
           },
+          Favorites: {
+            symbols: [],
+          },
         };
 
         const expected: StockData = {
@@ -141,6 +147,9 @@ describe('Stocks selectors', () => {
                 data: data2,
               },
             },
+          },
+          Favorites: {
+            symbols: [],
           },
         };
 
@@ -190,6 +199,9 @@ describe('Stocks selectors', () => {
               },
             },
           },
+          Favorites: {
+            symbols: [],
+          },
         };
 
         const expected1: StockData = {
@@ -232,6 +244,9 @@ describe('Stocks selectors', () => {
               },
             },
           },
+          Favorites: {
+            symbols: [],
+          },
         };
         const expected: StockQuoteData = {
           fetching: false,
@@ -260,6 +275,9 @@ describe('Stocks selectors', () => {
                 data: data2,
               },
             },
+          },
+          Favorites: {
+            symbols: [],
           },
         };
         const expected1: StockQuoteData = {
@@ -308,6 +326,9 @@ describe('Stocks selectors', () => {
               },
             },
           },
+          Favorites: {
+            symbols: [],
+          },
         };
         const expected1: StockQuoteData = {
           fetching: false,
@@ -349,6 +370,9 @@ describe('Stocks selectors', () => {
               },
             },
           },
+          Favorites: {
+            symbols: [],
+          },
         };
         const expected = false;
         expect(selectors.selectStockQuoteFetching(rootState, { stockSymbol })).toEqual(expected);
@@ -373,6 +397,9 @@ describe('Stocks selectors', () => {
                 data: undefined,
               },
             },
+          },
+          Favorites: {
+            symbols: [],
           },
         };
         const expected1 = false;
@@ -413,6 +440,9 @@ describe('Stocks selectors', () => {
               },
             },
           },
+          Favorites: {
+            symbols: [],
+          },
         };
         const expected1 = false;
         const expected2 = true;
@@ -443,6 +473,9 @@ describe('Stocks selectors', () => {
                 },
               },
             },
+            Favorites: {
+              symbols: [],
+            },
           };
 
           const expected: StockQuote = data1;
@@ -469,6 +502,9 @@ describe('Stocks selectors', () => {
                   data: data2,
                 },
               },
+            },
+            Favorites: {
+              symbols: [],
             },
           };
 
@@ -510,6 +546,9 @@ describe('Stocks selectors', () => {
                 },
               },
             },
+            Favorites: {
+              symbols: [],
+            },
           };
 
           const expected1: StockQuote = data1;
@@ -540,6 +579,9 @@ describe('Stocks selectors', () => {
                 },
               },
             },
+            Favorites: {
+              symbols: [],
+            },
           };
 
           const expected: StockQuote | undefined = undefined;
@@ -566,6 +608,9 @@ describe('Stocks selectors', () => {
                   data: undefined,
                 },
               },
+            },
+            Favorites: {
+              symbols: [],
             },
           };
 
@@ -607,6 +652,9 @@ describe('Stocks selectors', () => {
                 },
               },
             },
+            Favorites: {
+              symbols: [],
+            },
           };
 
           const expected1: StockQuote | undefined = undefined;
@@ -639,6 +687,9 @@ describe('Stocks selectors', () => {
                 },
               },
             },
+            Favorites: {
+              symbols: [],
+            },
           };
 
           const expected: Error = new Error(`error for ${stockSymbol}`);
@@ -665,6 +716,9 @@ describe('Stocks selectors', () => {
                   data: undefined,
                 },
               },
+            },
+            Favorites: {
+              symbols: [],
             },
           };
 
@@ -706,6 +760,9 @@ describe('Stocks selectors', () => {
                 },
               },
             },
+            Favorites: {
+              symbols: [],
+            },
           };
 
           const expected1: Error = new Error(`error for ${stockSymbol1}`);
@@ -736,6 +793,9 @@ describe('Stocks selectors', () => {
                 },
               },
             },
+            Favorites: {
+              symbols: [],
+            },
           };
 
           const expected: Error | undefined = undefined;
@@ -762,6 +822,9 @@ describe('Stocks selectors', () => {
                   data: data2,
                 },
               },
+            },
+            Favorites: {
+              symbols: [],
             },
           };
 
@@ -802,6 +865,9 @@ describe('Stocks selectors', () => {
                   data: data3,
                 },
               },
+            },
+            Favorites: {
+              symbols: [],
             },
           };
 

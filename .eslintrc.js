@@ -56,5 +56,5 @@ module.exports = {
       'babel-module': {},
     },
   },
-  ignorePatterns: ['test-results', 'metro.config.js'],
+  ignorePatterns: ['test-results', 'metro.config.js', 'coverage'],
 };
