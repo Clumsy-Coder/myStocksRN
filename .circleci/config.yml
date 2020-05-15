@@ -229,7 +229,7 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: test-results/junit/junit.xml
       - codecov/upload:
-          file: test-results/junit/junit.xml
+          file: coverage/
       - store_test_results:
           path: test-results
       - store_artifacts:

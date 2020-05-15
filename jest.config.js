@@ -18,8 +18,8 @@ module.exports = {
     '!./src/configs/**',
     '!./src/**/**/tests/**/*.test.ts.snap',
   ],
-  coverageDirectory: './test-results/coverage/',
-  coverageReporters: ['text', 'html'],
+  // coverageDirectory: './test-results/coverage/',
+  coverageReporters: ['text', 'text-summary', 'lcov'],
   reporters: [
     'default',
     // [

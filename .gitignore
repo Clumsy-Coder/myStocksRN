@@ -65,3 +65,4 @@ android/release-keystore.properties
 android/.bundle
 android/vendor
 .env
+coverage/
