@@ -229,11 +229,13 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: test-results/junit/junit.xml
       - codecov/upload:
-          file: coverage/
+          file: coverage/lcov.info
       - store_test_results:
           path: test-results
       - store_artifacts:
           path: test-results
+      - store_artifacts:
+          path: coverage
       - persist_to_workspace:
           root: ~/myStocksRN
           paths:

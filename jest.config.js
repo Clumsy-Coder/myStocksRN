@@ -19,7 +19,7 @@ module.exports = {
     '!./src/**/**/tests/**/*.test.ts.snap',
   ],
   // coverageDirectory: './test-results/coverage/',
-  coverageReporters: ['text', 'text-summary', 'lcov'],
+  coverageReporters: ['text', 'text-summary', 'lcov', 'clover', 'json'],
   reporters: [
     'default',
     // [
