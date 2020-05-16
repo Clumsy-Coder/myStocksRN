@@ -7,13 +7,14 @@ const initialState: FavoriteReducerState = {
 const reducer = (state = initialState, action: FavoritesActions): FavoriteReducerState => {
   switch (action.type) {
     case ActionTypes.ADD_FAVORITE_STOCK: {
-      const set = new Set(...state.symbols);
+      const set = new Set([...state.symbols]);
+      set.add(action.stockSymbol);
       return {
         symbols: [...set],
       };
     }
     case ActionTypes.REMOVE_FAVORITE_STOCK: {
-      const set = new Set(...state.symbols);
+      const set = new Set([...state.symbols]);
       set.delete(action.stockSymbol);
       return {
         symbols: [...set],
