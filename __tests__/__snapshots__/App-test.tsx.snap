@@ -12,8 +12,25 @@ exports[`<App /> Renders as expected 1`] = `
     }
   }
 >
-  <ForwardRef(NavigationContainer)>
-    <Component />
-  </ForwardRef(NavigationContainer)>
+  <PersistGate
+    loading={null}
+    persistor={
+      Object {
+        "dispatch": [Function],
+        "flush": [Function],
+        "getState": [Function],
+        "pause": [Function],
+        "persist": [Function],
+        "purge": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  >
+    <ForwardRef(NavigationContainer)>
+      <Component />
+    </ForwardRef(NavigationContainer)>
+  </PersistGate>
 </Provider>
 `;

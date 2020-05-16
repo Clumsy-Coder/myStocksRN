@@ -17,6 +17,7 @@ module.exports = {
     '!./test-results/**',
     '!./src/configs/**',
     '!./src/**/**/tests/**/*.test.ts.snap',
+    '!./coverage/**',
   ],
   // coverageDirectory: './test-results/coverage/',
   coverageReporters: ['text', 'text-summary', 'lcov', 'clover', 'json'],
@@ -57,6 +58,8 @@ module.exports = {
     },
   },
   setupFiles: ['./jest.setup.js', './node_modules/react-native-gesture-handler/jestSetup.js'],
-  transformIgnorePatterns: ['node_modules/(?!(jest-)?react-native|@?react-navigation)'],
+  transformIgnorePatterns: [
+    'node_modules/(?!(jest-)?react-native|@?react-navigation|native-base-[a-z, -]*)',
+  ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
 };
