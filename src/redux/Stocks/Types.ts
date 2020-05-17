@@ -1,3 +1,5 @@
+import { chartRange } from 'src/share/Constants';
+
 /*
 ██████╗  █████╗ ████████╗ █████╗     ██████╗  ██████╗ ███╗   ███╗ █████╗ ██╗███╗   ██╗
 ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██╔══██╗██╔═══██╗████╗ ████║██╔══██╗██║████╗  ██║
@@ -83,7 +85,7 @@ export interface StockChart {
   high: number; // Adjusted data for historical dates. Split adjusted only
   low: number; // Adjusted data for historical dates. Split adjusted only
   volume: number; // Adjusted data for historical dates. Split adjusted only
-  currency: string;
+  // currency: string;
   change: number; // Change from previous trading day
   changePercent: number; // Change percent from previous trading day
   label: string; // A human readable format of the date depending on the range
@@ -223,6 +225,8 @@ export type StockQuoteAction =
 export interface FetchStockChartAC {
   type: ActionTypesEnum.FETCH_STOCK_CHART;
   readonly stockSymbol: string;
+  readonly range: chartRange;
+  readonly sort: 'asc' | 'desc';
 }
 
 /**
