@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 
 import { API_KEY } from 'react-native-dotenv';
 import { API_URL, stockFilters, chartRange } from 'src/share/Constants';
-import { StockQuote } from 'src/redux/Stocks/Types';
+import { StockQuote, StockChart } from 'src/redux/Stocks/Types';
 
 /**
  * Fetch the stock quote data.
@@ -27,19 +27,28 @@ export const fetchStockQuoteUrl = (symbol: string): Promise<AxiosResponse<StockQ
 /**
  * Fetch the stock chart data.
  * Check https://iexcloud.io/docs/api/#charts
- * @param symbol Company stock symbol in uppercase. Ex: AAPL
- * @param range The range of the data to fetch. Ex: 5y
+ * @param symbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param range - The range of the data to fetch. Ex: 5y
+ * @param sort - The data sort in ascending or descending order.
  */
-export const fetchStockChartUrl = (symbol: string, range: chartRange) =>
-  buildUrl(API_URL, {
+export const fetchStockChartUrl = (
+  symbol: string,
+  range: chartRange,
+  sort: 'asc' | 'desc',
+): Promise<AxiosResponse<StockChart[]>> => {
+  const url = buildUrl(API_URL, {
     path: `stock/${symbol}/chart`,
     queryParams: {
       range,
       filter: stockFilters,
       displayPercent: 'true',
+      sort,
       token: API_KEY,
     },
   });
+
+  return axios.get(url);
+};
 
 /**
  * Fetch the stock quote data of multiple company symbols.

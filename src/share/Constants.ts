@@ -61,5 +61,7 @@ export const stockFilters = [
   'ytdChange',
   'peRatio',
   // "lastTradeTime",
-  // "isUSMarketOpen"
+  // "isUSMarketOpen",
+  'label',
+  'changeOverTime',
 ];
