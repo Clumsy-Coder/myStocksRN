@@ -125,6 +125,25 @@ export interface StockData {
   chart?: StockChartData;
 }
 
+export interface StockQuoteBatch {
+  [symbol: string]: {
+    quote: StockQuote;
+  };
+}
+
+export interface StockChartBatch {
+  [symbol: string]: {
+    chart: StockChart[];
+  };
+}
+
+export interface StockQuoteChartBatch {
+  [symbol: string]: {
+    quote: StockQuote;
+    chart: StockChart[];
+  };
+}
+
 /**
  * Stocks reducer state
  */
