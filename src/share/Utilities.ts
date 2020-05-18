@@ -3,7 +3,13 @@ import axios, { AxiosResponse } from 'axios';
 
 import { API_KEY } from 'react-native-dotenv';
 import { API_URL, stockFilters, chartRange } from 'src/share/Constants';
-import { StockQuote, StockChart } from 'src/redux/Stocks/Types';
+import {
+  StockQuote,
+  StockChart,
+  StockQuoteBatch,
+  StockChartBatch,
+  StockQuoteChartBatch,
+} from 'src/redux/Stocks/Types';
 
 /**
  * Fetch the stock quote data.
@@ -30,6 +36,7 @@ export const fetchStockQuoteUrl = (symbol: string): Promise<AxiosResponse<StockQ
  * @param symbol - Company stock symbol in uppercase. Ex: AAPL
  * @param range - The range of the data to fetch. Ex: 5y
  * @param sort - The data sort in ascending or descending order.
+ * @returns Promise\<AxiosResponse\<StockChart[]\>\> - A promise when running axios
  */
 export const fetchStockChartUrl = (
   symbol: string,
@@ -52,10 +59,13 @@ export const fetchStockChartUrl = (
 
 /**
  * Fetch the stock quote data of multiple company symbols.
- * @param symbols Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
+ * @param symbols - Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
+ * @returns Promise\<AxiosResponse<StockQuoteBatch>\> - A promise when running axios
  */
-export const fetchStockQuoteBatchUrl = (symbols: string[]) =>
-  buildUrl(API_URL, {
+export const fetchStockQuoteBatchUrl = (
+  symbols: string[],
+): Promise<AxiosResponse<StockQuoteBatch>> => {
+  const url = buildUrl(API_URL, {
     path: 'stock/market/batch',
     queryParams: {
       types: 'quote',
@@ -65,30 +75,47 @@ export const fetchStockQuoteBatchUrl = (symbols: string[]) =>
     },
   });
 
+  return axios.get(url);
+};
+
 /**
  * Fetch the stock chart data for multiple company symbols.
- * @param symbols Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
- * @param range The range of the data to fetch. Ex: 5y
+ * @param symbols - Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
+ * @param range - The range of the data to fetch. Ex: 5y
+ * @returns Promise\<AxiosResponse<StockChartBatch>\> - A promise when running axios
  */
-export const fetchStockChartBatchUrl = (symbols: string[], range: chartRange) =>
-  buildUrl(API_URL, {
+export const fetchStockChartBatchUrl = (
+  symbols: string[],
+  range: chartRange,
+  sort: 'asc' | 'desc',
+): Promise<AxiosResponse<StockChartBatch>> => {
+  const url = buildUrl(API_URL, {
     path: 'stock/market/batch',
     queryParams: {
       types: 'chart',
       symbols,
       range,
       displayPercent: 'true',
+      sort,
       token: API_KEY,
     },
   });
 
+  return axios.get(url);
+};
+
 /**
  * Fetch the stock quote and chart data for multiple company symbols
- * @param symbols Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
- * @param range The range of the data to fetch. Ex: 5y
+ * @param symbols - Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
+ * @param range - The range of the data to fetch. Ex: 5y
+ * @returns Promise\<AxiosResponse<StockQuoteChartBatch>\> - A promise when running axios
  */
-export const fetchStockQuoteChartBatchUrl = (symbols: string[], range: chartRange) =>
-  buildUrl(API_URL, {
+export const fetchStockQuoteChartBatchUrl = (
+  symbols: string[],
+  range: chartRange,
+  sort: 'asc' | 'desc',
+): Promise<AxiosResponse<StockQuoteChartBatch>> => {
+  const url = buildUrl(API_URL, {
     path: 'stock/market/batch',
     queryParams: {
       types: ['quote', 'chart'],
@@ -96,6 +123,10 @@ export const fetchStockQuoteChartBatchUrl = (symbols: string[], range: chartRang
       range,
       filter: stockFilters,
       displayPercent: 'true',
+      sort,
       token: API_KEY,
     },
   });
+
+  return axios.get(url);
+};
