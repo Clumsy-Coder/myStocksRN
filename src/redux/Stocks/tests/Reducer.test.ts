@@ -6,7 +6,38 @@ import {
   FetchStockQuoteFulfilledAC,
   StockQuote,
   FetchStockQuoteRejectedAC,
+  FetchStockChartPendingAC,
+  FetchStockChartFulfilledAC,
+  StockChart,
+  FetchStockChartRejectedAC,
 } from 'src/redux/Stocks/Types';
+
+const stockChartData1: StockChart[] = [
+  {
+    date: '2020-05-11',
+    open: 710.61,
+    close: 758.74,
+    high: 770.9,
+    low: 737.75,
+    volume: 3675742,
+    change: 0,
+    changePercent: 0,
+    label: 'May 11',
+    changeOverTime: 0,
+  },
+  {
+    date: '2020-05-12',
+    open: 798,
+    close: 750.68,
+    high: 803.67,
+    low: 743.5,
+    volume: 3773050,
+    change: -8.41,
+    changePercent: -1.0796,
+    label: 'May 12',
+    changeOverTime: -0.010945,
+  },
+];
 
 describe('Stocks reducer', () => {
   describe('Stocks quote', () => {
@@ -509,6 +540,252 @@ describe('Stocks reducer', () => {
           type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED,
           stockSymbol: 'TSLA',
           error: new Error(''),
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+    });
+  });
+
+  describe('Stocks chart', () => {
+    describe(`${ActionTypesEnum.FETCH_STOCK_CHART_PENDING}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockChart', () => {
+        const state: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+        };
+        const action: FetchStockChartPendingAC = {
+          type: ActionTypesEnum.FETCH_STOCK_CHART_PENDING,
+          stockSymbol: 'AAPL',
+        };
+        const expected: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+            chart: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
+        const state: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+          SHOP: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+        };
+        const action: FetchStockChartPendingAC = {
+          type: ActionTypesEnum.FETCH_STOCK_CHART_PENDING,
+          stockSymbol: 'SHOP',
+        };
+        const expected: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+          SHOP: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+            chart: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+    });
+
+    describe(`${ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockChart', () => {
+        const state: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+        };
+        const action: FetchStockChartFulfilledAC = {
+          type: ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED,
+          stockSymbol: 'AAPL',
+          payload: { data: stockChartData1 },
+        };
+        const expected: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+            chart: {
+              fetching: false,
+              error: undefined,
+              data: stockChartData1,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
+        const state: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+          SHOP: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+        };
+        const action: FetchStockChartFulfilledAC = {
+          type: ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED,
+          stockSymbol: 'SHOP',
+          payload: { data: stockChartData1 },
+        };
+        const expected: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+          SHOP: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+            chart: {
+              fetching: false,
+              error: undefined,
+              data: stockChartData1,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+    });
+
+    describe(`${ActionTypesEnum.FETCH_STOCK_CHART_REJECTED}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockChart', () => {
+        const state: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+        };
+        const action: FetchStockChartRejectedAC = {
+          type: ActionTypesEnum.FETCH_STOCK_CHART_REJECTED,
+          stockSymbol: 'AAPL',
+          error: new Error(''),
+        };
+        const expected: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+            chart: {
+              fetching: false,
+              error: new Error(''),
+              data: undefined,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
+        const state: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+          SHOP: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+        };
+        const action: FetchStockChartRejectedAC = {
+          type: ActionTypesEnum.FETCH_STOCK_CHART_REJECTED,
+          stockSymbol: 'SHOP',
+          error: new Error(''),
+        };
+        const expected: StockState = {
+          AAPL: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
+          SHOP: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+            chart: {
+              fetching: false,
+              error: new Error(''),
+              data: undefined,
+            },
+          },
         };
 
         expect(reducer(state, action)).toEqual(expected);
