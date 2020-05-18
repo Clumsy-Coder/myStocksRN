@@ -1,5 +1,5 @@
 import * as selectors from 'src/redux/Stocks/Selectors';
-import { RootState } from 'src/redux/index.reducers';
+import { AppState } from 'src/redux/index.reducers';
 import {
   StockData,
   StockQuote,
@@ -119,7 +119,7 @@ const stockChartData1: StockChart[] = [
 describe('Stocks selectors', () => {
   describe('Empty store', () => {
     it('Handle with empty store', () => {
-      const store: RootState = {
+      const store: AppState = {
         Stocks: {},
         Favorites: {
           symbols: [],
@@ -135,7 +135,7 @@ describe('Stocks selectors', () => {
     describe('Select individual Stock by stockSymbol', () => {
       it('Select individual Stock with one StockData in store', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -164,7 +164,7 @@ describe('Stocks selectors', () => {
       it('Select individual Stock with two StockData in store', () => {
         const stockSymbol1 = 'AAPL';
         const stockSymbol2 = 'AMZN';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol1]: {
               quote: {
@@ -208,7 +208,7 @@ describe('Stocks selectors', () => {
         const stockSymbol1 = 'AAPL';
         const stockSymbol2 = 'AMZN';
         const stockSymbol3 = 'TSLA';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol1]: {
               quote: {
@@ -267,7 +267,7 @@ describe('Stocks selectors', () => {
     describe('Select individual Stock quote by stockSymbol', () => {
       it('Select individual Stock quote with one StockData in store', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -292,7 +292,7 @@ describe('Stocks selectors', () => {
       it('Select individual Stock quote with two StockData in store', () => {
         const stockSymbol1 = 'AAPL';
         const stockSymbol2 = 'AMZN';
-        const stockState: RootState = {
+        const stockState: AppState = {
           Stocks: {
             [stockSymbol1]: {
               quote: {
@@ -335,7 +335,7 @@ describe('Stocks selectors', () => {
         const stockSymbol1 = 'AAPL';
         const stockSymbol2 = 'AMZN';
         const stockSymbol3 = 'TSLA';
-        const stockState: RootState = {
+        const stockState: AppState = {
           Stocks: {
             [stockSymbol1]: {
               quote: {
@@ -393,7 +393,7 @@ describe('Stocks selectors', () => {
     describe("Select Stock quote 'fetching' by stockSymbol", () => {
       it("Select stock quote 'fetching' with one StockData in store", () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -414,7 +414,7 @@ describe('Stocks selectors', () => {
       it("Select stock quote 'fetching' with two StockData in store", () => {
         const stockSymbol1 = 'AAPL';
         const stockSymbol2 = 'AMZN';
-        const stockState: RootState = {
+        const stockState: AppState = {
           Stocks: {
             [stockSymbol1]: {
               quote: {
@@ -449,7 +449,7 @@ describe('Stocks selectors', () => {
         const stockSymbol1 = 'AAPL';
         const stockSymbol2 = 'AMZN';
         const stockSymbol3 = 'TSLA';
-        const stockState: RootState = {
+        const stockState: AppState = {
           Stocks: {
             [stockSymbol1]: {
               quote: {
@@ -496,7 +496,7 @@ describe('Stocks selectors', () => {
       describe("Select valid stock quote 'data'", () => {
         it("Select 'data' with one StockData in store", () => {
           const stockSymbol = 'AAPL';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol]: {
                 quote: {
@@ -519,7 +519,7 @@ describe('Stocks selectors', () => {
         it("Select 'data' with two StockData in store", () => {
           const stockSymbol1 = 'AAPL';
           const stockSymbol2 = 'AMZN';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol1]: {
                 quote: {
@@ -555,7 +555,7 @@ describe('Stocks selectors', () => {
           const stockSymbol1 = 'AAPL';
           const stockSymbol2 = 'AMZN';
           const stockSymbol3 = 'TSLA';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol1]: {
                 quote: {
@@ -602,7 +602,7 @@ describe('Stocks selectors', () => {
       describe("Select undefined Stock quote 'data'", () => {
         it("Select 'data' with one StockData in store", () => {
           const stockSymbol = 'AAPL';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol]: {
                 quote: {
@@ -625,7 +625,7 @@ describe('Stocks selectors', () => {
         it("Select 'data' with two StockData in store", () => {
           const stockSymbol1 = 'AAPL';
           const stockSymbol2 = 'AMZN';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol1]: {
                 quote: {
@@ -661,7 +661,7 @@ describe('Stocks selectors', () => {
           const stockSymbol1 = 'AAPL';
           const stockSymbol2 = 'AMZN';
           const stockSymbol3 = 'TSLA';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol1]: {
                 quote: {
@@ -710,7 +710,7 @@ describe('Stocks selectors', () => {
       describe("Select valid stock quote 'error'", () => {
         it("Select 'error' with one StockData in store", () => {
           const stockSymbol = 'AAPL';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol]: {
                 quote: {
@@ -733,7 +733,7 @@ describe('Stocks selectors', () => {
         it("Select 'error' with two StockData in store", () => {
           const stockSymbol1 = 'AAPL';
           const stockSymbol2 = 'AMZN';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol1]: {
                 quote: {
@@ -769,7 +769,7 @@ describe('Stocks selectors', () => {
           const stockSymbol1 = 'AAPL';
           const stockSymbol2 = 'AMZN';
           const stockSymbol3 = 'TSLA';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol1]: {
                 quote: {
@@ -816,7 +816,7 @@ describe('Stocks selectors', () => {
       describe("Select undefined stock quote 'error'", () => {
         it("Select 'error' with one StockData in store", () => {
           const stockSymbol = 'AAPL';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol]: {
                 quote: {
@@ -839,7 +839,7 @@ describe('Stocks selectors', () => {
         it("Select 'error' with two StockData in store", () => {
           const stockSymbol1 = 'AAPL';
           const stockSymbol2 = 'AMZN';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol1]: {
                 quote: {
@@ -875,7 +875,7 @@ describe('Stocks selectors', () => {
           const stockSymbol1 = 'AAPL';
           const stockSymbol2 = 'AMZN';
           const stockSymbol3 = 'TSLA';
-          const rootState: RootState = {
+          const rootState: AppState = {
             Stocks: {
               [stockSymbol1]: {
                 quote: {
@@ -925,7 +925,7 @@ describe('Stocks selectors', () => {
     describe('selectStockChart', () => {
       it('[Empty store]: Should return empty StockChartData', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -947,7 +947,7 @@ describe('Stocks selectors', () => {
 
       it('[Non-empty store]: Should return StockChartData', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -980,7 +980,7 @@ describe('Stocks selectors', () => {
     describe('selectStockChartFetching', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -1001,7 +1001,7 @@ describe('Stocks selectors', () => {
       });
       it('[Non-empty store]: Should return boolean', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -1030,7 +1030,7 @@ describe('Stocks selectors', () => {
     describe('selectStockChartData', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -1052,7 +1052,7 @@ describe('Stocks selectors', () => {
 
       it('[Non-empty store]: Should return StockChart[]', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -1081,7 +1081,7 @@ describe('Stocks selectors', () => {
     describe('selectStockChartError', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {
@@ -1103,7 +1103,7 @@ describe('Stocks selectors', () => {
 
       it('[Non-empty store]: Should return Error', () => {
         const stockSymbol = 'AAPL';
-        const rootState: RootState = {
+        const rootState: AppState = {
           Stocks: {
             [stockSymbol]: {
               quote: {

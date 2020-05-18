@@ -3,7 +3,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 
 import * as stocksActions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
-import { FetchStockQuoteAC, ActionTypesEnum, FetchStockChartAC } from 'src/redux/Stocks/Types';
+import { ActionTypes, FetchStockQuoteAction, FetchStockChartAction } from 'src/redux/Stocks/Types';
 
 /**
  * Initiate the fetching of stock quote.
@@ -14,7 +14,7 @@ import { FetchStockQuoteAC, ActionTypesEnum, FetchStockChartAC } from 'src/redux
  * @param action - Fetch stock quote action creator
  * @returns
  */
-export function* fetchStockQuoteSaga(action: FetchStockQuoteAC) {
+export function* fetchStockQuoteSaga(action: FetchStockQuoteAction) {
   try {
     yield put(stocksActions.fetchStockQuotePending(action.stockSymbol));
     const response = yield call(api.fetchStockQuoteUrl, action.stockSymbol);
@@ -32,7 +32,7 @@ export function* fetchStockQuoteSaga(action: FetchStockQuoteAC) {
  *
  * @param action - Fetch stock chart action
  */
-export function* fetchStockChartSaga(action: FetchStockChartAC) {
+export function* fetchStockChartSaga(action: FetchStockChartAction) {
   try {
     const { stockSymbol, range, sort } = action;
     yield put(stocksActions.fetchStockChartPending(action.stockSymbol));
@@ -44,6 +44,6 @@ export function* fetchStockChartSaga(action: FetchStockChartAC) {
 }
 
 export default function* watchStocksSagas() {
-  yield takeEvery(ActionTypesEnum.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
-  yield takeEvery(ActionTypesEnum.FETCH_STOCK_CHART, fetchStockChartSaga);
+  yield takeEvery(ActionTypes.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
+  yield takeEvery(ActionTypes.FETCH_STOCK_CHART, fetchStockChartSaga);
 }

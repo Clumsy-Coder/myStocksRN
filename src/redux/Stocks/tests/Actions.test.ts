@@ -1,14 +1,12 @@
-import faker from 'faker';
-
 import * as actions from 'src/redux/Stocks/Actions';
 import {
-  ActionTypesEnum,
+  ActionTypes,
   StockQuote,
-  FetchStockChartAC,
   StockChart,
-  FetchStockChartPendingAC,
-  FetchStockChartFulfilledAC,
-  FetchStockChartRejectedAC,
+  FetchStockChartAction,
+  FetchStockChartPendingAction,
+  FetchStockChartFulfilledAction,
+  FetchStockChartRejectedAction,
 } from 'src/redux/Stocks/Types';
 
 describe('Stock action creators', () => {
@@ -16,7 +14,7 @@ describe('Stock action creators', () => {
     it('Should create an action to fetch Stock quote', () => {
       const stockSymbol = 'AAPL';
       const expectedAction = {
-        type: ActionTypesEnum.FETCH_STOCK_QUOTE,
+        type: ActionTypes.FETCH_STOCK_QUOTE,
         stockSymbol,
       };
       expect(actions.fetchStockQuote(stockSymbol)).toEqual(expectedAction);
@@ -25,7 +23,7 @@ describe('Stock action creators', () => {
     it('Should create an action to fetch Stock quote PENDING', () => {
       const stockSymbol = 'AAPL';
       const expectedAction = {
-        type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING,
+        type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
         stockSymbol,
       };
       expect(actions.fetchStockQuotePending(stockSymbol)).toEqual(expectedAction);
@@ -60,7 +58,7 @@ describe('Stock action creators', () => {
         ytdChange: 75.35366771277485,
       };
       const expectedAction = {
-        type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED,
+        type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
         stockSymbol,
         payload: {
           data: stockQuote,
@@ -72,7 +70,7 @@ describe('Stock action creators', () => {
     it('Should create an action to fetch Stock quote REJECTED', () => {
       const stockSymbol = 'AAPL';
       const expectedAction = {
-        type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED,
+        type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
         stockSymbol,
         error: new Error(''),
       };
@@ -83,8 +81,8 @@ describe('Stock action creators', () => {
   describe('Stock chart', () => {
     it('Should create an action to fetch Stock chart', () => {
       const stockSymbol = 'AAPL';
-      const expectedAction: FetchStockChartAC = {
-        type: ActionTypesEnum.FETCH_STOCK_CHART,
+      const expectedAction: FetchStockChartAction = {
+        type: ActionTypes.FETCH_STOCK_CHART,
         stockSymbol,
         range: '5d',
         sort: 'asc',
@@ -94,8 +92,8 @@ describe('Stock action creators', () => {
 
     it('Should create an action to fetch Stock chart PENDING', () => {
       const stockSymbol = 'AAPL';
-      const expectedAction: FetchStockChartPendingAC = {
-        type: ActionTypesEnum.FETCH_STOCK_CHART_PENDING,
+      const expectedAction: FetchStockChartPendingAction = {
+        type: ActionTypes.FETCH_STOCK_CHART_PENDING,
         stockSymbol,
       };
       expect(actions.fetchStockChartPending(stockSymbol)).toEqual(expectedAction);
@@ -129,8 +127,8 @@ describe('Stock action creators', () => {
           changeOverTime: -0.010945,
         },
       ];
-      const expectedAction: FetchStockChartFulfilledAC = {
-        type: ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED,
+      const expectedAction: FetchStockChartFulfilledAction = {
+        type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
         stockSymbol,
         payload: {
           data: stockChart,
@@ -141,8 +139,8 @@ describe('Stock action creators', () => {
 
     it('Should create an action to fetch Stock chart REJECTED', () => {
       const stockSymbol = 'AAPL';
-      const expectedAction: FetchStockChartRejectedAC = {
-        type: ActionTypesEnum.FETCH_STOCK_CHART_REJECTED,
+      const expectedAction: FetchStockChartRejectedAction = {
+        type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
         stockSymbol,
         error: new Error(''),
       };

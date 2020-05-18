@@ -1,17 +1,18 @@
-import { chartRange } from 'src/share/Constants';
+import { ActionCreator } from 'redux';
 
+import { chartRange } from 'src/share/Constants';
 import {
-  FetchStockQuoteAC,
-  FetchStockChartAC,
-  ActionTypesEnum,
-  FetchStockQuotePendingAC,
-  FetchStockQuoteFulfilledAC,
+  ActionTypes,
   StockQuote,
-  FetchStockQuoteRejectedAC,
-  FetchStockChartPendingAC,
-  FetchStockChartFulfilledAC,
   StockChart,
-  FetchStockChartRejectedAC,
+  FetchStockQuoteAction,
+  FetchStockChartAction,
+  FetchStockQuotePendingAction,
+  FetchStockQuoteFulfilledAction,
+  FetchStockQuoteRejectedAction,
+  FetchStockChartPendingAction,
+  FetchStockChartFulfilledAction,
+  FetchStockChartRejectedAction,
 } from 'src/redux/Stocks/Types';
 
 /**
@@ -19,8 +20,10 @@ import {
  * ONLY to be called by the front end.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockQuote = (stockSymbol: string): FetchStockQuoteAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE,
+export const fetchStockQuote: ActionCreator<FetchStockQuoteAction> = (
+  stockSymbol: string,
+): FetchStockQuoteAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE,
   stockSymbol,
 });
 
@@ -30,8 +33,10 @@ export const fetchStockQuote = (stockSymbol: string): FetchStockQuoteAC => ({
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockQuotePending = (stockSymbol: string): FetchStockQuotePendingAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING,
+export const fetchStockQuotePending: ActionCreator<FetchStockQuotePendingAction> = (
+  stockSymbol: string,
+): FetchStockQuotePendingAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
   stockSymbol,
 });
 
@@ -42,11 +47,11 @@ export const fetchStockQuotePending = (stockSymbol: string): FetchStockQuotePend
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param payload - data fetched
  */
-export const fetchStockQuoteFulfilled = (
+export const fetchStockQuoteFulfilled: ActionCreator<FetchStockQuoteFulfilledAction> = (
   stockSymbol: string,
   payload: StockQuote,
-): FetchStockQuoteFulfilledAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED,
+): FetchStockQuoteFulfilledAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
   stockSymbol,
   payload: { data: payload },
 });
@@ -58,11 +63,11 @@ export const fetchStockQuoteFulfilled = (
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param error - error message
  */
-export const fetchStockQuoteRejected = (
+export const fetchStockQuoteRejected: ActionCreator<FetchStockQuoteRejectedAction> = (
   stockSymbol: string,
   error: Error,
-): FetchStockQuoteRejectedAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED,
+): FetchStockQuoteRejectedAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
   stockSymbol,
   error,
 });
@@ -75,12 +80,12 @@ export const fetchStockQuoteRejected = (
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param range - Date range for the stock chart
  */
-export const fetchStockChart = (
+export const fetchStockChart: ActionCreator<FetchStockChartAction> = (
   stockSymbol: string,
   range: chartRange,
   sort: 'asc' | 'desc',
-): FetchStockChartAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_CHART,
+): FetchStockChartAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART,
   stockSymbol,
   range,
   sort,
@@ -92,8 +97,10 @@ export const fetchStockChart = (
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockChartPending = (stockSymbol: string): FetchStockChartPendingAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_CHART_PENDING,
+export const fetchStockChartPending: ActionCreator<FetchStockChartPendingAction> = (
+  stockSymbol: string,
+): FetchStockChartPendingAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_PENDING,
   stockSymbol,
 });
 
@@ -104,11 +111,11 @@ export const fetchStockChartPending = (stockSymbol: string): FetchStockChartPend
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param payload - data fetched
  */
-export const fetchStockChartFulfilled = (
+export const fetchStockChartFulfilled: ActionCreator<FetchStockChartFulfilledAction> = (
   stockSymbol: string,
   payload: StockChart[],
-): FetchStockChartFulfilledAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED,
+): FetchStockChartFulfilledAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
   stockSymbol,
   payload: { data: payload },
 });
@@ -120,11 +127,11 @@ export const fetchStockChartFulfilled = (
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param error - error message
  */
-export const fetchStockChartRejected = (
+export const fetchStockChartRejected: ActionCreator<FetchStockChartRejectedAction> = (
   stockSymbol: string,
   error: Error,
-): FetchStockChartRejectedAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_CHART_REJECTED,
+): FetchStockChartRejectedAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
   stockSymbol,
   error,
 });

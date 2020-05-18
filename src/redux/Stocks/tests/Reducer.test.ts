@@ -1,15 +1,15 @@
 import reducer from 'src/redux/Stocks/Reducer';
 import {
-  ActionTypesEnum,
-  FetchStockQuotePendingAC,
-  StockState,
-  FetchStockQuoteFulfilledAC,
+  ActionTypes,
   StockQuote,
-  FetchStockQuoteRejectedAC,
-  FetchStockChartPendingAC,
-  FetchStockChartFulfilledAC,
   StockChart,
-  FetchStockChartRejectedAC,
+  StocksReducerState,
+  FetchStockQuotePendingAction,
+  FetchStockQuoteFulfilledAction,
+  FetchStockQuoteRejectedAction,
+  FetchStockChartPendingAction,
+  FetchStockChartFulfilledAction,
+  FetchStockChartRejectedAction,
 } from 'src/redux/Stocks/Types';
 
 const stockChartData1: StockChart[] = [
@@ -41,14 +41,14 @@ const stockChartData1: StockChart[] = [
 
 describe('Stocks reducer', () => {
   describe('Stocks quote', () => {
-    describe(`It should handle ${ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING}`, () => {
+    describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_PENDING}`, () => {
       it('Should handle one Stock quote', () => {
-        const state: StockState = {};
-        const action: FetchStockQuotePendingAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING,
+        const state: StocksReducerState = {};
+        const action: FetchStockQuotePendingAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
           stockSymbol: 'AAPL',
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -59,7 +59,7 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
       it('Should handle two Stock quotes', () => {
-        const state2: StockState = {
+        const state2: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -67,11 +67,11 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action2: FetchStockQuotePendingAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING,
+        const action2: FetchStockQuotePendingAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
           stockSymbol: 'SHOP',
         };
-        const expected2: StockState = {
+        const expected2: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -89,7 +89,7 @@ describe('Stocks reducer', () => {
       });
 
       it('Should handle three Stock quotes', () => {
-        const state3: StockState = {
+        const state3: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -103,11 +103,11 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action3: FetchStockQuotePendingAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING,
+        const action3: FetchStockQuotePendingAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
           stockSymbol: 'AMZN',
         };
-        const expected3: StockState = {
+        const expected3: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -132,7 +132,7 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`It should handle ${ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED}`, () => {
+    describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_FULFILLED}`, () => {
       const data: StockQuote = {
         symbol: 'AAPL',
         companyName: 'AAPL, Inc.',
@@ -214,7 +214,7 @@ describe('Stocks reducer', () => {
         ytdChange: 95.963,
       };
       it('Should handle one Stock quote', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -222,7 +222,7 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -231,8 +231,8 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockQuoteFulfilledAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED,
+        const action: FetchStockQuoteFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
           stockSymbol: 'AAPL',
           payload: {
             data,
@@ -243,7 +243,7 @@ describe('Stocks reducer', () => {
       });
 
       it('Should handle two Stock quotes', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -258,7 +258,7 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -275,8 +275,8 @@ describe('Stocks reducer', () => {
           },
         };
 
-        const action: FetchStockQuoteFulfilledAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED,
+        const action: FetchStockQuoteFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
           stockSymbol: 'AMZN',
           payload: {
             data: data2,
@@ -287,7 +287,7 @@ describe('Stocks reducer', () => {
       });
 
       it('Should handle three Stock quotes', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -308,7 +308,7 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -331,8 +331,8 @@ describe('Stocks reducer', () => {
           },
         };
 
-        const action: FetchStockQuoteFulfilledAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED,
+        const action: FetchStockQuoteFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
           stockSymbol: 'TSLA',
           payload: {
             data: data3,
@@ -343,9 +343,9 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`It should handle ${ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED}`, () => {
+    describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_REJECTED}`, () => {
       it('Should handle one Stock quote', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -353,7 +353,7 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -361,8 +361,8 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockQuoteRejectedAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED,
+        const action: FetchStockQuoteRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
           stockSymbol: 'AAPL',
           error: new Error(''),
         };
@@ -398,7 +398,7 @@ describe('Stocks reducer', () => {
           ytdChange: 29.266,
         };
 
-        const state: StockState = {
+        const state: StocksReducerState = {
           AMZN: {
             quote: {
               fetching: false,
@@ -413,7 +413,7 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AMZN: {
             quote: {
               fetching: false,
@@ -428,8 +428,8 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockQuoteRejectedAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED,
+        const action: FetchStockQuoteRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
           stockSymbol: 'TSLA',
           error: new Error(''),
         };
@@ -492,7 +492,7 @@ describe('Stocks reducer', () => {
           ytdChange: 29.266,
         };
 
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -514,7 +514,7 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: false,
@@ -536,8 +536,8 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockQuoteRejectedAC = {
-          type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED,
+        const action: FetchStockQuoteRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
           stockSymbol: 'TSLA',
           error: new Error(''),
         };
@@ -548,9 +548,9 @@ describe('Stocks reducer', () => {
   });
 
   describe('Stocks chart', () => {
-    describe(`${ActionTypesEnum.FETCH_STOCK_CHART_PENDING}`, () => {
+    describe(`${ActionTypes.FETCH_STOCK_CHART_PENDING}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -559,11 +559,11 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartPendingAC = {
-          type: ActionTypesEnum.FETCH_STOCK_CHART_PENDING,
+        const action: FetchStockChartPendingAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_PENDING,
           stockSymbol: 'AAPL',
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -582,7 +582,7 @@ describe('Stocks reducer', () => {
       });
 
       it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -598,11 +598,11 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartPendingAC = {
-          type: ActionTypesEnum.FETCH_STOCK_CHART_PENDING,
+        const action: FetchStockChartPendingAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_PENDING,
           stockSymbol: 'SHOP',
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -628,9 +628,9 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`${ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED}`, () => {
+    describe(`${ActionTypes.FETCH_STOCK_CHART_FULFILLED}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -639,12 +639,12 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartFulfilledAC = {
-          type: ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED,
+        const action: FetchStockChartFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
           stockSymbol: 'AAPL',
           payload: { data: stockChartData1 },
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -663,7 +663,7 @@ describe('Stocks reducer', () => {
       });
 
       it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -679,12 +679,12 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartFulfilledAC = {
-          type: ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED,
+        const action: FetchStockChartFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
           stockSymbol: 'SHOP',
           payload: { data: stockChartData1 },
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -710,9 +710,9 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`${ActionTypesEnum.FETCH_STOCK_CHART_REJECTED}`, () => {
+    describe(`${ActionTypes.FETCH_STOCK_CHART_REJECTED}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -721,12 +721,12 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartRejectedAC = {
-          type: ActionTypesEnum.FETCH_STOCK_CHART_REJECTED,
+        const action: FetchStockChartRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
           stockSymbol: 'AAPL',
           error: new Error(''),
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -745,7 +745,7 @@ describe('Stocks reducer', () => {
       });
 
       it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StockState = {
+        const state: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
@@ -761,12 +761,12 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartRejectedAC = {
-          type: ActionTypesEnum.FETCH_STOCK_CHART_REJECTED,
+        const action: FetchStockChartRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
           stockSymbol: 'SHOP',
           error: new Error(''),
         };
-        const expected: StockState = {
+        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,

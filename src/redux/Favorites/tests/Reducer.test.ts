@@ -1,10 +1,10 @@
 import reducer from 'src/redux/Favorites/Reducer';
 import {
   ActionTypes,
+  FavoritesReducerState,
   AddFavoriteStockAction,
   ClearFavoriteStocksAction,
   RemoveFavoriteStockAction,
-  FavoriteReducerState,
 } from 'src/redux/Favorites/Types';
 
 describe('Favorites reducer', () => {
@@ -12,14 +12,14 @@ describe('Favorites reducer', () => {
     describe('Empty Favorites', () => {
       it('Add one stock symbol', () => {
         const stockSymbol = 'AAPL';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: [],
         };
         const action: AddFavoriteStockAction = {
           type: ActionTypes.ADD_FAVORITE_STOCK,
           stockSymbol,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['AAPL'],
         };
 
@@ -29,7 +29,7 @@ describe('Favorites reducer', () => {
       it('Add two stock symbols', () => {
         const stockSymbol = 'AAPL';
         const stockSymbol2 = 'AMZN';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: [],
         };
         const action: AddFavoriteStockAction = {
@@ -40,11 +40,11 @@ describe('Favorites reducer', () => {
           type: ActionTypes.ADD_FAVORITE_STOCK,
           stockSymbol: stockSymbol2,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['AAPL', 'AMZN'],
         };
 
-        let actual: FavoriteReducerState = {
+        let actual: FavoritesReducerState = {
           symbols: [],
         };
         actual = reducer(state, action);
@@ -56,7 +56,7 @@ describe('Favorites reducer', () => {
         const stockSymbol = 'AAPL';
         const stockSymbol2 = 'AMZN';
         const stockSymbol3 = 'SHOP';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: [],
         };
         const action: AddFavoriteStockAction = {
@@ -71,11 +71,11 @@ describe('Favorites reducer', () => {
           type: ActionTypes.ADD_FAVORITE_STOCK,
           stockSymbol: stockSymbol3,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['AAPL', 'AMZN', 'SHOP'],
         };
 
-        let actual: FavoriteReducerState = {
+        let actual: FavoritesReducerState = {
           symbols: [],
         };
         actual = reducer(state, action);
@@ -88,14 +88,14 @@ describe('Favorites reducer', () => {
     describe('Non-empty Favorites', () => {
       it('Add one stock symbol', () => {
         const stockSymbol = 'AAPL';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['GOOGL'],
         };
         const action: AddFavoriteStockAction = {
           type: ActionTypes.ADD_FAVORITE_STOCK,
           stockSymbol,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['GOOGL', 'AAPL'],
         };
 
@@ -105,7 +105,7 @@ describe('Favorites reducer', () => {
       it('Add two stock symbols', () => {
         const stockSymbol = 'AAPL';
         const stockSymbol2 = 'AMZN';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['GOOGL'],
         };
         const action: AddFavoriteStockAction = {
@@ -116,11 +116,11 @@ describe('Favorites reducer', () => {
           type: ActionTypes.ADD_FAVORITE_STOCK,
           stockSymbol: stockSymbol2,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['GOOGL', 'AAPL', 'AMZN'],
         };
 
-        let actual: FavoriteReducerState = {
+        let actual: FavoritesReducerState = {
           symbols: [],
         };
         actual = reducer(state, action);
@@ -132,7 +132,7 @@ describe('Favorites reducer', () => {
         const stockSymbol = 'AAPL';
         const stockSymbol2 = 'AMZN';
         const stockSymbol3 = 'SHOP';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['GOOGL'],
         };
         const action: AddFavoriteStockAction = {
@@ -147,11 +147,11 @@ describe('Favorites reducer', () => {
           type: ActionTypes.ADD_FAVORITE_STOCK,
           stockSymbol: stockSymbol3,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['GOOGL', 'AAPL', 'AMZN', 'SHOP'],
         };
 
-        let actual: FavoriteReducerState = {
+        let actual: FavoritesReducerState = {
           symbols: [],
         };
         actual = reducer(state, action);
@@ -165,18 +165,18 @@ describe('Favorites reducer', () => {
       describe('Empty Favorites', () => {
         it('Add one stock symbols', () => {
           const stockSymbol = 'AAPL';
-          const state: FavoriteReducerState = {
+          const state: FavoritesReducerState = {
             symbols: [],
           };
           const action: AddFavoriteStockAction = {
             type: ActionTypes.ADD_FAVORITE_STOCK,
             stockSymbol,
           };
-          const expected: FavoriteReducerState = {
+          const expected: FavoritesReducerState = {
             symbols: ['AAPL'],
           };
 
-          let actual: FavoriteReducerState = {
+          let actual: FavoritesReducerState = {
             symbols: [],
           };
           actual = reducer(state, action);
@@ -187,7 +187,7 @@ describe('Favorites reducer', () => {
         it('Add two stock symbols', () => {
           const stockSymbol = 'AAPL';
           const stockSymbol2 = 'AMZN';
-          const state: FavoriteReducerState = {
+          const state: FavoritesReducerState = {
             symbols: [],
           };
           const action: AddFavoriteStockAction = {
@@ -198,11 +198,11 @@ describe('Favorites reducer', () => {
             type: ActionTypes.ADD_FAVORITE_STOCK,
             stockSymbol: stockSymbol2,
           };
-          const expected: FavoriteReducerState = {
+          const expected: FavoritesReducerState = {
             symbols: ['AAPL', 'AMZN'],
           };
 
-          let actual: FavoriteReducerState = {
+          let actual: FavoritesReducerState = {
             symbols: [],
           };
           actual = reducer(state, action);
@@ -216,7 +216,7 @@ describe('Favorites reducer', () => {
           const stockSymbol = 'AAPL';
           const stockSymbol2 = 'AMZN';
           const stockSymbol3 = 'SHOP';
-          const state: FavoriteReducerState = {
+          const state: FavoritesReducerState = {
             symbols: [],
           };
           const action: AddFavoriteStockAction = {
@@ -231,11 +231,11 @@ describe('Favorites reducer', () => {
             type: ActionTypes.ADD_FAVORITE_STOCK,
             stockSymbol: stockSymbol3,
           };
-          const expected: FavoriteReducerState = {
+          const expected: FavoritesReducerState = {
             symbols: ['AAPL', 'AMZN', 'SHOP'],
           };
 
-          let actual: FavoriteReducerState = {
+          let actual: FavoritesReducerState = {
             symbols: [],
           };
           actual = reducer(state, action);
@@ -251,18 +251,18 @@ describe('Favorites reducer', () => {
       describe('Non-empty Favorites', () => {
         it('Add one stock symbols', () => {
           const stockSymbol = 'AAPL';
-          const state: FavoriteReducerState = {
+          const state: FavoritesReducerState = {
             symbols: ['AAPL'],
           };
           const action: AddFavoriteStockAction = {
             type: ActionTypes.ADD_FAVORITE_STOCK,
             stockSymbol,
           };
-          const expected: FavoriteReducerState = {
+          const expected: FavoritesReducerState = {
             symbols: ['AAPL'],
           };
 
-          let actual: FavoriteReducerState = {
+          let actual: FavoritesReducerState = {
             symbols: [],
           };
           actual = reducer(state, action);
@@ -272,7 +272,7 @@ describe('Favorites reducer', () => {
         it('Add two stock symbols', () => {
           const stockSymbol = 'AAPL';
           const stockSymbol2 = 'AMZN';
-          const state: FavoriteReducerState = {
+          const state: FavoritesReducerState = {
             symbols: ['AAPL', 'AMZN'],
           };
           const action: AddFavoriteStockAction = {
@@ -283,11 +283,11 @@ describe('Favorites reducer', () => {
             type: ActionTypes.ADD_FAVORITE_STOCK,
             stockSymbol: stockSymbol2,
           };
-          const expected: FavoriteReducerState = {
+          const expected: FavoritesReducerState = {
             symbols: ['AAPL', 'AMZN'],
           };
 
-          let actual: FavoriteReducerState = {
+          let actual: FavoritesReducerState = {
             symbols: [],
           };
           actual = reducer(state, action);
@@ -299,7 +299,7 @@ describe('Favorites reducer', () => {
           const stockSymbol = 'AAPL';
           const stockSymbol2 = 'AMZN';
           const stockSymbol3 = 'SHOP';
-          const state: FavoriteReducerState = {
+          const state: FavoritesReducerState = {
             symbols: ['AAPL', 'AMZN', 'SHOP'],
           };
           const action: AddFavoriteStockAction = {
@@ -314,11 +314,11 @@ describe('Favorites reducer', () => {
             type: ActionTypes.ADD_FAVORITE_STOCK,
             stockSymbol: stockSymbol3,
           };
-          const expected: FavoriteReducerState = {
+          const expected: FavoritesReducerState = {
             symbols: ['AAPL', 'AMZN', 'SHOP'],
           };
 
-          let actual: FavoriteReducerState = {
+          let actual: FavoritesReducerState = {
             symbols: [],
           };
           actual = reducer(state, action);
@@ -334,14 +334,14 @@ describe('Favorites reducer', () => {
     describe('Empty Favorites', () => {
       it('Remove non-existent stock symbol', () => {
         const stockSymbol = 'AAPL';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: [],
         };
         const action: RemoveFavoriteStockAction = {
           type: ActionTypes.REMOVE_FAVORITE_STOCK,
           stockSymbol,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: [],
         };
 
@@ -352,14 +352,14 @@ describe('Favorites reducer', () => {
     describe('Non-empty Favorites', () => {
       it('Remove non-existent stock symbol', () => {
         const stockSymbol = 'SHOP';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['GOOGL', 'AAPL'],
         };
         const action: RemoveFavoriteStockAction = {
           type: ActionTypes.REMOVE_FAVORITE_STOCK,
           stockSymbol,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['GOOGL', 'AAPL'],
         };
 
@@ -368,14 +368,14 @@ describe('Favorites reducer', () => {
 
       it('Remove one stock symbol', () => {
         const stockSymbol = 'AAPL';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['GOOGL', 'AAPL'],
         };
         const action: RemoveFavoriteStockAction = {
           type: ActionTypes.REMOVE_FAVORITE_STOCK,
           stockSymbol,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['GOOGL'],
         };
 
@@ -385,7 +385,7 @@ describe('Favorites reducer', () => {
       it('Remove two stock symbols', () => {
         const stockSymbol = 'AAPL';
         const stockSymbol2 = 'AMZN';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['GOOGL', 'AAPL', 'AMZN'],
         };
         const action: RemoveFavoriteStockAction = {
@@ -396,11 +396,11 @@ describe('Favorites reducer', () => {
           type: ActionTypes.REMOVE_FAVORITE_STOCK,
           stockSymbol: stockSymbol2,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['GOOGL'],
         };
 
-        let actual: FavoriteReducerState = {
+        let actual: FavoritesReducerState = {
           symbols: [],
         };
         actual = reducer(state, action);
@@ -412,7 +412,7 @@ describe('Favorites reducer', () => {
         const stockSymbol = 'AAPL';
         const stockSymbol2 = 'AMZN';
         const stockSymbol3 = 'SHOP';
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['GOOGL', 'AAPL', 'AMZN', 'SHOP'],
         };
         const action: RemoveFavoriteStockAction = {
@@ -427,11 +427,11 @@ describe('Favorites reducer', () => {
           type: ActionTypes.REMOVE_FAVORITE_STOCK,
           stockSymbol: stockSymbol3,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: ['GOOGL'],
         };
 
-        let actual: FavoriteReducerState = {
+        let actual: FavoritesReducerState = {
           symbols: [],
         };
         actual = reducer(state, action);
@@ -445,13 +445,13 @@ describe('Favorites reducer', () => {
   describe(`Handle ${ActionTypes.CLEAR_FAVORITE_STOCKS}`, () => {
     describe('Empty Favorites', () => {
       it('Clear Favorites with no Favorites', () => {
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: [],
         };
         const action: ClearFavoriteStocksAction = {
           type: ActionTypes.CLEAR_FAVORITE_STOCKS,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: [],
         };
 
@@ -461,13 +461,13 @@ describe('Favorites reducer', () => {
 
     describe('Non-empty Favorites', () => {
       it('Clear Favorites with one stock symbol', () => {
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['AAPL'],
         };
         const action: ClearFavoriteStocksAction = {
           type: ActionTypes.CLEAR_FAVORITE_STOCKS,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: [],
         };
 
@@ -475,17 +475,17 @@ describe('Favorites reducer', () => {
       });
 
       it('Clear Favorites with two stock symbols', () => {
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['AAPL', 'AMZN'],
         };
         const action: ClearFavoriteStocksAction = {
           type: ActionTypes.CLEAR_FAVORITE_STOCKS,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: [],
         };
 
-        let actual: FavoriteReducerState = {
+        let actual: FavoritesReducerState = {
           symbols: [],
         };
         actual = reducer(state, action);
@@ -493,17 +493,17 @@ describe('Favorites reducer', () => {
       });
 
       it('Clear Favorites with three stock symbols', () => {
-        const state: FavoriteReducerState = {
+        const state: FavoritesReducerState = {
           symbols: ['AAPL', 'AMZN', 'SHOP'],
         };
         const action: ClearFavoriteStocksAction = {
           type: ActionTypes.CLEAR_FAVORITE_STOCKS,
         };
-        const expected: FavoriteReducerState = {
+        const expected: FavoritesReducerState = {
           symbols: [],
         };
 
-        let actual: FavoriteReducerState = {
+        let actual: FavoritesReducerState = {
           symbols: [],
         };
         actual = reducer(state, action);

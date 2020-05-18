@@ -6,7 +6,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 
 import sagaWatcher, { fetchStockQuoteSaga, fetchStockChartSaga } from 'src/redux/Stocks/Sagas';
-import { StockQuote, StockActionTypes, ActionTypesEnum, StockChart } from 'src/redux/Stocks/Types';
+import { ActionTypes, StockQuote, StockChart, StocksActions } from 'src/redux/Stocks/Types';
 import * as actions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
 
@@ -67,15 +67,15 @@ const stockChartData1: StockChart[] = [
 
 describe('Stocks Saga', () => {
   describe('Stocks quote watcher', () => {
-    it(`Should watch ${ActionTypesEnum.FETCH_STOCK_QUOTE} action`, () => {
+    it(`Should watch ${ActionTypes.FETCH_STOCK_QUOTE} action`, () => {
       const gen = sagaWatcher();
-      const expected = takeEvery(ActionTypesEnum.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
+      const expected = takeEvery(ActionTypes.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
       const actual = gen.next().value;
 
       expect(actual).toEqual(expected);
     });
 
-    it(`Should fire on ${ActionTypesEnum.FETCH_STOCK_QUOTE} action in case success`, () => {
+    it(`Should fire on ${ActionTypes.FETCH_STOCK_QUOTE} action in case success`, () => {
       return expectSaga(sagaWatcher)
         .provide([[matchers.call.fn(api.fetchStockQuoteUrl), Promise.resolve({ data: data1 })]])
         .put(actions.fetchStockQuotePending(stockSymbol))
@@ -87,7 +87,7 @@ describe('Stocks Saga', () => {
         .then((result) => expect(result.toJSON()).toMatchSnapshot());
     });
 
-    it(`Should fire on ${ActionTypesEnum.FETCH_STOCK_QUOTE} action in case failure`, () => {
+    it(`Should fire on ${ActionTypes.FETCH_STOCK_QUOTE} action in case failure`, () => {
       return expectSaga(sagaWatcher)
         .provide([[matchers.call.fn(api.fetchStockQuoteUrl), Promise.reject(new Error(''))]])
         .put(actions.fetchStockQuotePending(stockSymbol))
@@ -102,10 +102,10 @@ describe('Stocks Saga', () => {
 
   describe('Stocks quote saga', () => {
     it('Should load and handle Stock quote data in case of success', async () => {
-      const dispatchedActions: StockActionTypes[] = [];
+      const dispatchedActions: StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
-        dispatch: (action: StockActionTypes): number => dispatchedActions.push(action),
+        dispatch: (action: StocksActions): number => dispatchedActions.push(action),
       };
       const promiseResponse: AxiosResponse<StockQuote> = {
         data: data1,
@@ -128,10 +128,10 @@ describe('Stocks Saga', () => {
     });
 
     it('Should load and handle Stock quote data in case of failure', async () => {
-      const dispatchedActions: StockActionTypes[] = [];
+      const dispatchedActions: StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
-        dispatch: (action: StockActionTypes): number => dispatchedActions.push(action),
+        dispatch: (action: StocksActions): number => dispatchedActions.push(action),
       };
 
       const stub = sinon.stub(api, 'fetchStockQuoteUrl').returns(Promise.reject(new Error('')));
@@ -150,10 +150,10 @@ describe('Stocks Saga', () => {
 
   describe('Stocks chart saga', () => {
     it('Should load and handle Stock chart data in case of success', async () => {
-      const dispatchedActions: StockActionTypes[] = [];
+      const dispatchedActions: StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
-        dispatch: (action: StockActionTypes): number => dispatchedActions.push(action),
+        dispatch: (action: StocksActions): number => dispatchedActions.push(action),
       };
       const promiseResponse: AxiosResponse<StockChart[]> = {
         data: stockChartData1,
@@ -182,10 +182,10 @@ describe('Stocks Saga', () => {
     });
 
     it('Should load and handle Stock chart data in case of failure', async () => {
-      const dispatchedActions: StockActionTypes[] = [];
+      const dispatchedActions: StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
-        dispatch: (action: StockActionTypes): number => dispatchedActions.push(action),
+        dispatch: (action: StocksActions): number => dispatchedActions.push(action),
       };
 
       const stub = sinon.stub(api, 'fetchStockChartUrl').returns(Promise.reject(new Error('')));
