@@ -1,7 +1,14 @@
 import { createCachedSelector } from 're-reselect';
 
 import { RootState } from 'src/redux/index.reducers';
-import { StockState, StockData, StockQuoteData, StockQuote } from 'src/redux/Stocks/Types';
+import {
+  StockState,
+  StockData,
+  StockQuoteData,
+  StockQuote,
+  StockChartData,
+  StockChart,
+} from 'src/redux/Stocks/Types';
 
 /**
  * Select 'Stocks' from root reducer.
@@ -74,7 +81,7 @@ export const selectStockQuote = createCachedSelector(
  * Select stock quote **fetching** status by Stock symbol.
  * ```ts
  * {
- *    selectedStockFetching: selectStockQuoteFetching(state, 'AAPL')
+ *    selectedStockFetching: selectStockQuoteFetching(state, { stockSymbol: 'AAPL' })
  * }
  * ```
  * @param state - RootState - Root redux state
@@ -90,7 +97,7 @@ export const selectStockQuoteFetching = createCachedSelector(
  * Select stock quote **data** by Stock symbol.
  * ```ts
  * {
- *    selectedStockData: selectStockQuoteData(state, 'AAPL')
+ *    selectedStockData: selectStockQuoteData(state, { stockSymbol: 'AAPL' })
  * }
  * ```
  * @param state - RootState - Root redux state
@@ -106,7 +113,7 @@ export const selectStockQuoteData = createCachedSelector(
  * Select stock quote **error** by Stock symbol.
  * ```ts
  * {
- *    selectedDataError: selectStockQuoteError(state, 'AAPL')
+ *    selectedDataError: selectStockQuoteError(state, { stockSymbol: 'AAPL' })
  * }
  * ```
  * @param state - RootState - Root redux state
@@ -116,4 +123,76 @@ export const selectStockQuoteData = createCachedSelector(
 export const selectStockQuoteError = createCachedSelector(
   [selectStockQuote],
   (stockQuoteData: StockQuoteData): Error | undefined => stockQuoteData.error,
+)((rootState: RootState, props: { stockSymbol: string }): string => props.stockSymbol);
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                   STOCK CHART DATA SELECTORS                                   //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Select stock chart data by Stock symbol.
+ * ```ts
+ * {
+ *    selectedStock: selectStockChart(state, { stockSymbol: 'AAPL' })
+ * }
+ * ```
+ * @param state - RootState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
+ * @returns StockChartData | undefined - Stock quote data
+ */
+export const selectStockChart = createCachedSelector(
+  [selectStock],
+  (stockData: StockData): StockChartData | undefined => stockData.chart,
+)((rootState: RootState, props: { stockSymbol: string }): string => props.stockSymbol);
+
+/**
+ * Select stock chart **fetching** status by Stock symbol.
+ * ```ts
+ * {
+ *    selectedStockFetching: selectStockChartFetching(state, { stockSymbol: 'AAPL' })
+ * }
+ * ```
+ * @param state - RootState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
+ * @returns boolean | undefined - Stock data fetching status
+ */
+export const selectStockChartFetching = createCachedSelector(
+  [selectStockChart],
+  (stockChartData: StockChartData | undefined): boolean | undefined => stockChartData?.fetching,
+)((rootState: RootState, props: { stockSymbol: string }): string => props.stockSymbol);
+
+/**
+ * Select stock chart **data** by Stock symbol.
+ * ```ts
+ * {
+ *    selectedStockData: selectStockChartData(state, { stockSymbol: 'AAPL' })
+ * }
+ * ```
+ * @param state - RootState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
+ * @returns StockChart[] | undefined - Stock quote data
+ */
+export const selectStockChartData = createCachedSelector(
+  [selectStockChart],
+  (stockChartData: StockChartData | undefined): StockChart[] | undefined => stockChartData?.data,
+)((rootState: RootState, props: { stockSymbol: string }): string => props.stockSymbol);
+
+/**
+ * Select stock chart **error** by Stock symbol.
+ * ```ts
+ * {
+ *    selectedDataError: selectStockChartError(state, { stockSymbol: 'AAPL' })
+ * }
+ * ```
+ * @param state - RootState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
+ * @returns Error | undefined - Stock data fetching status
+ */
+export const selectStockChartError = createCachedSelector(
+  [selectStockChart],
+  (stockChartData: StockChartData | undefined): Error | undefined => stockChartData?.error,
 )((rootState: RootState, props: { stockSymbol: string }): string => props.stockSymbol);
