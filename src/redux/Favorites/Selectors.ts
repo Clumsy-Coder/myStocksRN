@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-import { RootState } from 'src/redux/index.reducers';
-import { FavoriteReducerState } from 'src/redux/Favorites/Types';
+import { AppState } from 'src/redux/index.reducers';
+import { FavoritesReducerState } from 'src/redux/Favorites/Types';
 
 /**
  * Select 'Favorites' from root reducer.
@@ -11,8 +11,9 @@ import { FavoriteReducerState } from 'src/redux/Favorites/Types';
  * }
  * ```
  * @param state - RootState - Root redux state
+ * @returns FavoriteReducerState - Favorites reducer state
  */
-export const selectFavorites = (state: RootState): FavoriteReducerState => state.Favorites;
+export const selectFavorites = (state: AppState): FavoritesReducerState => state.Favorites;
 
 /**
  * Select Favorites stock 'symbols'
@@ -21,8 +22,10 @@ export const selectFavorites = (state: RootState): FavoriteReducerState => state
  *    selectedFavoriteSymbols: selectFavoriteSymbols(state)
  * }
  * ```
+ * @param state - RootState - Root redux state
+ * @returns string[] - Array of stock symbols in uppercase
  */
 export const selectFavoriteSymbols = createSelector(
   [selectFavorites],
-  (favorites: FavoriteReducerState): string[] => favorites.symbols,
+  (favorites: FavoritesReducerState): string[] => favorites.symbols,
 );

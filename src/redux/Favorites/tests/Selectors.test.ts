@@ -1,10 +1,10 @@
 import * as selectors from 'src/redux/Favorites/Selectors';
-import { RootState } from 'src/redux/index.reducers';
+import { AppState } from 'src/redux/index.reducers';
 
 describe('Favorites selectors', () => {
   describe('Empty store', () => {
     it('Selects Favorites with empty reducer', () => {
-      const store: RootState = {
+      const store: AppState = {
         Stocks: {},
         Favorites: {
           symbols: [],
@@ -18,7 +18,7 @@ describe('Favorites selectors', () => {
     });
 
     it('Selects Favorite symbols with empty store', () => {
-      const store: RootState = {
+      const store: AppState = {
         Stocks: {},
         Favorites: {
           symbols: [],
@@ -32,7 +32,7 @@ describe('Favorites selectors', () => {
 
   describe('Stored favorite stock symbols', () => {
     it('Selects Favorite reducer state', () => {
-      const store: RootState = {
+      const store: AppState = {
         Stocks: {},
         Favorites: {
           symbols: ['AAPL', 'AMZN', 'SHOP'],
@@ -55,7 +55,7 @@ describe('Favorites selectors', () => {
     });
 
     it('Selects Favorite symbols', () => {
-      const store: RootState = {
+      const store: AppState = {
         Stocks: {},
         Favorites: {
           symbols: ['AAPL', 'AMZN', 'SHOP'],

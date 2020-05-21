@@ -1,3 +1,5 @@
+import { ActionCreator } from 'redux';
+
 import {
   ActionTypes,
   AddFavoriteStockAction,
@@ -9,7 +11,9 @@ import {
  * Add stock to Favorites action creator.
  * @param stockSymbol - Stock symbol in uppercase. Ex: AAPL
  */
-export const addFavoriteStock = (stockSymbol: string): AddFavoriteStockAction => ({
+export const addFavoriteStock: ActionCreator<AddFavoriteStockAction> = (
+  stockSymbol: string,
+): AddFavoriteStockAction => ({
   type: ActionTypes.ADD_FAVORITE_STOCK,
   stockSymbol,
 });
@@ -18,7 +22,9 @@ export const addFavoriteStock = (stockSymbol: string): AddFavoriteStockAction =>
  * Remove stock from Favorites action creator.
  * @param stockSymbol - Stock symbol in uppercase. Ex: AAPL
  */
-export const removeFavoriteStock = (stockSymbol: string): RemoveFavoriteStockAction => ({
+export const removeFavoriteStock: ActionCreator<RemoveFavoriteStockAction> = (
+  stockSymbol: string,
+): RemoveFavoriteStockAction => ({
   type: ActionTypes.REMOVE_FAVORITE_STOCK,
   stockSymbol,
 });
@@ -26,6 +32,7 @@ export const removeFavoriteStock = (stockSymbol: string): RemoveFavoriteStockAct
 /**
  * Clear all stocks from Favorites action creator.
  */
-export const clearFavoriteStocks = (): ClearFavoriteStocksAction => ({
+// eslint-disable-next-line max-len
+export const clearFavoriteStocks: ActionCreator<ClearFavoriteStocksAction> = (): ClearFavoriteStocksAction => ({
   type: ActionTypes.CLEAR_FAVORITE_STOCKS,
 });

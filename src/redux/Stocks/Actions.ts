@@ -1,20 +1,40 @@
+import { ActionCreator } from 'redux';
+
+import { chartRange } from 'src/share/Constants';
 import {
-  FetchStockQuoteAC,
-  FetchStockChartAC,
-  ActionTypesEnum,
-  FetchStockQuotePendingAC,
-  FetchStockQuoteFulfilledAC,
+  ActionTypes,
   StockQuote,
-  FetchStockQuoteRejectedAC,
+  StockChart,
+  FetchStockQuoteAction,
+  FetchStockChartAction,
+  FetchStockQuotePendingAction,
+  FetchStockQuoteFulfilledAction,
+  FetchStockQuoteRejectedAction,
+  FetchStockChartPendingAction,
+  FetchStockChartFulfilledAction,
+  FetchStockChartRejectedAction,
+  FetchStockQuoteBatchAction,
+  FetchStockChartBatchAction,
+  FetchStockQuoteChartBatchAction,
 } from 'src/redux/Stocks/Types';
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                  STOCK QUOTE ACTIONS CREATORS                                  //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
  * Fetch stock quote action creator.
  * ONLY to be called by the front end.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockQuote = (stockSymbol: string): FetchStockQuoteAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE,
+export const fetchStockQuote: ActionCreator<FetchStockQuoteAction> = (
+  stockSymbol: string,
+): FetchStockQuoteAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE,
   stockSymbol,
 });
 
@@ -24,8 +44,10 @@ export const fetchStockQuote = (stockSymbol: string): FetchStockQuoteAC => ({
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockQuotePending = (stockSymbol: string): FetchStockQuotePendingAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING,
+export const fetchStockQuotePending: ActionCreator<FetchStockQuotePendingAction> = (
+  stockSymbol: string,
+): FetchStockQuotePendingAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
   stockSymbol,
 });
 
@@ -36,11 +58,11 @@ export const fetchStockQuotePending = (stockSymbol: string): FetchStockQuotePend
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param payload - data fetched
  */
-export const fetchStockQuoteFulfilled = (
+export const fetchStockQuoteFulfilled: ActionCreator<FetchStockQuoteFulfilledAction> = (
   stockSymbol: string,
   payload: StockQuote,
-): FetchStockQuoteFulfilledAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED,
+): FetchStockQuoteFulfilledAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
   stockSymbol,
   payload: { data: payload },
 });
@@ -52,18 +74,138 @@ export const fetchStockQuoteFulfilled = (
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param error - error message
  */
-export const fetchStockQuoteRejected = (
+export const fetchStockQuoteRejected: ActionCreator<FetchStockQuoteRejectedAction> = (
   stockSymbol: string,
   error: Error,
-): FetchStockQuoteRejectedAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED,
+): FetchStockQuoteRejectedAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
   stockSymbol,
   error,
 });
 
-// ---------------------------------------------------------------------------------------------- //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                  STOCK CHART ACTIONS CREATORS                                  //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
 
-export const fetchStockChart = (stockSymbol: string): FetchStockChartAC => ({
-  type: ActionTypesEnum.FETCH_STOCK_CHART,
+/**
+ * Fetch stock chart action creator.
+ * ONLY to be called by the front end.
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param range - Date range for the stock chart
+ * @param sort - sort data by date in ascending or descending order
+ */
+export const fetchStockChart: ActionCreator<FetchStockChartAction> = (
+  stockSymbol: string,
+  range: chartRange,
+  sort: 'asc' | 'desc',
+): FetchStockChartAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART,
   stockSymbol,
+  range,
+  sort,
+});
+
+/**
+ * Fetch stock chart pending action creator.
+ * ONLY to be called by redux saga.
+ * Only used for internal use.
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ */
+export const fetchStockChartPending: ActionCreator<FetchStockChartPendingAction> = (
+  stockSymbol: string,
+): FetchStockChartPendingAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_PENDING,
+  stockSymbol,
+});
+
+/**
+ * Fetch Stock chart fulfilled action creator.
+ * ONLY to be called by redux saga.
+ * Only used for internal use.
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param payload - data fetched
+ */
+export const fetchStockChartFulfilled: ActionCreator<FetchStockChartFulfilledAction> = (
+  stockSymbol: string,
+  payload: StockChart[],
+): FetchStockChartFulfilledAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
+  stockSymbol,
+  payload: { data: payload },
+});
+
+/**
+ * Fetch Stock chart rejected action creator.
+ * ONLY to be called by redux saga.
+ * Only used for internal use.
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param error - error message
+ */
+export const fetchStockChartRejected: ActionCreator<FetchStockChartRejectedAction> = (
+  stockSymbol: string,
+  error: Error,
+): FetchStockChartRejectedAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
+  stockSymbol,
+  error,
+});
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                  STOCK BATCH ACTIONS CREATORS                                  //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Fetch multiple stock quote data in a single batch action creator.
+ * ONLY to be called by the front end.
+ * @param stockSymbols - An array of company stock symbol in uppercase. Ex: ['AAPL', 'SHOP]
+ */
+export const fetchStockQuoteBatch: ActionCreator<FetchStockQuoteBatchAction> = (
+  stockSymbols: string[],
+): FetchStockQuoteBatchAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_BATCH,
+  stockSymbols,
+});
+
+/**
+ * Fetch multiple stock chart data in a single batch action creator.
+ * ONLY to be called by the front end.
+ * @param stockSymbols - An array of company stock symbol in uppercase. Ex: ['AAPL', 'SHOP]
+ * @param range - Date range for the stock chart
+ * @param sort - sort data by date in ascending or descending order
+ */
+export const fetchStockChartBatch: ActionCreator<FetchStockChartBatchAction> = (
+  stockSymbols: string[],
+  range: chartRange,
+  sort: 'asc' | 'desc',
+): FetchStockChartBatchAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_BATCH,
+  stockSymbols,
+  range,
+  sort,
+});
+
+/**
+ * Fetch multiple stock quote and chart in a single batch action creator.
+ * ONLY to be called by the front end.
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param range - Date range for the stock chart
+ * @param sort - sort data by date in ascending or descending order
+ */
+export const fetchStockQuoteChartBatch: ActionCreator<FetchStockQuoteChartBatchAction> = (
+  stockSymbols: string[],
+  range: chartRange,
+  sort: 'asc' | 'desc',
+): FetchStockQuoteChartBatchAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH,
+  stockSymbols,
+  range,
+  sort,
 });

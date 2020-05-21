@@ -1,10 +1,15 @@
-import { ActionTypesEnum, StockState, StockActionTypes } from 'src/redux/Stocks/Types';
+import { Reducer } from 'redux';
 
-const initialState: StockState = {};
+import { ActionTypes, StocksReducerState, StocksActions } from 'src/redux/Stocks/Types';
 
-const reducer = (state = initialState, action: StockActionTypes): StockState => {
+const initialState: StocksReducerState = {};
+
+const reducer: Reducer<StocksReducerState, StocksActions> = (
+  state = initialState,
+  action: StocksActions,
+): StocksReducerState => {
   switch (action.type) {
-    case ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING: {
+    case ActionTypes.FETCH_STOCK_QUOTE_PENDING: {
       return {
         ...state,
         [action.stockSymbol]: {
@@ -17,7 +22,7 @@ const reducer = (state = initialState, action: StockActionTypes): StockState => 
         },
       };
     }
-    case ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED: {
+    case ActionTypes.FETCH_STOCK_QUOTE_FULFILLED: {
       return {
         ...state,
         [action.stockSymbol]: {
@@ -30,7 +35,7 @@ const reducer = (state = initialState, action: StockActionTypes): StockState => 
         },
       };
     }
-    case ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED: {
+    case ActionTypes.FETCH_STOCK_QUOTE_REJECTED: {
       return {
         ...state,
         [action.stockSymbol]: {
@@ -43,7 +48,7 @@ const reducer = (state = initialState, action: StockActionTypes): StockState => 
         },
       };
     }
-    case ActionTypesEnum.FETCH_STOCK_CHART_PENDING: {
+    case ActionTypes.FETCH_STOCK_CHART_PENDING: {
       return {
         ...state,
         [action.stockSymbol]: {
@@ -56,7 +61,7 @@ const reducer = (state = initialState, action: StockActionTypes): StockState => 
         },
       };
     }
-    case ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED: {
+    case ActionTypes.FETCH_STOCK_CHART_FULFILLED: {
       return {
         ...state,
         [action.stockSymbol]: {
@@ -69,7 +74,7 @@ const reducer = (state = initialState, action: StockActionTypes): StockState => 
         },
       };
     }
-    case ActionTypesEnum.FETCH_STOCK_CHART_REJECTED: {
+    case ActionTypes.FETCH_STOCK_CHART_REJECTED: {
       return {
         ...state,
         [action.stockSymbol]: {

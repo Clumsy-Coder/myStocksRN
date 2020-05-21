@@ -1,10 +1,14 @@
+import { Action } from 'redux';
+
+import { chartRange } from 'src/share/Constants';
+
 /*
-██████╗  █████╗ ████████╗ █████╗     ██████╗  ██████╗ ███╗   ███╗ █████╗ ██╗███╗   ██╗
-██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██╔══██╗██╔═══██╗████╗ ████║██╔══██╗██║████╗  ██║
-██║  ██║███████║   ██║   ███████║    ██║  ██║██║   ██║██╔████╔██║███████║██║██╔██╗ ██║
-██║  ██║██╔══██║   ██║   ██╔══██║    ██║  ██║██║   ██║██║╚██╔╝██║██╔══██║██║██║╚██╗██║
-██████╔╝██║  ██║   ██║   ██║  ██║    ██████╔╝╚██████╔╝██║ ╚═╝ ██║██║  ██║██║██║ ╚████║
-╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝    ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
+  ██████╗  █████╗ ████████╗ █████╗     ██████╗  ██████╗ ███╗   ███╗ █████╗ ██╗███╗   ██╗
+  ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██╔══██╗██╔═══██╗████╗ ████║██╔══██╗██║████╗  ██║
+  ██║  ██║███████║   ██║   ███████║    ██║  ██║██║   ██║██╔████╔██║███████║██║██╔██╗ ██║
+  ██║  ██║██╔══██║   ██║   ██╔══██║    ██║  ██║██║   ██║██║╚██╔╝██║██╔══██║██║██║╚██╗██║
+  ██████╔╝██║  ██║   ██║   ██║  ██║    ██████╔╝╚██████╔╝██║ ╚═╝ ██║██║  ██║██║██║ ╚████║
+  ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝    ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
 
 */
 
@@ -83,7 +87,7 @@ export interface StockChart {
   high: number; // Adjusted data for historical dates. Split adjusted only
   low: number; // Adjusted data for historical dates. Split adjusted only
   volume: number; // Adjusted data for historical dates. Split adjusted only
-  currency: string;
+  // currency: string;
   change: number; // Change from previous trading day
   changePercent: number; // Change percent from previous trading day
   label: string; // A human readable format of the date depending on the range
@@ -95,14 +99,57 @@ export interface StockChart {
   // uVolume: number; // Unadjusted data for historical dates
 }
 
+/**
+ * Data format when fetching stock quote data for multiple stock symbols in a single batch.
+ */
+export interface StockQuoteBatch {
+  [symbol: string]: {
+    quote: StockQuote;
+  };
+}
+
+/**
+ * Data format when fetching stock chart data for multiple stock symbols in a single batch,
+ */
+export interface StockChartBatch {
+  [symbol: string]: {
+    chart: StockChart[];
+  };
+}
+
+/**
+ * Data format when fetching stock quote and chart data for multiple stock symbols in a single batch.
+ */
+export interface StockQuoteChartBatch {
+  [symbol: string]: {
+    quote: StockQuote;
+    chart: StockChart[];
+  };
+}
+
+/**
+ * A union of Stocks data domain types
+ * Check {@link StockQuote}
+ * Check {@link StockChart}
+ * Check {@link StockQuoteBatch}
+ * Check {@link StockChartBatch}
+ * Check {@link StockQuoteChartBatch}
+ */
+export type StocksDataDomain =
+  | StockQuote
+  | StockChart
+  | StockQuoteBatch
+  | StockChartBatch
+  | StockQuoteChartBatch;
+
 // ---------------------------------------------------------------------------------------------- //
 /*
-██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗███████╗██████╗
-██╔══██╗██╔════╝██╔══██╗██║   ██║██╔════╝██╔════╝██╔══██╗
-██████╔╝█████╗  ██║  ██║██║   ██║██║     █████╗  ██████╔╝
-██╔══██╗██╔══╝  ██║  ██║██║   ██║██║     ██╔══╝  ██╔══██╗
-██║  ██║███████╗██████╔╝╚██████╔╝╚██████╗███████╗██║  ██║
-╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚══════╝╚═╝  ╚═╝
+  ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗███████╗██████╗     ███████╗████████╗ █████╗ ████████╗███████╗
+  ██╔══██╗██╔════╝██╔══██╗██║   ██║██╔════╝██╔════╝██╔══██╗    ██╔════╝╚══██╔══╝██╔══██╗╚══██╔══╝██╔════╝
+  ██████╔╝█████╗  ██║  ██║██║   ██║██║     █████╗  ██████╔╝    ███████╗   ██║   ███████║   ██║   █████╗
+  ██╔══██╗██╔══╝  ██║  ██║██║   ██║██║     ██╔══╝  ██╔══██╗    ╚════██║   ██║   ██╔══██║   ██║   ██╔══╝
+  ██║  ██║███████╗██████╔╝╚██████╔╝╚██████╗███████╗██║  ██║    ███████║   ██║   ██║  ██║   ██║   ███████╗
+  ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚══════╝╚═╝  ╚═╝    ╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝   ╚══════╝
 
 */
 
@@ -126,25 +173,27 @@ export interface StockData {
 /**
  * Stocks reducer state
  */
-export interface StockState {
+export interface StocksReducerState {
   [symbol: string]: StockData;
 }
 
+export type StocksReducerTypes = StockQuoteData | StockChartData | StockData | StocksReducerState;
+
 // ---------------------------------------------------------------------------------------------- //
 /*
- █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
-██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║    ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝
-███████║██║        ██║   ██║██║   ██║██╔██╗ ██║       ██║    ╚████╔╝ ██████╔╝█████╗  ███████╗
-██╔══██║██║        ██║   ██║██║   ██║██║╚██╗██║       ██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ╚════██║
-██║  ██║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║       ██║      ██║   ██║     ███████╗███████║
-╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝       ╚═╝      ╚═╝   ╚═╝     ╚══════╝╚══════╝
+   █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
+  ██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║    ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝
+  ███████║██║        ██║   ██║██║   ██║██╔██╗ ██║       ██║    ╚████╔╝ ██████╔╝█████╗  ███████╗
+  ██╔══██║██║        ██║   ██║██║   ██║██║╚██╗██║       ██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ╚════██║
+  ██║  ██║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║       ██║      ██║   ██║     ███████╗███████║
+  ╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝       ╚═╝      ╚═╝   ╚═╝     ╚══════╝╚══════╝
 
 */
 
 /**
  * Stocks action types
  */
-export enum ActionTypesEnum {
+export enum ActionTypes {
   FETCH_STOCK_QUOTE = 'STOCKS/FETCH_STOCK_QUOTE',
   FETCH_STOCK_QUOTE_PENDING = 'STOCKS/FETCH_STOCK_QUOTE_PENDING',
   FETCH_STOCK_QUOTE_FULFILLED = 'STOCKS/FETCH_STOCK_QUOTE_FULFILLED',
@@ -154,99 +203,124 @@ export enum ActionTypesEnum {
   FETCH_STOCK_CHART_PENDING = 'STOCKS/FETCH_STOCK_CHART_PENDING',
   FETCH_STOCK_CHART_FULFILLED = 'STOCKS/FETCH_STOCK_CHART_FULFILLED',
   FETCH_STOCK_CHART_REJECTED = 'STOCKS/FETCH_STOCK_CHART_REJECTED',
+
+  FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
+  FETCH_STOCK_CHART_BATCH = 'STOCKS/FETCH_STOCK_CHART_BATCH',
+  FETCH_STOCK_QUOTE_CHART_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_CHART_BATCH',
 }
 
 // ---------------------------------------------------------------------------------------------- //
 /*
- █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗     ██████╗██████╗ ███████╗ █████╗ ████████╗ ██████╗ ██████╗ ███████╗
-██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║    ██╔════╝██╔══██╗██╔════╝██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗██╔════╝
-███████║██║        ██║   ██║██║   ██║██╔██╗ ██║    ██║     ██████╔╝█████╗  ███████║   ██║   ██║   ██║██████╔╝███████╗
-██╔══██║██║        ██║   ██║██║   ██║██║╚██╗██║    ██║     ██╔══██╗██╔══╝  ██╔══██║   ██║   ██║   ██║██╔══██╗╚════██║
-██║  ██║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║    ╚██████╗██║  ██║███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║███████║
-╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝
+   █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗███████╗
+  ██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║██╔════╝
+  ███████║██║        ██║   ██║██║   ██║██╔██╗ ██║███████╗
+  ██╔══██║██║        ██║   ██║██║   ██║██║╚██╗██║╚════██║
+  ██║  ██║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║███████║
+  ╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 
 */
 
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                      STOCK QUOTE ACTIONS                                       //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
 /**
- * Fetch Stock Quote action creator.
+ * Fetch Stock Quote action.
  */
-export interface FetchStockQuoteAC {
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE;
+export interface FetchStockQuoteAction extends Action<ActionTypes.FETCH_STOCK_QUOTE> {
+  type: ActionTypes.FETCH_STOCK_QUOTE;
   readonly stockSymbol: string; // stock symbol
 }
 
 /**
- * Fetch Stock Quote pending action creator
+ * Fetch Stock Quote pending action
  */
-export interface FetchStockQuotePendingAC {
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_PENDING;
+export interface FetchStockQuotePendingAction
+  extends Action<ActionTypes.FETCH_STOCK_QUOTE_PENDING> {
+  type: ActionTypes.FETCH_STOCK_QUOTE_PENDING;
   readonly stockSymbol: string;
 }
 
 /**
- * Fetch Stock Quote fulfilled action creator
+ * Fetch Stock Quote fulfilled action
  */
-export interface FetchStockQuoteFulfilledAC {
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_FULFILLED;
+export interface FetchStockQuoteFulfilledAction
+  extends Action<ActionTypes.FETCH_STOCK_QUOTE_FULFILLED> {
+  type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED;
   readonly stockSymbol: string;
   readonly payload: { data: StockQuote };
 }
 
 /**
- * Fetch Stock Quote rejected action creator
+ * Fetch Stock Quote rejected action
  */
-export interface FetchStockQuoteRejectedAC {
-  type: ActionTypesEnum.FETCH_STOCK_QUOTE_REJECTED;
+export interface FetchStockQuoteRejectedAction
+  extends Action<ActionTypes.FETCH_STOCK_QUOTE_REJECTED> {
+  type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED;
   readonly stockSymbol: string;
   readonly error: Error;
 }
 
 /**
  * Union of action creators for Stock Quote
- * Check {@link FetchStockQuoteAC}
- * Check {@link FetchStockQuotePendingAC}
- * Check {@link FetchStockQuoteFulfilledAC}
- * Check {@link FetchStockQuoteRejectedAC}
+ * Check {@link FetchStockQuoteAction}
+ * Check {@link FetchStockQuotePendingAction}
+ * Check {@link FetchStockQuoteFulfilledAction}
+ * Check {@link FetchStockQuoteRejectedAction}
  */
-export type StockQuoteAction =
-  | FetchStockQuoteAC
-  | FetchStockQuotePendingAC
-  | FetchStockQuoteFulfilledAC
-  | FetchStockQuoteRejectedAC;
+export type StockQuoteActions =
+  | FetchStockQuoteAction
+  | FetchStockQuotePendingAction
+  | FetchStockQuoteFulfilledAction
+  | FetchStockQuoteRejectedAction;
 
-// ---------------------------------------------------------------------------------------------- //
-// get stock chart action creator
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                      STOCK CHART ACTIONS                                       //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Fetch Stock Chart action creator
+ * Fetch Stock Chart action
  */
-export interface FetchStockChartAC {
-  type: ActionTypesEnum.FETCH_STOCK_CHART;
+export interface FetchStockChartAction extends Action<ActionTypes.FETCH_STOCK_CHART> {
+  type: ActionTypes.FETCH_STOCK_CHART;
+  readonly stockSymbol: string;
+  readonly range: chartRange;
+  readonly sort: 'asc' | 'desc';
+}
+
+/**
+ * Fetch Stock Chart pending action
+ */
+export interface FetchStockChartPendingAction
+  extends Action<ActionTypes.FETCH_STOCK_CHART_PENDING> {
+  type: ActionTypes.FETCH_STOCK_CHART_PENDING;
   readonly stockSymbol: string;
 }
 
 /**
- * Fetch Stock Chart pending action creator
+ * Fetch Stock Chart fulfilled action
  */
-export interface FetchStockChartPendingAC {
-  type: ActionTypesEnum.FETCH_STOCK_CHART_PENDING;
-  readonly stockSymbol: string;
-}
-
-/**
- * Fetch Stock Chart fulfilled action creator
- */
-export interface FetchStockChartFulfilledAC {
-  type: ActionTypesEnum.FETCH_STOCK_CHART_FULFILLED;
+export interface FetchStockChartFulfilledAction
+  extends Action<ActionTypes.FETCH_STOCK_CHART_FULFILLED> {
+  type: ActionTypes.FETCH_STOCK_CHART_FULFILLED;
   readonly stockSymbol: string;
   readonly payload: { data: StockChart[] };
 }
 
 /**
- * Fetch Stock Chart rejected action creator
+ * Fetch Stock Chart rejected action
  */
-export interface FetchStockChartRejectedAC {
-  type: ActionTypesEnum.FETCH_STOCK_CHART_REJECTED;
+export interface FetchStockChartRejectedAction
+  extends Action<ActionTypes.FETCH_STOCK_CHART_REJECTED> {
+  type: ActionTypes.FETCH_STOCK_CHART_REJECTED;
   readonly stockSymbol: string;
   readonly error: Error;
 }
@@ -258,17 +332,66 @@ export interface FetchStockChartRejectedAC {
  * Check {@link FetchStockChartFulfilledAC}
  * Check {@link FetchStockChartRejectedAC}
  */
-export type StockChartAction =
-  | FetchStockChartAC
-  | FetchStockChartPendingAC
-  | FetchStockChartFulfilledAC
-  | FetchStockChartRejectedAC;
+export type StockChartActions =
+  | FetchStockChartAction
+  | FetchStockChartPendingAction
+  | FetchStockChartFulfilledAction
+  | FetchStockChartRejectedAction;
 
-// ---------------------------------------------------------------------------------------------- //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                      STOCK BATCH ACTIONS                                       //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Fetch Stock quote batch action
+ */
+export interface FetchStockQuoteBatchAction extends Action<ActionTypes.FETCH_STOCK_QUOTE_BATCH> {
+  type: ActionTypes.FETCH_STOCK_QUOTE_BATCH;
+  readonly stockSymbols: string[];
+}
+
+/**
+ * Fetch Stock chart batch action
+ */
+export interface FetchStockChartBatchAction extends Action<ActionTypes.FETCH_STOCK_CHART_BATCH> {
+  type: ActionTypes.FETCH_STOCK_CHART_BATCH;
+  readonly stockSymbols: string[];
+  readonly range: chartRange;
+  readonly sort: 'asc' | 'desc';
+}
+
+/**
+ * Fetch Stock quote and chart batch action
+ */
+export interface FetchStockQuoteChartBatchAction
+  extends Action<ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH> {
+  type: ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH;
+  readonly stockSymbols: string[];
+  readonly range: chartRange;
+  readonly sort: 'asc' | 'desc';
+}
+
+export type StockBatchActions =
+  | FetchStockQuoteBatchAction
+  | FetchStockChartBatchAction
+  | FetchStockQuoteChartBatchAction;
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                      STOCK ACTIONS UNIONS                                      //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
 /**
  * Union of action creators for StockQuoteAction and StockChartAction
  *
  * Check {@link StockQuoteAction}
  * Check {@link StockChartAction}
  */
-export type StockActionTypes = StockQuoteAction | StockChartAction;
+export type StocksActions = StockQuoteActions | StockChartActions | StockBatchActions;
