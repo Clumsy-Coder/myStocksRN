@@ -203,6 +203,10 @@ export enum ActionTypes {
   FETCH_STOCK_CHART_PENDING = 'STOCKS/FETCH_STOCK_CHART_PENDING',
   FETCH_STOCK_CHART_FULFILLED = 'STOCKS/FETCH_STOCK_CHART_FULFILLED',
   FETCH_STOCK_CHART_REJECTED = 'STOCKS/FETCH_STOCK_CHART_REJECTED',
+
+  FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
+  FETCH_STOCK_CHART_BATCH = 'STOCKS/FETCH_STOCK_CHART_BATCH',
+  FETCH_STOCK_QUOTE_CHART_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_CHART_BATCH',
 }
 
 // ---------------------------------------------------------------------------------------------- //
@@ -283,7 +287,7 @@ export type StockQuoteActions =
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Fetch Stock Chart action creator
+ * Fetch Stock Chart action
  */
 export interface FetchStockChartAction extends Action<ActionTypes.FETCH_STOCK_CHART> {
   type: ActionTypes.FETCH_STOCK_CHART;
@@ -293,7 +297,7 @@ export interface FetchStockChartAction extends Action<ActionTypes.FETCH_STOCK_CH
 }
 
 /**
- * Fetch Stock Chart pending action creator
+ * Fetch Stock Chart pending action
  */
 export interface FetchStockChartPendingAction
   extends Action<ActionTypes.FETCH_STOCK_CHART_PENDING> {
@@ -302,7 +306,7 @@ export interface FetchStockChartPendingAction
 }
 
 /**
- * Fetch Stock Chart fulfilled action creator
+ * Fetch Stock Chart fulfilled action
  */
 export interface FetchStockChartFulfilledAction
   extends Action<ActionTypes.FETCH_STOCK_CHART_FULFILLED> {
@@ -312,7 +316,7 @@ export interface FetchStockChartFulfilledAction
 }
 
 /**
- * Fetch Stock Chart rejected action creator
+ * Fetch Stock Chart rejected action
  */
 export interface FetchStockChartRejectedAction
   extends Action<ActionTypes.FETCH_STOCK_CHART_REJECTED> {
@@ -337,6 +341,48 @@ export type StockChartActions =
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                                //
+//                                      STOCK BATCH ACTIONS                                       //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Fetch Stock quote batch action
+ */
+export interface FetchStockQuoteBatchAction extends Action<ActionTypes.FETCH_STOCK_QUOTE_BATCH> {
+  type: ActionTypes.FETCH_STOCK_QUOTE_BATCH;
+  readonly stockSymbols: string[];
+}
+
+/**
+ * Fetch Stock chart batch action
+ */
+export interface FetchStockChartBatchAction extends Action<ActionTypes.FETCH_STOCK_CHART_BATCH> {
+  type: ActionTypes.FETCH_STOCK_CHART_BATCH;
+  readonly stockSymbols: string[];
+  readonly range: chartRange;
+  readonly sort: 'asc' | 'desc';
+}
+
+/**
+ * Fetch Stock quote and chart batch action
+ */
+export interface FetchStockQuoteChartBatchAction
+  extends Action<ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH> {
+  type: ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH;
+  readonly stockSymbols: string[];
+  readonly range: chartRange;
+  readonly sort: 'asc' | 'desc';
+}
+
+export type StockBatchActions =
+  | FetchStockQuoteBatchAction
+  | FetchStockChartBatchAction
+  | FetchStockQuoteChartBatchAction;
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
 //                                      STOCK ACTIONS UNIONS                                      //
 //                                                                                                //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
@@ -348,4 +394,4 @@ export type StockChartActions =
  * Check {@link StockQuoteAction}
  * Check {@link StockChartAction}
  */
-export type StocksActions = StockQuoteActions | StockChartActions;
+export type StocksActions = StockQuoteActions | StockChartActions | StockBatchActions;

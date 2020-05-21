@@ -1,18 +1,30 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
+import { AxiosResponse } from 'axios';
 
 import * as stocksActions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
-import { ActionTypes, FetchStockQuoteAction, FetchStockChartAction } from 'src/redux/Stocks/Types';
+import {
+  ActionTypes,
+  FetchStockQuoteAction,
+  FetchStockChartAction,
+  FetchStockQuoteBatchAction,
+  StockQuoteBatch,
+  FetchStockChartBatchAction,
+  FetchStockQuoteChartBatchAction,
+  StockChartBatch,
+  StockQuoteChartBatch,
+} from 'src/redux/Stocks/Types';
+import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
 
 /**
  * Initiate the fetching of stock quote.
- * It will dispatch FETCH_STOCK_QUOTE_PENDING action.
+ * It will dispatch STOCKS/FETCH_STOCK_QUOTE_PENDING action.
  * Once the fetching is successful, it will dispatch FETCH_STOCK_QUOTE_FULFILLED action.
  * If the fetching failed, it will dispatch FETCH_STOCK_QUOTE_REJECTED action.
  *
  * @param action - Fetch stock quote action creator
- * @returns
  */
 export function* fetchStockQuoteSaga(action: FetchStockQuoteAction) {
   try {
@@ -43,7 +55,108 @@ export function* fetchStockChartSaga(action: FetchStockChartAction) {
   }
 }
 
+/**
+ * Initiate the fetching of stock quote batch data.
+ * It will dispatch STOCKS/FETCH_STOCK_QUOTE_PENDING action to the provided stock symbols.
+ * STOCKS/FETCH_STOCK_QUOTE_FULFILLED action will dispatched for corresponding stock symbol if data fetching was successful.
+ * STOCKS/FETCH_STOCK_QUOTE_REJECTED action will dispatched for corresponding stock symbol if data fetching was unsuccessful.
+ *
+ * @param action - Fetch stock quote batch action
+ */
+export function* fetchStockQuoteBatchSaga(action: FetchStockQuoteBatchAction) {
+  try {
+    // const { stockSymbols } = action;
+    const stockSymbols = yield select(selectFavoriteSymbols);
+
+    for (const stock of stockSymbols) {
+      yield put(stocksActions.fetchStockQuotePending(stock));
+    }
+    const response: AxiosResponse<StockQuoteBatch> = yield call(
+      api.fetchStockQuoteBatchUrl,
+      stockSymbols,
+    );
+    const { data } = response;
+    for (const [symbol, stockQuoteData] of Object.entries(data)) {
+      yield put(stocksActions.fetchStockQuoteFulfilled(symbol, stockQuoteData.quote));
+    }
+  } catch (error) {
+    for (const stock of action.stockSymbols) {
+      yield put(stocksActions.fetchStockQuoteRejected(stock, error));
+    }
+  }
+}
+
+/**
+ * Initiate the fetching of stock chart batch data.
+ * It will dispatch STOCKS/FETCH_STOCK_CHART_PENDING action to the provided stock symbols.
+ * STOCKS/FETCH_STOCK_CHART_FULFILLED action will dispatched for corresponding stock symbol if data fetching was successful.
+ * STOCKS/FETCH_STOCK_CHART_REJECTED action will dispatched for corresponding stock symbol if data fetching was unsuccessful.
+ *
+ * @param action - Fetch stock chart batch action
+ */
+export function* fetchStockChartBatchSaga(action: FetchStockChartBatchAction) {
+  try {
+    const { stockSymbols, range, sort } = action;
+
+    for (const stock of stockSymbols) {
+      yield put(stocksActions.fetchStockChartPending(stock));
+    }
+    const response: AxiosResponse<StockChartBatch> = yield call(
+      api.fetchStockChartBatchUrl,
+      stockSymbols,
+      range,
+      sort,
+    );
+    const { data } = response;
+    for (const [symbol, stockChartData] of Object.entries(data)) {
+      yield put(stocksActions.fetchStockChartFulfilled(symbol, stockChartData.chart));
+    }
+  } catch (error) {
+    for (const stock of action.stockSymbols) {
+      yield put(stocksActions.fetchStockChartRejected(stock, error));
+    }
+  }
+}
+
+/**
+ * Initiate the fetching of stock chart batch data.
+ * It will dispatch STOCKS/FETCH_STOCK_QUOTE_PENDING and STOCKS/FETCH_STOCK_CHART_PENDING action to the provided stock symbols.
+ * STOCKS/FETCH_STOCK_QUOTE_FULFILLED and STOCKS/FETCH_STOCK_CHART_FULFILLED action will dispatched for corresponding stock symbol if data fetching was successful.
+ * STOCKS/FETCH_STOCK_QUOTE_REJECTED and STOCKS/FETCH_STOCK_CHART_REJECTED action will dispatched for corresponding stock symbol if data fetching was unsuccessful.
+ *
+ * @param action - Fetch stock chart batch action
+ */
+export function* fetchStockQuoteChartBatchSaga(action: FetchStockQuoteChartBatchAction) {
+  try {
+    const { stockSymbols, range, sort } = action;
+
+    for (const stock of stockSymbols) {
+      yield put(stocksActions.fetchStockQuotePending(stock));
+      yield put(stocksActions.fetchStockChartPending(stock));
+    }
+    const response: AxiosResponse<StockQuoteChartBatch> = yield call(
+      api.fetchStockQuoteChartBatchUrl,
+      stockSymbols,
+      range,
+      sort,
+    );
+    const { data } = response;
+    for (const [symbol, stockChartData] of Object.entries(data)) {
+      yield put(stocksActions.fetchStockQuoteFulfilled(symbol, stockChartData.quote));
+      yield put(stocksActions.fetchStockChartFulfilled(symbol, stockChartData.chart));
+    }
+  } catch (error) {
+    for (const stock of action.stockSymbols) {
+      yield put(stocksActions.fetchStockQuoteRejected(stock, error));
+      yield put(stocksActions.fetchStockChartRejected(stock, error));
+    }
+  }
+}
+
 export default function* watchStocksSagas() {
   yield takeEvery(ActionTypes.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
   yield takeEvery(ActionTypes.FETCH_STOCK_CHART, fetchStockChartSaga);
+  yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_BATCH, fetchStockQuoteBatchSaga);
+  yield takeLatest(ActionTypes.FETCH_STOCK_CHART_BATCH, fetchStockChartBatchSaga);
+  yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH, fetchStockQuoteChartBatchSaga);
 }

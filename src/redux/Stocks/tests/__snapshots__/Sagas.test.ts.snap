@@ -34,6 +34,45 @@ Object {
       "combinator": false,
       "payload": Object {
         "args": Array [
+          "STOCKS/FETCH_STOCK_QUOTE_BATCH",
+          "@@redux-saga-test-plan/json/function/fetchStockQuoteBatchSaga",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "STOCKS/FETCH_STOCK_CHART_BATCH",
+          "@@redux-saga-test-plan/json/function/fetchStockChartBatchSaga",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "STOCKS/FETCH_STOCK_QUOTE_CHART_BATCH",
+          "@@redux-saga-test-plan/json/function/fetchStockQuoteChartBatchSaga",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
           Object {
             "stockSymbol": "AAPL",
             "type": "STOCKS/FETCH_STOCK_QUOTE",
@@ -59,6 +98,30 @@ Object {
       "combinator": false,
       "payload": Object {
         "pattern": "STOCKS/FETCH_STOCK_CHART",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_QUOTE_BATCH",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_CHART_BATCH",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_QUOTE_CHART_BATCH",
       },
       "type": "TAKE",
     },
@@ -108,6 +171,45 @@ Object {
       "combinator": false,
       "payload": Object {
         "args": Array [
+          "STOCKS/FETCH_STOCK_QUOTE_BATCH",
+          "@@redux-saga-test-plan/json/function/fetchStockQuoteBatchSaga",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "STOCKS/FETCH_STOCK_CHART_BATCH",
+          "@@redux-saga-test-plan/json/function/fetchStockChartBatchSaga",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "STOCKS/FETCH_STOCK_QUOTE_CHART_BATCH",
+          "@@redux-saga-test-plan/json/function/fetchStockQuoteChartBatchSaga",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
           Object {
             "stockSymbol": "AAPL",
             "type": "STOCKS/FETCH_STOCK_QUOTE",
@@ -133,6 +235,30 @@ Object {
       "combinator": false,
       "payload": Object {
         "pattern": "STOCKS/FETCH_STOCK_CHART",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_QUOTE_BATCH",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_CHART_BATCH",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "STOCKS/FETCH_STOCK_QUOTE_CHART_BATCH",
       },
       "type": "TAKE",
     },
