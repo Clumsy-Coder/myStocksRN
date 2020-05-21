@@ -287,4 +287,4 @@ workflows:
             - lint
       - generate-android-release:
           requires:
-            - test-node
+            - lint
