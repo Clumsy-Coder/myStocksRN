@@ -2,55 +2,49 @@ import buildUrl from 'build-url';
 import axios, { AxiosResponse } from 'axios';
 
 import { API_KEY } from 'react-native-dotenv';
-import { API_URL, stockFilters, chartRange } from 'src/share/Constants';
-import {
-  StockQuote,
-  StockChart,
-  StockQuoteBatch,
-  StockChartBatch,
-  StockQuoteChartBatch,
-} from 'src/redux/Stocks/Types';
+import { API_URL } from 'src/share/Constants';
+import { DataDomain } from 'src/redux/Stocks/Types';
+
+/**
+ * Alpha Vantage API function calls when querying for data.
+ * Each query must have a parameter of 'function' with it's value as one of the enum's.
+ */
+enum ApiFunctions {
+  /**
+   * Get Stock quote.
+   *
+   * https://www.alphavantage.co/documentation/#latestprice
+   */
+  GLOBAL_FUNCTION = 'GLOBAL_FUNCTION',
+  /**
+   * Get Stock Daily Adjusted
+   *
+   * https://www.alphavantage.co/documentation/#dailyadj
+   */
+  TIME_SERIES_DAILY_ADJUSTED = 'TIME_SERIES_DAILY_ADJUSTED',
+  /**
+   * Search for stock
+   *
+   * https://www.alphavantage.co/documentation/#symbolsearch
+   */
+  SYMBOL_SEARCH = 'SYMBOL_SEARCH',
+}
 
 /**
  * Fetch the stock quote data.
- * Check https://iexcloud.io/docs/api/#quote
+ *
+ * Check https://www.alphavantage.co/documentation/#latestprice
  * @param symbol - Company stock symbol in uppercase. Ex: AAPL
- * @returns Promise\<AxiosResponse<StockQuote>\> - A promise when running axios
+ * @returns A promise when running axios with associated data interface
  */
-export const fetchStockQuoteUrl = (symbol: string): Promise<AxiosResponse<StockQuote>> => {
-  const url = buildUrl(API_URL, {
-    path: `stock/${symbol}/quote`,
-    queryParams: {
-      filter: stockFilters,
-      displayPercent: 'true',
-      token: API_KEY,
-    },
-  });
-
-  return axios.get(url);
-};
-
-/**
- * Fetch the stock chart data.
- * Check https://iexcloud.io/docs/api/#charts
- * @param symbol - Company stock symbol in uppercase. Ex: AAPL
- * @param range - The range of the data to fetch. Ex: 5y
- * @param sort - The data sort in ascending or descending order.
- * @returns Promise\<AxiosResponse\<StockChart[]\>\> - A promise when running axios
- */
-export const fetchStockChartUrl = (
+export const fetchStockQuoteUrl = (
   symbol: string,
-  range: chartRange,
-  sort: 'asc' | 'desc',
-): Promise<AxiosResponse<StockChart[]>> => {
+): Promise<AxiosResponse<DataDomain.StockQuote>> => {
   const url = buildUrl(API_URL, {
-    path: `stock/${symbol}/chart`,
     queryParams: {
-      range,
-      filter: stockFilters,
-      displayPercent: 'true',
-      sort,
-      token: API_KEY,
+      function: ApiFunctions.GLOBAL_FUNCTION,
+      symbol,
+      apikey: API_KEY,
     },
   });
 
@@ -58,73 +52,43 @@ export const fetchStockChartUrl = (
 };
 
 /**
- * Fetch the stock quote data of multiple company symbols.
- * @param symbols - Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
- * @returns Promise\<AxiosResponse<StockQuoteBatch>\> - A promise when running axios
+ * Fetch the stock daily adjusted data.
+ *
+ * Check https://www.alphavantage.co/documentation/#dailyadj
+ * @param symbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param outputsize - 'compact' returns the last 100 data points. 'full' returns 20+ years of historical data
+ * @returns A promise when running axios with associated data interface
  */
-export const fetchStockQuoteBatchUrl = (
-  symbols: string[],
-): Promise<AxiosResponse<StockQuoteBatch>> => {
+export const fetchStockDailyAdjustedUrl = (
+  symbol: string,
+  outputsize: 'compact' | 'full',
+): Promise<AxiosResponse<DataDomain.StockDailyAdj>> => {
   const url = buildUrl(API_URL, {
-    path: 'stock/market/batch',
     queryParams: {
-      types: 'quote',
-      symbols,
-      displayPercent: 'true',
-      token: API_KEY,
+      function: ApiFunctions.TIME_SERIES_DAILY_ADJUSTED,
+      symbol,
+      outputsize,
+      apikey: API_KEY,
     },
   });
-
   return axios.get(url);
 };
 
 /**
- * Fetch the stock chart data for multiple company symbols.
- * @param symbols - Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
- * @param range - The range of the data to fetch. Ex: 5y
- * @returns Promise\<AxiosResponse<StockChartBatch>\> - A promise when running axios
+ * Fetch the Stock search data.
+ *
+ * https://www.alphavantage.co/documentation/#symbolsearch
+ * @param keyword - Keyword to use when searching. Can be symbol or company name
+ * @returns A promise when running axios with associated data interface
  */
-export const fetchStockChartBatchUrl = (
-  symbols: string[],
-  range: chartRange,
-  sort: 'asc' | 'desc',
-): Promise<AxiosResponse<StockChartBatch>> => {
+export const fetchStockSearchUrl = (
+  keyword: string,
+): Promise<AxiosResponse<DataDomain.StockSearch>> => {
   const url = buildUrl(API_URL, {
-    path: 'stock/market/batch',
     queryParams: {
-      types: 'chart',
-      symbols,
-      range,
-      displayPercent: 'true',
-      sort,
-      token: API_KEY,
-    },
-  });
-
-  return axios.get(url);
-};
-
-/**
- * Fetch the stock quote and chart data for multiple company symbols
- * @param symbols - Company stock symbol in uppercase. Ex: ['AAPL', 'SHOP']
- * @param range - The range of the data to fetch. Ex: 5y
- * @returns Promise\<AxiosResponse<StockQuoteChartBatch>\> - A promise when running axios
- */
-export const fetchStockQuoteChartBatchUrl = (
-  symbols: string[],
-  range: chartRange,
-  sort: 'asc' | 'desc',
-): Promise<AxiosResponse<StockQuoteChartBatch>> => {
-  const url = buildUrl(API_URL, {
-    path: 'stock/market/batch',
-    queryParams: {
-      types: ['quote', 'chart'],
-      symbols,
-      range,
-      filter: stockFilters,
-      displayPercent: 'true',
-      sort,
-      token: API_KEY,
+      function: ApiFunctions.SYMBOL_SEARCH,
+      keyword,
+      apikey: API_KEY,
     },
   });
 
