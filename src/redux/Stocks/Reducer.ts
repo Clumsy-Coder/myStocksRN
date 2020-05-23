@@ -1,13 +1,13 @@
 import { Reducer } from 'redux';
 
-import { ActionTypes, StocksReducerState, StocksActions } from 'src/redux/Stocks/Types';
+import { ActionTypes, Reducer as StockReducer, StocksActions } from 'src/redux/Stocks/Types';
 
-const initialState: StocksReducerState = {};
+const initialState: StockReducer.ReducerState = {};
 
-const reducer: Reducer<StocksReducerState, StocksActions> = (
+const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
   state = initialState,
   action: StocksActions,
-): StocksReducerState => {
+): StockReducer.ReducerState => {
   switch (action.type) {
     case ActionTypes.FETCH_STOCK_QUOTE_PENDING: {
       return {
@@ -29,7 +29,7 @@ const reducer: Reducer<StocksReducerState, StocksActions> = (
           ...state[action.stockSymbol],
           quote: {
             fetching: false,
-            data: action.payload.data,
+            data: action.payload,
             error: undefined,
           },
         },
@@ -48,12 +48,12 @@ const reducer: Reducer<StocksReducerState, StocksActions> = (
         },
       };
     }
-    case ActionTypes.FETCH_STOCK_CHART_PENDING: {
+    case ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING: {
       return {
         ...state,
         [action.stockSymbol]: {
           ...state[action.stockSymbol],
-          chart: {
+          dailyAdj: {
             fetching: true,
             data: undefined,
             error: undefined,
@@ -61,25 +61,25 @@ const reducer: Reducer<StocksReducerState, StocksActions> = (
         },
       };
     }
-    case ActionTypes.FETCH_STOCK_CHART_FULFILLED: {
+    case ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED: {
       return {
         ...state,
         [action.stockSymbol]: {
           ...state[action.stockSymbol],
-          chart: {
+          dailyAdj: {
             fetching: false,
-            data: action.payload.data,
+            data: action.payload,
             error: undefined,
           },
         },
       };
     }
-    case ActionTypes.FETCH_STOCK_CHART_REJECTED: {
+    case ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED: {
       return {
         ...state,
         [action.stockSymbol]: {
           ...state[action.stockSymbol],
-          chart: {
+          dailyAdj: {
             fetching: false,
             data: undefined,
             error: action.error,
