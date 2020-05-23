@@ -1,22 +1,7 @@
+/* eslint-disable max-len */
 import { ActionCreator } from 'redux';
 
-import { chartRange } from 'src/share/Constants';
-import {
-  ActionTypes,
-  StockQuote,
-  StockChart,
-  FetchStockQuoteAction,
-  FetchStockChartAction,
-  FetchStockQuotePendingAction,
-  FetchStockQuoteFulfilledAction,
-  FetchStockQuoteRejectedAction,
-  FetchStockChartPendingAction,
-  FetchStockChartFulfilledAction,
-  FetchStockChartRejectedAction,
-  FetchStockQuoteBatchAction,
-  FetchStockChartBatchAction,
-  FetchStockQuoteChartBatchAction,
-} from 'src/redux/Stocks/Types';
+import { ActionTypes, DataDomain, Actions } from 'src/redux/Stocks/Types';
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
@@ -31,9 +16,9 @@ import {
  * ONLY to be called by the front end.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockQuote: ActionCreator<FetchStockQuoteAction> = (
+export const fetchStockQuote: ActionCreator<Actions.Quote.FetchAction> = (
   stockSymbol: string,
-): FetchStockQuoteAction => ({
+): Actions.Quote.FetchAction => ({
   type: ActionTypes.FETCH_STOCK_QUOTE,
   stockSymbol,
 });
@@ -44,9 +29,9 @@ export const fetchStockQuote: ActionCreator<FetchStockQuoteAction> = (
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockQuotePending: ActionCreator<FetchStockQuotePendingAction> = (
+export const fetchStockQuotePending: ActionCreator<Actions.Quote.FetchPendingAction> = (
   stockSymbol: string,
-): FetchStockQuotePendingAction => ({
+): Actions.Quote.FetchPendingAction => ({
   type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
   stockSymbol,
 });
@@ -58,13 +43,13 @@ export const fetchStockQuotePending: ActionCreator<FetchStockQuotePendingAction>
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param payload - data fetched
  */
-export const fetchStockQuoteFulfilled: ActionCreator<FetchStockQuoteFulfilledAction> = (
+export const fetchStockQuoteFulfilled: ActionCreator<Actions.Quote.FetchFulfilledAction> = (
   stockSymbol: string,
-  payload: StockQuote,
-): FetchStockQuoteFulfilledAction => ({
+  payload: DataDomain.StockQuote,
+): Actions.Quote.FetchFulfilledAction => ({
   type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
   stockSymbol,
-  payload: { data: payload },
+  payload,
 });
 
 /**
@@ -74,10 +59,10 @@ export const fetchStockQuoteFulfilled: ActionCreator<FetchStockQuoteFulfilledAct
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param error - error message
  */
-export const fetchStockQuoteRejected: ActionCreator<FetchStockQuoteRejectedAction> = (
+export const fetchStockQuoteRejected: ActionCreator<Actions.Quote.FetchRejectedAction> = (
   stockSymbol: string,
   error: Error,
-): FetchStockQuoteRejectedAction => ({
+): Actions.Quote.FetchRejectedAction => ({
   type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
   stockSymbol,
   error,
@@ -98,15 +83,13 @@ export const fetchStockQuoteRejected: ActionCreator<FetchStockQuoteRejectedActio
  * @param range - Date range for the stock chart
  * @param sort - sort data by date in ascending or descending order
  */
-export const fetchStockChart: ActionCreator<FetchStockChartAction> = (
+export const fetchStockDailyAdj: ActionCreator<Actions.DailyAdjusted.FetchAction> = (
   stockSymbol: string,
-  range: chartRange,
-  sort: 'asc' | 'desc',
-): FetchStockChartAction => ({
-  type: ActionTypes.FETCH_STOCK_CHART,
+  outputsize: 'compact' | 'full',
+): Actions.DailyAdjusted.FetchAction => ({
+  type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED,
   stockSymbol,
-  range,
-  sort,
+  outputsize,
 });
 
 /**
@@ -115,10 +98,10 @@ export const fetchStockChart: ActionCreator<FetchStockChartAction> = (
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockChartPending: ActionCreator<FetchStockChartPendingAction> = (
+export const fetchStockDailyAdjPending: ActionCreator<Actions.DailyAdjusted.FetchPendingAction> = (
   stockSymbol: string,
-): FetchStockChartPendingAction => ({
-  type: ActionTypes.FETCH_STOCK_CHART_PENDING,
+): Actions.DailyAdjusted.FetchPendingAction => ({
+  type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
   stockSymbol,
 });
 
@@ -129,13 +112,13 @@ export const fetchStockChartPending: ActionCreator<FetchStockChartPendingAction>
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param payload - data fetched
  */
-export const fetchStockChartFulfilled: ActionCreator<FetchStockChartFulfilledAction> = (
+export const fetchStockDailyAdjFulfilled: ActionCreator<Actions.DailyAdjusted.FetchFulfilledAction> = (
   stockSymbol: string,
-  payload: StockChart[],
-): FetchStockChartFulfilledAction => ({
-  type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
+  payload: DataDomain.StockDailyAdj,
+): Actions.DailyAdjusted.FetchFulfilledAction => ({
+  type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
   stockSymbol,
-  payload: { data: payload },
+  payload,
 });
 
 /**
@@ -145,11 +128,11 @@ export const fetchStockChartFulfilled: ActionCreator<FetchStockChartFulfilledAct
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param error - error message
  */
-export const fetchStockChartRejected: ActionCreator<FetchStockChartRejectedAction> = (
+export const fetchStockDailyAdjRejected: ActionCreator<Actions.DailyAdjusted.FetchRejectedAction> = (
   stockSymbol: string,
   error: Error,
-): FetchStockChartRejectedAction => ({
-  type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
+): Actions.DailyAdjusted.FetchRejectedAction => ({
+  type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
   stockSymbol,
   error,
 });
@@ -162,50 +145,22 @@ export const fetchStockChartRejected: ActionCreator<FetchStockChartRejectedActio
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
-/**
- * Fetch multiple stock quote data in a single batch action creator.
- * ONLY to be called by the front end.
- * @param stockSymbols - An array of company stock symbol in uppercase. Ex: ['AAPL', 'SHOP]
- */
-export const fetchStockQuoteBatch: ActionCreator<FetchStockQuoteBatchAction> = (
-  stockSymbols: string[],
-): FetchStockQuoteBatchAction => ({
-  type: ActionTypes.FETCH_STOCK_QUOTE_BATCH,
-  stockSymbols,
-});
+// /**
+//  * Fetch multiple stock quote data in a single batch action creator.
+//  * ONLY to be called by the front end.
+//  * @param stockSymbols - An array of company stock symbol in uppercase. Ex: ['AAPL', 'SHOP]
+//  */
+// export const fetchStockQuoteBatch: ActionCreator<Actions.Batch.FetchQuoteBatchAction> = (): Actions.Batch.FetchQuoteBatchAction => ({
+//   type: ActionTypes.FETCH_STOCK_QUOTE_BATCH,
+// });
 
-/**
- * Fetch multiple stock chart data in a single batch action creator.
- * ONLY to be called by the front end.
- * @param stockSymbols - An array of company stock symbol in uppercase. Ex: ['AAPL', 'SHOP]
- * @param range - Date range for the stock chart
- * @param sort - sort data by date in ascending or descending order
- */
-export const fetchStockChartBatch: ActionCreator<FetchStockChartBatchAction> = (
-  stockSymbols: string[],
-  range: chartRange,
-  sort: 'asc' | 'desc',
-): FetchStockChartBatchAction => ({
-  type: ActionTypes.FETCH_STOCK_CHART_BATCH,
-  stockSymbols,
-  range,
-  sort,
-});
-
-/**
- * Fetch multiple stock quote and chart in a single batch action creator.
- * ONLY to be called by the front end.
- * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
- * @param range - Date range for the stock chart
- * @param sort - sort data by date in ascending or descending order
- */
-export const fetchStockQuoteChartBatch: ActionCreator<FetchStockQuoteChartBatchAction> = (
-  stockSymbols: string[],
-  range: chartRange,
-  sort: 'asc' | 'desc',
-): FetchStockQuoteChartBatchAction => ({
-  type: ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH,
-  stockSymbols,
-  range,
-  sort,
-});
+// /**
+//  * Fetch multiple stock chart data in a single batch action creator.
+//  * ONLY to be called by the front end.
+//  * @param stockSymbols - An array of company stock symbol in uppercase. Ex: ['AAPL', 'SHOP]
+//  * @param range - Date range for the stock chart
+//  * @param sort - sort data by date in ascending or descending order
+//  */
+// export const fetchStockChartBatch: ActionCreator<Actions.Batch.FetchDailyAdjustedBatchAction> = (): Actions.Batch.FetchDailyAdjustedBatchAction => ({
+//   type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_BATCH,
+// });
