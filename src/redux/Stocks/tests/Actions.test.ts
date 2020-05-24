@@ -1,18 +1,158 @@
 import * as actions from 'src/redux/Stocks/Actions';
-import {
-  ActionTypes,
-  StockQuote,
-  StockChart,
-  FetchStockChartAction,
-  FetchStockChartPendingAction,
-  FetchStockChartFulfilledAction,
-  FetchStockChartRejectedAction,
-} from 'src/redux/Stocks/Types';
+import { ActionTypes, DataDomain, Actions } from 'src/redux/Stocks/Types';
+
+const stockQuoteData1: DataDomain.StockQuote = {
+  'Global Quote': {
+    '01. symbol': 'IBM',
+    '02. open': '119.3700',
+    '03. high': '119.4650',
+    '04. low': '117.5900',
+    '05. price': '118.3900',
+    '06. volume': '4179906',
+    '07. latest trading day': '2020-05-22',
+    '08. previous close': '119.1200',
+    '09. change': '-0.7300',
+    '10. change percent': '-0.6128%',
+  },
+};
+
+const stockQuoteData2: DataDomain.StockQuote = {
+  'Global Quote': {
+    '01. symbol': 'AAPL',
+    '02. open': '315.7700',
+    '03. high': '319.2300',
+    '04. low': '315.3500',
+    '05. price': '318.8900',
+    '06. volume': '20240356',
+    '07. latest trading day': '2020-05-22',
+    '08. previous close': '316.8500',
+    '09. change': '2.0400',
+    '10. change percent': '0.6438%',
+  },
+};
+
+const stockDailyAdjData1: DataDomain.StockDailyAdj = {
+  'Meta Data': {
+    '1. Information': 'Daily Time Series with Splits and Dividend Events',
+    '2. Symbol': 'IBM',
+    '3. Last Refreshed': '2020-05-22',
+    '4. Output Size': 'Compact',
+    '5. Time Zone': 'US/Eastern',
+  },
+  'Time Series (Daily)': {
+    '2020-05-22': {
+      '1. open': '119.3700',
+      '2. high': '119.4650',
+      '3. low': '117.5900',
+      '4. close': '118.3900',
+      '5. adjusted close': '118.3900',
+      '6. volume': '4179906',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+    '2020-05-21': {
+      '1. open': '120.9900',
+      '2. high': '121.7200',
+      '3. low': '118.9700',
+      '4. close': '119.1200',
+      '5. adjusted close': '119.1200',
+      '6. volume': '4018329',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+  },
+};
+
+const stockDailyAdjData2: DataDomain.StockDailyAdj = {
+  'Meta Data': {
+    '1. Information': 'Daily Time Series with Splits and Dividend Events',
+    '2. Symbol': 'AAPL',
+    '3. Last Refreshed': '2020-05-22',
+    '4. Output Size': 'Compact',
+    '5. Time Zone': 'US/Eastern',
+  },
+  'Time Series (Daily)': {
+    '2020-05-22': {
+      '1. open': '315.7700',
+      '2. high': '319.2300',
+      '3. low': '315.3500',
+      '4. close': '318.8900',
+      '5. adjusted close': '318.8900',
+      '6. volume': '20240356',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+    '2020-05-21': {
+      '1. open': '318.6600',
+      '2. high': '320.8900',
+      '3. low': '315.8700',
+      '4. close': '316.8500',
+      '5. adjusted close': '316.8500',
+      '6. volume': '25672211',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+  },
+};
+
+const stockSearchData: DataDomain.StockSearch = {
+  bestMatches: [
+    {
+      '1. symbol': 'IBM',
+      '2. name': 'International Business Machines Corporation',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '1.0000',
+    },
+    {
+      '1. symbol': 'IBMM',
+      '2. name': 'iShares iBonds Dec 2024 Term Muni Bond ETF',
+      '3. type': 'ETF',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '0.8571',
+    },
+  ],
+};
+
+const stockSearchData2: DataDomain.StockSearch = {
+  bestMatches: [
+    {
+      '1. symbol': 'AAPL',
+      '2. name': 'Apple Inc.',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '1.0000',
+    },
+    {
+      '1. symbol': 'AAPL.ARG',
+      '2. name': 'Apple Inc.',
+      '3. type': 'Equity',
+      '4. region': 'Argentina',
+      '5. marketOpen': '11:00',
+      '6. marketClose': '17:00',
+      '7. timezone': 'UTC-03',
+      '8. currency': 'ARS',
+      '9. matchScore': '0.7273',
+    },
+  ],
+};
 
 describe('Stock action creators', () => {
   describe('Stock quotes', () => {
     it('Should create an action to fetch Stock quote', () => {
-      const stockSymbol = 'AAPL';
+      const stockSymbol = 'IBM';
       const expectedAction = {
         type: ActionTypes.FETCH_STOCK_QUOTE,
         stockSymbol,
@@ -21,7 +161,7 @@ describe('Stock action creators', () => {
     });
 
     it('Should create an action to fetch Stock quote PENDING', () => {
-      const stockSymbol = 'AAPL';
+      const stockSymbol = 'IBM';
       const expectedAction = {
         type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
         stockSymbol,
@@ -30,45 +170,19 @@ describe('Stock action creators', () => {
     });
 
     it('Should create an action to fetch Stock quote FULFILLED', () => {
-      const stockSymbol = 'AAPL';
-      const stockQuote: StockQuote = {
-        symbol: 'SHOP',
-        companyName: 'Shopify, Inc.',
-        primaryExchange: 'NghcwnSo k ktxeor eYacE',
-        open: 733,
-        close: 744.34,
-        high: 736,
-        low: 725,
-        latestPrice: 720.32,
-        latestTime: 'May 8, 2020',
-        latestUpdate: 1625938639425,
-        latestVolume: 4134691,
-        extendedPrice: 726.91,
-        extendedChange: 3.1,
-        extendedChangePercent: 0.4194815319493806,
-        previousClose: 730.16,
-        previousVolume: 4741435,
-        change: -13.97,
-        changePercent: -1.966,
-        avgTotalVolume: 4147824,
-        marketCap: 83884683022,
-        peRatio: -626.03,
-        week52High: 749.47,
-        week52Low: 247.61,
-        ytdChange: 75.35366771277485,
-      };
+      const stockSymbol = 'IBM';
       const expectedAction = {
         type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
         stockSymbol,
-        payload: {
-          data: stockQuote,
-        },
+        payload: stockQuoteData1,
       };
-      expect(actions.fetchStockQuoteFulfilled(stockSymbol, stockQuote)).toEqual(expectedAction);
+      expect(actions.fetchStockQuoteFulfilled(stockSymbol, stockQuoteData1)).toEqual(
+        expectedAction,
+      );
     });
 
     it('Should create an action to fetch Stock quote REJECTED', () => {
-      const stockSymbol = 'AAPL';
+      const stockSymbol = 'IBM';
       const expectedAction = {
         type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
         stockSymbol,
@@ -80,71 +194,46 @@ describe('Stock action creators', () => {
 
   describe('Stock chart', () => {
     it('Should create an action to fetch Stock chart', () => {
-      const stockSymbol = 'AAPL';
-      const expectedAction: FetchStockChartAction = {
-        type: ActionTypes.FETCH_STOCK_CHART,
+      const stockSymbol = 'IBM';
+      const expectedAction: Actions.DailyAdjusted.FetchAction = {
+        type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED,
         stockSymbol,
-        range: '5d',
-        sort: 'asc',
+        outputsize: 'compact',
       };
-      expect(actions.fetchStockChart(stockSymbol, '5d', 'asc')).toEqual(expectedAction);
+      expect(actions.fetchStockDailyAdj(stockSymbol, 'compact')).toEqual(expectedAction);
     });
 
     it('Should create an action to fetch Stock chart PENDING', () => {
-      const stockSymbol = 'AAPL';
-      const expectedAction: FetchStockChartPendingAction = {
-        type: ActionTypes.FETCH_STOCK_CHART_PENDING,
+      const stockSymbol = 'IBM';
+      const expectedAction: Actions.DailyAdjusted.FetchPendingAction = {
+        type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
         stockSymbol,
       };
-      expect(actions.fetchStockChartPending(stockSymbol)).toEqual(expectedAction);
+      expect(actions.fetchStockDailyAdjPending(stockSymbol)).toEqual(expectedAction);
     });
 
     it('Should create an action to fetch Stock chart FULFILLED', () => {
-      const stockSymbol = 'AAPL';
-      const stockChart: StockChart[] = [
-        {
-          date: '2020-05-11',
-          open: 710.61,
-          close: 758.74,
-          high: 770.9,
-          low: 737.75,
-          volume: 3675742,
-          change: 0,
-          changePercent: 0,
-          label: 'May 11',
-          changeOverTime: 0,
-        },
-        {
-          date: '2020-05-12',
-          open: 798,
-          close: 750.68,
-          high: 803.67,
-          low: 743.5,
-          volume: 3773050,
-          change: -8.41,
-          changePercent: -1.0796,
-          label: 'May 12',
-          changeOverTime: -0.010945,
-        },
-      ];
-      const expectedAction: FetchStockChartFulfilledAction = {
-        type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
+      const stockSymbol = 'IBM';
+      const expectedAction: Actions.DailyAdjusted.FetchFulfilledAction = {
+        type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
         stockSymbol,
-        payload: {
-          data: stockChart,
-        },
+        payload: stockDailyAdjData1,
       };
-      expect(actions.fetchStockChartFulfilled(stockSymbol, stockChart)).toEqual(expectedAction);
+      expect(actions.fetchStockDailyAdjFulfilled(stockSymbol, stockDailyAdjData1)).toEqual(
+        expectedAction,
+      );
     });
 
     it('Should create an action to fetch Stock chart REJECTED', () => {
-      const stockSymbol = 'AAPL';
-      const expectedAction: FetchStockChartRejectedAction = {
-        type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
+      const stockSymbol = 'IBM';
+      const expectedAction: Actions.DailyAdjusted.FetchRejectedAction = {
+        type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
         stockSymbol,
         error: new Error(''),
       };
-      expect(actions.fetchStockChartRejected(stockSymbol, new Error(''))).toEqual(expectedAction);
+      expect(actions.fetchStockDailyAdjRejected(stockSymbol, new Error(''))).toEqual(
+        expectedAction,
+      );
     });
   });
 });
