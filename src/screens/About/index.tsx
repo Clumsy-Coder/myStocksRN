@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { Button, View, Text, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import NavigationRoutePath from 'src/routes/RoutePath.enum';
@@ -9,13 +9,21 @@ type Props = {
   navigation: StackNavigationProp<RootStackParamList, 'About'>;
 };
 
-const SettingScreen = ({ navigation }: Props) => {
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+const SettingScreen: React.FC<Props> = ({ navigation }: Props) => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.root}>
       <Text>About screen</Text>
       <Button
-        onPress={() => navigation.navigate(NavigationRoutePath.Settings)}
-        title='Go to Settings screen'
+        onPress={(): void => navigation.navigate(NavigationRoutePath.Home)}
+        title='Go to Home screen'
       />
     </View>
   );
