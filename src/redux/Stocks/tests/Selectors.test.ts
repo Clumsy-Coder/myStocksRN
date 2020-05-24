@@ -944,9 +944,9 @@ describe('Stocks selectors', () => {
     });
   });
 
-  describe('Stock chart selectors', () => {
-    describe('selectStockChart', () => {
-      it('[Empty store]: Should return empty StockChartData', () => {
+  describe('Stock Daily Adjusted selectors', () => {
+    describe('selectStockDailyAdjusted', () => {
+      it('[Empty store]: Should return empty StockDailyAdjData', () => {
         const rootState: AppState = {
           Stocks: {
             [stockSymbol1]: {
@@ -969,7 +969,7 @@ describe('Stocks selectors', () => {
         ).toEqual(expected);
       });
 
-      it('[Non-empty store]: Should return StockChartData', () => {
+      it('[Non-empty store]: Should return StockDailyAdjData', () => {
         const rootState: AppState = {
           Stocks: {
             [stockSymbol1]: {
@@ -1002,7 +1002,7 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe('selectStockChartFetching', () => {
+    describe('selectStockDailyAdjustedFetching', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           Stocks: {
@@ -1054,7 +1054,7 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe('selectStockChartData', () => {
+    describe('selectStockDailyAdjustedData', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           Stocks: {
@@ -1078,7 +1078,7 @@ describe('Stocks selectors', () => {
         ).toEqual(expected);
       });
 
-      it('[Non-empty store]: Should return StockChart[]', () => {
+      it('[Non-empty store]: Should return StockDailyAdj', () => {
         const rootState: AppState = {
           Stocks: {
             [stockSymbol1]: {
@@ -1107,7 +1107,7 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe('selectStockChartError', () => {
+    describe('selectStockDailyAdjustedError', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           Stocks: {

@@ -266,8 +266,8 @@ describe('Stocks Saga', () => {
     });
   });
 
-  describe('Stocks chart saga', () => {
-    it('Should load and handle Stock chart data in case of success', async () => {
+  describe('Stocks Daily Adjusted saga', () => {
+    it('Should load and handle Stock Daily Adjusted data in case of success', async () => {
       const dispatchedActions: StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
@@ -301,7 +301,7 @@ describe('Stocks Saga', () => {
       stub.restore(); // important: do NOT remove
     });
 
-    it('Should load and handle Stock chart data in case of failure', async () => {
+    it('Should load and handle Stock Daily Adjusted data in case of failure', async () => {
       const dispatchedActions: StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),

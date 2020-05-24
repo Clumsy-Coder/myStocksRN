@@ -191,8 +191,8 @@ describe('Stock action creators', () => {
     });
   });
 
-  describe('Stock chart', () => {
-    it('Should create an action to fetch Stock chart', () => {
+  describe('Stock Daily Adjusted', () => {
+    it('Should create an action to fetch Stock Daily Adjusted', () => {
       const expectedAction: Actions.DailyAdjusted.FetchAction = {
         type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED,
         stockSymbol: stockSymbol1,
@@ -201,7 +201,7 @@ describe('Stock action creators', () => {
       expect(actions.fetchStockDailyAdj(stockSymbol1, 'compact')).toEqual(expectedAction);
     });
 
-    it('Should create an action to fetch Stock chart PENDING', () => {
+    it('Should create an action to fetch Stock Daily Adjusted PENDING', () => {
       const expectedAction: Actions.DailyAdjusted.FetchPendingAction = {
         type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
         stockSymbol: stockSymbol1,
@@ -209,7 +209,7 @@ describe('Stock action creators', () => {
       expect(actions.fetchStockDailyAdjPending(stockSymbol1)).toEqual(expectedAction);
     });
 
-    it('Should create an action to fetch Stock chart FULFILLED', () => {
+    it('Should create an action to fetch Stock Daily Adjusted FULFILLED', () => {
       const expectedAction: Actions.DailyAdjusted.FetchFulfilledAction = {
         type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
         stockSymbol: stockSymbol1,
@@ -220,7 +220,7 @@ describe('Stock action creators', () => {
       );
     });
 
-    it('Should create an action to fetch Stock chart REJECTED', () => {
+    it('Should create an action to fetch Stock Daily Adjusted REJECTED', () => {
       const expectedAction: Actions.DailyAdjusted.FetchRejectedAction = {
         type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
         stockSymbol: stockSymbol1,

@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 import { AxiosResponse } from 'axios';
@@ -27,12 +26,12 @@ export function* fetchStockQuoteSaga(action: Actions.Quote.FetchAction) {
 }
 
 /**
- * Initiate the fetching of stock chart data.
- * It will dispatch STOCKS/FETCH_STOCK_CHART_PENDING action.
- * STOCKS/FETCH_STOCK_CHART_FULFILLED action will be dispatched if data fetching was successful.
- * STOCKS/FETCH_STOCK_CHART_REJECTED action will be dispatched if data fetching was unsuccessful.
+ * Initiate the fetching of stock Daily Adjusted data.
+ * It will dispatch STOCKS/FETCH_STOCK_DAILY_ADJUSTED_PENDING action.
+ * STOCKS/FETCH_STOCK_DAILY_ADJUSTED_FULFILLED action will be dispatched if data fetching was successful.
+ * STOCKS/FETCH_STOCK_DAILY_ADJUSTED_REJECTED action will be dispatched if data fetching was unsuccessful.
  *
- * @param action - Fetch stock chart action
+ * @param action - Fetch stock Daily Adjusted action
  */
 export function* fetchStockDailyAdjustedSaga(action: Actions.DailyAdjusted.FetchAction) {
   try {

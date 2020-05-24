@@ -509,7 +509,7 @@ describe('Stocks reducer', () => {
     });
   });
 
-  describe('Stocks chart', () => {
+  describe('Stocks Daily Adjusted', () => {
     describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {

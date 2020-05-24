@@ -71,16 +71,16 @@ export const fetchStockQuoteRejected: ActionCreator<Actions.Quote.FetchRejectedA
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                                //
-//                                  STOCK CHART ACTIONS CREATORS                                  //
+//                             STOCK DAILY ADJUSTED ACTIONS CREATORS                              //
 //                                                                                                //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Fetch stock chart action creator.
+ * Fetch stock Daily Adjusted action creator.
  * ONLY to be called by the front end.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
- * @param range - Date range for the stock chart
+ * @param range - Date range for the stock Daily Adjusted
  * @param sort - sort data by date in ascending or descending order
  */
 export const fetchStockDailyAdj: ActionCreator<Actions.DailyAdjusted.FetchAction> = (
@@ -93,7 +93,7 @@ export const fetchStockDailyAdj: ActionCreator<Actions.DailyAdjusted.FetchAction
 });
 
 /**
- * Fetch stock chart pending action creator.
+ * Fetch stock Daily Adjusted pending action creator.
  * ONLY to be called by redux saga.
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
@@ -106,7 +106,7 @@ export const fetchStockDailyAdjPending: ActionCreator<Actions.DailyAdjusted.Fetc
 });
 
 /**
- * Fetch Stock chart fulfilled action creator.
+ * Fetch Stock Daily Adjusted fulfilled action creator.
  * ONLY to be called by redux saga.
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
@@ -122,7 +122,7 @@ export const fetchStockDailyAdjFulfilled: ActionCreator<Actions.DailyAdjusted.Fe
 });
 
 /**
- * Fetch Stock chart rejected action creator.
+ * Fetch Stock Daily Adjusted rejected action creator.
  * ONLY to be called by redux saga.
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
