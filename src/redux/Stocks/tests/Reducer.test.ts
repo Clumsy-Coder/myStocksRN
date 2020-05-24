@@ -1,55 +1,180 @@
 import reducer from 'src/redux/Stocks/Reducer';
-import {
-  ActionTypes,
-  StockQuote,
-  StockChart,
-  StocksReducerState,
-  FetchStockQuotePendingAction,
-  FetchStockQuoteFulfilledAction,
-  FetchStockQuoteRejectedAction,
-  FetchStockChartPendingAction,
-  FetchStockChartFulfilledAction,
-  FetchStockChartRejectedAction,
-} from 'src/redux/Stocks/Types';
+import { ActionTypes, DataDomain, Reducer, Actions } from 'src/redux/Stocks/Types';
 
-const stockChartData1: StockChart[] = [
-  {
-    date: '2020-05-11',
-    open: 710.61,
-    close: 758.74,
-    high: 770.9,
-    low: 737.75,
-    volume: 3675742,
-    change: 0,
-    changePercent: 0,
-    label: 'May 11',
-    changeOverTime: 0,
+const stockQuoteData1: DataDomain.StockQuote = {
+  'Global Quote': {
+    '01. symbol': 'IBM',
+    '02. open': '119.3700',
+    '03. high': '119.4650',
+    '04. low': '117.5900',
+    '05. price': '118.3900',
+    '06. volume': '4179906',
+    '07. latest trading day': '2020-05-22',
+    '08. previous close': '119.1200',
+    '09. change': '-0.7300',
+    '10. change percent': '-0.6128%',
   },
-  {
-    date: '2020-05-12',
-    open: 798,
-    close: 750.68,
-    high: 803.67,
-    low: 743.5,
-    volume: 3773050,
-    change: -8.41,
-    changePercent: -1.0796,
-    label: 'May 12',
-    changeOverTime: -0.010945,
+};
+
+const stockQuoteData2: DataDomain.StockQuote = {
+  'Global Quote': {
+    '01. symbol': 'AAPL',
+    '02. open': '315.7700',
+    '03. high': '319.2300',
+    '04. low': '315.3500',
+    '05. price': '318.8900',
+    '06. volume': '20240356',
+    '07. latest trading day': '2020-05-22',
+    '08. previous close': '316.8500',
+    '09. change': '2.0400',
+    '10. change percent': '0.6438%',
   },
-];
+};
+
+const stockQuoteData3: DataDomain.StockQuote = {
+  'Global Quote': {
+    '01. symbol': 'SHOP',
+    '02. open': '804.6300',
+    '03. high': '826.3799',
+    '04. low': '793.6400',
+    '05. price': '825.1700',
+    '06. volume': '2761628',
+    '07. latest trading day': '2020-05-22',
+    '08. previous close': '802.3500',
+    '09. change': '22.8200',
+    '10. change percent': '2.8441%',
+  },
+};
+
+const stockDailyAdjData1: DataDomain.StockDailyAdj = {
+  'Meta Data': {
+    '1. Information': 'Daily Time Series with Splits and Dividend Events',
+    '2. Symbol': 'IBM',
+    '3. Last Refreshed': '2020-05-22',
+    '4. Output Size': 'Compact',
+    '5. Time Zone': 'US/Eastern',
+  },
+  'Time Series (Daily)': {
+    '2020-05-22': {
+      '1. open': '119.3700',
+      '2. high': '119.4650',
+      '3. low': '117.5900',
+      '4. close': '118.3900',
+      '5. adjusted close': '118.3900',
+      '6. volume': '4179906',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+    '2020-05-21': {
+      '1. open': '120.9900',
+      '2. high': '121.7200',
+      '3. low': '118.9700',
+      '4. close': '119.1200',
+      '5. adjusted close': '119.1200',
+      '6. volume': '4018329',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+  },
+};
+
+const stockDailyAdjData2: DataDomain.StockDailyAdj = {
+  'Meta Data': {
+    '1. Information': 'Daily Time Series with Splits and Dividend Events',
+    '2. Symbol': 'AAPL',
+    '3. Last Refreshed': '2020-05-22',
+    '4. Output Size': 'Compact',
+    '5. Time Zone': 'US/Eastern',
+  },
+  'Time Series (Daily)': {
+    '2020-05-22': {
+      '1. open': '315.7700',
+      '2. high': '319.2300',
+      '3. low': '315.3500',
+      '4. close': '318.8900',
+      '5. adjusted close': '318.8900',
+      '6. volume': '20240356',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+    '2020-05-21': {
+      '1. open': '318.6600',
+      '2. high': '320.8900',
+      '3. low': '315.8700',
+      '4. close': '316.8500',
+      '5. adjusted close': '316.8500',
+      '6. volume': '25672211',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+  },
+};
+
+const stockSearchData: DataDomain.StockSearch = {
+  bestMatches: [
+    {
+      '1. symbol': 'IBM',
+      '2. name': 'International Business Machines Corporation',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '1.0000',
+    },
+    {
+      '1. symbol': 'IBMM',
+      '2. name': 'iShares iBonds Dec 2024 Term Muni Bond ETF',
+      '3. type': 'ETF',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '0.8571',
+    },
+  ],
+};
+
+const stockSearchData2: DataDomain.StockSearch = {
+  bestMatches: [
+    {
+      '1. symbol': 'AAPL',
+      '2. name': 'Apple Inc.',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '1.0000',
+    },
+    {
+      '1. symbol': 'AAPL.ARG',
+      '2. name': 'Apple Inc.',
+      '3. type': 'Equity',
+      '4. region': 'Argentina',
+      '5. marketOpen': '11:00',
+      '6. marketClose': '17:00',
+      '7. timezone': 'UTC-03',
+      '8. currency': 'ARS',
+      '9. matchScore': '0.7273',
+    },
+  ],
+};
 
 describe('Stocks reducer', () => {
   describe('Stocks quote', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_PENDING}`, () => {
       it('Should handle one Stock quote', () => {
-        const state: StocksReducerState = {};
-        const action: FetchStockQuotePendingAction = {
+        const state: Reducer.ReducerState = {};
+        const action: Actions.Quote.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
-          stockSymbol: 'AAPL',
+          stockSymbol: 'IBM',
         };
-        const expected: StocksReducerState = {
-          AAPL: {
+        const expected: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
@@ -59,68 +184,68 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
       it('Should handle two Stock quotes', () => {
-        const state2: StocksReducerState = {
-          AAPL: {
+        const state: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
         };
-        const action2: FetchStockQuotePendingAction = {
+        const action: Actions.Quote.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
-          stockSymbol: 'SHOP',
+          stockSymbol: 'AAPL',
         };
-        const expected2: StocksReducerState = {
+        const expected: Reducer.ReducerState = {
           AAPL: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
-          SHOP: {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
         };
-        expect(reducer(state2, action2)).toEqual(expected2);
+        expect(reducer(state, action)).toEqual(expected);
       });
 
       it('Should handle three Stock quotes', () => {
-        const state3: StocksReducerState = {
+        const state: Reducer.ReducerState = {
           AAPL: {
             quote: {
               fetching: false,
               error: undefined,
             },
           },
-          SHOP: {
+          IBM: {
             quote: {
               fetching: false,
               error: undefined,
             },
           },
         };
-        const action3: FetchStockQuotePendingAction = {
+        const action: Actions.Quote.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
-          stockSymbol: 'AMZN',
+          stockSymbol: 'SHOP',
         };
-        const expected3: StocksReducerState = {
+        const expected: Reducer.ReducerState = {
           AAPL: {
             quote: {
               fetching: false,
               error: undefined,
             },
           },
-          SHOP: {
+          IBM: {
             quote: {
               fetching: false,
               error: undefined,
             },
           },
-          AMZN: {
+          SHOP: {
             quote: {
               fetching: true,
               error: undefined,
@@ -128,215 +253,129 @@ describe('Stocks reducer', () => {
           },
         };
 
-        expect(reducer(state3, action3)).toEqual(expected3);
+        expect(reducer(state, action)).toEqual(expected);
       });
     });
 
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_FULFILLED}`, () => {
-      const data: StockQuote = {
-        symbol: 'AAPL',
-        companyName: 'AAPL, Inc.',
-        primaryExchange: 'NghcwnSo k ktxeor eYacE',
-        open: 733,
-        close: 744.34,
-        high: 736,
-        low: 725,
-        latestPrice: 720.32,
-        latestTime: 'May 8, 2020',
-        latestUpdate: 1625938639425,
-        latestVolume: 4134691,
-        extendedPrice: 726.91,
-        extendedChange: 3.1,
-        extendedChangePercent: 0.4194815319493806,
-        previousClose: 730.16,
-        previousVolume: 4741435,
-        change: -13.97,
-        changePercent: -1.966,
-        avgTotalVolume: 4147824,
-        marketCap: 83884683022,
-        peRatio: -626.03,
-        week52High: 749.47,
-        week52Low: 247.61,
-        ytdChange: 75.35366771277485,
-      };
-
-      const data2: StockQuote = {
-        symbol: 'AMZN',
-        companyName: 'Amazon.com, Inc.',
-        primaryExchange: 'ASNDQA',
-        open: 733,
-        close: 744.34,
-        high: 736,
-        low: 725,
-        latestPrice: 2450.054,
-        latestTime: '12:24:25 PM',
-        latestUpdate: 1655573764729,
-        latestVolume: 4134691,
-        extendedPrice: 726.91,
-        extendedChange: 3.1,
-        extendedChangePercent: 0.4194815319493806,
-        previousClose: 2460.16,
-        previousVolume: 3281429,
-        change: 27.249,
-        changePercent: 1.159,
-        avgTotalVolume: 5657375,
-        marketCap: 1240038670201,
-        peRatio: 117.4,
-        week52High: 2495,
-        week52Low: 1649.69,
-        ytdChange: 29.266,
-      };
-
-      const data3: StockQuote = {
-        symbol: 'TSLA',
-        companyName: 'Tesla, Inc.',
-        primaryExchange: 'QNADSA',
-        open: 733,
-        close: 744.34,
-        high: 736,
-        low: 725,
-        latestPrice: 850.44,
-        latestTime: '12:32:20 PM',
-        latestUpdate: 1600998619958,
-        latestVolume: 4134691,
-        extendedPrice: 726.91,
-        extendedChange: 3.1,
-        extendedChangePercent: 0.4194815319493806,
-        previousClose: 826.56,
-        previousVolume: 16839279,
-        change: -6,
-        changePercent: -0.739,
-        avgTotalVolume: 18172797,
-        marketCap: 156381480781,
-        peRatio: -996.67,
-        week52High: 978.98,
-        week52Low: 179.8,
-        ytdChange: 95.963,
-      };
       it('Should handle one Stock quote', () => {
-        const state: StocksReducerState = {
-          AAPL: {
+        const state: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
         };
-        const expected: StocksReducerState = {
-          AAPL: {
+        const expected: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: false,
               error: undefined,
-              data,
+              data: stockQuoteData1,
             },
           },
         };
-        const action: FetchStockQuoteFulfilledAction = {
+        const action: Actions.Quote.FetchFulfilledAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
-          stockSymbol: 'AAPL',
-          payload: {
-            data,
-          },
+          stockSymbol: 'IBM',
+          payload: stockQuoteData1,
         };
 
         expect(reducer(state, action)).toEqual(expected);
       });
 
       it('Should handle two Stock quotes', () => {
-        const state: StocksReducerState = {
-          AAPL: {
+        const state: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: false,
               error: undefined,
-              data,
+              data: stockQuoteData1,
             },
           },
-          AMZN: {
+          AAPL: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
         };
-        const expected: StocksReducerState = {
+        const expected: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: false,
+              error: undefined,
+              data: stockQuoteData1,
+            },
+          },
           AAPL: {
             quote: {
               fetching: false,
               error: undefined,
-              data,
-            },
-          },
-          AMZN: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: data2,
+              data: stockQuoteData2,
             },
           },
         };
 
-        const action: FetchStockQuoteFulfilledAction = {
+        const action: Actions.Quote.FetchFulfilledAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
-          stockSymbol: 'AMZN',
-          payload: {
-            data: data2,
-          },
+          stockSymbol: 'AAPL',
+          payload: stockQuoteData2,
         };
 
         expect(reducer(state, action)).toEqual(expected);
       });
 
       it('Should handle three Stock quotes', () => {
-        const state: StocksReducerState = {
-          AAPL: {
+        const state: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: false,
               error: undefined,
-              data,
+              data: stockQuoteData1,
             },
           },
-          AMZN: {
+          AAPL: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
-          TSLA: {
+          SHOP: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
         };
-        const expected: StocksReducerState = {
-          AAPL: {
+        const expected: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: false,
               error: undefined,
-              data,
+              data: stockQuoteData1,
             },
           },
-          AMZN: {
+          AAPL: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
-          TSLA: {
+          SHOP: {
             quote: {
               fetching: false,
               error: undefined,
-              data: data3,
+              data: stockQuoteData3,
             },
           },
         };
 
-        const action: FetchStockQuoteFulfilledAction = {
+        const action: Actions.Quote.FetchFulfilledAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
-          stockSymbol: 'TSLA',
-          payload: {
-            data: data3,
-          },
+          stockSymbol: 'SHOP',
+          payload: stockQuoteData3,
         };
 
         expect(reducer(state, action)).toEqual(expected);
@@ -345,7 +384,40 @@ describe('Stocks reducer', () => {
 
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_REJECTED}`, () => {
       it('Should handle one Stock quote', () => {
-        const state: StocksReducerState = {
+        const state: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: true,
+              error: undefined,
+            },
+          },
+        };
+        const expected: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: false,
+              error: new Error(''),
+            },
+          },
+        };
+        const action: Actions.Quote.FetchRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
+          stockSymbol: 'IBM',
+          error: new Error(''),
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+
+      it('Should handle two Stock quotes', () => {
+        const state: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: false,
+              error: undefined,
+              data: stockQuoteData1,
+            },
+          },
           AAPL: {
             quote: {
               fetching: true,
@@ -353,7 +425,14 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const expected: StocksReducerState = {
+        const expected: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: false,
+              error: undefined,
+              data: stockQuoteData1,
+            },
+          },
           AAPL: {
             quote: {
               fetching: false,
@@ -361,7 +440,7 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockQuoteRejectedAction = {
+        const action: Actions.Quote.FetchRejectedAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
           stockSymbol: 'AAPL',
           error: new Error(''),
@@ -370,175 +449,54 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
 
-      it('Should handle two Stock quotes', () => {
-        const data: StockQuote = {
-          symbol: 'AMZN',
-          companyName: 'Amazon.com, Inc.',
-          primaryExchange: 'ASNDQA',
-          open: 733,
-          close: 744.34,
-          high: 736,
-          low: 725,
-          latestPrice: 2450.054,
-          latestTime: '12:24:25 PM',
-          latestUpdate: 1655573764729,
-          latestVolume: 4134691,
-          extendedPrice: 726.91,
-          extendedChange: 3.1,
-          extendedChangePercent: 0.4194815319493806,
-          previousClose: 2460.16,
-          previousVolume: 3281429,
-          change: 27.249,
-          changePercent: 1.159,
-          avgTotalVolume: 5657375,
-          marketCap: 1240038670201,
-          peRatio: 117.4,
-          week52High: 2495,
-          week52Low: 1649.69,
-          ytdChange: 29.266,
-        };
-
-        const state: StocksReducerState = {
-          AMZN: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data,
-            },
-          },
-          TSLA: {
-            quote: {
-              fetching: true,
-              error: undefined,
-            },
-          },
-        };
-        const expected: StocksReducerState = {
-          AMZN: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data,
-            },
-          },
-          TSLA: {
-            quote: {
-              fetching: false,
-              error: new Error(''),
-            },
-          },
-        };
-        const action: FetchStockQuoteRejectedAction = {
-          type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
-          stockSymbol: 'TSLA',
-          error: new Error(''),
-        };
-
-        expect(reducer(state, action)).toEqual(expected);
-      });
-
       it('Should handle three Stock quotes', () => {
-        const data: StockQuote = {
-          symbol: 'AAPL',
-          companyName: 'AAPL, Inc.',
-          primaryExchange: 'NghcwnSo k ktxeor eYacE',
-          open: 733,
-          close: 744.34,
-          high: 736,
-          low: 725,
-          latestPrice: 720.32,
-          latestTime: 'May 8, 2020',
-          latestUpdate: 1625938639425,
-          latestVolume: 4134691,
-          extendedPrice: 726.91,
-          extendedChange: 3.1,
-          extendedChangePercent: 0.4194815319493806,
-          previousClose: 730.16,
-          previousVolume: 4741435,
-          change: -13.97,
-          changePercent: -1.966,
-          avgTotalVolume: 4147824,
-          marketCap: 83884683022,
-          peRatio: -626.03,
-          week52High: 749.47,
-          week52Low: 247.61,
-          ytdChange: 75.35366771277485,
-        };
-
-        const data2: StockQuote = {
-          symbol: 'AMZN',
-          companyName: 'Amazon.com, Inc.',
-          primaryExchange: 'ASNDQA',
-          open: 733,
-          close: 744.34,
-          high: 736,
-          low: 725,
-          latestPrice: 2450.054,
-          latestTime: '12:24:25 PM',
-          latestUpdate: 1655573764729,
-          latestVolume: 4134691,
-          extendedPrice: 726.91,
-          extendedChange: 3.1,
-          extendedChangePercent: 0.4194815319493806,
-          previousClose: 2460.16,
-          previousVolume: 3281429,
-          change: 27.249,
-          changePercent: 1.159,
-          avgTotalVolume: 5657375,
-          marketCap: 1240038670201,
-          peRatio: 117.4,
-          week52High: 2495,
-          week52Low: 1649.69,
-          ytdChange: 29.266,
-        };
-
-        const state: StocksReducerState = {
+        const state: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: false,
+              error: undefined,
+              data: stockQuoteData1,
+            },
+          },
           AAPL: {
             quote: {
               fetching: false,
               error: undefined,
-              data,
+              data: stockQuoteData2,
             },
           },
-          AMZN: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: data2,
-            },
-          },
-          TSLA: {
+          SHOP: {
             quote: {
               fetching: false,
               error: new Error(''),
             },
           },
         };
-        const expected: StocksReducerState = {
+        const expected: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: false,
+              error: undefined,
+              data: stockQuoteData1,
+            },
+          },
           AAPL: {
             quote: {
               fetching: false,
               error: undefined,
-              data,
+              data: stockQuoteData2,
             },
           },
-          AMZN: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: data2,
-            },
-          },
-          TSLA: {
+          SHOP: {
             quote: {
               fetching: false,
               error: new Error(''),
             },
           },
         };
-        const action: FetchStockQuoteRejectedAction = {
+        const action: Actions.Quote.FetchRejectedAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
-          stockSymbol: 'TSLA',
+          stockSymbol: 'SHOP',
           error: new Error(''),
         };
 
@@ -548,10 +506,10 @@ describe('Stocks reducer', () => {
   });
 
   describe('Stocks chart', () => {
-    describe(`${ActionTypes.FETCH_STOCK_CHART_PENDING}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StocksReducerState = {
-          AAPL: {
+    describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+        const state: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
@@ -559,18 +517,18 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartPendingAction = {
-          type: ActionTypes.FETCH_STOCK_CHART_PENDING,
-          stockSymbol: 'AAPL',
+        const action: Actions.DailyAdjusted.FetchPendingAction = {
+          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
+          stockSymbol: 'IBM',
         };
-        const expected: StocksReducerState = {
-          AAPL: {
+        const expected: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
-            chart: {
+            dailyAdj: {
               fetching: true,
               error: undefined,
               data: undefined,
@@ -581,8 +539,15 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StocksReducerState = {
+      it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+        const state: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
           AAPL: {
             quote: {
               fetching: true,
@@ -590,33 +555,26 @@ describe('Stocks reducer', () => {
               data: undefined,
             },
           },
-          SHOP: {
+        };
+        const action: Actions.DailyAdjusted.FetchPendingAction = {
+          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
+          stockSymbol: 'AAPL',
+        };
+        const expected: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
-        };
-        const action: FetchStockChartPendingAction = {
-          type: ActionTypes.FETCH_STOCK_CHART_PENDING,
-          stockSymbol: 'SHOP',
-        };
-        const expected: StocksReducerState = {
           AAPL: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
-          },
-          SHOP: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            chart: {
+            dailyAdj: {
               fetching: true,
               error: undefined,
               data: undefined,
@@ -628,10 +586,10 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`${ActionTypes.FETCH_STOCK_CHART_FULFILLED}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StocksReducerState = {
-          AAPL: {
+    describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+        const state: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
@@ -639,22 +597,22 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartFulfilledAction = {
-          type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
-          stockSymbol: 'AAPL',
-          payload: { data: stockChartData1 },
+        const action: Actions.DailyAdjusted.FetchFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
+          stockSymbol: 'IBM',
+          payload: stockDailyAdjData1,
         };
-        const expected: StocksReducerState = {
-          AAPL: {
+        const expected: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
-            chart: {
+            dailyAdj: {
               fetching: false,
               error: undefined,
-              data: stockChartData1,
+              data: stockDailyAdjData1,
             },
           },
         };
@@ -662,46 +620,51 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StocksReducerState = {
+      it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+        const state: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
           AAPL: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
-          },
-          SHOP: {
-            quote: {
+            dailyAdj: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
         };
-        const action: FetchStockChartFulfilledAction = {
-          type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
-          stockSymbol: 'SHOP',
-          payload: { data: stockChartData1 },
+        const action: Actions.DailyAdjusted.FetchFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
+          stockSymbol: 'AAPL',
+          payload: stockDailyAdjData2,
         };
-        const expected: StocksReducerState = {
+        const expected: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
           AAPL: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
-          },
-          SHOP: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            chart: {
+            dailyAdj: {
               fetching: false,
               error: undefined,
-              data: stockChartData1,
+              data: stockDailyAdjData2,
             },
           },
         };
@@ -710,10 +673,10 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`${ActionTypes.FETCH_STOCK_CHART_REJECTED}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StocksReducerState = {
-          AAPL: {
+    describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+        const state: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
@@ -721,19 +684,19 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: FetchStockChartRejectedAction = {
-          type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
-          stockSymbol: 'AAPL',
+        const action: Actions.DailyAdjusted.FetchRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
+          stockSymbol: 'IBM',
           error: new Error(''),
         };
-        const expected: StocksReducerState = {
-          AAPL: {
+        const expected: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
-            chart: {
+            dailyAdj: {
               fetching: false,
               error: new Error(''),
               data: undefined,
@@ -744,43 +707,48 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockChart', () => {
-        const state: StocksReducerState = {
+      it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+        const state: Reducer.ReducerState = {
+          IBM: {
+            quote: {
+              fetching: true,
+              error: undefined,
+              data: undefined,
+            },
+          },
           AAPL: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
-          },
-          SHOP: {
-            quote: {
+            dailyAdj: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
         };
-        const action: FetchStockChartRejectedAction = {
-          type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
-          stockSymbol: 'SHOP',
+        const action: Actions.DailyAdjusted.FetchRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
+          stockSymbol: 'AAPL',
           error: new Error(''),
         };
-        const expected: StocksReducerState = {
-          AAPL: {
+        const expected: Reducer.ReducerState = {
+          IBM: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
-          SHOP: {
+          AAPL: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
-            chart: {
+            dailyAdj: {
               fetching: false,
               error: new Error(''),
               data: undefined,
