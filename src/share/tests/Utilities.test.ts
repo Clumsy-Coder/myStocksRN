@@ -6,6 +6,8 @@ import { DataDomain } from 'src/redux/Stocks/Types';
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
+const stockSymbol1 = 'IBM';
+
 const stockQuoteData1: DataDomain.StockQuote = {
   'Global Quote': {
     '01. symbol': 'IBM',
@@ -167,12 +169,12 @@ describe('Fetch data functions', () => {
       };
 
       mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockQuoteUrl('IBM')).resolves.toEqual(promiseResponse);
+      await expect(api.fetchStockQuoteUrl(stockSymbol1)).resolves.toEqual(promiseResponse);
     });
 
     it('Should return Error', async () => {
       mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockQuoteUrl('IBM')).rejects.toThrow(new Error(''));
+      await expect(api.fetchStockQuoteUrl(stockSymbol1)).rejects.toThrow(new Error(''));
     });
   });
 
@@ -188,14 +190,16 @@ describe('Fetch data functions', () => {
       };
 
       mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockDailyAdjustedUrl('IBM', 'compact')).resolves.toEqual(
+      await expect(api.fetchStockDailyAdjustedUrl(stockSymbol1, 'compact')).resolves.toEqual(
         promiseResponse,
       );
     });
 
     it('Should return Error', async () => {
       mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockDailyAdjustedUrl('IBM', 'compact')).rejects.toThrow(new Error(''));
+      await expect(api.fetchStockDailyAdjustedUrl(stockSymbol1, 'compact')).rejects.toThrow(
+        new Error(''),
+      );
     });
   });
 
@@ -211,12 +215,12 @@ describe('Fetch data functions', () => {
       };
 
       mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockSearchUrl('IBM')).resolves.toEqual(promiseResponse);
+      await expect(api.fetchStockSearchUrl(stockSymbol1)).resolves.toEqual(promiseResponse);
     });
 
     it('Should return Error', async () => {
       mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockSearchUrl('IBM')).rejects.toThrow(new Error(''));
+      await expect(api.fetchStockSearchUrl(stockSymbol1)).rejects.toThrow(new Error(''));
     });
   });
 

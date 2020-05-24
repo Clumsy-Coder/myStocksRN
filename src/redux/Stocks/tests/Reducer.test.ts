@@ -1,6 +1,10 @@
 import reducer from 'src/redux/Stocks/Reducer';
 import { ActionTypes, DataDomain, Reducer, Actions } from 'src/redux/Stocks/Types';
 
+const stockSymbol1 = 'IBM';
+const stockSymbol2 = 'AAPL';
+const stockSymbol3 = 'SHOP';
+
 const stockQuoteData1: DataDomain.StockQuote = {
   'Global Quote': {
     '01. symbol': 'IBM',
@@ -171,10 +175,10 @@ describe('Stocks reducer', () => {
         const state: Reducer.ReducerState = {};
         const action: Actions.Quote.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
-          stockSymbol: 'IBM',
+          stockSymbol: stockSymbol1,
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -185,7 +189,7 @@ describe('Stocks reducer', () => {
       });
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -194,16 +198,16 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.Quote.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
-          stockSymbol: 'AAPL',
+          stockSymbol: stockSymbol2,
         };
         const expected: Reducer.ReducerState = {
-          AAPL: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
-          IBM: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -215,13 +219,13 @@ describe('Stocks reducer', () => {
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          AAPL: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
             },
           },
-          IBM: {
+          [stockSymbol2]: {
             quote: {
               fetching: false,
               error: undefined,
@@ -230,22 +234,22 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.Quote.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
-          stockSymbol: 'SHOP',
+          stockSymbol: stockSymbol3,
         };
         const expected: Reducer.ReducerState = {
-          AAPL: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
             },
           },
-          IBM: {
+          [stockSymbol2]: {
             quote: {
               fetching: false,
               error: undefined,
             },
           },
-          SHOP: {
+          [stockSymbol3]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -260,7 +264,7 @@ describe('Stocks reducer', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_FULFILLED}`, () => {
       it('Should handle one Stock quote', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -268,7 +272,7 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
@@ -278,7 +282,7 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.Quote.FetchFulfilledAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
-          stockSymbol: 'IBM',
+          stockSymbol: stockSymbol1,
           payload: stockQuoteData1,
         };
 
@@ -287,14 +291,14 @@ describe('Stocks reducer', () => {
 
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData1,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -302,14 +306,14 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData1,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: false,
               error: undefined,
@@ -320,7 +324,7 @@ describe('Stocks reducer', () => {
 
         const action: Actions.Quote.FetchFulfilledAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
-          stockSymbol: 'AAPL',
+          stockSymbol: stockSymbol2,
           payload: stockQuoteData2,
         };
 
@@ -329,20 +333,20 @@ describe('Stocks reducer', () => {
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData1,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
-          SHOP: {
+          [stockSymbol3]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -350,20 +354,20 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData1,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
             },
           },
-          SHOP: {
+          [stockSymbol3]: {
             quote: {
               fetching: false,
               error: undefined,
@@ -374,7 +378,7 @@ describe('Stocks reducer', () => {
 
         const action: Actions.Quote.FetchFulfilledAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
-          stockSymbol: 'SHOP',
+          stockSymbol: stockSymbol3,
           payload: stockQuoteData3,
         };
 
@@ -385,7 +389,7 @@ describe('Stocks reducer', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_REJECTED}`, () => {
       it('Should handle one Stock quote', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -393,7 +397,7 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: new Error(''),
@@ -402,7 +406,7 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.Quote.FetchRejectedAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
-          stockSymbol: 'IBM',
+          stockSymbol: stockSymbol1,
           error: new Error(''),
         };
 
@@ -411,14 +415,14 @@ describe('Stocks reducer', () => {
 
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData1,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -426,14 +430,14 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData1,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: false,
               error: new Error(''),
@@ -442,7 +446,7 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.Quote.FetchRejectedAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
-          stockSymbol: 'AAPL',
+          stockSymbol: stockSymbol2,
           error: new Error(''),
         };
 
@@ -451,21 +455,21 @@ describe('Stocks reducer', () => {
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData1,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData2,
             },
           },
-          SHOP: {
+          [stockSymbol3]: {
             quote: {
               fetching: false,
               error: new Error(''),
@@ -473,21 +477,21 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData1,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: false,
               error: undefined,
               data: stockQuoteData2,
             },
           },
-          SHOP: {
+          [stockSymbol3]: {
             quote: {
               fetching: false,
               error: new Error(''),
@@ -496,7 +500,7 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.Quote.FetchRejectedAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
-          stockSymbol: 'SHOP',
+          stockSymbol: stockSymbol3,
           error: new Error(''),
         };
 
@@ -509,7 +513,7 @@ describe('Stocks reducer', () => {
     describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -519,10 +523,10 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.DailyAdjusted.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
-          stockSymbol: 'IBM',
+          stockSymbol: stockSymbol1,
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -541,14 +545,14 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -558,17 +562,17 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.DailyAdjusted.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
-          stockSymbol: 'AAPL',
+          stockSymbol: stockSymbol2,
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -589,7 +593,7 @@ describe('Stocks reducer', () => {
     describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -599,11 +603,11 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.DailyAdjusted.FetchFulfilledAction = {
           type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
-          stockSymbol: 'IBM',
+          stockSymbol: stockSymbol1,
           payload: stockDailyAdjData1,
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -622,14 +626,14 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -644,18 +648,18 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.DailyAdjusted.FetchFulfilledAction = {
           type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
-          stockSymbol: 'AAPL',
+          stockSymbol: stockSymbol2,
           payload: stockDailyAdjData2,
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -676,7 +680,7 @@ describe('Stocks reducer', () => {
     describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -686,11 +690,11 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.DailyAdjusted.FetchRejectedAction = {
           type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
-          stockSymbol: 'IBM',
+          stockSymbol: stockSymbol1,
           error: new Error(''),
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -709,14 +713,14 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,
@@ -731,18 +735,18 @@ describe('Stocks reducer', () => {
         };
         const action: Actions.DailyAdjusted.FetchRejectedAction = {
           type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
-          stockSymbol: 'AAPL',
+          stockSymbol: stockSymbol2,
           error: new Error(''),
         };
         const expected: Reducer.ReducerState = {
-          IBM: {
+          [stockSymbol1]: {
             quote: {
               fetching: true,
               error: undefined,
               data: undefined,
             },
           },
-          AAPL: {
+          [stockSymbol2]: {
             quote: {
               fetching: true,
               error: undefined,

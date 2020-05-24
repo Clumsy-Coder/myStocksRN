@@ -35,7 +35,7 @@ Object {
       "payload": Object {
         "args": Array [
           Object {
-            "stockSymbol": "AAPL",
+            "stockSymbol": "IBM",
             "type": "STOCKS/FETCH_STOCK_QUOTE",
           },
         ],
@@ -109,7 +109,7 @@ Object {
       "payload": Object {
         "args": Array [
           Object {
-            "stockSymbol": "AAPL",
+            "stockSymbol": "IBM",
             "type": "STOCKS/FETCH_STOCK_QUOTE",
           },
         ],

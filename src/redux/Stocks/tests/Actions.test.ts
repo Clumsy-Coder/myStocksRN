@@ -1,6 +1,9 @@
 import * as actions from 'src/redux/Stocks/Actions';
 import { ActionTypes, DataDomain, Actions } from 'src/redux/Stocks/Types';
 
+const stockSymbol1 = 'IBM';
+const stockSymbol2 = 'AAPL';
+
 const stockQuoteData1: DataDomain.StockQuote = {
   'Global Quote': {
     '01. symbol': 'IBM',
@@ -152,86 +155,78 @@ const stockSearchData2: DataDomain.StockSearch = {
 describe('Stock action creators', () => {
   describe('Stock quotes', () => {
     it('Should create an action to fetch Stock quote', () => {
-      const stockSymbol = 'IBM';
       const expectedAction = {
         type: ActionTypes.FETCH_STOCK_QUOTE,
-        stockSymbol,
+        stockSymbol: stockSymbol1,
       };
-      expect(actions.fetchStockQuote(stockSymbol)).toEqual(expectedAction);
+      expect(actions.fetchStockQuote(stockSymbol1)).toEqual(expectedAction);
     });
 
     it('Should create an action to fetch Stock quote PENDING', () => {
-      const stockSymbol = 'IBM';
       const expectedAction = {
         type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
-        stockSymbol,
+        stockSymbol: stockSymbol1,
       };
-      expect(actions.fetchStockQuotePending(stockSymbol)).toEqual(expectedAction);
+      expect(actions.fetchStockQuotePending(stockSymbol1)).toEqual(expectedAction);
     });
 
     it('Should create an action to fetch Stock quote FULFILLED', () => {
-      const stockSymbol = 'IBM';
       const expectedAction = {
         type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
-        stockSymbol,
+        stockSymbol: stockSymbol1,
         payload: stockQuoteData1,
       };
-      expect(actions.fetchStockQuoteFulfilled(stockSymbol, stockQuoteData1)).toEqual(
+      expect(actions.fetchStockQuoteFulfilled(stockSymbol1, stockQuoteData1)).toEqual(
         expectedAction,
       );
     });
 
     it('Should create an action to fetch Stock quote REJECTED', () => {
-      const stockSymbol = 'IBM';
       const expectedAction = {
         type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED,
-        stockSymbol,
+        stockSymbol: stockSymbol1,
         error: new Error(''),
       };
-      expect(actions.fetchStockQuoteRejected(stockSymbol, new Error(''))).toEqual(expectedAction);
+      expect(actions.fetchStockQuoteRejected(stockSymbol1, new Error(''))).toEqual(expectedAction);
     });
   });
 
   describe('Stock chart', () => {
     it('Should create an action to fetch Stock chart', () => {
-      const stockSymbol = 'IBM';
       const expectedAction: Actions.DailyAdjusted.FetchAction = {
         type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED,
-        stockSymbol,
+        stockSymbol: stockSymbol1,
         outputsize: 'compact',
       };
-      expect(actions.fetchStockDailyAdj(stockSymbol, 'compact')).toEqual(expectedAction);
+      expect(actions.fetchStockDailyAdj(stockSymbol1, 'compact')).toEqual(expectedAction);
     });
 
     it('Should create an action to fetch Stock chart PENDING', () => {
-      const stockSymbol = 'IBM';
       const expectedAction: Actions.DailyAdjusted.FetchPendingAction = {
         type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
-        stockSymbol,
+        stockSymbol: stockSymbol1,
       };
-      expect(actions.fetchStockDailyAdjPending(stockSymbol)).toEqual(expectedAction);
+      expect(actions.fetchStockDailyAdjPending(stockSymbol1)).toEqual(expectedAction);
     });
 
     it('Should create an action to fetch Stock chart FULFILLED', () => {
-      const stockSymbol = 'IBM';
       const expectedAction: Actions.DailyAdjusted.FetchFulfilledAction = {
         type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
-        stockSymbol,
+        stockSymbol: stockSymbol1,
         payload: stockDailyAdjData1,
       };
-      expect(actions.fetchStockDailyAdjFulfilled(stockSymbol, stockDailyAdjData1)).toEqual(
+      expect(actions.fetchStockDailyAdjFulfilled(stockSymbol1, stockDailyAdjData1)).toEqual(
         expectedAction,
       );
     });
 
     it('Should create an action to fetch Stock chart REJECTED', () => {
-      const stockSymbol = 'IBM';
       const expectedAction: Actions.DailyAdjusted.FetchRejectedAction = {
         type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
-        stockSymbol,
+        stockSymbol: stockSymbol1,
         error: new Error(''),
       };
-      expect(actions.fetchStockDailyAdjRejected(stockSymbol, new Error(''))).toEqual(
+      expect(actions.fetchStockDailyAdjRejected(stockSymbol1, new Error(''))).toEqual(
         expectedAction,
       );
     });

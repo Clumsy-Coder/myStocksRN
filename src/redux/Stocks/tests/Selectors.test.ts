@@ -187,10 +187,9 @@ describe('Stocks selectors', () => {
   describe('Stock quote selectors', () => {
     describe('Select individual Stock by stockSymbol', () => {
       it('Select individual Stock with one StockData in store', () => {
-        const stockSymbol = 'IBM';
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol]: {
+            [stockSymbol1]: {
               quote: {
                 fetching: false,
                 error: undefined,
@@ -211,7 +210,7 @@ describe('Stocks selectors', () => {
           },
         };
 
-        expect(selectors.selectStock(rootState, { stockSymbol })).toEqual(expected);
+        expect(selectors.selectStock(rootState, { stockSymbol: stockSymbol1 })).toEqual(expected);
       });
 
       it('Select individual Stock with two StockData in store', () => {
@@ -314,10 +313,9 @@ describe('Stocks selectors', () => {
 
     describe('Select individual Stock quote by stockSymbol', () => {
       it('Select individual Stock quote with one StockData in store', () => {
-        const stockSymbol = 'AAPL';
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol]: {
+            [stockSymbol1]: {
               quote: {
                 fetching: false,
                 error: undefined,
@@ -334,7 +332,9 @@ describe('Stocks selectors', () => {
           error: undefined,
           data: stockQuoteData1,
         };
-        expect(selectors.selectStockQuote(rootState, { stockSymbol })).toEqual(expected);
+        expect(selectors.selectStockQuote(rootState, { stockSymbol: stockSymbol1 })).toEqual(
+          expected,
+        );
       });
 
       it('Select individual Stock quote with two StockData in store', () => {
@@ -435,10 +435,9 @@ describe('Stocks selectors', () => {
 
     describe("Select Stock quote 'fetching' by stockSymbol", () => {
       it("Select stock quote 'fetching' with one StockData in store", () => {
-        const stockSymbol = 'AAPL';
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol]: {
+            [stockSymbol1]: {
               quote: {
                 fetching: false,
                 error: undefined,
@@ -451,7 +450,9 @@ describe('Stocks selectors', () => {
           },
         };
         const expected = false;
-        expect(selectors.selectStockQuoteFetching(rootState, { stockSymbol })).toEqual(expected);
+        expect(
+          selectors.selectStockQuoteFetching(rootState, { stockSymbol: stockSymbol1 }),
+        ).toEqual(expected);
       });
 
       it("Select stock quote 'fetching' with two StockData in store", () => {
@@ -635,10 +636,9 @@ describe('Stocks selectors', () => {
 
       describe("Select undefined Stock quote 'data'", () => {
         it("Select 'data' with one StockData in store", () => {
-          const stockSymbol = 'AAPL';
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol]: {
+              [stockSymbol1]: {
                 quote: {
                   fetching: true,
                   error: undefined,
@@ -653,7 +653,9 @@ describe('Stocks selectors', () => {
 
           const expected: DataDomain.StockQuote | undefined = undefined;
 
-          expect(selectors.selectStockQuoteData(rootState, { stockSymbol })).toEqual(expected);
+          expect(selectors.selectStockQuoteData(rootState, { stockSymbol: stockSymbol1 })).toEqual(
+            expected,
+          );
         });
 
         it("Select 'data' with two StockData in store", () => {

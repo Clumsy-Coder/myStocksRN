@@ -13,7 +13,9 @@ import { ActionTypes, StocksActions, DataDomain, Actions } from 'src/redux/Stock
 import * as actions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
 
-const stockSymbol = 'AAPL';
+const stockSymbol1 = 'IBM';
+const stockSymbol2 = 'AAPL';
+const stockSymbol3 = 'SHOP';
 const stockQuoteData1: DataDomain.StockQuote = {
   'Global Quote': {
     '01. symbol': 'IBM',
@@ -192,11 +194,11 @@ describe('Stocks Saga', () => {
         .provide([
           [matchers.call.fn(api.fetchStockQuoteUrl), Promise.resolve({ data: stockQuoteData1 })],
         ])
-        .put(actions.fetchStockQuotePending(stockSymbol))
-        .call(api.fetchStockQuoteUrl, stockSymbol)
-        .put(actions.fetchStockQuoteFulfilled(stockSymbol, stockQuoteData1))
-        .not.put(actions.fetchStockQuoteRejected(stockSymbol, new Error('')))
-        .dispatch(actions.fetchStockQuote(stockSymbol))
+        .put(actions.fetchStockQuotePending(stockSymbol1))
+        .call(api.fetchStockQuoteUrl, stockSymbol1)
+        .put(actions.fetchStockQuoteFulfilled(stockSymbol1, stockQuoteData1))
+        .not.put(actions.fetchStockQuoteRejected(stockSymbol1, new Error('')))
+        .dispatch(actions.fetchStockQuote(stockSymbol1))
         .silentRun()
         .then((result) => expect(result.toJSON()).toMatchSnapshot());
     });
@@ -204,11 +206,11 @@ describe('Stocks Saga', () => {
     it(`Should fire on ${ActionTypes.FETCH_STOCK_QUOTE} action in case failure`, () => {
       return expectSaga(sagaWatcher)
         .provide([[matchers.call.fn(api.fetchStockQuoteUrl), Promise.reject(new Error(''))]])
-        .put(actions.fetchStockQuotePending(stockSymbol))
-        .call(api.fetchStockQuoteUrl, stockSymbol)
-        .put(actions.fetchStockQuoteRejected(stockSymbol, new Error('')))
-        .not.put(actions.fetchStockQuoteFulfilled(stockSymbol, stockQuoteData1))
-        .dispatch(actions.fetchStockQuote(stockSymbol))
+        .put(actions.fetchStockQuotePending(stockSymbol1))
+        .call(api.fetchStockQuoteUrl, stockSymbol1)
+        .put(actions.fetchStockQuoteRejected(stockSymbol1, new Error('')))
+        .not.put(actions.fetchStockQuoteFulfilled(stockSymbol1, stockQuoteData1))
+        .dispatch(actions.fetchStockQuote(stockSymbol1))
         .silentRun()
         .then((result) => expect(result.toJSON()).toMatchSnapshot());
     });
@@ -231,13 +233,13 @@ describe('Stocks Saga', () => {
       };
 
       const stub = sinon.stub(api, 'fetchStockQuoteUrl').returns(Promise.resolve(promiseResponse));
-      await runSaga(fakeStore, fetchStockQuoteSaga, actions.fetchStockQuote(stockSymbol));
+      await runSaga(fakeStore, fetchStockQuoteSaga, actions.fetchStockQuote(stockSymbol1));
 
       expect(stub.calledOnce).toBe(true);
       expect(dispatchedActions.length).toEqual(2);
-      expect(dispatchedActions[0]).toEqual(actions.fetchStockQuotePending(stockSymbol));
+      expect(dispatchedActions[0]).toEqual(actions.fetchStockQuotePending(stockSymbol1));
       expect(dispatchedActions[1]).toEqual(
-        actions.fetchStockQuoteFulfilled(stockSymbol, stockQuoteData1),
+        actions.fetchStockQuoteFulfilled(stockSymbol1, stockQuoteData1),
       );
 
       stub.restore(); // important: do NOT remove
@@ -251,13 +253,13 @@ describe('Stocks Saga', () => {
       };
 
       const stub = sinon.stub(api, 'fetchStockQuoteUrl').returns(Promise.reject(new Error('')));
-      await runSaga(fakeStore, fetchStockQuoteSaga, actions.fetchStockQuote(stockSymbol));
+      await runSaga(fakeStore, fetchStockQuoteSaga, actions.fetchStockQuote(stockSymbol1));
 
       expect(stub.calledOnce).toBe(true);
       expect(dispatchedActions.length).toEqual(2);
-      expect(dispatchedActions[0]).toEqual(actions.fetchStockQuotePending(stockSymbol));
+      expect(dispatchedActions[0]).toEqual(actions.fetchStockQuotePending(stockSymbol1));
       expect(dispatchedActions[1]).toEqual(
-        actions.fetchStockQuoteRejected(stockSymbol, new Error('')),
+        actions.fetchStockQuoteRejected(stockSymbol1, new Error('')),
       );
 
       stub.restore(); // important: do NOT remove
@@ -286,14 +288,14 @@ describe('Stocks Saga', () => {
       await runSaga(
         fakeStore,
         fetchStockDailyAdjustedSaga,
-        actions.fetchStockDailyAdj(stockSymbol, '5d', 'asc'),
+        actions.fetchStockDailyAdj(stockSymbol1, 'compact'),
       );
 
       expect(stub.calledOnce).toBe(true);
       expect(dispatchedActions.length).toEqual(2);
-      expect(dispatchedActions[0]).toEqual(actions.fetchStockDailyAdjPending(stockSymbol));
+      expect(dispatchedActions[0]).toEqual(actions.fetchStockDailyAdjPending(stockSymbol1));
       expect(dispatchedActions[1]).toEqual(
-        actions.fetchStockDailyAdjFulfilled(stockSymbol, stockDailyAdjData1),
+        actions.fetchStockDailyAdjFulfilled(stockSymbol1, stockDailyAdjData1),
       );
 
       stub.restore(); // important: do NOT remove
@@ -312,14 +314,14 @@ describe('Stocks Saga', () => {
       await runSaga(
         fakeStore,
         fetchStockDailyAdjustedSaga,
-        actions.fetchStockDailyAdj(stockSymbol, '5d', 'asc'),
+        actions.fetchStockDailyAdj(stockSymbol1, 'compact'),
       );
 
       expect(stub.calledOnce).toBe(true);
       expect(dispatchedActions.length).toEqual(2);
-      expect(dispatchedActions[0]).toEqual(actions.fetchStockDailyAdjPending(stockSymbol));
+      expect(dispatchedActions[0]).toEqual(actions.fetchStockDailyAdjPending(stockSymbol1));
       expect(dispatchedActions[1]).toEqual(
-        actions.fetchStockDailyAdjRejected(stockSymbol, new Error('')),
+        actions.fetchStockDailyAdjRejected(stockSymbol1, new Error('')),
       );
 
       stub.restore(); // important: do NOT remove
