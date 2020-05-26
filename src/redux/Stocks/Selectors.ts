@@ -1,4 +1,5 @@
 import { createCachedSelector } from 're-reselect';
+import { createSelector } from 'reselect';
 
 import { AppState } from 'src/redux/index.reducers';
 import { DataDomain, Reducer } from 'src/redux/Stocks/Types';
@@ -46,6 +47,29 @@ export const selectStock = createCachedSelector(
   (stocks: Reducer.ReducerState, stockSymbol: string): Reducer.StockData =>
     stocks.symbols[stockSymbol],
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                     STOCK SEARCH SELECTORS                                     //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Select Stock search keyword.
+ * ```ts
+ * {
+ *    selectedStockKeyword: selectSearchKeyword(state),
+ * }
+ * ```
+ * @param state - RootState - Root redux state
+ * @returns string - Stock search keyword
+ */
+export const selectSearchKeyword = createSelector(
+  [selectAllStocks],
+  (stocks: Reducer.ReducerState): string | undefined => stocks.searchKeyword,
+);
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
