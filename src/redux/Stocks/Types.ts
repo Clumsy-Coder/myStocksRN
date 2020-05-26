@@ -130,7 +130,9 @@ export namespace Reducer {
    * Stocks reducer state
    */
   export interface ReducerState {
+    symbols: {
       [symbol: string]: StockData;
+    };
     search?: DataDomain.StockSearch;
   }
 }
