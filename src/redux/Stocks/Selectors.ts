@@ -11,7 +11,7 @@ import { DataDomain, Reducer } from 'src/redux/Stocks/Types';
  * }
  * ```
  * @param state - RootState - Root redux state
- * @returns StockState - redux Stocks reducer state
+ * @returns ReducerState - redux Stocks reducer state
  */
 export const selectAllStocks = (state: AppState): Reducer.ReducerState => state.Stocks;
 
@@ -113,7 +113,7 @@ export const selectStockQuoteData = createCachedSelector(
  * ```
  * @param state - RootState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns Error - Stock data fetching status
+ * @returns Error | undefined - Stock quote Error
  */
 export const selectStockQuoteError = createCachedSelector(
   [selectStockQuote],
@@ -137,7 +137,7 @@ export const selectStockQuoteError = createCachedSelector(
  * ```
  * @param state - RootState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns Reducer.StockDailyAdjustedData | undefined - Stock quote data
+ * @returns Reducer.StockDailyAdjustedData | undefined - Stock Daily Adjusted data
  */
 export const selectStockDailyAdjusted = createCachedSelector(
   [selectStock],
@@ -153,7 +153,7 @@ export const selectStockDailyAdjusted = createCachedSelector(
  * ```
  * @param state - RootState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns boolean | undefined - Stock data fetching status
+ * @returns boolean | undefined - Stock Daily Adjusted data fetching status
  */
 export const selectStockDailyAdjustedFetching = createCachedSelector(
   [selectStockDailyAdjusted],
@@ -170,7 +170,7 @@ export const selectStockDailyAdjustedFetching = createCachedSelector(
  * ```
  * @param state - RootState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns DataDomain.StockDailyAdjusted | undefined - Stock quote data
+ * @returns DataDomain.StockDailyAdj | undefined - Stock Daily Adjusted data
  */
 export const selectStockDailyAdjustedData = createCachedSelector(
   [selectStockDailyAdjusted],
@@ -188,7 +188,7 @@ export const selectStockDailyAdjustedData = createCachedSelector(
  * ```
  * @param state - RootState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns Error | undefined - Stock data fetching status
+ * @returns Error | undefined - Stock Daily Adjusted Error
  */
 export const selectStockDailyAdjustedError = createCachedSelector(
   [selectStockDailyAdjusted],

@@ -11,7 +11,15 @@ import { Action } from 'redux';
 
 */
 
+/**
+ * Data structures used in Favorites Reducer
+ */
 export namespace Reducer {
+  /**
+   * Data structure used for storing stock metadata.
+   * This structure comes from searching a stock.
+   * Check https://www.alphavantage.co/documentation/#symbolsearch
+   */
   export interface FavoriteStockData {
     '1. symbol': string;
     '2. name': string;
@@ -63,6 +71,9 @@ export enum ActionTypes {
 
 */
 
+/**
+ * All Actions interfaces regarding Favorites
+ */
 export namespace Actions {
   /**
    * Add stock to Favorites action

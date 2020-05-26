@@ -63,6 +63,12 @@ export namespace DataDomain {
     };
   }
 
+  /**
+   * Data structure returned when search for a stock.
+   * This is only data for one stock search returned
+   *
+   * https://www.alphavantage.co/documentation/#symbolsearch
+   */
   export interface StockSearchBase {
     '1. symbol': string;
     '2. name': string;
@@ -108,18 +114,27 @@ export type StocksDataDomain =
  * Data structures used in Stocks Reducer
  */
 export namespace Reducer {
+  /**
+   * Data structure for Stock quote used in Stock Reducer
+   */
   export interface StockQuoteData {
     fetching: boolean;
     data?: DataDomain.StockQuote;
     error?: Error;
   }
 
+  /**
+   * Data structure for Stock Daily Adjusted used in Stock Reducer
+   */
   export interface StockDailyAdjData {
     fetching: boolean;
     data?: DataDomain.StockDailyAdj;
     error?: Error;
   }
 
+  /**
+   * A data structure wrapper for one Stock
+   */
   export interface StockData {
     quote: StockQuoteData;
     dailyAdj?: StockDailyAdjData;
@@ -137,6 +152,9 @@ export namespace Reducer {
   }
 }
 
+/**
+ * A union of Stocks Reducer types
+ */
 export type StocksReducerTypes =
   | Reducer.StockQuoteData
   | Reducer.StockDailyAdjData
@@ -208,6 +226,7 @@ export namespace Actions {
   export namespace Quote {
     /**
      * Fetch Stock Quote action.
+     * Used for initializing for fetching the data.
      */
     export interface FetchAction extends Action<ActionTypes.FETCH_STOCK_QUOTE> {
       type: ActionTypes.FETCH_STOCK_QUOTE;
@@ -249,6 +268,7 @@ export namespace Actions {
   export namespace DailyAdjusted {
     /**
      * Fetch Stock Daily Adjusted action
+     * Used for initializing for fetching the data.
      */
     export interface FetchAction extends Action<ActionTypes.FETCH_STOCK_DAILY_ADJUSTED> {
       type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED;
@@ -294,6 +314,7 @@ export namespace Actions {
   export namespace Search {
     /**
      * Fetch stock search action
+     * Used for initializing for fetching the data.
      */
     export interface FetchAction extends Action<ActionTypes.SEARCH_KEYWORD> {
       type: ActionTypes.SEARCH_KEYWORD;
@@ -364,6 +385,6 @@ export type StockSearchActions =
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Union of action creators for StockQuoteAction and StockDailyAdjustedAction
+ * Union of action for StockQuoteAction, StockDailyAdjustedAction and StockSearchActions
  */
 export type StocksActions = StockQuoteActions | StockDailyAdjustedActions | StockSearchActions;

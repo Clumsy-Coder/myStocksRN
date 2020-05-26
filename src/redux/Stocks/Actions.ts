@@ -80,8 +80,7 @@ export const fetchStockQuoteRejected: ActionCreator<Actions.Quote.FetchRejectedA
  * Fetch stock Daily Adjusted action creator.
  * ONLY to be called by the front end.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
- * @param range - Date range for the stock Daily Adjusted
- * @param sort - sort data by date in ascending or descending order
+ * @param outputsize - 'compact' or 'full'
  */
 export const fetchStockDailyAdj: ActionCreator<Actions.DailyAdjusted.FetchAction> = (
   stockSymbol: string,
@@ -134,6 +133,46 @@ export const fetchStockDailyAdjRejected: ActionCreator<Actions.DailyAdjusted.Fet
 ): Actions.DailyAdjusted.FetchRejectedAction => ({
   type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
   stockSymbol,
+  error,
+});
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                 STOCK SEARCH ACTIONS CREATORS                                  //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+export const fetchStockSearch: ActionCreator<Actions.Search.FetchAction> = (
+  keyword: string,
+): Actions.Search.FetchAction => ({
+  type: ActionTypes.SEARCH_KEYWORD,
+  keyword,
+});
+
+export const fetchStockSearchPending: ActionCreator<Actions.Search.FetchPendingAction> = (
+  keyword: string,
+): Actions.Search.FetchPendingAction => ({
+  type: ActionTypes.SEARCH_KEYWORD_PENDING,
+  keyword,
+});
+
+export const fetchStockSearchFulfilled: ActionCreator<Actions.Search.FetchFulfilledAction> = (
+  keyword: string,
+  payload: DataDomain.StockSearch,
+): Actions.Search.FetchFulfilledAction => ({
+  type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
+  keyword,
+  payload,
+});
+
+export const fetchStockSearchRejected: ActionCreator<Actions.Search.FetchRejectedAction> = (
+  keyword: string,
+  error: Error,
+): Actions.Search.FetchRejectedAction => ({
+  type: ActionTypes.SEARCH_KEYWORD_REJECTED,
+  keyword,
   error,
 });
 
