@@ -3,11 +3,11 @@ import { combineReducers, Reducer } from 'redux';
 import StockReducer from 'src/redux/Stocks/Reducer';
 import FavoritesReducer from 'src/redux/Favorites/Reducer';
 import { StocksActions, Reducer as StockReducerType } from 'src/redux/Stocks/Types';
-import { FavoritesActions, FavoritesReducerState } from 'src/redux/Favorites/Types';
+import { FavoritesActions, Reducer as FavoriteReducerType } from 'src/redux/Favorites/Types';
 
 export interface AppState {
   Stocks: StockReducerType.ReducerState;
-  Favorites: FavoritesReducerState;
+  Favorites: FavoriteReducerType.FavoritesReducerState;
 }
 export type AppActions = StocksActions | FavoritesActions;
 
