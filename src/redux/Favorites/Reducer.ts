@@ -1,15 +1,19 @@
 import { Reducer } from 'redux';
 
-import { ActionTypes, FavoritesReducerState, FavoritesActions } from 'src/redux/Favorites/Types';
+import {
+  ActionTypes,
+  Reducer as FavoritesReducer,
+  FavoritesActions,
+} from 'src/redux/Favorites/Types';
 
-const initialState: FavoritesReducerState = {
+const initialState: FavoritesReducer.FavoritesReducerState = {
   symbols: [],
 };
 
-const reducer: Reducer<FavoritesReducerState, FavoritesActions> = (
+const reducer: Reducer<FavoritesReducer.FavoritesReducerState, FavoritesActions> = (
   state = initialState,
   action,
-): FavoritesReducerState => {
+): FavoritesReducer.FavoritesReducerState => {
   switch (action.type) {
     case ActionTypes.ADD_FAVORITE_STOCK: {
       const set = new Set([...state.symbols]);
