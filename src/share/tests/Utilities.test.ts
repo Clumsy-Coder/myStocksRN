@@ -1,123 +1,165 @@
 import axios, { AxiosResponse } from 'axios';
 
 import * as api from 'src/share/Utilities';
-import { StockQuote, StockChart, StockChartBatch, StockQuoteBatch } from 'src/redux/Stocks/Types';
+import { DataDomain } from 'src/redux/Stocks/Types';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-const stockQuoteData1: StockQuote = {
-  symbol: 'AAPL',
-  companyName: 'AAPL, Inc.',
-  primaryExchange: 'NghcwnSo k ktxeor eYacE',
-  open: 733,
-  close: 744.34,
-  high: 736,
-  low: 725,
-  latestPrice: 720.32,
-  latestTime: 'May 8, 2020',
-  latestUpdate: 1625938639425,
-  latestVolume: 4134691,
-  extendedPrice: 726.91,
-  extendedChange: 3.1,
-  extendedChangePercent: 0.4194815319493806,
-  previousClose: 730.16,
-  previousVolume: 4741435,
-  change: -13.97,
-  changePercent: -1.966,
-  avgTotalVolume: 4147824,
-  marketCap: 83884683022,
-  peRatio: -626.03,
-  week52High: 749.47,
-  week52Low: 247.61,
-  ytdChange: 75.35366771277485,
+const stockSymbol1 = 'IBM';
+
+const stockQuoteData1: DataDomain.StockQuote = {
+  'Global Quote': {
+    '01. symbol': 'IBM',
+    '02. open': '119.3700',
+    '03. high': '119.4650',
+    '04. low': '117.5900',
+    '05. price': '118.3900',
+    '06. volume': '4179906',
+    '07. latest trading day': '2020-05-22',
+    '08. previous close': '119.1200',
+    '09. change': '-0.7300',
+    '10. change percent': '-0.6128%',
+  },
 };
 
-const stockQuoteData2: StockQuote = {
-  symbol: 'SHOP',
-  companyName: 'Shopify, Inc.',
-  primaryExchange: 'NghcwnSo k ktxeor eYacE',
-  open: 787.4,
-  close: 774,
-  high: 811.23,
-  low: 767.58,
-  latestPrice: 792,
-  latestTime: 'May 15, 2020',
-  latestUpdate: 1636599991338,
-  latestVolume: 3040107,
-  extendedPrice: 726.91,
-  extendedChange: 3.1,
-  extendedChangePercent: 0.4194815319493806,
-  previousClose: 782.69,
-  previousVolume: 2902183,
-  change: 12.8,
-  changePercent: 1.749,
-  avgTotalVolume: 4230850,
-  marketCap: 92286558532,
-  peRatio: -679.72,
-  week52High: 809.13,
-  week52Low: 262.94,
-  ytdChange: 93.42,
+const stockQuoteData2: DataDomain.StockQuote = {
+  'Global Quote': {
+    '01. symbol': 'AAPL',
+    '02. open': '315.7700',
+    '03. high': '319.2300',
+    '04. low': '315.3500',
+    '05. price': '318.8900',
+    '06. volume': '20240356',
+    '07. latest trading day': '2020-05-22',
+    '08. previous close': '316.8500',
+    '09. change': '2.0400',
+    '10. change percent': '0.6438%',
+  },
 };
 
-const stockChartData1: StockChart[] = [
-  {
-    date: '2020-05-11',
-    open: 710.61,
-    close: 758.74,
-    high: 770.9,
-    low: 737.75,
-    volume: 3675742,
-    change: 0,
-    changePercent: 0,
-    label: 'May 11',
-    changeOverTime: 0,
+const stockDailyAdjData1: DataDomain.StockDailyAdj = {
+  'Meta Data': {
+    '1. Information': 'Daily Time Series with Splits and Dividend Events',
+    '2. Symbol': 'IBM',
+    '3. Last Refreshed': '2020-05-22',
+    '4. Output Size': 'Compact',
+    '5. Time Zone': 'US/Eastern',
   },
-  {
-    date: '2020-05-12',
-    open: 798,
-    close: 750.68,
-    high: 803.67,
-    low: 743.5,
-    volume: 3773050,
-    change: -8.41,
-    changePercent: -1.0796,
-    label: 'May 12',
-    changeOverTime: -0.010945,
+  'Time Series (Daily)': {
+    '2020-05-22': {
+      '1. open': '119.3700',
+      '2. high': '119.4650',
+      '3. low': '117.5900',
+      '4. close': '118.3900',
+      '5. adjusted close': '118.3900',
+      '6. volume': '4179906',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+    '2020-05-21': {
+      '1. open': '120.9900',
+      '2. high': '121.7200',
+      '3. low': '118.9700',
+      '4. close': '119.1200',
+      '5. adjusted close': '119.1200',
+      '6. volume': '4018329',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
   },
-];
+};
 
-const stockChartData2: StockChart[] = [
-  {
-    date: '2020-05-11',
-    open: 314.3,
-    close: 325.22,
-    high: 331,
-    low: 311.5,
-    volume: 37002601,
-    change: 0,
-    changePercent: 0,
-    label: 'May 11',
-    changeOverTime: 0,
+const stockDailyAdjData2: DataDomain.StockDailyAdj = {
+  'Meta Data': {
+    '1. Information': 'Daily Time Series with Splits and Dividend Events',
+    '2. Symbol': 'AAPL',
+    '3. Last Refreshed': '2020-05-22',
+    '4. Output Size': 'Compact',
+    '5. Time Zone': 'US/Eastern',
   },
-  {
-    date: '2020-05-12',
-    open: 325.39,
-    close: 319.98,
-    high: 335.43,
-    low: 323.47,
-    volume: 41126129,
-    change: -3.6,
-    changePercent: -1.1787,
-    label: 'May 12',
-    changeOverTime: -0.01148,
+  'Time Series (Daily)': {
+    '2020-05-22': {
+      '1. open': '315.7700',
+      '2. high': '319.2300',
+      '3. low': '315.3500',
+      '4. close': '318.8900',
+      '5. adjusted close': '318.8900',
+      '6. volume': '20240356',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
+    '2020-05-21': {
+      '1. open': '318.6600',
+      '2. high': '320.8900',
+      '3. low': '315.8700',
+      '4. close': '316.8500',
+      '5. adjusted close': '316.8500',
+      '6. volume': '25672211',
+      '7. dividend amount': '0.0000',
+      '8. split coefficient': '1.0000',
+    },
   },
-];
+};
+
+const stockSearchData: DataDomain.StockSearch = {
+  bestMatches: [
+    {
+      '1. symbol': 'IBM',
+      '2. name': 'International Business Machines Corporation',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '1.0000',
+    },
+    {
+      '1. symbol': 'IBMM',
+      '2. name': 'iShares iBonds Dec 2024 Term Muni Bond ETF',
+      '3. type': 'ETF',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '0.8571',
+    },
+  ],
+};
+
+const stockSearchData2: DataDomain.StockSearch = {
+  bestMatches: [
+    {
+      '1. symbol': 'AAPL',
+      '2. name': 'Apple Inc.',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '1.0000',
+    },
+    {
+      '1. symbol': 'AAPL.ARG',
+      '2. name': 'Apple Inc.',
+      '3. type': 'Equity',
+      '4. region': 'Argentina',
+      '5. marketOpen': '11:00',
+      '6. marketClose': '17:00',
+      '7. timezone': 'UTC-03',
+      '8. currency': 'ARS',
+      '9. matchScore': '0.7273',
+    },
+  ],
+};
 
 describe('Fetch data functions', () => {
   describe('fetchStockQuoteUrl', () => {
     it('Should return a Promise', async () => {
-      const promiseResponse: AxiosResponse<StockQuote> = {
+      const promiseResponse: AxiosResponse<DataDomain.StockQuote> = {
         headers: {},
         status: 200,
         statusText: '',
@@ -127,125 +169,150 @@ describe('Fetch data functions', () => {
       };
 
       mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockQuoteUrl('AAPL')).resolves.toEqual(promiseResponse);
+      await expect(api.fetchStockQuoteUrl(stockSymbol1)).resolves.toEqual(promiseResponse);
     });
 
     it('Should return Error', async () => {
       mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockQuoteUrl('AAPL')).rejects.toThrow(new Error(''));
+      await expect(api.fetchStockQuoteUrl(stockSymbol1)).rejects.toThrow(new Error(''));
     });
   });
 
-  describe('fetchStockChartUrl', () => {
+  describe('fetchStockDailyAdjustedUrl', () => {
     it('Should return a Promise', async () => {
-      const promiseResponse: AxiosResponse<StockChart[]> = {
+      const promiseResponse: AxiosResponse<DataDomain.StockDailyAdj> = {
         headers: {},
         status: 200,
         statusText: '',
         request: {},
         config: {},
-        data: stockChartData1,
+        data: stockDailyAdjData1,
       };
 
       mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockChartUrl('AAPL', '5d', 'asc')).resolves.toEqual(promiseResponse);
-    });
-
-    it('Should return Error', async () => {
-      mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockChartUrl('AAPL', '5d', 'asc')).rejects.toThrow(new Error(''));
-    });
-  });
-
-  describe('fetchStockQuoteBatchUrl', () => {
-    it('Should return a Promise', async () => {
-      const promiseResponse: AxiosResponse<StockQuoteBatch> = {
-        headers: {},
-        status: 200,
-        statusText: '',
-        request: {},
-        config: {},
-        data: {
-          SHOP: {
-            quote: stockQuoteData2,
-          },
-          AAPL: {
-            quote: stockQuoteData1,
-          },
-        },
-      };
-
-      mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockQuoteBatchUrl(['SHOP', 'AAPL'])).resolves.toEqual(promiseResponse);
-    });
-
-    it('Should return Error', async () => {
-      mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockQuoteBatchUrl(['SHOP', 'AAPL'])).rejects.toThrow(new Error(''));
-    });
-  });
-
-  describe('fetchStockChartBatchUrl', () => {
-    it('Should return a Promise', async () => {
-      const promiseResponse: AxiosResponse<StockChartBatch> = {
-        headers: {},
-        status: 200,
-        statusText: '',
-        request: {},
-        config: {},
-        data: {
-          SHOP: {
-            chart: stockChartData2,
-          },
-          AAPL: {
-            chart: stockChartData1,
-          },
-        },
-      };
-
-      mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockChartBatchUrl(['SHOP', 'AAPL'], '5d', 'asc')).resolves.toEqual(
+      await expect(api.fetchStockDailyAdjustedUrl(stockSymbol1, 'compact')).resolves.toEqual(
         promiseResponse,
       );
     });
 
     it('Should return Error', async () => {
       mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockChartBatchUrl(['SHOP', 'AAPL'], '5d', 'asc')).rejects.toThrow(
+      await expect(api.fetchStockDailyAdjustedUrl(stockSymbol1, 'compact')).rejects.toThrow(
         new Error(''),
       );
     });
   });
 
-  describe('fetchStockQuoteChartBatchUrl', () => {
+  describe('fetchStockSearchUrl', () => {
     it('Should return a Promise', async () => {
-      const promiseResponse: AxiosResponse<StockChartBatch> = {
+      const promiseResponse: AxiosResponse<DataDomain.StockSearch> = {
         headers: {},
         status: 200,
         statusText: '',
         request: {},
         config: {},
-        data: {
-          SHOP: {
-            chart: stockChartData2,
-          },
-          AAPL: {
-            chart: stockChartData1,
-          },
-        },
+        data: stockSearchData,
       };
 
       mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(
-        api.fetchStockQuoteChartBatchUrl(['SHOP', 'AAPL'], '5d', 'asc'),
-      ).resolves.toEqual(promiseResponse);
+      await expect(api.fetchStockSearchUrl(stockSymbol1)).resolves.toEqual(promiseResponse);
     });
 
     it('Should return Error', async () => {
       mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockQuoteChartBatchUrl(['SHOP', 'AAPL'], '5d', 'asc')).rejects.toThrow(
-        new Error(''),
-      );
+      await expect(api.fetchStockSearchUrl(stockSymbol1)).rejects.toThrow(new Error(''));
     });
   });
+
+  // describe('fetchStockQuoteBatchUrl', () => {
+  //   it('Should return a Promise', async () => {
+  //     const promiseResponse: AxiosResponse<StockQuoteBatch> = {
+  //       headers: {},
+  //       status: 200,
+  //       statusText: '',
+  //       request: {},
+  //       config: {},
+  //       data: {
+  //         SHOP: {
+  //           quote: stockQuoteData2,
+  //         },
+  //         AAPL: {
+  //           quote: stockQuoteData1,
+  //         },
+  //       },
+  //     };
+
+  //     mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
+  //     await expect(api.fetchStockQuoteBatchUrl(['SHOP', 'AAPL'])).resolves.toEqual(promiseResponse);
+  //   });
+
+  //   it('Should return Error', async () => {
+  //     mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
+  //     await expect(api.fetchStockQuoteBatchUrl(['SHOP', 'AAPL'])).rejects.toThrow(new Error(''));
+  //   });
+  // });
+
+  // describe('fetchStockChartBatchUrl', () => {
+  //   it('Should return a Promise', async () => {
+  //     const promiseResponse: AxiosResponse<StockChartBatch> = {
+  //       headers: {},
+  //       status: 200,
+  //       statusText: '',
+  //       request: {},
+  //       config: {},
+  //       data: {
+  //         SHOP: {
+  //           chart: stockDailyAdjData2,
+  //         },
+  //         AAPL: {
+  //           chart: stockDailyAdjData1,
+  //         },
+  //       },
+  //     };
+
+  //     mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
+  //     await expect(api.fetchStockChartBatchUrl(['SHOP', 'AAPL'], '5d', 'asc')).resolves.toEqual(
+  //       promiseResponse,
+  //     );
+  //   });
+
+  //   it('Should return Error', async () => {
+  //     mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
+  //     await expect(api.fetchStockChartBatchUrl(['SHOP', 'AAPL'], '5d', 'asc')).rejects.toThrow(
+  //       new Error(''),
+  //     );
+  //   });
+  // });
+
+  // describe('fetchStockQuoteChartBatchUrl', () => {
+  //   it('Should return a Promise', async () => {
+  //     const promiseResponse: AxiosResponse<StockChartBatch> = {
+  //       headers: {},
+  //       status: 200,
+  //       statusText: '',
+  //       request: {},
+  //       config: {},
+  //       data: {
+  //         SHOP: {
+  //           chart: stockDailyAdjData2,
+  //         },
+  //         AAPL: {
+  //           chart: stockDailyAdjData1,
+  //         },
+  //       },
+  //     };
+
+  //     mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
+  //     await expect(
+  //       api.fetchStockQuoteChartBatchUrl(['SHOP', 'AAPL'], '5d', 'asc'),
+  //     ).resolves.toEqual(promiseResponse);
+  //   });
+
+  //   it('Should return Error', async () => {
+  //     mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
+  //     await expect(api.fetchStockQuoteChartBatchUrl(['SHOP', 'AAPL'], '5d', 'asc')).rejects.toThrow(
+  //       new Error(''),
+  //     );
+  //   });
+  // });
 });

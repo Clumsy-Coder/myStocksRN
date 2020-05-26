@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import NavigationRoutePath from 'src/routes/RoutePath.enum';
@@ -9,12 +9,24 @@ type Props = {
   navigation: StackNavigationProp<RootStackParamList, 'Home'>;
 };
 
-const Home = ({ navigation }: Props) => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+const Home: React.FC<Props> = ({ navigation }: Props) => (
+  <View style={styles.root}>
     <Text>Home screen</Text>
     <Button
-      onPress={() => navigation.navigate(NavigationRoutePath.StockDetails)}
+      onPress={(): void => navigation.navigate(NavigationRoutePath.StockDetails)}
       title='Go to StockDetails'
+    />
+    <Button
+      onPress={(): void => navigation.navigate(NavigationRoutePath.About)}
+      title='Go to About'
     />
   </View>
 );

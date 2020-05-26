@@ -1,6 +1,5 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import { Action } from 'redux';
-
-import { chartRange } from 'src/share/Constants';
 
 /*
   ██████╗  █████╗ ████████╗ █████╗     ██████╗  ██████╗ ███╗   ███╗ █████╗ ██╗███╗   ██╗
@@ -13,134 +12,92 @@ import { chartRange } from 'src/share/Constants';
 */
 
 /**
- * Data format when fetching stock quote
- * check https://iexcloud.io/docs/api/#quote
+ * Raw Data structures when fetching data from API
  */
-export interface StockQuote {
-  symbol: string; // stock ticker. ex: AAPL
-  companyName: string; // company name
-  primaryExchange: string; // Refers to the primary listing exchange for the symbol
-  latestPrice: number; // Refers to the latest relevant price of the security which is derived from multiple sources
-  latestVolume: number; // Refers to the latest total market volume of the stock across all markets
-  latestUpdate: number; // latest update time in epoch represented in milliseconds
-  latestTime: string; // latest update time in human readable format
-  change: number; // Refers to the change in price between latestPrice and previousClose
-  changePercent: number; // Refers to the percent change in price between latestPrice and previousClose
-  open: number; // open stock price
-  close: number; // close stock price
-  high: number | null; // highest stock price during stock hours. null before 9:45 and weekends
-  low: number | null; // lowest stock price during stock hours. null before 9:45 and weekends
-  week52High: number; // highest stock price in the last 52 weeks
-  week52Low: number; // lowest stock price in the last 52 weeks
-  marketCap: number; // is calculated in real time using latestPrice
-  ytdChange: number; // Refers to the price change percentage from start of year to previous close
-  peRatio: number; // Refers to the price-to-earnings ratio for the company
-  // volume: number; // Total volume for the stock, but only updated after market open
-  avgTotalVolume: number;
-  previousClose: number; // Refers to the previous trading day closing price
-  extendedPrice: number; // Refers to the 15 minute delayed price outside normal market hours 0400 - 0930 ET and 1600 - 2000 ET
-  extendedChange: number; // Refers to the price change between extendedPrice and latestPrice
-  extendedChangePercent: number; // Refers to the price change percent between extendedPrice and latestPrice
-  previousVolume: number; // Refers to the previous trading day volume
+export namespace DataDomain {
+  /**
+   * Data structure returned when fetching stock quote.
+   *
+   * https://www.alphavantage.co/documentation/#latestprice
+   */
+  export interface StockQuote {
+    'Global Quote': {
+      '01. symbol': string;
+      '02. open': string;
+      '03. high': string;
+      '04. low': string;
+      '05. price': string;
+      '06. volume': string;
+      '07. latest trading day': string;
+      '08. previous close': string;
+      '09. change': string;
+      '10. change percent': string;
+    };
+  }
 
-  // openTime: number;
-  // closeTime: number;
-  // openSource: string;
-  // closeSource: string;
-  // highTime: number;
-  // highSource: string;
-  // lowTime: number;
-  // lowSource: string;
+  /**
+   * Data structure returned when fetching Stock Daily adjusted.
+   *
+   * https://www.alphavantage.co/documentation/#dailyadj
+   */
+  export interface StockDailyAdj {
+    'Meta Data': {
+      '1. Information': string;
+      '2. Symbol': string;
+      '3. Last Refreshed': string;
+      '4. Output Size': string;
+      '5. Time Zone': string;
+    };
+    'Time Series (Daily)': {
+      // key for date has the format of YYYY-MM-DD
+      [date: string]: {
+        '1. open': string;
+        '2. high': string;
+        '3. low': string;
+        '4. close': string;
+        '5. adjusted close': string;
+        '6. volume': string;
+        '7. dividend amount': string;
+        '8. split coefficient': string;
+      };
+    };
+  }
 
-  // delayedPrice: number;
-  // delayedPriceTime: number;
-  // oddLotDelayedPrice: number;
-  // oddLotDelayedPriceTime: number;
-  // extendedPriceTime: number;
-  // iexRealtimePrice: number;
-  // iexRealtimeSize: number;
-  // iexLastUpdated: number;
-  // iexMarketPercent: number;
-  // iexVolume: number;
-  // iexBidPrice: number;
-  // iexBidSize: number;
-  // iexAskPrice: number;
-  // iexAskSize: number;
-  // iexOpen: null;
-  // iexOpenTime: null;
-  // iexClose: number;
-  // iexCloseTime: number;
-  // lastTradeTime: number;
-  // isUSMarketOpen: Boolean;
-}
+  /**
+   * Data structure returned when search for a stock.
+   * This is only data for one stock search returned
+   *
+   * https://www.alphavantage.co/documentation/#symbolsearch
+   */
+  export interface StockSearchBase {
+    '1. symbol': string;
+    '2. name': string;
+    '3. type': string;
+    '4. region': string;
+    '5. marketOpen': string;
+    '6. marketClose': string;
+    '7. timezone': string;
+    '8. currency': string;
+    '9. matchScore': string;
+  }
 
-/**
- * Data format when fetching stock chart data.
- * check https://iexcloud.io/docs/api/#charts
- * check https://iexcloud.io/docs/api/#historical-prices
- * check https://iexcloud.io/docs/api/#intraday-prices
- */
-export interface StockChart {
-  date: string; // Formatted as YYYY-MM-DD
-  open: number; // Adjusted data for historical dates. Split adjusted only
-  close: number; // Adjusted data for historical dates. Split adjusted only
-  high: number; // Adjusted data for historical dates. Split adjusted only
-  low: number; // Adjusted data for historical dates. Split adjusted only
-  volume: number; // Adjusted data for historical dates. Split adjusted only
-  // currency: string;
-  change: number; // Change from previous trading day
-  changePercent: number; // Change percent from previous trading day
-  label: string; // A human readable format of the date depending on the range
-  changeOverTime: number; // Percent change of each interval relative to first value. Useful for comparing multiple stocks
-  // uClose: number; // Unadjusted data for historical dates
-  // uOpen: number; // Unadjusted data for historical dates
-  // uHigh: number; // Unadjusted data for historical dates
-  // uLow: number; // Unadjusted data for historical dates
-  // uVolume: number; // Unadjusted data for historical dates
-}
-
-/**
- * Data format when fetching stock quote data for multiple stock symbols in a single batch.
- */
-export interface StockQuoteBatch {
-  [symbol: string]: {
-    quote: StockQuote;
-  };
-}
-
-/**
- * Data format when fetching stock chart data for multiple stock symbols in a single batch,
- */
-export interface StockChartBatch {
-  [symbol: string]: {
-    chart: StockChart[];
-  };
-}
-
-/**
- * Data format when fetching stock quote and chart data for multiple stock symbols in a single batch.
- */
-export interface StockQuoteChartBatch {
-  [symbol: string]: {
-    quote: StockQuote;
-    chart: StockChart[];
-  };
-}
+  /**
+   * Data structure returned when fetching Stock search.
+   *
+   * https://www.alphavantage.co/documentation/#symbolsearch
+   */
+  export interface StockSearch {
+    bestMatches: StockSearchBase[];
+  }
+} // END namespace DataDomain
 
 /**
  * A union of Stocks data domain types
- * Check {@link StockQuote}
- * Check {@link StockChart}
- * Check {@link StockQuoteBatch}
- * Check {@link StockChartBatch}
- * Check {@link StockQuoteChartBatch}
  */
 export type StocksDataDomain =
-  | StockQuote
-  | StockChart
-  | StockQuoteBatch
-  | StockChartBatch
-  | StockQuoteChartBatch;
+  | DataDomain.StockQuote
+  | DataDomain.StockDailyAdj
+  | DataDomain.StockSearch;
 
 // ---------------------------------------------------------------------------------------------- //
 /*
@@ -153,31 +110,56 @@ export type StocksDataDomain =
 
 */
 
-export interface StockQuoteData {
-  fetching: boolean;
-  data?: StockQuote;
-  error?: Error;
-}
+/**
+ * Data structures used in Stocks Reducer
+ */
+export namespace Reducer {
+  /**
+   * Data structure for Stock quote used in Stock Reducer
+   */
+  export interface StockQuoteData {
+    fetching: boolean;
+    data?: DataDomain.StockQuote;
+    error?: Error;
+  }
 
-export interface StockChartData {
-  fetching: boolean;
-  data?: StockChart[];
-  error?: Error;
-}
+  /**
+   * Data structure for Stock Daily Adjusted used in Stock Reducer
+   */
+  export interface StockDailyAdjData {
+    fetching: boolean;
+    data?: DataDomain.StockDailyAdj;
+    error?: Error;
+  }
 
-export interface StockData {
-  quote: StockQuoteData;
-  chart?: StockChartData;
+  /**
+   * A data structure wrapper for one Stock
+   */
+  export interface StockData {
+    quote: StockQuoteData;
+    dailyAdj?: StockDailyAdjData;
+    searchMeta?: DataDomain.StockSearchBase;
+  }
+
+  /**
+   * Stocks reducer state
+   */
+  export interface ReducerState {
+    symbols: {
+      [symbol: string]: StockData;
+    };
+    search?: DataDomain.StockSearch;
+  }
 }
 
 /**
- * Stocks reducer state
+ * A union of Stocks Reducer types
  */
-export interface StocksReducerState {
-  [symbol: string]: StockData;
-}
-
-export type StocksReducerTypes = StockQuoteData | StockChartData | StockData | StocksReducerState;
+export type StocksReducerTypes =
+  | Reducer.StockQuoteData
+  | Reducer.StockDailyAdjData
+  | Reducer.StockData
+  | Reducer.ReducerState;
 
 // ---------------------------------------------------------------------------------------------- //
 /*
@@ -199,14 +181,18 @@ export enum ActionTypes {
   FETCH_STOCK_QUOTE_FULFILLED = 'STOCKS/FETCH_STOCK_QUOTE_FULFILLED',
   FETCH_STOCK_QUOTE_REJECTED = 'STOCKS/FETCH_STOCK_QUOTE_REJECTED',
 
-  FETCH_STOCK_CHART = 'STOCKS/FETCH_STOCK_CHART',
-  FETCH_STOCK_CHART_PENDING = 'STOCKS/FETCH_STOCK_CHART_PENDING',
-  FETCH_STOCK_CHART_FULFILLED = 'STOCKS/FETCH_STOCK_CHART_FULFILLED',
-  FETCH_STOCK_CHART_REJECTED = 'STOCKS/FETCH_STOCK_CHART_REJECTED',
+  FETCH_STOCK_DAILY_ADJUSTED = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED',
+  FETCH_STOCK_DAILY_ADJUSTED_PENDING = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED_PENDING',
+  FETCH_STOCK_DAILY_ADJUSTED_FULFILLED = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED_FULFILLED',
+  FETCH_STOCK_DAILY_ADJUSTED_REJECTED = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED_REJECTED',
 
-  FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
-  FETCH_STOCK_CHART_BATCH = 'STOCKS/FETCH_STOCK_CHART_BATCH',
-  FETCH_STOCK_QUOTE_CHART_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_CHART_BATCH',
+  SEARCH_KEYWORD = 'STOCKS/SEARCH_KEYWORD',
+  SEARCH_KEYWORD_PENDING = 'STOCKS/SEARCH_KEYWORD_PENDING',
+  SEARCH_KEYWORD_FULFILLED = 'STOCKS/SEARCH_KEYWORD_FULFILLED',
+  SEARCH_KEYWORD_REJECTED = 'STOCKS/SEARCH_KEYWORD_REJECTED',
+
+  // FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
+  // FETCH_STOCK_DAILY_ADJUSTED_BATCH = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED_BATCH',
 }
 
 // ---------------------------------------------------------------------------------------------- //
@@ -229,156 +215,166 @@ export enum ActionTypes {
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Fetch Stock Quote action.
+ * All Actions interfaces regarding Stocks
  */
-export interface FetchStockQuoteAction extends Action<ActionTypes.FETCH_STOCK_QUOTE> {
-  type: ActionTypes.FETCH_STOCK_QUOTE;
-  readonly stockSymbol: string; // stock symbol
-}
+export namespace Actions {
+  /**
+   * All action interfaces for Stock Quote
+   *
+   * https://www.alphavantage.co/documentation/#latestprice
+   */
+  export namespace Quote {
+    /**
+     * Fetch Stock Quote action.
+     * Used for initializing for fetching the data.
+     */
+    export interface FetchAction extends Action<ActionTypes.FETCH_STOCK_QUOTE> {
+      type: ActionTypes.FETCH_STOCK_QUOTE;
+      readonly stockSymbol: string; // stock symbol
+    }
+
+    /**
+     * Fetch Stock Quote pending action
+     */
+    export interface FetchPendingAction extends Action<ActionTypes.FETCH_STOCK_QUOTE_PENDING> {
+      type: ActionTypes.FETCH_STOCK_QUOTE_PENDING;
+      readonly stockSymbol: string;
+    }
+
+    /**
+     * Fetch Stock Quote fulfilled action
+     */
+    export interface FetchFulfilledAction extends Action<ActionTypes.FETCH_STOCK_QUOTE_FULFILLED> {
+      type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED;
+      readonly stockSymbol: string;
+      readonly payload: DataDomain.StockQuote;
+    }
+
+    /**
+     * Fetch Stock Quote rejected action
+     */
+    export interface FetchRejectedAction extends Action<ActionTypes.FETCH_STOCK_QUOTE_REJECTED> {
+      type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED;
+      readonly stockSymbol: string;
+      readonly error: Error;
+    }
+  } // END namespace Quote
+
+  /**
+   * All action interfaces for Stocks Daily Adjusted
+   *
+   * https://www.alphavantage.co/documentation/#dailyadj
+   */
+  export namespace DailyAdjusted {
+    /**
+     * Fetch Stock Daily Adjusted action
+     * Used for initializing for fetching the data.
+     */
+    export interface FetchAction extends Action<ActionTypes.FETCH_STOCK_DAILY_ADJUSTED> {
+      type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED;
+      readonly stockSymbol: string;
+      readonly outputsize: 'compact' | 'full';
+    }
+
+    /**
+     * Fetch Stock Daily Adjusted pending action
+     */
+    export interface FetchPendingAction
+      extends Action<ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING> {
+      type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING;
+      readonly stockSymbol: string;
+    }
+
+    /**
+     * Fetch Stock Daily Adjusted fulfilled action
+     */
+    export interface FetchFulfilledAction
+      extends Action<ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED> {
+      type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED;
+      readonly stockSymbol: string;
+      readonly payload: DataDomain.StockDailyAdj;
+    }
+
+    /**
+     * Fetch Stock Daily Adjusted rejected action
+     */
+    export interface FetchRejectedAction
+      extends Action<ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED> {
+      type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED;
+      readonly stockSymbol: string;
+      readonly error: Error;
+    }
+  } // END namespace DailyAdjusted
+
+  /**
+   * All action interfaces for Stock search
+   *
+   * https://www.alphavantage.co/documentation/#symbolsearch
+   */
+  export namespace Search {
+    /**
+     * Fetch stock search action
+     * Used for initializing for fetching the data.
+     */
+    export interface FetchAction extends Action<ActionTypes.SEARCH_KEYWORD> {
+      type: ActionTypes.SEARCH_KEYWORD;
+      readonly keyword: string;
+    }
+
+    /**
+     * Fetch stock search pending action
+     */
+    export interface FetchPendingAction extends Action<ActionTypes.SEARCH_KEYWORD_PENDING> {
+      type: ActionTypes.SEARCH_KEYWORD_PENDING;
+      readonly keyword: string;
+    }
+
+    /**
+     * Fetch stock search fulfilled action
+     */
+    export interface FetchFulfilledAction extends Action<ActionTypes.SEARCH_KEYWORD_FULFILLED> {
+      type: ActionTypes.SEARCH_KEYWORD_FULFILLED;
+      readonly keyword: string;
+      readonly payload: DataDomain.StockSearch;
+    }
+
+    /**
+     * Fetch stock searched rejected action
+     */
+    export interface FetchRejectedAction extends Action<ActionTypes.SEARCH_KEYWORD_REJECTED> {
+      type: ActionTypes.SEARCH_KEYWORD_REJECTED;
+      readonly keyword: string;
+      readonly error: Error;
+    }
+  } // END namespace Search
+} // END namespace Action
 
 /**
- * Fetch Stock Quote pending action
- */
-export interface FetchStockQuotePendingAction
-  extends Action<ActionTypes.FETCH_STOCK_QUOTE_PENDING> {
-  type: ActionTypes.FETCH_STOCK_QUOTE_PENDING;
-  readonly stockSymbol: string;
-}
-
-/**
- * Fetch Stock Quote fulfilled action
- */
-export interface FetchStockQuoteFulfilledAction
-  extends Action<ActionTypes.FETCH_STOCK_QUOTE_FULFILLED> {
-  type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED;
-  readonly stockSymbol: string;
-  readonly payload: { data: StockQuote };
-}
-
-/**
- * Fetch Stock Quote rejected action
- */
-export interface FetchStockQuoteRejectedAction
-  extends Action<ActionTypes.FETCH_STOCK_QUOTE_REJECTED> {
-  type: ActionTypes.FETCH_STOCK_QUOTE_REJECTED;
-  readonly stockSymbol: string;
-  readonly error: Error;
-}
-
-/**
- * Union of action creators for Stock Quote
- * Check {@link FetchStockQuoteAction}
- * Check {@link FetchStockQuotePendingAction}
- * Check {@link FetchStockQuoteFulfilledAction}
- * Check {@link FetchStockQuoteRejectedAction}
+ * Union of action interfaces for Stock Quote
  */
 export type StockQuoteActions =
-  | FetchStockQuoteAction
-  | FetchStockQuotePendingAction
-  | FetchStockQuoteFulfilledAction
-  | FetchStockQuoteRejectedAction;
-
-// ////////////////////////////////////////////////////////////////////////////////////////////// //
-// ////////////////////////////////////////////////////////////////////////////////////////////// //
-//                                                                                                //
-//                                      STOCK CHART ACTIONS                                       //
-//                                                                                                //
-// ////////////////////////////////////////////////////////////////////////////////////////////// //
-// ////////////////////////////////////////////////////////////////////////////////////////////// //
+  | Actions.Quote.FetchAction
+  | Actions.Quote.FetchPendingAction
+  | Actions.Quote.FetchFulfilledAction
+  | Actions.Quote.FetchRejectedAction;
 
 /**
- * Fetch Stock Chart action
+ * Union of action interfaces for Stock Daily Adjusted
  */
-export interface FetchStockChartAction extends Action<ActionTypes.FETCH_STOCK_CHART> {
-  type: ActionTypes.FETCH_STOCK_CHART;
-  readonly stockSymbol: string;
-  readonly range: chartRange;
-  readonly sort: 'asc' | 'desc';
-}
+export type StockDailyAdjustedActions =
+  | Actions.DailyAdjusted.FetchAction
+  | Actions.DailyAdjusted.FetchPendingAction
+  | Actions.DailyAdjusted.FetchFulfilledAction
+  | Actions.DailyAdjusted.FetchRejectedAction;
 
 /**
- * Fetch Stock Chart pending action
+ * Union of action interfaces for Stock search
  */
-export interface FetchStockChartPendingAction
-  extends Action<ActionTypes.FETCH_STOCK_CHART_PENDING> {
-  type: ActionTypes.FETCH_STOCK_CHART_PENDING;
-  readonly stockSymbol: string;
-}
-
-/**
- * Fetch Stock Chart fulfilled action
- */
-export interface FetchStockChartFulfilledAction
-  extends Action<ActionTypes.FETCH_STOCK_CHART_FULFILLED> {
-  type: ActionTypes.FETCH_STOCK_CHART_FULFILLED;
-  readonly stockSymbol: string;
-  readonly payload: { data: StockChart[] };
-}
-
-/**
- * Fetch Stock Chart rejected action
- */
-export interface FetchStockChartRejectedAction
-  extends Action<ActionTypes.FETCH_STOCK_CHART_REJECTED> {
-  type: ActionTypes.FETCH_STOCK_CHART_REJECTED;
-  readonly stockSymbol: string;
-  readonly error: Error;
-}
-
-/**
- * Union of action creators for Stock Chart
- * Check {@link FetchStockChartAC}
- * Check {@link FetchStockChartPendingAC}
- * Check {@link FetchStockChartFulfilledAC}
- * Check {@link FetchStockChartRejectedAC}
- */
-export type StockChartActions =
-  | FetchStockChartAction
-  | FetchStockChartPendingAction
-  | FetchStockChartFulfilledAction
-  | FetchStockChartRejectedAction;
-
-// ////////////////////////////////////////////////////////////////////////////////////////////// //
-// ////////////////////////////////////////////////////////////////////////////////////////////// //
-//                                                                                                //
-//                                      STOCK BATCH ACTIONS                                       //
-//                                                                                                //
-// ////////////////////////////////////////////////////////////////////////////////////////////// //
-// ////////////////////////////////////////////////////////////////////////////////////////////// //
-
-/**
- * Fetch Stock quote batch action
- */
-export interface FetchStockQuoteBatchAction extends Action<ActionTypes.FETCH_STOCK_QUOTE_BATCH> {
-  type: ActionTypes.FETCH_STOCK_QUOTE_BATCH;
-  readonly stockSymbols: string[];
-}
-
-/**
- * Fetch Stock chart batch action
- */
-export interface FetchStockChartBatchAction extends Action<ActionTypes.FETCH_STOCK_CHART_BATCH> {
-  type: ActionTypes.FETCH_STOCK_CHART_BATCH;
-  readonly stockSymbols: string[];
-  readonly range: chartRange;
-  readonly sort: 'asc' | 'desc';
-}
-
-/**
- * Fetch Stock quote and chart batch action
- */
-export interface FetchStockQuoteChartBatchAction
-  extends Action<ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH> {
-  type: ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH;
-  readonly stockSymbols: string[];
-  readonly range: chartRange;
-  readonly sort: 'asc' | 'desc';
-}
-
-export type StockBatchActions =
-  | FetchStockQuoteBatchAction
-  | FetchStockChartBatchAction
-  | FetchStockQuoteChartBatchAction;
+export type StockSearchActions =
+  | Actions.Search.FetchAction
+  | Actions.Search.FetchPendingAction
+  | Actions.Search.FetchFulfilledAction
+  | Actions.Search.FetchRejectedAction;
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
@@ -389,9 +385,6 @@ export type StockBatchActions =
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Union of action creators for StockQuoteAction and StockChartAction
- *
- * Check {@link StockQuoteAction}
- * Check {@link StockChartAction}
+ * Union of action for StockQuoteAction, StockDailyAdjustedAction and StockSearchActions
  */
-export type StocksActions = StockQuoteActions | StockChartActions | StockBatchActions;
+export type StocksActions = StockQuoteActions | StockDailyAdjustedActions | StockSearchActions;

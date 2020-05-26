@@ -1,28 +1,34 @@
 import { Reducer } from 'redux';
 
-import { ActionTypes, FavoritesReducerState, FavoritesActions } from 'src/redux/Favorites/Types';
+import {
+  ActionTypes,
+  Reducer as FavoritesReducer,
+  FavoritesActions,
+} from 'src/redux/Favorites/Types';
 
-const initialState: FavoritesReducerState = {
+const initialState: FavoritesReducer.FavoritesReducerState = {
   symbols: [],
 };
 
-const reducer: Reducer<FavoritesReducerState, FavoritesActions> = (
+const reducer: Reducer<FavoritesReducer.FavoritesReducerState, FavoritesActions> = (
   state = initialState,
   action,
-): FavoritesReducerState => {
+): FavoritesReducer.FavoritesReducerState => {
   switch (action.type) {
     case ActionTypes.ADD_FAVORITE_STOCK: {
-      const set = new Set([...state.symbols]);
-      set.add(action.stockSymbol);
+      // create a map. 'key' is the stock symbol and the 'value' is the entire FavoriteStockData object
+      const map = new Map(state.symbols.map((obj) => [obj['1. symbol'], obj]));
+      map.set(action.stockMetadata['1. symbol'], action.stockMetadata);
       return {
-        symbols: [...set],
+        symbols: [...map.values()],
       };
     }
     case ActionTypes.REMOVE_FAVORITE_STOCK: {
-      const set = new Set([...state.symbols]);
-      set.delete(action.stockSymbol);
+      // create a map. 'key' is the stock symbol and the 'value' is the entire FavoriteStockData object
+      const map = new Map(state.symbols.map((obj) => [obj['1. symbol'], obj]));
+      map.delete(action.stockSymbol);
       return {
-        symbols: [...set],
+        symbols: [...map.values()],
       };
     }
     case ActionTypes.CLEAR_FAVORITE_STOCKS: {

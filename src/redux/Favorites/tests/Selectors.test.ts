@@ -1,11 +1,41 @@
 import * as selectors from 'src/redux/Favorites/Selectors';
 import { AppState } from 'src/redux/index.reducers';
+import { Reducer } from 'src/redux/Favorites/Types';
+
+const stockSymbol1 = 'IBM';
+const stockSymbol2 = 'AAPL';
+const stockSymbol3 = 'SHOP';
+const stockMetadata1: Reducer.FavoriteStockData = {
+  '1. symbol': 'IBM',
+  '2. name': 'International Business Machines Corporation',
+  '4. region': 'United States',
+  '7. timezone': 'UTC-05',
+  '8. currency': 'USD',
+};
+
+const stockMetadata2: Reducer.FavoriteStockData = {
+  '1. symbol': 'AAPL',
+  '2. name': 'Apple Inc.',
+  '4. region': 'United States',
+  '7. timezone': 'UTC-05',
+  '8. currency': 'USD',
+};
+
+const stockMetadata3: Reducer.FavoriteStockData = {
+  '1. symbol': 'SHOP',
+  '2. name': 'Shopify Inc.',
+  '4. region': 'United States',
+  '7. timezone': 'UTC-05',
+  '8. currency': 'USD',
+};
 
 describe('Favorites selectors', () => {
   describe('Empty store', () => {
     it('Selects Favorites with empty reducer', () => {
       const store: AppState = {
-        Stocks: {},
+        Stocks: {
+          symbols: {},
+        },
         Favorites: {
           symbols: [],
         },
@@ -19,12 +49,14 @@ describe('Favorites selectors', () => {
 
     it('Selects Favorite symbols with empty store', () => {
       const store: AppState = {
-        Stocks: {},
+        Stocks: {
+          symbols: {},
+        },
         Favorites: {
           symbols: [],
         },
       };
-      const expected: string[] = [];
+      const expected: Reducer.FavoriteStockData[] = [];
 
       expect(selectors.selectFavoriteSymbols(store)).toEqual(expected);
     });
@@ -33,45 +65,34 @@ describe('Favorites selectors', () => {
   describe('Stored favorite stock symbols', () => {
     it('Selects Favorite reducer state', () => {
       const store: AppState = {
-        Stocks: {},
+        Stocks: {
+          symbols: {},
+        },
         Favorites: {
-          symbols: ['AAPL', 'AMZN', 'SHOP'],
+          symbols: [stockMetadata1, stockMetadata2, stockMetadata3],
         },
       };
       const expected = {
-        symbols: ['AAPL', 'AMZN', 'SHOP'],
+        symbols: [stockMetadata1, stockMetadata2, stockMetadata3],
       };
 
       const actual = selectors.selectFavorites(store);
       expect(actual).toEqual(expected);
-      expect(actual).toHaveProperty('symbols');
-      expect(actual.symbols).toHaveLength(3);
-      expect(typeof actual.symbols[0]).toBe('string');
-      expect(typeof actual.symbols[1]).toBe('string');
-      expect(typeof actual.symbols[2]).toBe('string');
-      expect(actual.symbols[0]).toBe('AAPL');
-      expect(actual.symbols[1]).toBe('AMZN');
-      expect(actual.symbols[2]).toBe('SHOP');
     });
 
     it('Selects Favorite symbols', () => {
       const store: AppState = {
-        Stocks: {},
+        Stocks: {
+          symbols: {},
+        },
         Favorites: {
-          symbols: ['AAPL', 'AMZN', 'SHOP'],
+          symbols: [stockMetadata1, stockMetadata2, stockMetadata3],
         },
       };
-      const expected = ['AAPL', 'AMZN', 'SHOP'];
+      const expected = [stockMetadata1, stockMetadata2, stockMetadata3];
 
       const actual = selectors.selectFavoriteSymbols(store);
       expect(actual).toEqual(expected);
-      expect(actual).toHaveLength(3);
-      expect(typeof actual[0]).toBe('string');
-      expect(typeof actual[1]).toBe('string');
-      expect(typeof actual[2]).toBe('string');
-      expect(actual[0]).toBe('AAPL');
-      expect(actual[1]).toBe('AMZN');
-      expect(actual[2]).toBe('SHOP');
     });
   });
 });
