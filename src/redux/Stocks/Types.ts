@@ -148,7 +148,8 @@ export namespace Reducer {
     symbols: {
       [symbol: string]: StockData;
     };
-    search?: DataDomain.StockSearch;
+    searchResults?: DataDomain.StockSearch;
+    searchKeyword?: string;
   }
 }
 
@@ -190,6 +191,9 @@ export enum ActionTypes {
   SEARCH_KEYWORD_PENDING = 'STOCKS/SEARCH_KEYWORD_PENDING',
   SEARCH_KEYWORD_FULFILLED = 'STOCKS/SEARCH_KEYWORD_FULFILLED',
   SEARCH_KEYWORD_REJECTED = 'STOCKS/SEARCH_KEYWORD_REJECTED',
+
+  SET_SEARCH_KEYWORD = 'STOCKS/SET_SEARCH_KEYWORD',
+  CLEAR_SEARCH_KEYWORD = 'STOCKS/CLEAR_SEARCH_KEYWORD',
 
   // FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
   // FETCH_STOCK_DAILY_ADJUSTED_BATCH = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED_BATCH',
@@ -346,6 +350,15 @@ export namespace Actions {
       readonly keyword: string;
       readonly error: Error;
     }
+
+    export interface SetSearchKeywordAction extends Action<ActionTypes.SET_SEARCH_KEYWORD> {
+      type: ActionTypes.SET_SEARCH_KEYWORD;
+      readonly keyword: string;
+    }
+
+    export interface ClearSearchKeywordAction extends Action<ActionTypes.CLEAR_SEARCH_KEYWORD> {
+      type: ActionTypes.CLEAR_SEARCH_KEYWORD;
+    }
   } // END namespace Search
 } // END namespace Action
 
@@ -374,7 +387,9 @@ export type StockSearchActions =
   | Actions.Search.FetchAction
   | Actions.Search.FetchPendingAction
   | Actions.Search.FetchFulfilledAction
-  | Actions.Search.FetchRejectedAction;
+  | Actions.Search.FetchRejectedAction
+  | Actions.Search.SetSearchKeywordAction
+  | Actions.Search.ClearSearchKeywordAction;
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
