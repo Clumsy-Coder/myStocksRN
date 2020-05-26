@@ -63,23 +63,25 @@ export namespace DataDomain {
     };
   }
 
+  export interface StockSearchBase {
+    '1. symbol': string;
+    '2. name': string;
+    '3. type': string;
+    '4. region': string;
+    '5. marketOpen': string;
+    '6. marketClose': string;
+    '7. timezone': string;
+    '8. currency': string;
+    '9. matchScore': string;
+  }
+
   /**
    * Data structure returned when fetching Stock search.
    *
    * https://www.alphavantage.co/documentation/#symbolsearch
    */
   export interface StockSearch {
-    bestMatches: {
-      '1. symbol': string;
-      '2. name': string;
-      '3. type': string;
-      '4. region': string;
-      '5. marketOpen': string;
-      '6. marketClose': string;
-      '7. timezone': string;
-      '8. currency': string;
-      '9. matchScore': string;
-    }[];
+    bestMatches: StockSearchBase[];
   }
 } // END namespace DataDomain
 
@@ -121,13 +123,15 @@ export namespace Reducer {
   export interface StockData {
     quote: StockQuoteData;
     dailyAdj?: StockDailyAdjData;
+    searchMeta?: DataDomain.StockSearchBase;
   }
 
   /**
    * Stocks reducer state
    */
   export interface ReducerState {
-    [symbol: string]: StockData;
+      [symbol: string]: StockData;
+    search?: DataDomain.StockSearch;
   }
 }
 
