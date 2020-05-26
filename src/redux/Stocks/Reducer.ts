@@ -4,6 +4,7 @@ import { ActionTypes, Reducer as StockReducer, StocksActions } from 'src/redux/S
 
 const initialState: StockReducer.ReducerState = {
   symbols: {},
+  searchKeyword: '',
 };
 
 const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
@@ -105,6 +106,18 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
             },
           },
         },
+      };
+    }
+    case ActionTypes.SET_SEARCH_KEYWORD: {
+      return {
+        ...state,
+        searchKeyword: action.keyword,
+      };
+    }
+    case ActionTypes.CLEAR_SEARCH_KEYWORD: {
+      return {
+        ...state,
+        searchKeyword: '',
       };
     }
 
