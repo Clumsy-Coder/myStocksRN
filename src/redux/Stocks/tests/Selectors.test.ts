@@ -1222,4 +1222,54 @@ describe('Stocks selectors', () => {
       });
     });
   });
+
+  describe('Stock search selectors', () => {
+    describe('selectSearchKeyword', () => {
+      it('[Empty store]: Should return empty strings', () => {
+        const rootState: AppState = {
+          Stocks: {
+            symbols: {},
+            searchKeyword: '',
+          },
+          Favorites: {
+            symbols: [],
+          },
+        };
+
+        const expected = '';
+
+        expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return the proper value', () => {
+        const rootState: AppState = {
+          Stocks: {
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
+              },
+            },
+            searchKeyword: stockSymbol1,
+          },
+          Favorites: {
+            symbols: [],
+          },
+        };
+
+        const expected = stockSymbol1;
+
+        expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
+      });
+    });
+
+    describe.skip('selectSearchResults', () => {
+      it.skip('[Empty store]: Should return empty object', () => {});
+
+      it.skip('[Non-empty store]: Should return StockSearch data', () => {});
+    });
+  });
 });
