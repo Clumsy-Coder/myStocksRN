@@ -172,16 +172,20 @@ describe('Stocks reducer', () => {
   describe('Stocks quote', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_PENDING}`, () => {
       it('Should handle one Stock quote', () => {
-        const state: Reducer.ReducerState = {};
+        const state: Reducer.ReducerState = {
+          symbols: {},
+        };
         const action: Actions.Quote.FetchPendingAction = {
           type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
           stockSymbol: stockSymbol1,
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
@@ -189,10 +193,12 @@ describe('Stocks reducer', () => {
       });
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
@@ -201,34 +207,39 @@ describe('Stocks reducer', () => {
           stockSymbol: stockSymbol2,
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
+
         expect(reducer(state, action)).toEqual(expected);
       });
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: false,
-              error: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+              },
             },
           },
         };
@@ -237,22 +248,24 @@ describe('Stocks reducer', () => {
           stockSymbol: stockSymbol3,
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: false,
-              error: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+              },
             },
-          },
-          [stockSymbol3]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+            [stockSymbol3]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
@@ -264,19 +277,23 @@ describe('Stocks reducer', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_FULFILLED}`, () => {
       it('Should handle one Stock quote', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
           },
         };
@@ -291,33 +308,37 @@ describe('Stocks reducer', () => {
 
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData2,
+            [stockSymbol2]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData2,
+              },
             },
           },
         };
@@ -333,45 +354,49 @@ describe('Stocks reducer', () => {
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
-          },
-          [stockSymbol3]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+            [stockSymbol3]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
-          },
-          [stockSymbol3]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData3,
+            [stockSymbol3]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData3,
+              },
             },
           },
         };
@@ -389,18 +414,22 @@ describe('Stocks reducer', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_REJECTED}`, () => {
       it('Should handle one Stock quote', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: new Error(''),
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: new Error(''),
+              },
             },
           },
         };
@@ -415,32 +444,36 @@ describe('Stocks reducer', () => {
 
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+              },
             },
           },
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: false,
-              error: new Error(''),
+            [stockSymbol2]: {
+              quote: {
+                fetching: false,
+                error: new Error(''),
+              },
             },
           },
         };
@@ -455,46 +488,50 @@ describe('Stocks reducer', () => {
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData2,
+            [stockSymbol2]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData2,
+              },
             },
-          },
-          [stockSymbol3]: {
-            quote: {
-              fetching: false,
-              error: new Error(''),
+            [stockSymbol3]: {
+              quote: {
+                fetching: false,
+                error: new Error(''),
+              },
             },
           },
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData1,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: false,
-              error: undefined,
-              data: stockQuoteData2,
+            [stockSymbol2]: {
+              quote: {
+                fetching: false,
+                error: undefined,
+                data: stockQuoteData2,
+              },
             },
-          },
-          [stockSymbol3]: {
-            quote: {
-              fetching: false,
-              error: new Error(''),
+            [stockSymbol3]: {
+              quote: {
+                fetching: false,
+                error: new Error(''),
+              },
             },
           },
         };
@@ -513,11 +550,13 @@ describe('Stocks reducer', () => {
     describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
           },
         };
@@ -526,16 +565,18 @@ describe('Stocks reducer', () => {
           stockSymbol: stockSymbol1,
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            dailyAdj: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
+              dailyAdj: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
           },
         };
@@ -545,18 +586,20 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
           },
         };
@@ -565,23 +608,25 @@ describe('Stocks reducer', () => {
           stockSymbol: stockSymbol2,
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            dailyAdj: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
+              dailyAdj: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
           },
         };
@@ -593,11 +638,13 @@ describe('Stocks reducer', () => {
     describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
           },
         };
@@ -607,16 +654,18 @@ describe('Stocks reducer', () => {
           payload: stockDailyAdjData1,
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            dailyAdj: {
-              fetching: false,
-              error: undefined,
-              data: stockDailyAdjData1,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
+              dailyAdj: {
+                fetching: false,
+                error: undefined,
+                data: stockDailyAdjData1,
+              },
             },
           },
         };
@@ -626,23 +675,25 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            dailyAdj: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
+              dailyAdj: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
           },
         };
@@ -652,23 +703,25 @@ describe('Stocks reducer', () => {
           payload: stockDailyAdjData2,
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            dailyAdj: {
-              fetching: false,
-              error: undefined,
-              data: stockDailyAdjData2,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
+              dailyAdj: {
+                fetching: false,
+                error: undefined,
+                data: stockDailyAdjData2,
+              },
             },
           },
         };
@@ -680,11 +733,13 @@ describe('Stocks reducer', () => {
     describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
           },
         };
@@ -694,16 +749,18 @@ describe('Stocks reducer', () => {
           error: new Error(''),
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            dailyAdj: {
-              fetching: false,
-              error: new Error(''),
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
+              dailyAdj: {
+                fetching: false,
+                error: new Error(''),
+                data: undefined,
+              },
             },
           },
         };
@@ -713,23 +770,25 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            dailyAdj: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
+              dailyAdj: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
           },
         };
@@ -739,23 +798,25 @@ describe('Stocks reducer', () => {
           error: new Error(''),
         };
         const expected: Reducer.ReducerState = {
-          [stockSymbol1]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
             },
-          },
-          [stockSymbol2]: {
-            quote: {
-              fetching: true,
-              error: undefined,
-              data: undefined,
-            },
-            dailyAdj: {
-              fetching: false,
-              error: new Error(''),
-              data: undefined,
+            [stockSymbol2]: {
+              quote: {
+                fetching: true,
+                error: undefined,
+                data: undefined,
+              },
+              dailyAdj: {
+                fetching: false,
+                error: new Error(''),
+                data: undefined,
+              },
             },
           },
         };

@@ -173,12 +173,16 @@ describe('Stocks selectors', () => {
   describe('Empty store', () => {
     it('Handle with empty store', () => {
       const store: AppState = {
-        Stocks: {},
+        Stocks: {
+          symbols: {},
+        },
         Favorites: {
           symbols: [],
         },
       };
-      const expected = {};
+      const expected = {
+        symbols: {},
+      };
 
       expect(selectors.selectAllStocks(store)).toEqual(expected);
     });
@@ -189,11 +193,13 @@ describe('Stocks selectors', () => {
       it('Select individual Stock with one StockData in store', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
             },
           },
@@ -216,18 +222,20 @@ describe('Stocks selectors', () => {
       it('Select individual Stock with two StockData in store', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
-            },
-            [stockSymbol2]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData2,
+              [stockSymbol2]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData2,
+                },
               },
             },
           },
@@ -257,25 +265,27 @@ describe('Stocks selectors', () => {
       it('Select individual Stock with three StockData in store', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
-            },
-            [stockSymbol2]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData2,
+              [stockSymbol2]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData2,
+                },
               },
-            },
-            [stockSymbol3]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData3,
+              [stockSymbol3]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData3,
+                },
               },
             },
           },
@@ -315,11 +325,13 @@ describe('Stocks selectors', () => {
       it('Select individual Stock quote with one StockData in store', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
             },
           },
@@ -340,18 +352,20 @@ describe('Stocks selectors', () => {
       it('Select individual Stock quote with two StockData in store', () => {
         const stockState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
-            },
-            [stockSymbol2]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData2,
+              [stockSymbol2]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData2,
+                },
               },
             },
           },
@@ -380,25 +394,27 @@ describe('Stocks selectors', () => {
       it('Select individual Stock quote with three StockData in store', () => {
         const stockState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
-            },
-            [stockSymbol2]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData2,
+              [stockSymbol2]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData2,
+                },
               },
-            },
-            [stockSymbol3]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData3,
+              [stockSymbol3]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData3,
+                },
               },
             },
           },
@@ -437,11 +453,13 @@ describe('Stocks selectors', () => {
       it("Select stock quote 'fetching' with one StockData in store", () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
             },
           },
@@ -458,18 +476,20 @@ describe('Stocks selectors', () => {
       it("Select stock quote 'fetching' with two StockData in store", () => {
         const stockState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
-            },
-            [stockSymbol2]: {
-              quote: {
-                fetching: true,
-                error: undefined,
-                data: undefined,
+              [stockSymbol2]: {
+                quote: {
+                  fetching: true,
+                  error: undefined,
+                  data: undefined,
+                },
               },
             },
           },
@@ -490,25 +510,27 @@ describe('Stocks selectors', () => {
       it("Select stock quote 'fetching' with three StockData in store", () => {
         const stockState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
-            },
-            [stockSymbol2]: {
-              quote: {
-                fetching: true,
-                error: undefined,
-                data: undefined,
+              [stockSymbol2]: {
+                quote: {
+                  fetching: true,
+                  error: undefined,
+                  data: undefined,
+                },
               },
-            },
-            [stockSymbol3]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData3,
+              [stockSymbol3]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData3,
+                },
               },
             },
           },
@@ -536,11 +558,13 @@ describe('Stocks selectors', () => {
         it("Select 'data' with one StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData1,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData1,
+                  },
                 },
               },
             },
@@ -559,18 +583,20 @@ describe('Stocks selectors', () => {
         it("Select 'data' with two StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData1,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData1,
+                  },
                 },
-              },
-              [stockSymbol2]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData2,
+                [stockSymbol2]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData2,
+                  },
                 },
               },
             },
@@ -592,25 +618,27 @@ describe('Stocks selectors', () => {
         it("Select 'data' with three StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData1,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData1,
+                  },
                 },
-              },
-              [stockSymbol2]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData2,
+                [stockSymbol2]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData2,
+                  },
                 },
-              },
-              [stockSymbol3]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData3,
+                [stockSymbol3]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData3,
+                  },
                 },
               },
             },
@@ -638,11 +666,13 @@ describe('Stocks selectors', () => {
         it("Select 'data' with one StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: true,
-                  error: undefined,
-                  data: undefined,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: true,
+                    error: undefined,
+                    data: undefined,
+                  },
                 },
               },
             },
@@ -661,18 +691,20 @@ describe('Stocks selectors', () => {
         it("Select 'data' with two StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: true,
-                  error: undefined,
-                  data: undefined,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: true,
+                    error: undefined,
+                    data: undefined,
+                  },
                 },
-              },
-              [stockSymbol2]: {
-                quote: {
-                  fetching: true,
-                  error: undefined,
-                  data: undefined,
+                [stockSymbol2]: {
+                  quote: {
+                    fetching: true,
+                    error: undefined,
+                    data: undefined,
+                  },
                 },
               },
             },
@@ -694,25 +726,27 @@ describe('Stocks selectors', () => {
         it("Select 'data' with three StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: true,
-                  error: undefined,
-                  data: undefined,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: true,
+                    error: undefined,
+                    data: undefined,
+                  },
                 },
-              },
-              [stockSymbol2]: {
-                quote: {
-                  fetching: true,
-                  error: undefined,
-                  data: undefined,
+                [stockSymbol2]: {
+                  quote: {
+                    fetching: true,
+                    error: undefined,
+                    data: undefined,
+                  },
                 },
-              },
-              [stockSymbol3]: {
-                quote: {
-                  fetching: true,
-                  error: undefined,
-                  data: undefined,
+                [stockSymbol3]: {
+                  quote: {
+                    fetching: true,
+                    error: undefined,
+                    data: undefined,
+                  },
                 },
               },
             },
@@ -742,11 +776,13 @@ describe('Stocks selectors', () => {
         it("Select 'error' with one StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: new Error(`error for ${stockSymbol1}`),
-                  data: undefined,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: new Error(`error for ${stockSymbol1}`),
+                    data: undefined,
+                  },
                 },
               },
             },
@@ -765,18 +801,20 @@ describe('Stocks selectors', () => {
         it("Select 'error' with two StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: new Error(`error for ${stockSymbol1}`),
-                  data: undefined,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: new Error(`error for ${stockSymbol1}`),
+                    data: undefined,
+                  },
                 },
-              },
-              [stockSymbol2]: {
-                quote: {
-                  fetching: false,
-                  error: new Error(`error for ${stockSymbol2}`),
-                  data: undefined,
+                [stockSymbol2]: {
+                  quote: {
+                    fetching: false,
+                    error: new Error(`error for ${stockSymbol2}`),
+                    data: undefined,
+                  },
                 },
               },
             },
@@ -798,25 +836,27 @@ describe('Stocks selectors', () => {
         it("Select 'error' with three StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: new Error(`error for ${stockSymbol1}`),
-                  data: undefined,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: new Error(`error for ${stockSymbol1}`),
+                    data: undefined,
+                  },
                 },
-              },
-              [stockSymbol2]: {
-                quote: {
-                  fetching: false,
-                  error: new Error(`error for ${stockSymbol2}`),
-                  data: undefined,
+                [stockSymbol2]: {
+                  quote: {
+                    fetching: false,
+                    error: new Error(`error for ${stockSymbol2}`),
+                    data: undefined,
+                  },
                 },
-              },
-              [stockSymbol3]: {
-                quote: {
-                  fetching: false,
-                  error: new Error(`error for ${stockSymbol3}`),
-                  data: undefined,
+                [stockSymbol3]: {
+                  quote: {
+                    fetching: false,
+                    error: new Error(`error for ${stockSymbol3}`),
+                    data: undefined,
+                  },
                 },
               },
             },
@@ -844,11 +884,13 @@ describe('Stocks selectors', () => {
         it("Select 'error' with one StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData1,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData1,
+                  },
                 },
               },
             },
@@ -867,18 +909,20 @@ describe('Stocks selectors', () => {
         it("Select 'error' with two StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData1,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData1,
+                  },
                 },
-              },
-              [stockSymbol2]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData2,
+                [stockSymbol2]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData2,
+                  },
                 },
               },
             },
@@ -900,25 +944,27 @@ describe('Stocks selectors', () => {
         it("Select 'error' with three StockData in store", () => {
           const rootState: AppState = {
             Stocks: {
-              [stockSymbol1]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData1,
+              symbols: {
+                [stockSymbol1]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData1,
+                  },
                 },
-              },
-              [stockSymbol2]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData2,
+                [stockSymbol2]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData2,
+                  },
                 },
-              },
-              [stockSymbol3]: {
-                quote: {
-                  fetching: false,
-                  error: undefined,
-                  data: stockQuoteData3,
+                [stockSymbol3]: {
+                  quote: {
+                    fetching: false,
+                    error: undefined,
+                    data: stockQuoteData3,
+                  },
                 },
               },
             },
@@ -949,11 +995,13 @@ describe('Stocks selectors', () => {
       it('[Empty store]: Should return empty StockDailyAdjData', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
             },
           },
@@ -972,16 +1020,18 @@ describe('Stocks selectors', () => {
       it('[Non-empty store]: Should return StockDailyAdjData', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
-              },
-              dailyAdj: {
-                fetching: true,
-                error: undefined,
-                data: undefined,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
+                dailyAdj: {
+                  fetching: true,
+                  error: undefined,
+                  data: undefined,
+                },
               },
             },
           },
@@ -1006,11 +1056,13 @@ describe('Stocks selectors', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
             },
           },
@@ -1028,16 +1080,18 @@ describe('Stocks selectors', () => {
       it('[Non-empty store]: Should return boolean', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
-              },
-              dailyAdj: {
-                fetching: true,
-                error: undefined,
-                data: undefined,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
+                dailyAdj: {
+                  fetching: true,
+                  error: undefined,
+                  data: undefined,
+                },
               },
             },
           },
@@ -1058,11 +1112,13 @@ describe('Stocks selectors', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
             },
           },
@@ -1081,16 +1137,18 @@ describe('Stocks selectors', () => {
       it('[Non-empty store]: Should return StockDailyAdj', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
-              },
-              dailyAdj: {
-                fetching: false,
-                error: undefined,
-                data: stockDailyAdjData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
+                dailyAdj: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockDailyAdjData1,
+                },
               },
             },
           },
@@ -1111,11 +1169,13 @@ describe('Stocks selectors', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
               },
             },
           },
@@ -1134,16 +1194,18 @@ describe('Stocks selectors', () => {
       it('[Non-empty store]: Should return Error', () => {
         const rootState: AppState = {
           Stocks: {
-            [stockSymbol1]: {
-              quote: {
-                fetching: false,
-                error: undefined,
-                data: stockQuoteData1,
-              },
-              dailyAdj: {
-                fetching: false,
-                error: new Error(''),
-                data: undefined,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  error: undefined,
+                  data: stockQuoteData1,
+                },
+                dailyAdj: {
+                  fetching: false,
+                  error: new Error(''),
+                  data: undefined,
+                },
               },
             },
           },
