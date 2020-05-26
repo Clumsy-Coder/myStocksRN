@@ -2,7 +2,9 @@ import { Reducer } from 'redux';
 
 import { ActionTypes, Reducer as StockReducer, StocksActions } from 'src/redux/Stocks/Types';
 
-const initialState: StockReducer.ReducerState = {};
+const initialState: StockReducer.ReducerState = {
+  symbols: {},
+};
 
 const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
   state = initialState,
@@ -12,12 +14,15 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
     case ActionTypes.FETCH_STOCK_QUOTE_PENDING: {
       return {
         ...state,
-        [action.stockSymbol]: {
-          ...state[action.stockSymbol],
-          quote: {
-            fetching: true,
-            // data: undefined,
-            error: undefined,
+        symbols: {
+          ...state.symbols,
+          [action.stockSymbol]: {
+            ...state.symbols[action.stockSymbol],
+            quote: {
+              fetching: true,
+              // data: undefined,
+              error: undefined,
+            },
           },
         },
       };
@@ -25,12 +30,15 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
     case ActionTypes.FETCH_STOCK_QUOTE_FULFILLED: {
       return {
         ...state,
-        [action.stockSymbol]: {
-          ...state[action.stockSymbol],
-          quote: {
-            fetching: false,
-            data: action.payload,
-            error: undefined,
+        symbols: {
+          ...state.symbols,
+          [action.stockSymbol]: {
+            ...state.symbols[action.stockSymbol],
+            quote: {
+              fetching: false,
+              data: action.payload,
+              error: undefined,
+            },
           },
         },
       };
@@ -38,12 +46,15 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
     case ActionTypes.FETCH_STOCK_QUOTE_REJECTED: {
       return {
         ...state,
-        [action.stockSymbol]: {
-          ...state[action.stockSymbol],
-          quote: {
-            fetching: false,
-            data: undefined,
-            error: action.error,
+        symbols: {
+          ...state.symbols,
+          [action.stockSymbol]: {
+            ...state.symbols[action.stockSymbol],
+            quote: {
+              fetching: false,
+              data: undefined,
+              error: action.error,
+            },
           },
         },
       };
@@ -51,12 +62,15 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
     case ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING: {
       return {
         ...state,
-        [action.stockSymbol]: {
-          ...state[action.stockSymbol],
-          dailyAdj: {
-            fetching: true,
-            data: undefined,
-            error: undefined,
+        symbols: {
+          ...state.symbols,
+          [action.stockSymbol]: {
+            ...state.symbols[action.stockSymbol],
+            dailyAdj: {
+              fetching: true,
+              data: undefined,
+              error: undefined,
+            },
           },
         },
       };
@@ -64,12 +78,15 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
     case ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED: {
       return {
         ...state,
-        [action.stockSymbol]: {
-          ...state[action.stockSymbol],
-          dailyAdj: {
-            fetching: false,
-            data: action.payload,
-            error: undefined,
+        symbols: {
+          ...state.symbols,
+          [action.stockSymbol]: {
+            ...state.symbols[action.stockSymbol],
+            dailyAdj: {
+              fetching: false,
+              data: action.payload,
+              error: undefined,
+            },
           },
         },
       };
@@ -77,12 +94,15 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
     case ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED: {
       return {
         ...state,
-        [action.stockSymbol]: {
-          ...state[action.stockSymbol],
-          dailyAdj: {
-            fetching: false,
-            data: undefined,
-            error: action.error,
+        symbols: {
+          ...state.symbols,
+          [action.stockSymbol]: {
+            ...state.symbols[action.stockSymbol],
+            dailyAdj: {
+              fetching: false,
+              data: undefined,
+              error: action.error,
+            },
           },
         },
       };

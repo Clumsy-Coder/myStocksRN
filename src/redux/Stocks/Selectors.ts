@@ -43,7 +43,8 @@ export const selectStockSymbol = (state: AppState, props: { stockSymbol: string 
  */
 export const selectStock = createCachedSelector(
   [selectAllStocks, selectStockSymbol],
-  (stocks: Reducer.ReducerState, stockSymbol: string): Reducer.StockData => stocks[stockSymbol],
+  (stocks: Reducer.ReducerState, stockSymbol: string): Reducer.StockData =>
+    stocks.symbols[stockSymbol],
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
