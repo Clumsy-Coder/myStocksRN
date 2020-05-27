@@ -120,6 +120,18 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
         searchKeyword: '',
       };
     }
+    case ActionTypes.SET_STOCK_METADATA: {
+      return {
+        ...state,
+        symbols: {
+          ...state.symbols,
+          [action.stockSymbol]: {
+            ...state.symbols[action.stockSymbol],
+            metadata: action.payload,
+          },
+        },
+      };
+    }
 
     default: {
       return state;
