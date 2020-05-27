@@ -219,3 +219,27 @@ export const selectStockDailyAdjustedError = createCachedSelector(
   (stockDailyAdjustedData: Reducer.StockDailyAdjData | undefined): Error | undefined =>
     stockDailyAdjustedData?.error,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                   STOCK META DATA SELECTORS                                    //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Select stock **meta** by Stock symbol.
+ * ```ts
+ * {
+ *    selectedStockMetadata: selectStockMetadata(state, { stockSymbol: 'AAPL' })
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
+ * @returns DataDomain.StockSearchBase | undefined - Stock meta
+ */
+export const selectStockMetadata = createCachedSelector(
+  [selectStock],
+  (stockData: Reducer.StockData): DataDomain.StockSearchBase | undefined => stockData.metadata,
+)((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
