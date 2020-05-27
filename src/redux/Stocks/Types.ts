@@ -138,7 +138,7 @@ export namespace Reducer {
   export interface StockData {
     quote: StockQuoteData;
     dailyAdj?: StockDailyAdjData;
-    searchMeta?: DataDomain.StockSearchBase;
+    metadata?: DataDomain.StockSearchBase;
   }
 
   /**
@@ -194,6 +194,8 @@ export enum ActionTypes {
 
   SET_SEARCH_KEYWORD = 'STOCKS/SET_SEARCH_KEYWORD',
   CLEAR_SEARCH_KEYWORD = 'STOCKS/CLEAR_SEARCH_KEYWORD',
+
+  SET_STOCK_METADATA = 'STOCKS/SET_STOCK_METADATA',
 
   // FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
   // FETCH_STOCK_DAILY_ADJUSTED_BATCH = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED_BATCH',
@@ -359,6 +361,12 @@ export namespace Actions {
     export interface ClearSearchKeywordAction extends Action<ActionTypes.CLEAR_SEARCH_KEYWORD> {
       type: ActionTypes.CLEAR_SEARCH_KEYWORD;
     }
+
+    export interface SetStockMetadata extends Action<ActionTypes.SET_STOCK_METADATA> {
+      type: ActionTypes.SET_STOCK_METADATA;
+      stockSymbol: string;
+      payload: DataDomain.StockSearchBase;
+    }
   } // END namespace Search
 } // END namespace Action
 
@@ -389,7 +397,8 @@ export type StockSearchActions =
   | Actions.Search.FetchFulfilledAction
   | Actions.Search.FetchRejectedAction
   | Actions.Search.SetSearchKeywordAction
-  | Actions.Search.ClearSearchKeywordAction;
+  | Actions.Search.ClearSearchKeywordAction
+  | Actions.Search.SetStockMetadata;
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
