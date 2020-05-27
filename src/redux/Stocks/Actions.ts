@@ -197,6 +197,28 @@ export const fetchStockSearchRejected: ActionCreator<Actions.Search.FetchRejecte
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                                //
+//                                STOCK METADATA ACTIONS CREATORS                                 //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Set Stock metadata by stock symbol
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param payload - Stock metadata
+ */
+export const setStockMetadata: ActionCreator<Actions.Search.SetStockMetadata> = (
+  stockSymbol: string,
+  payload: DataDomain.StockSearchBase,
+): Actions.Search.SetStockMetadata => ({
+  type: ActionTypes.SET_STOCK_METADATA,
+  stockSymbol,
+  payload,
+});
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
 //                                  STOCK BATCH ACTIONS CREATORS                                  //
 //                                                                                                //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
