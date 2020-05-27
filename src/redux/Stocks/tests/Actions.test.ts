@@ -248,9 +248,16 @@ describe('Stock action creators', () => {
       expect(actions.clearSearchKeyword(stockSymbol1)).toEqual(expectedAction);
     });
 
-    it.skip('Should create an action fetch Stock search', () => {});
-    it.skip('Should create an action fetch Stock search PENDING', () => {});
-    it.skip('Should create an action fetch Stock search, FULFILLED', () => {});
-    it.skip('Should create an action fetch Stock search, REJECTED', () => {});
+    it(`Should create an action for ${ActionTypes.SET_STOCK_METADATA}`, () => {
+      const expectedAction: Actions.Search.SetStockMetadata = {
+        type: ActionTypes.SET_STOCK_METADATA,
+        stockSymbol: stockSymbol1,
+        payload: stockSearchData1.bestMatches[0],
+      };
+
+      expect(actions.setStockMetadata(stockSymbol1, stockSearchData1.bestMatches[0])).toEqual(
+        expectedAction,
+      );
+    });
   });
 });
