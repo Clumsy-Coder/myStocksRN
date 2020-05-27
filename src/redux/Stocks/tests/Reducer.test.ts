@@ -962,6 +962,74 @@ describe('Stocks reducer', () => {
       });
     });
 
+    describe(`${ActionTypes.SET_STOCK_METADATA}`, () => {
+      it('[Empty store]: Should set stock metadata', () => {
+        const state: Reducer.ReducerState = {
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+              },
+            },
+          },
+          searchKeyword: '',
+        };
+        const action: Actions.Search.SetStockMetadata = {
+          type: ActionTypes.SET_STOCK_METADATA,
+          stockSymbol: stockSymbol1,
+          payload: stockSearchData.bestMatches[0],
+        };
+        const expected: Reducer.ReducerState = {
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+              },
+              metadata: stockSearchData.bestMatches[0],
+            },
+          },
+          searchKeyword: '',
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+
+      it('[Non-empty]: Should set stock metadata', () => {
+        const state: Reducer.ReducerState = {
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                data: stockQuoteData1,
+                error: undefined,
+              },
+            },
+          },
+          searchKeyword: '',
+        };
+        const action: Actions.Search.SetStockMetadata = {
+          type: ActionTypes.SET_STOCK_METADATA,
+          stockSymbol: stockSymbol1,
+          payload: stockSearchData.bestMatches[0],
+        };
+        const expected: Reducer.ReducerState = {
+          symbols: {
+            [stockSymbol1]: {
+              quote: {
+                fetching: false,
+                data: stockQuoteData1,
+                error: undefined,
+              },
+              metadata: stockSearchData.bestMatches[0],
+            },
+          },
+          searchKeyword: '',
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+    });
+
     describe.skip(`${ActionTypes.SEARCH_KEYWORD_PENDING}`, () => {
       it.skip('[Empty store]: Should set fetching, error and data for StockSearch', () => {});
       it.skip('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {});
