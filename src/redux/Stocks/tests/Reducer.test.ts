@@ -1050,19 +1050,171 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe.skip(`${ActionTypes.SEARCH_KEYWORD_PENDING}`, () => {
-      it.skip('[Empty store]: Should set fetching, error and data for StockSearch', () => {});
-      it.skip('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {});
+    describe(`${ActionTypes.SEARCH_KEYWORD_PENDING}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
+        const state: Reducer.ReducerState = {
+          symbols: {},
+        };
+        const action: Actions.Search.FetchPendingAction = {
+          type: ActionTypes.SEARCH_KEYWORD_PENDING,
+          keyword: stockSymbol1,
+        };
+        const expected: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            // keyword: stockSymbol1,
+            results: {
+              fetching: true,
+              data: undefined,
+              error: undefined,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
+        const state: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            keyword: stockSymbol1,
+          },
+        };
+        const action: Actions.Search.FetchPendingAction = {
+          type: ActionTypes.SEARCH_KEYWORD_PENDING,
+          keyword: stockSymbol1,
+        };
+        const expected: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            keyword: stockSymbol1,
+            results: {
+              fetching: true,
+              data: undefined,
+              error: undefined,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
     });
 
-    describe.skip(`${ActionTypes.SEARCH_KEYWORD_FULFILLED}`, () => {
-      it.skip('[Empty store]: Should set fetching, error and data for StockSearch', () => {});
-      it.skip('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {});
+    describe(`${ActionTypes.SEARCH_KEYWORD_FULFILLED}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
+        const state: Reducer.ReducerState = {
+          symbols: {},
+        };
+        const action: Actions.Search.FetchFulfilledAction = {
+          type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
+          keyword: stockSymbol1,
+          payload: stockSearchData,
+        };
+        const expected: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            // keyword: stockSymbol1,
+            results: {
+              fetching: false,
+              data: stockSearchData.bestMatches,
+              error: undefined,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
+        const state: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            keyword: stockSymbol1,
+            results: {
+              fetching: true,
+              data: undefined,
+              error: undefined,
+            },
+          },
+        };
+        const action: Actions.Search.FetchFulfilledAction = {
+          type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
+          keyword: stockSymbol1,
+          payload: stockSearchData,
+        };
+        const expected: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            keyword: stockSymbol1,
+            results: {
+              fetching: false,
+              data: stockSearchData.bestMatches,
+              error: undefined,
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
     });
 
-    describe.skip(`${ActionTypes.SEARCH_KEYWORD_REJECTED}`, () => {
-      it.skip('[Empty store]: Should set fetching, error and data for StockSearch', () => {});
-      it.skip('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {});
+    describe(`${ActionTypes.SEARCH_KEYWORD_REJECTED}`, () => {
+      it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
+        const state: Reducer.ReducerState = {
+          symbols: {},
+        };
+        const action: Actions.Search.FetchRejectedAction = {
+          type: ActionTypes.SEARCH_KEYWORD_REJECTED,
+          keyword: stockSymbol1,
+          error: new Error(''),
+        };
+        const expected: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            // keyword: stockSymbol1,
+            results: {
+              fetching: false,
+              data: undefined,
+              error: new Error(''),
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
+        const state: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            keyword: stockSymbol1,
+            results: {
+              fetching: true,
+              data: undefined,
+              error: undefined,
+            },
+          },
+        };
+        const action: Actions.Search.FetchRejectedAction = {
+          type: ActionTypes.SEARCH_KEYWORD_REJECTED,
+          keyword: stockSymbol1,
+          error: new Error(''),
+        };
+        const expected: Reducer.ReducerState = {
+          symbols: {},
+          search: {
+            keyword: stockSymbol1,
+            results: {
+              fetching: false,
+              data: undefined,
+              error: new Error(''),
+            },
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
     });
   });
 });
