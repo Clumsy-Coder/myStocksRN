@@ -132,6 +132,12 @@ export namespace Reducer {
     error?: Error;
   }
 
+  export interface StockSearchResultData {
+    fetching: boolean;
+    data?: DataDomain.StockSearchBase[];
+    error?: Error;
+  }
+
   /**
    * A data structure wrapper for one Stock
    */
@@ -148,7 +154,7 @@ export namespace Reducer {
     symbols: {
       [symbol: string]: StockData;
     };
-    searchResults?: DataDomain.StockSearch;
+    searchResults?: Reducer.StockSearchResultData;
     searchKeyword?: string;
   }
 }
