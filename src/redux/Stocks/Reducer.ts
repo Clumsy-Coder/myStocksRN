@@ -4,11 +4,13 @@ import { ActionTypes, Reducer as StockReducer, StocksActions } from 'src/redux/S
 
 const initialState: StockReducer.ReducerState = {
   symbols: {},
-  searchKeyword: '',
-  searchResults: {
-    fetching: false,
-    data: [],
-    error: undefined,
+  search: {
+    keyword: '',
+    results: {
+      fetching: false,
+      data: [],
+      error: undefined,
+    },
   },
 };
 
@@ -116,13 +118,19 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
     case ActionTypes.SET_SEARCH_KEYWORD: {
       return {
         ...state,
-        searchKeyword: action.keyword,
+        search: {
+          ...state.search,
+          keyword: action.keyword,
+        },
       };
     }
     case ActionTypes.CLEAR_SEARCH_KEYWORD: {
       return {
         ...state,
-        searchKeyword: '',
+        search: {
+          ...state.search,
+          keyword: '',
+        },
       };
     }
     case ActionTypes.SET_STOCK_METADATA: {
@@ -140,30 +148,39 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
     case ActionTypes.SEARCH_KEYWORD_PENDING: {
       return {
         ...state,
-        searchResults: {
-          fetching: true,
-          data: undefined,
-          error: undefined,
+        search: {
+          ...state.search,
+          results: {
+            fetching: true,
+            data: undefined,
+            error: undefined,
+          },
         },
       };
     }
     case ActionTypes.SEARCH_KEYWORD_FULFILLED: {
       return {
         ...state,
-        searchResults: {
-          fetching: false,
-          data: action.payload.bestMatches,
-          error: undefined,
+        search: {
+          ...state.search,
+          results: {
+            fetching: false,
+            data: action.payload.bestMatches,
+            error: undefined,
+          },
         },
       };
     }
     case ActionTypes.SEARCH_KEYWORD_REJECTED: {
       return {
         ...state,
-        searchResults: {
-          fetching: false,
-          data: undefined,
-          error: action.error,
+        search: {
+          ...state.search,
+          results: {
+            fetching: false,
+            data: undefined,
+            error: action.error,
+          },
         },
       };
     }
