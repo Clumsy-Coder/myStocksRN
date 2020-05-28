@@ -79,11 +79,11 @@ export const selectSearch = createSelector(
  * }
  * ```
  * @param state - AppState - Root redux state
- * @returns string - Stock search keyword
+ * @returns string | undefined - Stock search keyword
  */
 export const selectSearchKeyword = createSelector(
-  [selectAllStocks],
-  (stocks: Reducer.ReducerState): string | undefined => stocks.search?.keyword,
+  [selectSearch],
+  (search: Reducer.StockSearch | undefined): string | undefined => search?.keyword,
 );
 
 /**
@@ -97,9 +97,9 @@ export const selectSearchKeyword = createSelector(
  * @returns Reducer.StockSearchResultData | undefined - Stock search results
  */
 export const selectSearchResults = createSelector(
-  [selectAllStocks],
-  (stocks: Reducer.ReducerState): Reducer.StockSearchResultData | undefined =>
-    stocks.search?.results,
+  [selectSearch],
+  (search: Reducer.StockSearch | undefined): Reducer.StockSearchResultData | undefined =>
+    search?.results,
 );
 
 /**
