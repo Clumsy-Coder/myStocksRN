@@ -71,6 +71,69 @@ export const selectSearchKeyword = createSelector(
   (stocks: Reducer.ReducerState): string | undefined => stocks.searchKeyword,
 );
 
+/**
+ * Select Stock search results.
+ * ```ts
+ * {
+ *    selectedStockSearchResult: selectSearchResults(state),
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @returns Reducer.StockSearchResultData | undefined - Stock search results
+ */
+export const selectSearchResults = createSelector(
+  [selectAllStocks],
+  (stocks: Reducer.ReducerState): Reducer.StockSearchResultData | undefined => stocks.searchResults,
+);
+
+/**
+ * Select Stock search **fetching**
+ * ```ts
+ * {
+ *    selectedStockSearchFetching: selectSearchFetching(state),
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @returns boolean | undefined - Stock search fetching
+ */
+export const selectSearchFetching = createSelector(
+  [selectSearchResults],
+  (stockSearch: Reducer.StockSearchResultData | undefined): boolean | undefined =>
+    stockSearch?.fetching,
+);
+
+/**
+ * Select Stock search **data**
+ * ```ts
+ * {
+ *    selectedSearchData: selectSearchData(state),
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @returns DataDomain.StockSearchBase[] | undefined - Stock search data
+ */
+export const selectSearchData = createSelector(
+  [selectSearchResults],
+  (
+    stockSearch: Reducer.StockSearchResultData | undefined,
+  ): DataDomain.StockSearchBase[] | undefined => stockSearch?.data,
+);
+
+/**
+ * Select Stock search **error**
+ * ```ts
+ * {
+ *    selectedSearchError: selectSearchError(state),
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @returns Error | undefined - Stock search error
+ */
+export const selectSearchError = createSelector(
+  [selectSearchResults],
+  (stockSearch: Reducer.StockSearchResultData | undefined): Error | undefined => stockSearch?.error,
+);
+
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                                //
