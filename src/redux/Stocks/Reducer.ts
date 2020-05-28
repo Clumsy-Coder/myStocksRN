@@ -5,6 +5,11 @@ import { ActionTypes, Reducer as StockReducer, StocksActions } from 'src/redux/S
 const initialState: StockReducer.ReducerState = {
   symbols: {},
   searchKeyword: '',
+  searchResults: {
+    fetching: false,
+    data: [],
+    error: undefined,
+  },
 };
 
 const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
@@ -129,6 +134,36 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
             ...state.symbols[action.stockSymbol],
             metadata: action.payload,
           },
+        },
+      };
+    }
+    case ActionTypes.SEARCH_KEYWORD_PENDING: {
+      return {
+        ...state,
+        searchResults: {
+          fetching: true,
+          data: undefined,
+          error: undefined,
+        },
+      };
+    }
+    case ActionTypes.SEARCH_KEYWORD_FULFILLED: {
+      return {
+        ...state,
+        searchResults: {
+          fetching: false,
+          data: action.payload.bestMatches,
+          error: undefined,
+        },
+      };
+    }
+    case ActionTypes.SEARCH_KEYWORD_REJECTED: {
+      return {
+        ...state,
+        searchResults: {
+          fetching: false,
+          data: undefined,
+          error: action.error,
         },
       };
     }
