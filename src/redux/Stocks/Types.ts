@@ -138,6 +138,11 @@ export namespace Reducer {
     error?: Error;
   }
 
+  export interface StockSearch {
+    keyword?: string;
+    results?: Reducer.StockSearchResultData;
+  }
+
   /**
    * A data structure wrapper for one Stock
    */
@@ -154,10 +159,7 @@ export namespace Reducer {
     symbols: {
       [symbol: string]: StockData;
     };
-    search?: {
-      keyword?: string;
-      results?: Reducer.StockSearchResultData;
-    };
+    search?: Reducer.StockSearch;
   }
 }
 
