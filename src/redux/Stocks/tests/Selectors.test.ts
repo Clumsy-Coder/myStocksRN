@@ -1229,7 +1229,9 @@ describe('Stocks selectors', () => {
         const rootState: AppState = {
           Stocks: {
             symbols: {},
-            searchKeyword: '',
+            search: {
+              keyword: '',
+            },
           },
           Favorites: {
             symbols: [],
@@ -1253,7 +1255,9 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            searchKeyword: stockSymbol1,
+            search: {
+              keyword: stockSymbol1,
+            },
           },
           Favorites: {
             symbols: [],
