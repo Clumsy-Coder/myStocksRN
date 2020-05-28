@@ -68,7 +68,7 @@ export const selectStock = createCachedSelector(
  */
 export const selectSearchKeyword = createSelector(
   [selectAllStocks],
-  (stocks: Reducer.ReducerState): string | undefined => stocks.searchKeyword,
+  (stocks: Reducer.ReducerState): string | undefined => stocks.search?.keyword,
 );
 
 /**
@@ -83,7 +83,8 @@ export const selectSearchKeyword = createSelector(
  */
 export const selectSearchResults = createSelector(
   [selectAllStocks],
-  (stocks: Reducer.ReducerState): Reducer.StockSearchResultData | undefined => stocks.searchResults,
+  (stocks: Reducer.ReducerState): Reducer.StockSearchResultData | undefined =>
+    stocks.search?.results,
 );
 
 /**
