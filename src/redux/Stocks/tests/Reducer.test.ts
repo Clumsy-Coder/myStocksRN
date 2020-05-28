@@ -831,7 +831,9 @@ describe('Stocks reducer', () => {
       it('[Empty store]: Should set stock search keyword', () => {
         const state: Reducer.ReducerState = {
           symbols: {},
-          searchKeyword: '',
+          search: {
+            keyword: '',
+          },
         };
         const action: Actions.Search.SetSearchKeywordAction = {
           type: ActionTypes.SET_SEARCH_KEYWORD,
@@ -839,7 +841,9 @@ describe('Stocks reducer', () => {
         };
         const expected: Reducer.ReducerState = {
           symbols: {},
-          searchKeyword: stockSymbol1,
+          search: {
+            keyword: stockSymbol1,
+          },
         };
 
         expect(reducer(state, action)).toEqual(expected);
@@ -848,7 +852,9 @@ describe('Stocks reducer', () => {
       it('[Non-empty store]: Should set stock search keyword', () => {
         const state: Reducer.ReducerState = {
           symbols: {},
-          searchKeyword: stockSymbol1,
+          search: {
+            keyword: stockSymbol1,
+          },
         };
         const action: Actions.Search.SetSearchKeywordAction = {
           type: ActionTypes.SET_SEARCH_KEYWORD,
@@ -856,7 +862,9 @@ describe('Stocks reducer', () => {
         };
         const expected: Reducer.ReducerState = {
           symbols: {},
-          searchKeyword: stockSymbol2,
+          search: {
+            keyword: stockSymbol2,
+          },
         };
 
         expect(reducer(state, action)).toEqual(expected);
@@ -873,7 +881,9 @@ describe('Stocks reducer', () => {
               },
             },
           },
-          searchKeyword: stockSymbol1,
+          search: {
+            keyword: stockSymbol1,
+          },
         };
         const action: Actions.Search.SetSearchKeywordAction = {
           type: ActionTypes.SET_SEARCH_KEYWORD,
@@ -889,7 +899,9 @@ describe('Stocks reducer', () => {
               },
             },
           },
-          searchKeyword: stockSymbol2,
+          search: {
+            keyword: stockSymbol2,
+          },
         };
 
         expect(reducer(state, action)).toEqual(expected);
@@ -900,14 +912,18 @@ describe('Stocks reducer', () => {
       it('[Empty store]: Should set stock search keyword', () => {
         const state: Reducer.ReducerState = {
           symbols: {},
-          searchKeyword: '',
+          search: {
+            keyword: '',
+          },
         };
         const action: Actions.Search.ClearSearchKeywordAction = {
           type: ActionTypes.CLEAR_SEARCH_KEYWORD,
         };
         const expected: Reducer.ReducerState = {
           symbols: {},
-          searchKeyword: '',
+          search: {
+            keyword: '',
+          },
         };
 
         expect(reducer(state, action)).toEqual(expected);
@@ -916,14 +932,18 @@ describe('Stocks reducer', () => {
       it('[Non-empty store]: Should set stock search keyword', () => {
         const state: Reducer.ReducerState = {
           symbols: {},
-          searchKeyword: stockSymbol1,
+          search: {
+            keyword: stockSymbol1,
+          },
         };
         const action: Actions.Search.ClearSearchKeywordAction = {
           type: ActionTypes.CLEAR_SEARCH_KEYWORD,
         };
         const expected: Reducer.ReducerState = {
           symbols: {},
-          searchKeyword: '',
+          search: {
+            keyword: '',
+          },
         };
 
         expect(reducer(state, action)).toEqual(expected);
@@ -940,7 +960,9 @@ describe('Stocks reducer', () => {
               },
             },
           },
-          searchKeyword: stockSymbol1,
+          search: {
+            keyword: stockSymbol1,
+          },
         };
         const action: Actions.Search.ClearSearchKeywordAction = {
           type: ActionTypes.CLEAR_SEARCH_KEYWORD,
@@ -955,7 +977,9 @@ describe('Stocks reducer', () => {
               },
             },
           },
-          searchKeyword: '',
+          search: {
+            keyword: '',
+          },
         };
 
         expect(reducer(state, action)).toEqual(expected);
@@ -972,7 +996,6 @@ describe('Stocks reducer', () => {
               },
             },
           },
-          searchKeyword: '',
         };
         const action: Actions.Search.SetStockMetadata = {
           type: ActionTypes.SET_STOCK_METADATA,
@@ -988,7 +1011,6 @@ describe('Stocks reducer', () => {
               metadata: stockSearchData.bestMatches[0],
             },
           },
-          searchKeyword: '',
         };
 
         expect(reducer(state, action)).toEqual(expected);
@@ -1005,7 +1027,6 @@ describe('Stocks reducer', () => {
               },
             },
           },
-          searchKeyword: '',
         };
         const action: Actions.Search.SetStockMetadata = {
           type: ActionTypes.SET_STOCK_METADATA,
@@ -1023,7 +1044,6 @@ describe('Stocks reducer', () => {
               metadata: stockSearchData.bestMatches[0],
             },
           },
-          searchKeyword: '',
         };
 
         expect(reducer(state, action)).toEqual(expected);
