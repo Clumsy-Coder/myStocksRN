@@ -154,8 +154,10 @@ export namespace Reducer {
     symbols: {
       [symbol: string]: StockData;
     };
-    searchResults?: Reducer.StockSearchResultData;
-    searchKeyword?: string;
+    search?: {
+      keyword?: string;
+      results?: Reducer.StockSearchResultData;
+    };
   }
 }
 
