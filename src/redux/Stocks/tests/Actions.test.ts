@@ -98,7 +98,7 @@ const stockDailyAdjData2: DataDomain.StockDailyAdj = {
   },
 };
 
-const stockSearchData: DataDomain.StockSearch = {
+const stockSearchData1: DataDomain.StockSearch = {
   bestMatches: [
     {
       '1. symbol': 'IBM',
@@ -258,6 +258,42 @@ describe('Stock action creators', () => {
       expect(actions.setStockMetadata(stockSymbol1, stockSearchData1.bestMatches[0])).toEqual(
         expectedAction,
       );
+    });
+
+    it('Should create an action fetch Stock search', () => {
+      const expectedAction: Actions.Search.FetchAction = {
+        type: ActionTypes.SEARCH_KEYWORD,
+        keyword: stockSymbol1,
+      };
+      expect(actions.fetchStockSearch(stockSymbol1)).toEqual(expectedAction);
+    });
+
+    it('Should create an action fetch Stock search PENDING', () => {
+      const expectedAction: Actions.Search.FetchPendingAction = {
+        type: ActionTypes.SEARCH_KEYWORD_PENDING,
+        keyword: stockSymbol1,
+      };
+      expect(actions.fetchStockSearchPending(stockSymbol1)).toEqual(expectedAction);
+    });
+
+    it('Should create an action fetch Stock search, FULFILLED', () => {
+      const expectedAction: Actions.Search.FetchFulfilledAction = {
+        type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
+        keyword: stockSymbol1,
+        payload: stockSearchData1,
+      };
+      expect(actions.fetchStockSearchFulfilled(stockSymbol1, stockSearchData1)).toEqual(
+        expectedAction,
+      );
+    });
+
+    it('Should create an action fetch Stock search, REJECTED', () => {
+      const expectedAction: Actions.Search.FetchRejectedAction = {
+        type: ActionTypes.SEARCH_KEYWORD_REJECTED,
+        keyword: stockSymbol1,
+        error: new Error(''),
+      };
+      expect(actions.fetchStockSearchRejected(stockSymbol1, new Error(''))).toEqual(expectedAction);
     });
   });
 });
