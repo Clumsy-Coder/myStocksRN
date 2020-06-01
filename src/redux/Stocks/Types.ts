@@ -132,13 +132,24 @@ export namespace Reducer {
     error?: Error;
   }
 
+  export interface StockSearchResultData {
+    fetching: boolean;
+    data?: DataDomain.StockSearchBase[];
+    error?: Error;
+  }
+
+  export interface StockSearch {
+    keyword?: string;
+    results?: Reducer.StockSearchResultData;
+  }
+
   /**
    * A data structure wrapper for one Stock
    */
   export interface StockData {
     quote: StockQuoteData;
     dailyAdj?: StockDailyAdjData;
-    searchMeta?: DataDomain.StockSearchBase;
+    metadata?: DataDomain.StockSearchBase;
   }
 
   /**
@@ -148,7 +159,7 @@ export namespace Reducer {
     symbols: {
       [symbol: string]: StockData;
     };
-    search?: DataDomain.StockSearch;
+    search?: Reducer.StockSearch;
   }
 }
 
@@ -190,6 +201,11 @@ export enum ActionTypes {
   SEARCH_KEYWORD_PENDING = 'STOCKS/SEARCH_KEYWORD_PENDING',
   SEARCH_KEYWORD_FULFILLED = 'STOCKS/SEARCH_KEYWORD_FULFILLED',
   SEARCH_KEYWORD_REJECTED = 'STOCKS/SEARCH_KEYWORD_REJECTED',
+
+  SET_SEARCH_KEYWORD = 'STOCKS/SET_SEARCH_KEYWORD',
+  CLEAR_SEARCH_KEYWORD = 'STOCKS/CLEAR_SEARCH_KEYWORD',
+
+  SET_STOCK_METADATA = 'STOCKS/SET_STOCK_METADATA',
 
   // FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
   // FETCH_STOCK_DAILY_ADJUSTED_BATCH = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED_BATCH',
@@ -346,6 +362,21 @@ export namespace Actions {
       readonly keyword: string;
       readonly error: Error;
     }
+
+    export interface SetSearchKeywordAction extends Action<ActionTypes.SET_SEARCH_KEYWORD> {
+      type: ActionTypes.SET_SEARCH_KEYWORD;
+      readonly keyword: string;
+    }
+
+    export interface ClearSearchKeywordAction extends Action<ActionTypes.CLEAR_SEARCH_KEYWORD> {
+      type: ActionTypes.CLEAR_SEARCH_KEYWORD;
+    }
+
+    export interface SetStockMetadata extends Action<ActionTypes.SET_STOCK_METADATA> {
+      type: ActionTypes.SET_STOCK_METADATA;
+      stockSymbol: string;
+      payload: DataDomain.StockSearchBase;
+    }
   } // END namespace Search
 } // END namespace Action
 
@@ -374,7 +405,10 @@ export type StockSearchActions =
   | Actions.Search.FetchAction
   | Actions.Search.FetchPendingAction
   | Actions.Search.FetchFulfilledAction
-  | Actions.Search.FetchRejectedAction;
+  | Actions.Search.FetchRejectedAction
+  | Actions.Search.SetSearchKeywordAction
+  | Actions.Search.ClearSearchKeywordAction
+  | Actions.Search.SetStockMetadata;
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //

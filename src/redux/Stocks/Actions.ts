@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { ActionCreator } from 'redux';
+import { ActionCreator, Action } from 'redux';
 
 import { ActionTypes, DataDomain, Actions } from 'src/redux/Stocks/Types';
 
@@ -144,6 +144,24 @@ export const fetchStockDailyAdjRejected: ActionCreator<Actions.DailyAdjusted.Fet
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
+/**
+ * Set search keyword action creator.
+ * @param keyword - string to search
+ */
+export const setSearchKeyword: ActionCreator<Actions.Search.SetSearchKeywordAction> = (
+  keyword: string,
+): Actions.Search.SetSearchKeywordAction => ({
+  type: ActionTypes.SET_SEARCH_KEYWORD,
+  keyword,
+});
+
+/**
+ * Clear search keyword action creator.
+ */
+export const clearSearchKeyword: ActionCreator<Actions.Search.ClearSearchKeywordAction> = (): Actions.Search.ClearSearchKeywordAction => ({
+  type: ActionTypes.CLEAR_SEARCH_KEYWORD,
+});
+
 export const fetchStockSearch: ActionCreator<Actions.Search.FetchAction> = (
   keyword: string,
 ): Actions.Search.FetchAction => ({
@@ -174,6 +192,28 @@ export const fetchStockSearchRejected: ActionCreator<Actions.Search.FetchRejecte
   type: ActionTypes.SEARCH_KEYWORD_REJECTED,
   keyword,
   error,
+});
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                STOCK METADATA ACTIONS CREATORS                                 //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Set Stock metadata by stock symbol
+ * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+ * @param payload - Stock metadata
+ */
+export const setStockMetadata: ActionCreator<Actions.Search.SetStockMetadata> = (
+  stockSymbol: string,
+  payload: DataDomain.StockSearchBase,
+): Actions.Search.SetStockMetadata => ({
+  type: ActionTypes.SET_STOCK_METADATA,
+  stockSymbol,
+  payload,
 });
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //

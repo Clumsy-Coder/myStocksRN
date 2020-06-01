@@ -4,6 +4,14 @@ import { ActionTypes, Reducer as StockReducer, StocksActions } from 'src/redux/S
 
 const initialState: StockReducer.ReducerState = {
   symbols: {},
+  search: {
+    keyword: '',
+    results: {
+      fetching: false,
+      data: [],
+      error: undefined,
+    },
+  },
 };
 
 const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
@@ -103,6 +111,75 @@ const reducer: Reducer<StockReducer.ReducerState, StocksActions> = (
               data: undefined,
               error: action.error,
             },
+          },
+        },
+      };
+    }
+    case ActionTypes.SET_SEARCH_KEYWORD: {
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          keyword: action.keyword,
+        },
+      };
+    }
+    case ActionTypes.CLEAR_SEARCH_KEYWORD: {
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          keyword: '',
+        },
+      };
+    }
+    case ActionTypes.SET_STOCK_METADATA: {
+      return {
+        ...state,
+        symbols: {
+          ...state.symbols,
+          [action.stockSymbol]: {
+            ...state.symbols[action.stockSymbol],
+            metadata: action.payload,
+          },
+        },
+      };
+    }
+    case ActionTypes.SEARCH_KEYWORD_PENDING: {
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          results: {
+            fetching: true,
+            data: undefined,
+            error: undefined,
+          },
+        },
+      };
+    }
+    case ActionTypes.SEARCH_KEYWORD_FULFILLED: {
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          results: {
+            fetching: false,
+            data: action.payload.bestMatches,
+            error: undefined,
+          },
+        },
+      };
+    }
+    case ActionTypes.SEARCH_KEYWORD_REJECTED: {
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          results: {
+            fetching: false,
+            data: undefined,
+            error: action.error,
           },
         },
       };

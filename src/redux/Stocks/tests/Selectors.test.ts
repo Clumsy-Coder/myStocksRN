@@ -169,15 +169,30 @@ const stockSearchData2: DataDomain.StockSearch = {
   ],
 };
 
+const baseStockReducerState: Reducer.ReducerState = {
+  symbols: {},
+  search: {
+    // keyword: '',
+    // results: {},
+  },
+};
+
+const baseAppState: AppState = {
+  Stocks: {
+    ...baseStockReducerState,
+  },
+  Favorites: {
+    symbols: [],
+  },
+};
+
 describe('Stocks selectors', () => {
   describe('Empty store', () => {
     it('Handle with empty store', () => {
       const store: AppState = {
+        ...baseAppState,
         Stocks: {
           symbols: {},
-        },
-        Favorites: {
-          symbols: [],
         },
       };
       const expected = {
@@ -189,9 +204,10 @@ describe('Stocks selectors', () => {
   });
 
   describe('Stock quote selectors', () => {
-    describe('Select individual Stock by stockSymbol', () => {
+    describe('[selectStock]: Select individual Stock by stockSymbol', () => {
       it('Select individual Stock with one StockData in store', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -202,9 +218,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
 
@@ -221,6 +234,7 @@ describe('Stocks selectors', () => {
 
       it('Select individual Stock with two StockData in store', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -238,9 +252,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
 
@@ -264,6 +275,7 @@ describe('Stocks selectors', () => {
 
       it('Select individual Stock with three StockData in store', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -288,9 +300,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
 
@@ -321,9 +330,10 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe('Select individual Stock quote by stockSymbol', () => {
+    describe('[selectStockQuote]: Select individual Stock quote by stockSymbol', () => {
       it('Select individual Stock quote with one StockData in store', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -334,9 +344,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
         const expected: Reducer.StockQuoteData = {
@@ -351,6 +358,7 @@ describe('Stocks selectors', () => {
 
       it('Select individual Stock quote with two StockData in store', () => {
         const stockState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -368,9 +376,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
         const expected1: Reducer.StockQuoteData = {
@@ -393,6 +398,7 @@ describe('Stocks selectors', () => {
 
       it('Select individual Stock quote with three StockData in store', () => {
         const stockState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -417,9 +423,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
         const expected1: Reducer.StockQuoteData = {
@@ -449,9 +452,10 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe("Select Stock quote 'fetching' by stockSymbol", () => {
+    describe("[selectStockQuoteFetching]: Select Stock quote 'fetching' by stockSymbol", () => {
       it("Select stock quote 'fetching' with one StockData in store", () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -463,9 +467,6 @@ describe('Stocks selectors', () => {
               },
             },
           },
-          Favorites: {
-            symbols: [],
-          },
         };
         const expected = false;
         expect(
@@ -475,6 +476,7 @@ describe('Stocks selectors', () => {
 
       it("Select stock quote 'fetching' with two StockData in store", () => {
         const stockState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -493,9 +495,6 @@ describe('Stocks selectors', () => {
               },
             },
           },
-          Favorites: {
-            symbols: [],
-          },
         };
         const expected1 = false;
         const expected2 = true;
@@ -509,6 +508,7 @@ describe('Stocks selectors', () => {
 
       it("Select stock quote 'fetching' with three StockData in store", () => {
         const stockState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -534,9 +534,6 @@ describe('Stocks selectors', () => {
               },
             },
           },
-          Favorites: {
-            symbols: [],
-          },
         };
         const expected1 = false;
         const expected2 = true;
@@ -553,10 +550,11 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe("Select Stock quote 'data' by stockSymbol", () => {
+    describe("[selectStockQuoteData]: Select Stock quote 'data' by stockSymbol", () => {
       describe("Select valid stock quote 'data'", () => {
         it("Select 'data' with one StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -567,9 +565,6 @@ describe('Stocks selectors', () => {
                   },
                 },
               },
-            },
-            Favorites: {
-              symbols: [],
             },
           };
 
@@ -582,6 +577,7 @@ describe('Stocks selectors', () => {
 
         it("Select 'data' with two StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -600,9 +596,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            Favorites: {
-              symbols: [],
-            },
           };
 
           const expected1: DataDomain.StockQuote = stockQuoteData1;
@@ -617,6 +610,7 @@ describe('Stocks selectors', () => {
 
         it("Select 'data' with three StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -642,9 +636,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            Favorites: {
-              symbols: [],
-            },
           };
 
           const expected1: DataDomain.StockQuote = stockQuoteData1;
@@ -665,6 +656,7 @@ describe('Stocks selectors', () => {
       describe("Select undefined Stock quote 'data'", () => {
         it("Select 'data' with one StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -675,9 +667,6 @@ describe('Stocks selectors', () => {
                   },
                 },
               },
-            },
-            Favorites: {
-              symbols: [],
             },
           };
 
@@ -690,6 +679,7 @@ describe('Stocks selectors', () => {
 
         it("Select 'data' with two StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -708,9 +698,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            Favorites: {
-              symbols: [],
-            },
           };
 
           const expected1: DataDomain.StockQuote | undefined = undefined;
@@ -725,6 +712,7 @@ describe('Stocks selectors', () => {
 
         it("Select 'data' with three StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -750,9 +738,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            Favorites: {
-              symbols: [],
-            },
           };
 
           const expected1: DataDomain.StockQuote | undefined = undefined;
@@ -771,10 +756,11 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe("Select Stock quote 'error' by stockSymbol", () => {
+    describe("[selectStockQuoteError]: Select Stock quote 'error' by stockSymbol", () => {
       describe("Select valid stock quote 'error'", () => {
         it("Select 'error' with one StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -785,9 +771,6 @@ describe('Stocks selectors', () => {
                   },
                 },
               },
-            },
-            Favorites: {
-              symbols: [],
             },
           };
 
@@ -800,6 +783,7 @@ describe('Stocks selectors', () => {
 
         it("Select 'error' with two StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -818,9 +802,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            Favorites: {
-              symbols: [],
-            },
           };
 
           const expected1: Error = new Error(`error for ${stockSymbol1}`);
@@ -835,6 +816,7 @@ describe('Stocks selectors', () => {
 
         it("Select 'error' with three StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -860,9 +842,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            Favorites: {
-              symbols: [],
-            },
           };
 
           const expected1: Error = new Error(`error for ${stockSymbol1}`);
@@ -883,6 +862,7 @@ describe('Stocks selectors', () => {
       describe("Select undefined stock quote 'error'", () => {
         it("Select 'error' with one StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -893,9 +873,6 @@ describe('Stocks selectors', () => {
                   },
                 },
               },
-            },
-            Favorites: {
-              symbols: [],
             },
           };
 
@@ -908,6 +885,7 @@ describe('Stocks selectors', () => {
 
         it("Select 'error' with two StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -926,9 +904,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            Favorites: {
-              symbols: [],
-            },
           };
 
           const expected1: Error | undefined = undefined;
@@ -943,6 +918,7 @@ describe('Stocks selectors', () => {
 
         it("Select 'error' with three StockData in store", () => {
           const rootState: AppState = {
+            ...baseAppState,
             Stocks: {
               symbols: {
                 [stockSymbol1]: {
@@ -968,9 +944,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-            Favorites: {
-              symbols: [],
-            },
           };
 
           const expected1: Error | undefined = undefined;
@@ -988,12 +961,60 @@ describe('Stocks selectors', () => {
         });
       });
     });
+
+    describe('selectStockMetadata', () => {
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  data: stockQuoteData1,
+                },
+              },
+            },
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectStockMetadata(rootState, { stockSymbol: stockSymbol1 })).toEqual(
+          expected,
+        );
+      });
+
+      it('[Empty store]: Should return StockSearchBase for a stock', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  data: stockQuoteData1,
+                },
+                metadata: stockSearchData.bestMatches[0],
+              },
+            },
+          },
+        };
+
+        const expected = stockSearchData.bestMatches[0];
+
+        expect(selectors.selectStockMetadata(rootState, { stockSymbol: stockSymbol1 })).toEqual(
+          expected,
+        );
+      });
+    });
   });
 
   describe('Stock Daily Adjusted selectors', () => {
     describe('selectStockDailyAdjusted', () => {
       it('[Empty store]: Should return empty StockDailyAdjData', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -1004,9 +1025,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
 
@@ -1055,6 +1073,7 @@ describe('Stocks selectors', () => {
     describe('selectStockDailyAdjustedFetching', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -1066,9 +1085,6 @@ describe('Stocks selectors', () => {
               },
             },
           },
-          Favorites: {
-            symbols: [],
-          },
         };
 
         const expected = undefined;
@@ -1079,6 +1095,7 @@ describe('Stocks selectors', () => {
       });
       it('[Non-empty store]: Should return boolean', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -1095,9 +1112,6 @@ describe('Stocks selectors', () => {
               },
             },
           },
-          Favorites: {
-            symbols: [],
-          },
         };
 
         const expected = true;
@@ -1111,6 +1125,7 @@ describe('Stocks selectors', () => {
     describe('selectStockDailyAdjustedData', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -1121,9 +1136,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
 
@@ -1136,6 +1148,7 @@ describe('Stocks selectors', () => {
 
       it('[Non-empty store]: Should return StockDailyAdj', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -1152,9 +1165,6 @@ describe('Stocks selectors', () => {
               },
             },
           },
-          Favorites: {
-            symbols: [],
-          },
         };
 
         const expected: DataDomain.StockDailyAdj = stockDailyAdjData1;
@@ -1168,6 +1178,7 @@ describe('Stocks selectors', () => {
     describe('selectStockDailyAdjustedError', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -1178,9 +1189,6 @@ describe('Stocks selectors', () => {
                 },
               },
             },
-          },
-          Favorites: {
-            symbols: [],
           },
         };
 
@@ -1193,6 +1201,7 @@ describe('Stocks selectors', () => {
 
       it('[Non-empty store]: Should return Error', () => {
         const rootState: AppState = {
+          ...baseAppState,
           Stocks: {
             symbols: {
               [stockSymbol1]: {
@@ -1209,9 +1218,6 @@ describe('Stocks selectors', () => {
               },
             },
           },
-          Favorites: {
-            symbols: [],
-          },
         };
 
         const expected: Error = new Error('');
@@ -1219,6 +1225,240 @@ describe('Stocks selectors', () => {
         expect(
           selectors.selectStockDailyAdjustedError(rootState, { stockSymbol: stockSymbol1 }),
         ).toEqual(expected);
+      });
+    });
+  });
+
+  describe('Stock search selectors', () => {
+    describe('selectSearchKeyword', () => {
+      it('[Empty store]: Should return empty strings', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              keyword: '',
+            },
+          },
+        };
+
+        const expected = '';
+
+        expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
+      });
+
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            symbols: {},
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return the proper value', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              keyword: stockSymbol1,
+            },
+          },
+        };
+
+        const expected = stockSymbol1;
+
+        expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSearchResults', () => {
+      it('[Empty store]: Should return empty object', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                data: [],
+                error: undefined,
+              },
+            },
+          },
+        };
+
+        const expected = {
+          fetching: false,
+          data: [],
+          error: undefined,
+        };
+
+        expect(selectors.selectSearchResults(rootState)).toEqual(expected);
+      });
+
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            symbols: {
+              ...baseAppState.Stocks.symbols,
+            },
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchResults(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return StockSearch data', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                data: stockSearchData.bestMatches,
+                error: undefined,
+              },
+            },
+          },
+        };
+
+        const expected = {
+          fetching: false,
+          data: stockSearchData.bestMatches,
+          error: undefined,
+        };
+
+        expect(selectors.selectSearchResults(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSearchFetching', () => {
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchFetching(rootState)).toEqual(expected);
+      });
+
+      it("[Non-empty store]: Should return 'fetching' value", () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+              },
+            },
+          },
+        };
+
+        const expected = false;
+
+        expect(selectors.selectSearchFetching(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSearchData', () => {
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchData(rootState)).toEqual(expected);
+      });
+
+      it('[Empty store]: Should return empty array', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                data: [],
+              },
+            },
+          },
+        };
+
+        const expected: never[] = [];
+
+        expect(selectors.selectSearchData(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return DataDomain.StockSearchBase[]', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                data: stockSearchData.bestMatches,
+              },
+            },
+          },
+        };
+
+        const expected = stockSearchData.bestMatches;
+
+        expect(selectors.selectSearchData(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSearchError', () => {
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchError(rootState)).toEqual(expected);
+      });
+
+      it("[Non-empty store]: Should return 'error'", () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                error: new Error(''),
+              },
+            },
+          },
+        };
+
+        const expected = new Error('');
+
+        expect(selectors.selectSearchError(rootState)).toEqual(expected);
       });
     });
   });
