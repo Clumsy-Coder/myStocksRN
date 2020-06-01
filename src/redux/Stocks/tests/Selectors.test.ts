@@ -961,6 +961,53 @@ describe('Stocks selectors', () => {
         });
       });
     });
+
+    describe('selectStockMetadata', () => {
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  data: stockQuoteData1,
+                },
+              },
+            },
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectStockMetadata(rootState, { stockSymbol: stockSymbol1 })).toEqual(
+          expected,
+        );
+      });
+
+      it('[Empty store]: Should return StockSearchBase for a stock', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  data: stockQuoteData1,
+                },
+                metadata: stockSearchData.bestMatches[0],
+              },
+            },
+          },
+        };
+
+        const expected = stockSearchData.bestMatches[0];
+
+        expect(selectors.selectStockMetadata(rootState, { stockSymbol: stockSymbol1 })).toEqual(
+          expected,
+        );
+      });
+    });
   });
 
   describe('Stock Daily Adjusted selectors', () => {
