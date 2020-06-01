@@ -1260,6 +1260,21 @@ describe('Stocks selectors', () => {
         expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
       });
 
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          Stocks: {
+            symbols: {},
+          },
+          Favorites: {
+            symbols: [],
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
+      });
+
       it('[Non-empty store]: Should return the proper value', () => {
         const rootState: AppState = {
           Stocks: {
