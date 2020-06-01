@@ -169,6 +169,23 @@ const stockSearchData2: DataDomain.StockSearch = {
   ],
 };
 
+const baseStockReducerState: Reducer.ReducerState = {
+  symbols: {},
+  search: {
+    keyword: '',
+    // results: {},
+  },
+};
+
+const baseAppState: AppState = {
+  Stocks: {
+    ...baseStockReducerState,
+  },
+  Favorites: {
+    symbols: [],
+  },
+};
+
 describe('Stocks selectors', () => {
   describe('Empty store', () => {
     it('Handle with empty store', () => {
@@ -1270,10 +1287,189 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe.skip('selectSearchResults', () => {
-      it.skip('[Empty store]: Should return empty object', () => {});
+    describe('selectSearchResults', () => {
+      it('[Empty store]: Should return empty object', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                data: [],
+                error: undefined,
+              },
+            },
+          },
+        };
 
-      it.skip('[Non-empty store]: Should return StockSearch data', () => {});
+        const expected = {
+          fetching: false,
+          data: [],
+          error: undefined,
+        };
+
+        expect(selectors.selectSearchResults(rootState)).toEqual(expected);
+      });
+
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            symbols: {
+              ...baseAppState.Stocks.symbols,
+            },
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchResults(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return StockSearch data', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                data: stockSearchData.bestMatches,
+                error: undefined,
+              },
+            },
+          },
+        };
+
+        const expected = {
+          fetching: false,
+          data: stockSearchData.bestMatches,
+          error: undefined,
+        };
+
+        expect(selectors.selectSearchResults(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSearchFetching', () => {
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchFetching(rootState)).toEqual(expected);
+      });
+
+      it("[Non-empty store]: Should return 'fetching' value", () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+              },
+            },
+          },
+        };
+
+        const expected = false;
+
+        expect(selectors.selectSearchFetching(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSearchData', () => {
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchData(rootState)).toEqual(expected);
+      });
+
+      it('[Empty store]: Should return empty array', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                data: [],
+              },
+            },
+          },
+        };
+
+        const expected: never[] = [];
+
+        expect(selectors.selectSearchData(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return DataDomain.StockSearchBase[]', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                data: stockSearchData.bestMatches,
+              },
+            },
+          },
+        };
+
+        const expected = stockSearchData.bestMatches;
+
+        expect(selectors.selectSearchData(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSearchError', () => {
+      it('[Empty store]: Should return undefined', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+          },
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSearchError(rootState)).toEqual(expected);
+      });
+
+      it("[Non-empty store]: Should return 'error'", () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseAppState.Stocks,
+            search: {
+              results: {
+                fetching: false,
+                error: new Error(''),
+              },
+            },
+          },
+        };
+
+        const expected = new Error('');
+
+        expect(selectors.selectSearchError(rootState)).toEqual(expected);
+      });
     });
   });
 });
