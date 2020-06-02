@@ -2,7 +2,9 @@ import { createCachedSelector } from 're-reselect';
 import { createSelector } from 'reselect';
 
 import { AppState } from 'src/redux/index.reducers';
-import { DataDomain, Reducer } from 'src/redux/Stocks/Types';
+import { DataDomain, Reducer, Selectors } from 'src/redux/Stocks/Types';
+import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
+import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';
 
 /**
  * Select 'Stocks' from root reducer.
@@ -322,3 +324,59 @@ export const selectStockMetadata = createCachedSelector(
   [selectStock],
   (stockData: Reducer.StockData): DataDomain.StockSearchBase | undefined => stockData.metadata,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                 DATA PROCESSING DATA SELECTORS                                 //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Selector for displaying info on Home screen.
+ *
+ * If the stock is in the process of fetching or theres no stock quote data, return an object with fetching property.
+ * ```ts
+ * {
+ *    selectedStockQuoteTrim: selectStockQuoteTrim(state)
+ * }
+ * ```
+ *
+ * @param state - AppState - Root redux state
+ * @returns Selectors.SelectQuoteTrim[] - Home screen stock info
+ */
+export const selectStockQuoteTrim = createSelector(
+  [selectAllStocks, selectFavoriteSymbols],
+  (
+    stocks: Reducer.ReducerState,
+    favorites: FavoritesReducer.FavoriteStockData[],
+  ): Selectors.SelectQuoteTrim[] => {
+    const result: Selectors.SelectQuoteTrim[] = favorites.map((favStock) => {
+      const symbol = favStock['1. symbol'];
+
+      if (
+        stocks.symbols[symbol] === undefined ||
+        stocks.symbols[symbol].quote === undefined ||
+        stocks.symbols[symbol].quote.fetching
+      ) {
+        return {
+          fetching: true,
+          symbol,
+          companyName: favStock['2. name'],
+        };
+      }
+
+      return {
+        fetching: false,
+        symbol,
+        companyName: favStock['2. name'],
+        change: stocks.symbols[symbol].quote.data?.['Global Quote']['09. change'],
+        changePercent: stocks.symbols[symbol].quote.data?.['Global Quote']['10. change percent'],
+        price: stocks.symbols[symbol].quote.data?.['Global Quote']['05. price'],
+      };
+    });
+
+    return result;
+  },
+);
