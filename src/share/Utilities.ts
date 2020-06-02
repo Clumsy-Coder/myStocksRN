@@ -15,7 +15,7 @@ enum ApiFunctions {
    *
    * https://www.alphavantage.co/documentation/#latestprice
    */
-  GLOBAL_FUNCTION = 'GLOBAL_FUNCTION',
+  GLOBAL_QUOTE = 'GLOBAL_QUOTE',
   /**
    * Get Stock Daily Adjusted
    *
@@ -42,7 +42,7 @@ export const fetchStockQuoteUrl = (
 ): Promise<AxiosResponse<DataDomain.StockQuote>> => {
   const url = buildUrl(API_URL, {
     queryParams: {
-      function: ApiFunctions.GLOBAL_FUNCTION,
+      function: ApiFunctions.GLOBAL_QUOTE,
       symbol,
       apikey: API_KEY,
     },
