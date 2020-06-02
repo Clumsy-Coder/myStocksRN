@@ -163,6 +163,17 @@ export namespace Reducer {
   }
 }
 
+export namespace Selectors {
+  export interface SelectQuoteTrim {
+    fetching: boolean;
+    symbol: string;
+    companyName: string;
+    price?: string;
+    change?: string;
+    changePercent?: string;
+  }
+}
+
 /**
  * A union of Stocks Reducer types
  */
