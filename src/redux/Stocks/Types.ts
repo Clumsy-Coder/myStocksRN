@@ -207,7 +207,7 @@ export enum ActionTypes {
 
   SET_STOCK_METADATA = 'STOCKS/SET_STOCK_METADATA',
 
-  // FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
+  FETCH_STOCK_QUOTE_BATCH = 'STOCKS/FETCH_STOCK_QUOTE_BATCH',
   // FETCH_STOCK_DAILY_ADJUSTED_BATCH = 'STOCKS/FETCH_STOCK_DAILY_ADJUSTED_BATCH',
 }
 
@@ -378,6 +378,19 @@ export namespace Actions {
       payload: DataDomain.StockSearchBase;
     }
   } // END namespace Search
+
+  /**
+   * All action interfaces for Stock Batch actions
+   */
+  export namespace Batch {
+    /**
+     * Fetch stock quote batch action
+     * Used for initializing for fetching the data.
+     */
+    export interface FetchQuoteAction extends Action<ActionTypes.FETCH_STOCK_QUOTE_BATCH> {
+      type: ActionTypes.FETCH_STOCK_QUOTE_BATCH;
+    }
+  }
 } // END namespace Action
 
 /**
@@ -410,6 +423,8 @@ export type StockSearchActions =
   | Actions.Search.ClearSearchKeywordAction
   | Actions.Search.SetStockMetadata;
 
+export type StockBatchActions = Actions.Batch.FetchQuoteAction;
+
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                                //
@@ -421,4 +436,8 @@ export type StockSearchActions =
 /**
  * Union of action for StockQuoteAction, StockDailyAdjustedAction and StockSearchActions
  */
-export type StocksActions = StockQuoteActions | StockDailyAdjustedActions | StockSearchActions;
+export type StocksActions =
+  | StockQuoteActions
+  | StockDailyAdjustedActions
+  | StockSearchActions
+  | StockBatchActions;
