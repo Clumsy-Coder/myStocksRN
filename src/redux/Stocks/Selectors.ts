@@ -352,30 +352,33 @@ export const selectStockQuoteTrim = createSelector(
     stocks: Reducer.ReducerState,
     favorites: FavoritesReducer.FavoriteStockData[],
   ): Selectors.SelectQuoteTrim[] => {
-    const result: Selectors.SelectQuoteTrim[] = favorites.map((favStock) => {
-      const symbol = favStock['1. symbol'];
+    const result: Selectors.SelectQuoteTrim[] = favorites.reduce(
+      (acc: Selectors.SelectQuoteTrim[], favStock: FavoritesReducer.FavoriteStockData) => {
+        const symbol = favStock['1. symbol'];
 
-      if (
-        stocks.symbols[symbol] === undefined ||
-        stocks.symbols[symbol].quote === undefined ||
-        stocks.symbols[symbol].quote.fetching
-      ) {
-        return {
-          fetching: true,
-          symbol,
-          companyName: favStock['2. name'],
-        };
-      }
+        if (
+          stocks.symbols[symbol] === undefined ||
+          stocks.symbols[symbol].quote === undefined ||
+          stocks.symbols[symbol].quote.fetching
+        ) {
+          return acc;
+        }
 
-      return {
-        fetching: false,
-        symbol,
-        companyName: favStock['2. name'],
-        change: stocks.symbols[symbol].quote.data?.['Global Quote']['09. change'],
-        changePercent: stocks.symbols[symbol].quote.data?.['Global Quote']['10. change percent'],
-        price: stocks.symbols[symbol].quote.data?.['Global Quote']['05. price'],
-      };
-    });
+        return [
+          ...acc,
+          {
+            fetching: false,
+            symbol,
+            companyName: favStock['2. name'],
+            change: stocks.symbols[symbol].quote.data?.['Global Quote']['09. change'],
+            changePercent:
+              stocks.symbols[symbol].quote.data?.['Global Quote']['10. change percent'],
+            price: stocks.symbols[symbol].quote.data?.['Global Quote']['05. price'],
+          },
+        ];
+      },
+      [],
+    );
 
     return result;
   },
