@@ -54,38 +54,12 @@ export function* fetchStockDailyAdjustedSaga(action: Actions.DailyAdjusted.Fetch
  * @param action - Fetch stock quote batch action
  */
 export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction) {
+  // dispatch fetchStockQuote for all stock symbols in Favorites
+
   try {
-    // get favorite stock symbols.
     const stockSymbols: FavoritesReducer.FavoriteStockData[] = yield select(selectFavoriteSymbols);
-
-    // dispatch fetchStockQuotePending action for each stock symbol.
-    yield all(
-      stockSymbols.map((stock) => put(stocksActions.fetchStockQuotePending(stock['1. symbol']))),
-    );
-
-    // call api to fetch stock quote concurrently
-    const response: AxiosResponse<DataDomain.StockQuote>[] = yield all(
-      stockSymbols.map((stock) => call(api.fetchStockQuoteUrl, stock['1. symbol'])),
-    );
-
-    // dispatch fetchStockQuoteFulfilled action for each stock symbol.
-    yield all(
-      response.map((stock) =>
-        put(
-          stocksActions.fetchStockQuoteFulfilled(
-            stock.data['Global Quote']['01. symbol'],
-            stock.data,
-          ),
-        ),
-      ),
-    );
-  } catch (error) {
-    const stockSymbols: FavoritesReducer.FavoriteStockData[] = yield select(selectFavoriteSymbols);
-
-    yield stockSymbols.map((stock) =>
-      put(stocksActions.fetchStockQuoteRejected(stock['1. symbol'], error)),
-    );
-  }
+    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuote(stock['1. symbol']))));
+  } catch (error) {}
 }
 
 // /**
