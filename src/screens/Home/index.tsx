@@ -9,7 +9,7 @@ import { RootStackParamList } from 'src/routes/AppRouteTypes';
 import { fetchStockQuoteBatch } from 'src/redux/Stocks/Actions';
 import { Actions as StocksActions, Selectors as StocksSelectors } from 'src/redux/Stocks/Types';
 import { selectStockQuoteTrim } from 'src/redux/Stocks/Selectors';
-import StockCard from 'src/containers/StockCard';
+import StockCard from 'src/components/StockCard';
 
 interface OwnProps {
   navigation: StackNavigationProp<RootStackParamList, 'Home'>;
