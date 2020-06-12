@@ -224,14 +224,14 @@ export const setStockMetadata: ActionCreator<Actions.Search.SetStockMetadata> = 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
-// /**
-//  * Fetch multiple stock quote data in a single batch action creator.
-//  * ONLY to be called by the front end.
-//  * @param stockSymbols - An array of company stock symbol in uppercase. Ex: ['AAPL', 'SHOP]
-//  */
-// export const fetchStockQuoteBatch: ActionCreator<Actions.Batch.FetchQuoteBatchAction> = (): Actions.Batch.FetchQuoteBatchAction => ({
-//   type: ActionTypes.FETCH_STOCK_QUOTE_BATCH,
-// });
+/**
+ * Fetch multiple stock quote data in a single batch action creator.
+ * ONLY to be called by the front end.
+ * NOTE: uses stock symbols from favorites to fetch stock quotes. Handled in Stocks redux saga
+ */
+export const fetchStockQuoteBatch: ActionCreator<Actions.Batch.FetchQuoteAction> = (): Actions.Batch.FetchQuoteAction => ({
+  type: ActionTypes.FETCH_STOCK_QUOTE_BATCH,
+});
 
 // /**
 //  * Fetch multiple stock chart data in a single batch action creator.

@@ -1,17 +1,19 @@
 import { runSaga } from 'redux-saga';
 import sinon from 'sinon';
 import { AxiosResponse } from 'axios';
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, takeLatest } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 
 import sagaWatcher, {
   fetchStockQuoteSaga,
   fetchStockDailyAdjustedSaga,
+  fetchStockQuoteBatchSaga,
 } from 'src/redux/Stocks/Sagas';
-import { ActionTypes, StocksActions, DataDomain, Actions } from 'src/redux/Stocks/Types';
+import { ActionTypes, StocksActions, DataDomain } from 'src/redux/Stocks/Types';
 import * as actions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
+import { AppState } from 'src/redux/index.reducers';
 
 const stockSymbol1 = 'IBM';
 const stockSymbol2 = 'AAPL';
@@ -179,6 +181,33 @@ const stockSearchData2: DataDomain.StockSearch = {
   ],
 };
 
+const stockSearchData3: DataDomain.StockSearch = {
+  bestMatches: [
+    {
+      '1. symbol': 'SHOP',
+      '2. name': 'Shopify Inc.',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '1.0000',
+    },
+    {
+      '1. symbol': 'TTSH',
+      '2. name': 'Tile Shop Holdings Inc.',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '0.7273',
+    },
+  ],
+};
+
 describe('Stocks Saga', () => {
   describe('Stocks quote watcher', () => {
     it(`Should watch ${ActionTypes.FETCH_STOCK_QUOTE} action`, () => {
@@ -325,6 +354,47 @@ describe('Stocks Saga', () => {
       );
 
       stub.restore(); // important: do NOT remove
+    });
+  });
+
+  describe('Stock quote batch saga', () => {
+    describe('Watcher', () => {
+      it(`Should watch ${ActionTypes.FETCH_STOCK_QUOTE_BATCH} action`, () => {
+        const gen = sagaWatcher();
+        const expected = takeLatest(ActionTypes.FETCH_STOCK_QUOTE_BATCH, fetchStockQuoteBatchSaga);
+        gen.next(); // ignore FETCH_STOCK_QUOTE action
+        gen.next(); // ignore FETCH_STOCK_DAILY_ADJUSTED action
+        const actual = gen.next().value;
+
+        expect(actual).toEqual(expected);
+      });
+    });
+
+    describe('Saga', () => {
+      it('Should dispatch action to fetch Stock quote for every stock symbol', async () => {
+        const rootState: AppState = {
+          Stocks: {
+            symbols: {},
+            search: {},
+          },
+          Favorites: {
+            symbols: [
+              stockSearchData.bestMatches[0],
+              stockSearchData2.bestMatches[0],
+              stockSearchData3.bestMatches[0],
+            ],
+          },
+        };
+
+        return expectSaga(fetchStockQuoteBatchSaga, actions.fetchStockQuoteBatch())
+          .withState(rootState)
+          .put(actions.fetchStockQuote(stockSymbol1))
+          .put(actions.fetchStockQuote(stockSymbol2))
+          .put(actions.fetchStockQuote(stockSymbol3))
+          .dispatch(actions.fetchStockQuoteBatch())
+          .silentRun()
+          .then((result) => expect(result.toJSON()).toMatchSnapshot());
+      });
     });
   });
 });

@@ -1,6 +1,6 @@
 import * as selectors from 'src/redux/Stocks/Selectors';
 import { AppState } from 'src/redux/index.reducers';
-import { DataDomain, Reducer } from 'src/redux/Stocks/Types';
+import { DataDomain, Reducer, Selectors as SelectorsType } from 'src/redux/Stocks/Types';
 
 const stockSymbol1 = 'IBM';
 const stockSymbol2 = 'AAPL';
@@ -164,6 +164,33 @@ const stockSearchData2: DataDomain.StockSearch = {
       '6. marketClose': '17:00',
       '7. timezone': 'UTC-03',
       '8. currency': 'ARS',
+      '9. matchScore': '0.7273',
+    },
+  ],
+};
+
+const stockSearchData3: DataDomain.StockSearch = {
+  bestMatches: [
+    {
+      '1. symbol': 'SHOP',
+      '2. name': 'Shopify Inc.',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
+      '9. matchScore': '1.0000',
+    },
+    {
+      '1. symbol': 'TTSH',
+      '2. name': 'Tile Shop Holdings Inc.',
+      '3. type': 'Equity',
+      '4. region': 'United States',
+      '5. marketOpen': '09:30',
+      '6. marketClose': '16:00',
+      '7. timezone': 'UTC-05',
+      '8. currency': 'USD',
       '9. matchScore': '0.7273',
     },
   ],
@@ -1459,6 +1486,80 @@ describe('Stocks selectors', () => {
         const expected = new Error('');
 
         expect(selectors.selectSearchError(rootState)).toEqual(expected);
+      });
+    });
+  });
+
+  describe('Data processing', () => {
+    describe('selectStockQuoteTrim', () => {
+      it('[Empty store]: Should return empty array', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+        };
+
+        const expected: SelectorsType.SelectQuoteTrim[] = [];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return array of SelectQuoteTrim objects', () => {
+        const rootState: AppState = {
+          ...baseAppState,
+          Stocks: {
+            ...baseStockReducerState,
+            symbols: {
+              [stockSymbol1]: {
+                quote: {
+                  fetching: false,
+                  data: stockQuoteData1,
+                  error: undefined,
+                },
+              },
+              [stockSymbol2]: {
+                quote: {
+                  fetching: true,
+                  data: undefined,
+                  error: undefined,
+                },
+              },
+              [stockSymbol3]: {
+                quote: {
+                  fetching: false,
+                  data: stockQuoteData3,
+                  error: undefined,
+                },
+              },
+            },
+          },
+          Favorites: {
+            symbols: [
+              stockSearchData.bestMatches[0],
+              stockSearchData2.bestMatches[0],
+              stockSearchData3.bestMatches[0],
+            ],
+          },
+        };
+
+        const expected: SelectorsType.SelectQuoteTrim[] = [
+          {
+            fetching: false,
+            symbol: stockSymbol1,
+            companyName: stockSearchData.bestMatches[0]['2. name'],
+            price: stockQuoteData1['Global Quote']['05. price'],
+            change: stockQuoteData1['Global Quote']['09. change'],
+            changePercent: stockQuoteData1['Global Quote']['10. change percent'],
+          },
+          {
+            fetching: false,
+            symbol: stockSymbol3,
+            companyName: stockSearchData3.bestMatches[0]['2. name'],
+            price: stockQuoteData3['Global Quote']['05. price'],
+            change: stockQuoteData3['Global Quote']['09. change'],
+            changePercent: stockQuoteData3['Global Quote']['10. change percent'],
+          },
+        ];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
       });
     });
   });

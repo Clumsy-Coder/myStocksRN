@@ -296,4 +296,13 @@ describe('Stock action creators', () => {
       expect(actions.fetchStockSearchRejected(stockSymbol1, new Error(''))).toEqual(expectedAction);
     });
   });
+
+  describe('Stock quote batch fetching', () => {
+    it('Should create an action to fetch a batch of stock quotes', () => {
+      const expectedAction: Actions.Batch.FetchQuoteAction = {
+        type: ActionTypes.FETCH_STOCK_QUOTE_BATCH,
+      };
+      expect(actions.fetchStockQuoteBatch()).toEqual(expectedAction);
+    });
+  });
 });

@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
+import { call, put, all, takeEvery, takeLatest, select } from 'redux-saga/effects';
 import { AxiosResponse } from 'axios';
 
 import * as stocksActions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
 import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
+import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';
 
 /**
  * Initiate the fetching of stock quote.
@@ -44,36 +45,22 @@ export function* fetchStockDailyAdjustedSaga(action: Actions.DailyAdjusted.Fetch
   }
 }
 
-// /**
-//  * Initiate the fetching of stock quote batch data.
-//  * It will dispatch STOCKS/FETCH_STOCK_QUOTE_PENDING action to the provided stock symbols.
-//  * STOCKS/FETCH_STOCK_QUOTE_FULFILLED action will dispatched for corresponding stock symbol if data fetching was successful.
-//  * STOCKS/FETCH_STOCK_QUOTE_REJECTED action will dispatched for corresponding stock symbol if data fetching was unsuccessful.
-//  *
-//  * @param action - Fetch stock quote batch action
-//  */
-// export function* fetchStockQuoteBatchSaga(action: FetchStockQuoteBatchAction) {
-//   try {
-//     // const { stockSymbols } = action;
-//     const stockSymbols = yield select(selectFavoriteSymbols);
+/**
+ * Initiate the fetching of stock quote batch data.
+ * It will dispatch STOCKS/FETCH_STOCK_QUOTE_PENDING action to the provided stock symbols.
+ * STOCKS/FETCH_STOCK_QUOTE_FULFILLED action will dispatched for corresponding stock symbol if data fetching was successful.
+ * STOCKS/FETCH_STOCK_QUOTE_REJECTED action will dispatched for corresponding stock symbol if data fetching was unsuccessful.
+ *
+ * @param action - Fetch stock quote batch action
+ */
+export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction) {
+  // dispatch fetchStockQuote for all stock symbols in Favorites
 
-//     for (const stock of stockSymbols) {
-//       yield put(stocksActions.fetchStockQuotePending(stock));
-//     }
-//     const response: AxiosResponse<StockQuoteBatch> = yield call(
-//       api.fetchStockQuoteBatchUrl,
-//       stockSymbols,
-//     );
-//     const { data } = response;
-//     for (const [symbol, stockQuoteData] of Object.entries(data)) {
-//       yield put(stocksActions.fetchStockQuoteFulfilled(symbol, stockQuoteData.quote));
-//     }
-//   } catch (error) {
-//     for (const stock of action.stockSymbols) {
-//       yield put(stocksActions.fetchStockQuoteRejected(stock, error));
-//     }
-//   }
-// }
+  try {
+    const stockSymbols: FavoritesReducer.FavoriteStockData[] = yield select(selectFavoriteSymbols);
+    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuote(stock['1. symbol']))));
+  } catch (error) {}
+}
 
 // /**
 //  * Initiate the fetching of stock chart batch data.
@@ -145,7 +132,7 @@ export function* fetchStockDailyAdjustedSaga(action: Actions.DailyAdjusted.Fetch
 export default function* watchStocksSagas() {
   yield takeEvery(ActionTypes.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
   yield takeEvery(ActionTypes.FETCH_STOCK_DAILY_ADJUSTED, fetchStockDailyAdjustedSaga);
-  // yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_BATCH, fetchStockQuoteBatchSaga);
+  yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_BATCH, fetchStockQuoteBatchSaga);
   // yield takeLatest(ActionTypes.FETCH_STOCK_CHART_BATCH, fetchStockChartBatchSaga);
   // yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH, fetchStockQuoteChartBatchSaga);
 }
