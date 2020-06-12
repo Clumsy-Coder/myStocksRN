@@ -31,7 +31,7 @@ export class Home extends React.Component<Props> {
     return (
       <Container>
         <Content>
-          <List>
+          <List testID='stocks-home-list'>
             {selectedStockQuoteTrim.map((stockQuoteTrim: StocksSelectors.SelectQuoteTrim) => {
               return (
                 <StockCard
