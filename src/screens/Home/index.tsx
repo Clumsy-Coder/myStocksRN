@@ -47,11 +47,11 @@ export class Home extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: AppState): SelectorProps => ({
+export const mapStateToProps = (state: AppState): SelectorProps => ({
   selectedStockQuoteTrim: selectStockQuoteTrim(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<AppActions>): DispatchProps => ({
+export const mapDispatchToProps = (dispatch: Dispatch<AppActions>): DispatchProps => ({
   fetchQuoteBatch: (): StocksActions.Batch.FetchQuoteAction => dispatch(fetchStockQuoteBatch()),
 });
 
