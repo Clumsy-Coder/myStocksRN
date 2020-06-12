@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> Should render correctly 1`] = `
+<Styled(Container)>
+  <Styled(Content)>
+    <Styled(List)
+      testID="stocks-home-list"
+    >
+      <StockCard
+        data={
+          Object {
+            "change": "-0.7300",
+            "changePercent": "-0.6128%",
+            "companyName": "International Business Machines Corporation",
+            "fetching": false,
+            "price": "118.3900",
+            "symbol": "IBM",
+          }
+        }
+        key="stock-quote-trim-IBM"
+      />
+      <StockCard
+        data={
+          Object {
+            "change": "2.0400",
+            "changePercent": "0.6438%",
+            "companyName": "Apple Inc.",
+            "fetching": false,
+            "price": "318.8900",
+            "symbol": "AAPL",
+          }
+        }
+        key="stock-quote-trim-AAPL"
+      />
+      <StockCard
+        data={
+          Object {
+            "change": "22.8200",
+            "changePercent": "2.8441%",
+            "companyName": "Shopify Inc.",
+            "fetching": false,
+            "price": "825.1700",
+            "symbol": "SHOP",
+          }
+        }
+        key="stock-quote-trim-SHOP"
+      />
+    </Styled(List)>
+  </Styled(Content)>
+</Styled(Container)>
+`;
