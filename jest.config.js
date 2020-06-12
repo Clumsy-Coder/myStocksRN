@@ -63,4 +63,5 @@ module.exports = {
     'node_modules/(?!(jest-)?react-native|@?react-navigation|native-base-[a-z, -]*)',
   ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
+  setupFilesAfterEnv: ['@testing-library/react-native/cleanup-after-each'],
 };
