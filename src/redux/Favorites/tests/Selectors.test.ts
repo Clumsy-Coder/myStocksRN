@@ -2,32 +2,7 @@ import * as selectors from 'src/redux/Favorites/Selectors';
 import { AppState } from 'src/redux/index.reducers';
 import { Reducer } from 'src/redux/Favorites/Types';
 
-const stockSymbol1 = 'IBM';
-const stockSymbol2 = 'AAPL';
-const stockSymbol3 = 'SHOP';
-const stockMetadata1: Reducer.FavoriteStockData = {
-  '1. symbol': 'IBM',
-  '2. name': 'International Business Machines Corporation',
-  '4. region': 'United States',
-  '7. timezone': 'UTC-05',
-  '8. currency': 'USD',
-};
-
-const stockMetadata2: Reducer.FavoriteStockData = {
-  '1. symbol': 'AAPL',
-  '2. name': 'Apple Inc.',
-  '4. region': 'United States',
-  '7. timezone': 'UTC-05',
-  '8. currency': 'USD',
-};
-
-const stockMetadata3: Reducer.FavoriteStockData = {
-  '1. symbol': 'SHOP',
-  '2. name': 'Shopify Inc.',
-  '4. region': 'United States',
-  '7. timezone': 'UTC-05',
-  '8. currency': 'USD',
-};
+import * as testdata from 'jest.testdata';
 
 describe('Favorites selectors', () => {
   describe('Empty store', () => {
@@ -69,11 +44,11 @@ describe('Favorites selectors', () => {
           symbols: {},
         },
         Favorites: {
-          symbols: [stockMetadata1, stockMetadata2, stockMetadata3],
+          symbols: [testdata.stockMetadata1, testdata.stockMetadata2, testdata.stockMetadata3],
         },
       };
       const expected = {
-        symbols: [stockMetadata1, stockMetadata2, stockMetadata3],
+        symbols: [testdata.stockMetadata1, testdata.stockMetadata2, testdata.stockMetadata3],
       };
 
       const actual = selectors.selectFavorites(store);
@@ -86,10 +61,10 @@ describe('Favorites selectors', () => {
           symbols: {},
         },
         Favorites: {
-          symbols: [stockMetadata1, stockMetadata2, stockMetadata3],
+          symbols: [testdata.stockMetadata1, testdata.stockMetadata2, testdata.stockMetadata3],
         },
       };
-      const expected = [stockMetadata1, stockMetadata2, stockMetadata3];
+      const expected = [testdata.stockMetadata1, testdata.stockMetadata2, testdata.stockMetadata3];
 
       const actual = selectors.selectFavoriteSymbols(store);
       expect(actual).toEqual(expected);
