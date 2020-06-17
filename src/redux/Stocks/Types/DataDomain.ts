@@ -260,3 +260,8 @@ export interface Symbols {
   /** CIK number for the security if available */
   cik: string;
 }
+
+/**
+ * A union of Stocks data domain types
+ */
+export type StocksDataDomain = Quote | Chart;
