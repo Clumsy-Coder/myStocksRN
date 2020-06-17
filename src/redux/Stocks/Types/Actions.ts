@@ -157,3 +157,48 @@ export namespace Batch {
     type: ActionTypes.FETCH_STOCK_QUOTE_BATCH;
   }
 }
+
+/**
+ * Union of action interfaces for Stock Quote
+ */
+export type QuoteActions =
+  | Quote.FetchAction
+  | Quote.FetchPendingAction
+  | Quote.FetchFulfilledAction
+  | Quote.FetchRejectedAction;
+
+/**
+ * Union of action interfaces for Stock Daily Adjusted
+ */
+export type ChartActions =
+  | Chart.FetchAction
+  | Chart.FetchPendingAction
+  | Chart.FetchFulfilledAction
+  | Chart.FetchRejectedAction;
+
+/**
+ * Union of action interfaces for Stock search
+ */
+export type SearchActions =
+  | Search.FetchAction
+  | Search.FetchPendingAction
+  // | Search.FetchFulfilledAction
+  | Search.FetchRejectedAction
+  | Search.SetSearchKeywordAction
+  | Search.ClearSearchKeywordAction;
+// | Search.SetStockMetadata;
+
+export type BatchActions = Batch.FetchQuoteAction;
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                                      STOCK ACTIONS UNIONS                                      //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Union of action for StockQuoteAction, StockDailyAdjustedAction and StockSearchActions
+ */
+export type StocksActions = QuoteActions | ChartActions | SearchActions | BatchActions;
