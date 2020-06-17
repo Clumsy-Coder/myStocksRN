@@ -3,7 +3,7 @@ import * as DataDomain from '@redux/Stocks/Types/DataDomain';
 /**
  * Data structure for Stock quote used in Stock Reducer
  */
-export interface StockQuoteData {
+export interface QuoteData {
   fetching: boolean;
   data?: DataDomain.Quote;
   error?: Error;
@@ -12,7 +12,7 @@ export interface StockQuoteData {
 /**
  * Data structure for Stock Daily Adjusted used in Stock Reducer
  */
-export interface StockChartData {
+export interface ChartData {
   fetching: boolean;
   data?: DataDomain.Chart;
   error?: Error;
@@ -33,8 +33,8 @@ export interface StockChartData {
  * A data structure wrapper for one Stock
  */
 export interface StockData {
-  quote: StockQuoteData;
-  chart?: StockChartData;
+  quote: QuoteData;
+  chart?: ChartData;
   // metadata?: DataDomain.StockSearchBase;
 }
 
@@ -47,3 +47,8 @@ export interface ReducerState {
   };
   // search?: Reducer.StockSearch;
 }
+
+/**
+ * A union of Stocks Reducer types
+ */
+export type StocksReducerTypes = QuoteData | ChartData | StockData | ReducerState;
