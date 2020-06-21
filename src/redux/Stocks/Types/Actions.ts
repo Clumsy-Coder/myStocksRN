@@ -59,7 +59,7 @@ export namespace Chart {
   export interface FetchAction extends Action<ActionTypes.FETCH_STOCK_CHART> {
     type: ActionTypes.FETCH_STOCK_CHART;
     readonly stockSymbol: string;
-    readonly outputsize: 'compact' | 'full';
+    readonly chartRange: DataDomain.ChartRange;
   }
 
   /**
@@ -76,7 +76,7 @@ export namespace Chart {
   export interface FetchFulfilledAction extends Action<ActionTypes.FETCH_STOCK_CHART_FULFILLED> {
     type: ActionTypes.FETCH_STOCK_CHART_FULFILLED;
     readonly stockSymbol: string;
-    readonly payload: DataDomain.Chart;
+    readonly payload: DataDomain.Chart[];
   }
 
   /**
