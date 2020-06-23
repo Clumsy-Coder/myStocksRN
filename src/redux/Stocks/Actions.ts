@@ -243,3 +243,54 @@ export const fetchStockQuoteBatch: ActionCreator<Actions.Batch.FetchQuoteAction>
 // export const fetchStockChartBatch: ActionCreator<Actions.Batch.FetchDailyAdjustedBatchAction> = (): Actions.Batch.FetchDailyAdjustedBatchAction => ({
 //   type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_BATCH,
 // });
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
+//                             STOCK SYMBOL METADATA ACTIONS CREATORS                             //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Fetch stock Symbols metadata creator.
+ * ONLY to be called by the front end.
+ */
+export const fetchSymbolsMetadata: ActionCreator<Actions.SymbolsMetadata.FetchAction> = (): Actions.SymbolsMetadata.FetchAction => ({
+  type: ActionTypes.FETCH_SYMBOLS_METADATA,
+});
+
+/**
+ * Fetch stock Symbols metadata pending action creator.
+ * ONLY to be called by redux saga.
+ * Only used for internal use.
+ */
+export const fetchSymbolsMetadataPending: ActionCreator<Actions.SymbolsMetadata.FetchPendingAction> = (): Actions.SymbolsMetadata.FetchPendingAction => ({
+  type: ActionTypes.FETCH_SYMBOLS_METADATA_PENDING,
+});
+
+/**
+ * Fetch Stock Symbols metadata fulfilled action creator.
+ * ONLY to be called by redux saga.
+ * Only used for internal use.
+ * @param payload - data fetched
+ */
+export const fetchSymbolsMetadataFulfilled: ActionCreator<Actions.SymbolsMetadata.FetchFulfilledAction> = (
+  payload: DataDomain.Symbols[],
+): Actions.SymbolsMetadata.FetchFulfilledAction => ({
+  type: ActionTypes.FETCH_SYMBOLS_METADATA_FULFILLED,
+  payload,
+});
+
+/**
+ * Fetch Stock Symbols metadata rejected action creator.
+ * ONLY to be called by redux saga.
+ * Only used for internal use.
+ * @param error - error message
+ */
+export const fetchSymbolsMetadataRejected: ActionCreator<Actions.SymbolsMetadata.FetchRejectedAction> = (
+  error: Error,
+): Actions.SymbolsMetadata.FetchRejectedAction => ({
+  type: ActionTypes.FETCH_SYMBOLS_METADATA_REJECTED,
+  error,
+});
