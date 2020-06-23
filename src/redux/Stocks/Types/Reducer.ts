@@ -24,10 +24,10 @@ export interface ChartData {
 //   error?: Error;
 // }
 
-// export interface StockSearch {
-//   keyword?: string;
-//   results?: Reducer.StockSearchResultData;
-// }
+export interface StockSearch {
+  keyword: string;
+  // results?: Reducer.StockSearchResultData;
+}
 
 /**
  * A data structure wrapper for one Stock
@@ -45,7 +45,7 @@ export interface ReducerState {
   symbols: {
     [symbol: string]: StockData;
   };
-  // search?: Reducer.StockSearch;
+  search?: StockSearch;
 }
 
 /**
