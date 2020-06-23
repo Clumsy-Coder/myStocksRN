@@ -417,15 +417,14 @@ export const selectSymbolsMetadataError = createSelector(
  * @returns Selectors.SelectQuoteTrim[] - Home screen stock info
  */
 export const selectStockQuoteTrim = createSelector(
-  [selectAllStocks, selectFavoriteSymbols],
+  [selectAllStocks, selectFavoriteSymbols, selectSymbolsMetadataData],
   (
     stocks: Reducer.ReducerState,
-    favorites: FavoritesReducer.FavoriteStockData[],
+    favorites: string[],
+    symbolsMetadata: DataDomain.Symbols[],
   ): Selectors.SelectQuoteTrim[] => {
     const result: Selectors.SelectQuoteTrim[] = favorites.reduce(
-      (acc: Selectors.SelectQuoteTrim[], favStock: FavoritesReducer.FavoriteStockData) => {
-        const symbol = favStock['1. symbol'];
-
+      (acc: Selectors.SelectQuoteTrim[], symbol: string) => {
         if (
           stocks.symbols[symbol] === undefined ||
           stocks.symbols[symbol].quote === undefined ||
@@ -439,11 +438,11 @@ export const selectStockQuoteTrim = createSelector(
           {
             fetching: false,
             symbol,
-            companyName: favStock['2. name'],
-            change: stocks.symbols[symbol].quote.data?.['Global Quote']['09. change'],
-            changePercent:
-              stocks.symbols[symbol].quote.data?.['Global Quote']['10. change percent'],
-            price: stocks.symbols[symbol].quote.data?.['Global Quote']['05. price'],
+            companyName: stocks.symbols[symbol].quote.data?.companyName || 'N/A',
+            price: stocks.symbols[symbol].quote.data?.latestPrice || 0,
+            change: stocks.symbols[symbol].quote.data?.change || 0,
+            changePercent: stocks.symbols[symbol].quote.data?.changePercent || 0,
+            currency: symbolsMetadata.find((obj) => obj.symbol === symbol)?.currency || '',
           },
         ];
       },
