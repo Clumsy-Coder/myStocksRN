@@ -326,6 +326,78 @@ export const selectStockChartError = createCachedSelector(
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                                //
+//                                 SYMBOLS METADATA DATA SELECTORS                                //
+//                                                                                                //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+
+/**
+ * Select Symbols metadata.
+ * The props is handed by Component props.
+ * ```ts
+ * {
+ *    selectedSymbolsMetadata: selectSymbolsMetadata(state)
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @returns Reducer.SymbolsData - Symbols Data
+ */
+export const selectSymbolsMetadata = createSelector(
+  [selectAllStocks],
+  (stockData: Reducer.ReducerState): Reducer.SymbolsData => stockData.symbolsMetadata,
+);
+
+/**
+ * Select Symbols metadata **fetching**.
+ * The props is handed by Component props.
+ * ```ts
+ * {
+ *    selectedSymbolsMetadataFetching: selectSymbolsMetadataFetching(state)
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @returns boolean - true if data is being fetched, false otherwise.
+ */
+export const selectSymbolsMetadataFetching = createSelector(
+  [selectSymbolsMetadata],
+  (symbolsData: Reducer.SymbolsData): boolean => symbolsData.fetching,
+);
+
+/**
+ * Select Symbols metadata **data**.
+ * The props is handed by Component props.
+ * ```ts
+ * {
+ *    selectedSymbolsMetadataData: selectSymbolsMetadataData(state)
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @returns DataDomain.Symbols[] - Array of Symbols.
+ */
+export const selectSymbolsMetadataData = createSelector(
+  [selectSymbolsMetadata],
+  (symbolsData: Reducer.SymbolsData): DataDomain.Symbols[] => symbolsData.data,
+);
+
+/**
+ * Select Symbols metadata **error**.
+ * The props is handed by Component props.
+ * ```ts
+ * {
+ *    selectedSymbolsMetadataError: selectSymbolsMetadataError(state)
+ * }
+ * ```
+ * @param state - AppState - Root redux state
+ * @returns Error | undefined - Error when fetching data or undefined if data fetching was successful.
+ */
+export const selectSymbolsMetadataError = createSelector(
+  [selectSymbolsMetadata],
+  (symbolsData: Reducer.SymbolsData): Error | undefined => symbolsData.error,
+);
+
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+// ////////////////////////////////////////////////////////////////////////////////////////////// //
+//                                                                                                //
 //                                 DATA PROCESSING DATA SELECTORS                                 //
 //                                                                                                //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
