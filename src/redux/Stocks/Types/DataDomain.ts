@@ -25,9 +25,9 @@ export interface Quote {
    */
   latestTime: string;
   /** Refers to the source of the latest price. */
-  calculationPrice: 'tops' | 'sip' | 'previousclose' | 'close';
+  calculationPrice?: 'tops' | 'sip' | 'previousclose' | 'close';
   /** This will represent a human readable description of the source of latestPrice. */
-  latestSource: 'IEX real time price' | '15 minute delayed price' | 'Close' | 'Previous close';
+  latestSource?: 'IEX real time price' | '15 minute delayed price' | 'Close' | 'Previous close';
   /** Refers to the change in price between **latestPrice** and **previousClose** */
   change: number;
   /**
@@ -48,11 +48,11 @@ export interface Quote {
    */
   open: number | null;
   /** Refers to the official listing exchange time for the open from the SIP. 15 minute delayed */
-  openTime: number;
+  openTime?: number;
   /** Refers to the official close price from the SIP. 15 minute delayed */
-  close: number;
+  close: number | null;
   /** Refers to the official listing exchange time for the close from the SIP. 15 minute delayed */
-  closeTime: number;
+  closeTime?: number;
   /** Refers to the previous trading day closing price. */
   previousClose: number;
   /** Refers to the previous trading day volume. */
@@ -61,32 +61,32 @@ export interface Quote {
    * Refers to the market-wide highest price from the SIP.
    * 15 minute delayed during normal market hours 9:30 - 16:00 (null before 9:45 and weekends).
    */
-  high: number;
+  high: number | null;
   /**
    * Refers to the market-wide lowest price from the SIP.
    * 15 minute delayed during normal market hours 9:30 - 16:00 (null before 9:45 and weekends).
    */
-  low: number;
+  low: number | null;
   /**
    * Refers to the 15 minute delayed price outside normal market hours 0400 - 0930 ET and 1600 - 2000 ET.
    * This provides pre market and post market price.
    * This is purposefully separate from latestPrice so users can display the two prices separately.
    */
-  extendedPrice: number;
+  extendedPrice?: number;
   /** Refers to the price change between **extendedPrice** and **latestPrice**. */
-  extendedChange: number;
+  extendedChange?: number;
   /**  Refers to the price change percent between **extendedPrice** and **latestPrice**. */
-  extendedChangePercent: number;
+  extendedChangePercent?: number;
   /** Refers to the last update time of **extendedPrice** */
-  extendedPriceTime: number;
+  extendedPriceTime?: number;
   /** Refers to the 15 minute delayed market price from the SIP during normal market hours 9:30 - 16:00 ET. */
-  delayedPrice: number;
+  delayedPrice?: number;
   /** Refers to the last update time of the delayed market price during normal market hours 9:30 - 16:00 ET. */
-  delayedPriceTime: number;
+  delayedPriceTime?: number;
   /** Refers to the 15 minute delayed odd Lot trade price from the SIP during normal market hours 9:30 - 16:00 ET. */
-  oddLotDelayedPrice: number;
+  oddLotDelayedPrice?: number;
   /** Refers to the last update time of the odd Lot trade price during normal market hours 9:30 - 16:00 ET. */
-  oddLotDelayedPriceTime: number;
+  oddLotDelayedPriceTime?: number;
   /** is calculated in real time using latestPrice. */
   marketCap: number;
   /** Refers to the 30 day average volume. */
@@ -98,26 +98,26 @@ export interface Quote {
   /** Refers to the price change percentage from start of year to previous close. */
   ytdChange: number;
   /** Refers to the price of the last trade on IEX. */
-  iexRealtimePrice: number;
+  iexRealtimePrice?: number;
   /** Refers to the size of the last trade on IEX. */
-  iexRealtimeSize: number;
+  iexRealtimeSize?: number;
   /**
    * Refers to the last update time of **iexRealtimePrice** in milliseconds since midnight Jan 1, 1970 UTC or -1 or 0.
    * If the value is -1 or 0, IEX has not quoted the symbol in the trading day.
    */
-  iexLastUpdated: number | '-1' | '0';
+  iexLastUpdated?: number | '-1' | '0';
   /** Refers to IEX’s percentage of the market in the stock. */
-  iexMarketPercent: number;
+  iexMarketPercent?: number;
   /** Refers to shares traded in the stock on IEX. */
-  iexVolume: number;
+  iexVolume?: number;
   /** Refers to the best bid price on IEX. */
-  iexBidPrice: number;
+  iexBidPrice?: number;
   /** Refers to amount of shares on the bid on IEX. */
-  iexBidSize: number;
+  iexBidSize?: number;
   /** Refers to the best ask price on IEX. */
-  iexAskPrice: number;
+  iexAskPrice?: number;
   /** Refers to amount of shares on the ask on IEX. */
-  iexAskSize: number;
+  iexAskSize?: number;
   /** Refers to the stock ticker. */
   symbol: string;
   /** Refers to the company name. */
@@ -127,9 +127,9 @@ export interface Quote {
   /** Refers to the price-to-earnings ratio for the company. */
   peRatio: number;
   /**	Epoch timestamp in milliseconds of the last market hours trade excluding the closing auction trade. */
-  lastTradeTime: number;
+  lastTradeTime?: number;
   /** For US stocks, indicates if the market is in normal market hours. Will be false during extended hours trading. */
-  isUSMarketOpen: boolean;
+  isUSMarketOpen?: boolean;
 }
 
 /**
@@ -139,7 +139,7 @@ export interface Quote {
  */
 export interface Chart {
   /** Formatted as YYYY-MM-DD */
-  date: Date;
+  date: string;
   /** Adjusted data for historical dates. Split adjusted only. */
   open: number;
   /**  Adjusted data for historical dates. Split adjusted only. */
@@ -151,15 +151,15 @@ export interface Chart {
   /** Unadjusted data for historical dates.  */
   volume: number;
   /** Unadjusted data for historical dates. */
-  uOpen: number;
+  uOpen?: number;
   /** Unadjusted data for historical dates. */
-  uHigh: number;
+  uHigh?: number;
   /** Unadjusted data for historical dates. */
-  uLow: number;
+  uLow?: number;
   /** Unadjusted data for historical dates. */
-  uClose: number;
+  uClose?: number;
   /** Unadjusted data for historical dates. */
-  uVolume: number;
+  uVolume?: number;
   /**  Change from previous trading day. */
   change: number;
   /**  Change percent from previous trading day. */
@@ -218,7 +218,7 @@ export interface Symbols {
   /** refers to the date the symbol reference data was generated. YYYY-MM-DD format */
   date: string;
   /** will be true if the symbol is enabled for trading on IEX. */
-  isEnabled: boolean;
+  isEnabled?: boolean;
   /**
    * refers to the common issue type
    *  - ad - ADR
@@ -235,7 +235,7 @@ export interface Symbols {
    *  - ut - Unit
    *  - struct - Structured Product
    */
-  type:
+  type?:
     | 'ad'
     | 're'
     | 'ce'
@@ -254,11 +254,11 @@ export interface Symbols {
   /** refers to the currency the symbol is traded in using ISO 4217 */
   currency: string;
   /** unique ID applied by IEX to track securities through symbol changes. */
-  iexId: string;
+  iexId?: string;
   /** The FIGI id for the security if available */
-  figi: string;
+  figi?: string;
   /** CIK number for the security if available */
-  cik: string;
+  cik?: string;
 }
 
 /**
