@@ -262,6 +262,64 @@ export interface Symbols {
 }
 
 /**
+ * A list of strings that indicate what data to fetch **Stock Quote**.
+ * Instead of fetching everything of **Stocks Quote**, fetch only the necessary data.
+ *
+ * https://iexcloud.io/docs/api/#quote
+ *
+ * https://iexcloud.io/docs/api/#filter-results
+ */
+export const quoteFilter: (keyof Quote)[] = [
+  'symbol',
+  'companyName',
+  'primaryExchange',
+  'latestPrice',
+  'latestTime',
+  'latestUpdate',
+  'latestVolume',
+  'extendedPrice',
+  'extendedChange',
+  'extendedChangePercent',
+  'previousClose',
+  'previousVolume',
+  'change',
+  'changePercent',
+  'avgTotalVolume',
+  'marketCap',
+  'peRatio',
+  'week52High',
+  'week52Low',
+  'ytdChange',
+  'open',
+  'close',
+  'high',
+  'low',
+  'volume',
+  'previousClose',
+];
+
+/**
+ * A list of strings that indicate what data to fetch when fetching **Stock Charts**.
+ * Instead of fetching everything of **Stock Charts**, fetch only the necessary data.
+ *
+ * https://iexcloud.io/docs/api/#charts
+ *
+ * https://iexcloud.io/docs/api/#filter-results
+ */
+export const chartFilter: (keyof Chart)[] = [
+  'date',
+  'label',
+  'open',
+  'close',
+  'high',
+  'low',
+  'volume',
+  'change',
+  'changePercent',
+  'changeOverTime',
+];
+
+/**
  * A union of Stocks data domain types
  */
 export type StocksDataDomain = Quote | Chart;
