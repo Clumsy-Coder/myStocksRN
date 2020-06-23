@@ -133,6 +133,36 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
         },
       };
     }
+    case ActionTypes.FETCH_SYMBOLS_METADATA_PENDING: {
+      return {
+        ...state,
+        symbolsMetadata: {
+          fetching: true,
+          data: [],
+          error: undefined,
+        },
+      };
+    }
+    case ActionTypes.FETCH_SYMBOLS_METADATA_FULFILLED: {
+      return {
+        ...state,
+        symbolsMetadata: {
+          fetching: false,
+          data: action.payload,
+          error: undefined,
+        },
+      };
+    }
+    case ActionTypes.FETCH_SYMBOLS_METADATA_REJECTED: {
+      return {
+        ...state,
+        symbolsMetadata: {
+          fetching: true,
+          data: [],
+          error: action.error,
+        },
+      };
+    }
 
     default: {
       return state;
