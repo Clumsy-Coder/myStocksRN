@@ -14,7 +14,7 @@ export interface QuoteData {
  */
 export interface ChartData {
   fetching: boolean;
-  data?: DataDomain.Chart;
+  data?: DataDomain.Chart[];
   error?: Error;
 }
 
