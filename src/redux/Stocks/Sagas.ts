@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { call, put, all, takeEvery, takeLatest, select } from 'redux-saga/effects';
-import { AxiosResponse } from 'axios';
 
 import * as stocksActions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
-import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
+import { ActionTypes, Actions } from 'src/redux/Stocks/Types';
 import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
 import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';
 
@@ -34,14 +33,14 @@ export function* fetchStockQuoteSaga(action: Actions.Quote.FetchAction) {
  *
  * @param action - Fetch stock Daily Adjusted action
  */
-export function* fetchStockDailyAdjustedSaga(action: Actions.DailyAdjusted.FetchAction) {
+export function* fetchStockChartSaga(action: Actions.Chart.FetchAction) {
   try {
-    const { stockSymbol, outputsize } = action;
-    yield put(stocksActions.fetchStockDailyAdjPending(action.stockSymbol));
-    const response = yield call(api.fetchStockDailyAdjustedUrl, stockSymbol, outputsize);
-    yield put(stocksActions.fetchStockDailyAdjFulfilled(action.stockSymbol, response.data));
+    const { stockSymbol, chartRange } = action;
+    yield put(stocksActions.fetchStockChartPending(action.stockSymbol));
+    const response = yield call(api.fetchStockChartUrl, stockSymbol, chartRange);
+    yield put(stocksActions.fetchStockChartFulfilled(action.stockSymbol, response.data));
   } catch (error) {
-    yield put(stocksActions.fetchStockDailyAdjRejected(action.stockSymbol, error));
+    yield put(stocksActions.fetchStockChartRejected(action.stockSymbol, error));
   }
 }
 
@@ -131,7 +130,7 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
 
 export default function* watchStocksSagas() {
   yield takeEvery(ActionTypes.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
-  yield takeEvery(ActionTypes.FETCH_STOCK_DAILY_ADJUSTED, fetchStockDailyAdjustedSaga);
+  yield takeEvery(ActionTypes.FETCH_STOCK_CHART, fetchStockChartSaga);
   yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_BATCH, fetchStockQuoteBatchSaga);
   // yield takeLatest(ActionTypes.FETCH_STOCK_CHART_BATCH, fetchStockChartBatchSaga);
   // yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH, fetchStockQuoteChartBatchSaga);
