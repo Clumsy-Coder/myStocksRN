@@ -159,6 +159,45 @@ export namespace Batch {
 }
 
 /**
+ * All action interfaces for Symbols metadata
+ *
+ * https://iexcloud.io/docs/api/#symbols
+ */
+export namespace SymbolsMetadata {
+  /**
+   * Fetch all Symbols metadata action.
+   * Used for initializing for fetching the data.
+   */
+  export interface FetchAction extends Action<ActionTypes.FETCH_SYMBOLS_METADATA> {
+    type: ActionTypes.FETCH_SYMBOLS_METADATA;
+  }
+
+  /**
+   * Fetch all Symbols metadata  pending action
+   */
+  export interface FetchPendingAction extends Action<ActionTypes.FETCH_SYMBOLS_METADATA_PENDING> {
+    type: ActionTypes.FETCH_SYMBOLS_METADATA_PENDING;
+  }
+
+  /**
+   * Fetch all Symbols metadata  fulfilled action
+   */
+  export interface FetchFulfilledAction
+    extends Action<ActionTypes.FETCH_SYMBOLS_METADATA_FULFILLED> {
+    type: ActionTypes.FETCH_SYMBOLS_METADATA_FULFILLED;
+    readonly payload: DataDomain.Symbols[];
+  }
+
+  /**
+   * Fetch all Symbols metadata  rejected action
+   */
+  export interface FetchRejectedAction extends Action<ActionTypes.FETCH_SYMBOLS_METADATA_REJECTED> {
+    type: ActionTypes.FETCH_SYMBOLS_METADATA_REJECTED;
+    readonly error: Error;
+  }
+}
+
+/**
  * Union of action interfaces for Stock Quote
  */
 export type QuoteActions =
@@ -168,7 +207,7 @@ export type QuoteActions =
   | Quote.FetchRejectedAction;
 
 /**
- * Union of action interfaces for Stock Daily Adjusted
+ * Union of action interfaces for Stock Chart
  */
 export type ChartActions =
   | Chart.FetchAction
@@ -190,6 +229,15 @@ export type SearchActions =
 
 export type BatchActions = Batch.FetchQuoteAction;
 
+/**
+ * Union of action interfaces for Symbols metadata
+ */
+export type SymbolsMetadataActions =
+  | SymbolsMetadata.FetchAction
+  | SymbolsMetadata.FetchPendingAction
+  | SymbolsMetadata.FetchFulfilledAction
+  | SymbolsMetadata.FetchRejectedAction;
+
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                                //
@@ -199,6 +247,11 @@ export type BatchActions = Batch.FetchQuoteAction;
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Union of action for StockQuoteAction, StockDailyAdjustedAction and StockSearchActions
+ * Union of action for QuoteAction, ChartAction, SearchActions and SymbolsMetadataActions
  */
-export type StocksActions = QuoteActions | ChartActions | SearchActions | BatchActions;
+export type StocksActions =
+  | QuoteActions
+  | ChartActions
+  | SearchActions
+  | BatchActions
+  | SymbolsMetadataActions;
