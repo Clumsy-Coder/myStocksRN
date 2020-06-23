@@ -128,10 +128,30 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
 //   }
 // }
 
+/**
+ * Initiate the fetching of Symbols metadata.
+ *
+ * It will dispatch STOCKS/FETCH_SYMBOLS_METADATA_PENDING action.
+ * STOCKS/FETCH_SYMBOLS_METADATA_FULFILLED action is dispatched if data fetching was successful.
+ * STOCKS/FETCH_SYMBOLS_METADATA_REJECTED action is dispatched if data fetching was unsuccessful.
+ *
+ * @param action - Fetch Symbols metadata action
+ */
+export function* fetchSymbolsMetadataSaga(action: Actions.SymbolsMetadata.FetchAction) {
+  try {
+    yield put(stocksActions.fetchSymbolsMetadataPending());
+    const response = yield call(api.fetchSymbolsMetadataUrl);
+    yield put(stocksActions.fetchSymbolsMetadataFulfilled(response.data));
+  } catch (error) {
+    yield put(stocksActions.fetchSymbolsMetadataRejected(error));
+  }
+}
+
 export default function* watchStocksSagas() {
   yield takeEvery(ActionTypes.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
   yield takeEvery(ActionTypes.FETCH_STOCK_CHART, fetchStockChartSaga);
   yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_BATCH, fetchStockQuoteBatchSaga);
   // yield takeLatest(ActionTypes.FETCH_STOCK_CHART_BATCH, fetchStockChartBatchSaga);
   // yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH, fetchStockQuoteChartBatchSaga);
+  yield takeLatest(ActionTypes.FETCH_SYMBOLS_METADATA, fetchSymbolsMetadataSaga);
 }
