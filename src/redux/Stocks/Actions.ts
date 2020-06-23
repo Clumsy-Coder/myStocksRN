@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { ActionCreator, Action } from 'redux';
+import { ActionCreator } from 'redux';
 
 import { ActionTypes, DataDomain, Actions } from 'src/redux/Stocks/Types';
 
@@ -45,7 +45,7 @@ export const fetchStockQuotePending: ActionCreator<Actions.Quote.FetchPendingAct
  */
 export const fetchStockQuoteFulfilled: ActionCreator<Actions.Quote.FetchFulfilledAction> = (
   stockSymbol: string,
-  payload: DataDomain.StockQuote,
+  payload: DataDomain.Quote,
 ): Actions.Quote.FetchFulfilledAction => ({
   type: ActionTypes.FETCH_STOCK_QUOTE_FULFILLED,
   stockSymbol,
@@ -71,67 +71,67 @@ export const fetchStockQuoteRejected: ActionCreator<Actions.Quote.FetchRejectedA
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                                //
-//                             STOCK DAILY ADJUSTED ACTIONS CREATORS                              //
+//                                  STOCK Chart ACTIONS CREATORS                                  //
 //                                                                                                //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Fetch stock Daily Adjusted action creator.
+ * Fetch stock Chart action creator.
  * ONLY to be called by the front end.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param outputsize - 'compact' or 'full'
  */
-export const fetchStockDailyAdj: ActionCreator<Actions.DailyAdjusted.FetchAction> = (
+export const fetchStockChart: ActionCreator<Actions.Chart.FetchAction> = (
   stockSymbol: string,
-  outputsize: 'compact' | 'full',
-): Actions.DailyAdjusted.FetchAction => ({
-  type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED,
+  chartRange: DataDomain.ChartRange,
+): Actions.Chart.FetchAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART,
   stockSymbol,
-  outputsize,
+  chartRange,
 });
 
 /**
- * Fetch stock Daily Adjusted pending action creator.
+ * Fetch stock Chart pending action creator.
  * ONLY to be called by redux saga.
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  */
-export const fetchStockDailyAdjPending: ActionCreator<Actions.DailyAdjusted.FetchPendingAction> = (
+export const fetchStockChartPending: ActionCreator<Actions.Chart.FetchPendingAction> = (
   stockSymbol: string,
-): Actions.DailyAdjusted.FetchPendingAction => ({
-  type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
+): Actions.Chart.FetchPendingAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_PENDING,
   stockSymbol,
 });
 
 /**
- * Fetch Stock Daily Adjusted fulfilled action creator.
+ * Fetch Stock Chart fulfilled action creator.
  * ONLY to be called by redux saga.
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param payload - data fetched
  */
-export const fetchStockDailyAdjFulfilled: ActionCreator<Actions.DailyAdjusted.FetchFulfilledAction> = (
+export const fetchStockChartFulfilled: ActionCreator<Actions.Chart.FetchFulfilledAction> = (
   stockSymbol: string,
-  payload: DataDomain.StockDailyAdj,
-): Actions.DailyAdjusted.FetchFulfilledAction => ({
-  type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
+  payload: DataDomain.Chart[],
+): Actions.Chart.FetchFulfilledAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
   stockSymbol,
   payload,
 });
 
 /**
- * Fetch Stock Daily Adjusted rejected action creator.
+ * Fetch Stock Chart rejected action creator.
  * ONLY to be called by redux saga.
  * Only used for internal use.
  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
  * @param error - error message
  */
-export const fetchStockDailyAdjRejected: ActionCreator<Actions.DailyAdjusted.FetchRejectedAction> = (
+export const fetchStockChartRejected: ActionCreator<Actions.Chart.FetchRejectedAction> = (
   stockSymbol: string,
   error: Error,
-): Actions.DailyAdjusted.FetchRejectedAction => ({
-  type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
+): Actions.Chart.FetchRejectedAction => ({
+  type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
   stockSymbol,
   error,
 });
@@ -176,14 +176,14 @@ export const fetchStockSearchPending: ActionCreator<Actions.Search.FetchPendingA
   keyword,
 });
 
-export const fetchStockSearchFulfilled: ActionCreator<Actions.Search.FetchFulfilledAction> = (
-  keyword: string,
-  payload: DataDomain.StockSearch,
-): Actions.Search.FetchFulfilledAction => ({
-  type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
-  keyword,
-  payload,
-});
+// export const fetchStockSearchFulfilled: ActionCreator<Actions.Search.FetchFulfilledAction> = (
+//   keyword: string,
+//   payload: DataDomain.StockSearch,
+// ): Actions.Search.FetchFulfilledAction => ({
+//   type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
+//   keyword,
+//   payload,
+// });
 
 export const fetchStockSearchRejected: ActionCreator<Actions.Search.FetchRejectedAction> = (
   keyword: string,
@@ -202,19 +202,19 @@ export const fetchStockSearchRejected: ActionCreator<Actions.Search.FetchRejecte
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
-/**
- * Set Stock metadata by stock symbol
- * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
- * @param payload - Stock metadata
- */
-export const setStockMetadata: ActionCreator<Actions.Search.SetStockMetadata> = (
-  stockSymbol: string,
-  payload: DataDomain.StockSearchBase,
-): Actions.Search.SetStockMetadata => ({
-  type: ActionTypes.SET_STOCK_METADATA,
-  stockSymbol,
-  payload,
-});
+// /**
+//  * Set Stock metadata by stock symbol
+//  * @param stockSymbol - Company stock symbol in uppercase. Ex: AAPL
+//  * @param payload - Stock metadata
+//  */
+// export const setStockMetadata: ActionCreator<Actions.Search.SetStockMetadata> = (
+//   stockSymbol: string,
+//   payload: DataDomain.StockSearchBase,
+// ): Actions.Search.SetStockMetadata => ({
+//   type: ActionTypes.SET_STOCK_METADATA,
+//   stockSymbol,
+//   payload,
+// });
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
