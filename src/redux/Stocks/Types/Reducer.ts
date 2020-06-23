@@ -38,6 +38,12 @@ export interface StockData {
   // metadata?: DataDomain.StockSearchBase;
 }
 
+export interface SymbolsData {
+  fetching: boolean;
+  data: DataDomain.Symbols[];
+  error?: Error;
+}
+
 /**
  * Stocks reducer state
  */
@@ -46,6 +52,7 @@ export interface ReducerState {
     [symbol: string]: StockData;
   };
   search?: StockSearch;
+  symbolsMetadata: SymbolsData;
 }
 
 /**
