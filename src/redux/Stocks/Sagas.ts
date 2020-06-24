@@ -56,8 +56,8 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
   // dispatch fetchStockQuote for all stock symbols in Favorites
 
   try {
-    const stockSymbols: FavoritesReducer.FavoriteStockData[] = yield select(selectFavoriteSymbols);
-    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuote(stock['1. symbol']))));
+    const stockSymbols: string[] = yield select(selectFavoriteSymbols);
+    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuote(stock))));
   } catch (error) {}
 }
 

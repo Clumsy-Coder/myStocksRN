@@ -1,16 +1,12 @@
 import { Reducer } from 'redux';
 
-import {
-  ActionTypes,
-  Reducer as FavoritesReducer,
-  FavoritesActions,
-} from 'src/redux/Favorites/Types';
+import { ActionTypes, Reducer as FavoritesReducer, Actions } from 'src/redux/Favorites/Types';
 
 const initialState: FavoritesReducer.ReducerState = {
   symbols: [],
 };
 
-const reducer: Reducer<FavoritesReducer.ReducerState, FavoritesActions> = (
+const reducer: Reducer<FavoritesReducer.ReducerState, Actions.FavoritesActions> = (
   state = initialState,
   action,
 ): FavoritesReducer.ReducerState => {
