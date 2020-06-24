@@ -25,116 +25,173 @@ export const stockSymbol2 = 'AAPL';
 export const stockSymbol3 = 'SHOP';
 export const stockSymbol4 = 'AMZN';
 
-export const stockQuoteData1: DataDomain.StockQuote = {
-  'Global Quote': {
-    '01. symbol': 'IBM',
-    '02. open': '119.3700',
-    '03. high': '119.4650',
-    '04. low': '117.5900',
-    '05. price': '118.3900',
-    '06. volume': '4179906',
-    '07. latest trading day': '2020-05-22',
-    '08. previous close': '119.1200',
-    '09. change': '-0.7300',
-    '10. change percent': '-0.6128%',
-  },
+export const stockQuoteData1: DataDomain.Quote = {
+  symbol: 'IBM',
+  companyName: 'International Business Machines Corp.',
+  primaryExchange: 'New York Stock Exchange',
+  latestPrice: 122.47,
+  latestTime: 'June 19, 2020',
+  latestUpdate: 1592596802601,
+  latestVolume: 2865362,
+  extendedPrice: 120,
+  extendedChange: 2,
+  extendedChangePercent: 0.1,
+  previousClose: 124.16,
+  previousVolume: 2865362,
+  change: -1.69,
+  changePercent: -1.361,
+  avgTotalVolume: 4866120,
+  marketCap: 108740133240,
+  peRatio: 12.05,
+  week52High: 158.75,
+  week52Low: 90.56,
+  ytdChange: -9.6759,
+  close: 130,
+  open: 110,
+  high: 140,
+  low: 100,
+  volume: 2865320,
 };
 
-export const stockQuoteData2: DataDomain.StockQuote = {
-  'Global Quote': {
-    '01. symbol': 'AAPL',
-    '02. open': '315.7700',
-    '03. high': '319.2300',
-    '04. low': '315.3500',
-    '05. price': '318.8900',
-    '06. volume': '20240356',
-    '07. latest trading day': '2020-05-22',
-    '08. previous close': '316.8500',
-    '09. change': '2.0400',
-    '10. change percent': '0.6438%',
-  },
+export const stockQuoteData2: DataDomain.Quote = {
+  symbol: 'AAPL',
+  companyName: 'Apple, Inc.',
+  primaryExchange: 'NASDAQ',
+  latestPrice: 349.55,
+  latestTime: 'June 19, 2020',
+  latestUpdate: 1592596799999,
+  latestVolume: 24205100,
+  extendedPrice: 320,
+  extendedChange: 10,
+  extendedChangePercent: 1,
+  previousClose: 351.73,
+  previousVolume: 24205096,
+  change: -2.18,
+  changePercent: -0.62,
+  avgTotalVolume: 33063545,
+  marketCap: 1515068547000,
+  peRatio: 27.18,
+  week52High: 356.56,
+  week52Low: 192.58,
+  ytdChange: 16.4867,
+  close: 350,
+  open: 340,
+  high: 400,
+  low: 200,
+  volume: 24205100,
 };
 
-export const stockQuoteData3: DataDomain.StockQuote = {
-  'Global Quote': {
-    '01. symbol': 'SHOP',
-    '02. open': '804.6300',
-    '03. high': '826.3799',
-    '04. low': '793.6400',
-    '05. price': '825.1700',
-    '06. volume': '2761628',
-    '07. latest trading day': '2020-05-22',
-    '08. previous close': '802.3500',
-    '09. change': '22.8200',
-    '10. change percent': '2.8441%',
-  },
+export const stockQuoteData3: DataDomain.Quote = {
+  symbol: 'SHOP',
+  companyName: 'Shopify, Inc.',
+  primaryExchange: 'New York Stock Exchange',
+  latestPrice: 881,
+  latestTime: 'June 19, 2020',
+  latestUpdate: 1592596802394,
+  latestVolume: 3278930,
+  extendedPrice: 888,
+  extendedChange: 7,
+  extendedChangePercent: 0.2,
+  previousClose: 863.56,
+  previousVolume: 3085810,
+  change: 17.44,
+  changePercent: 2.02,
+  avgTotalVolume: 3278991,
+  marketCap: 103287075331,
+  peRatio: -758.11,
+  week52High: 895.56,
+  week52Low: 281.69,
+  ytdChange: 113.77550000000001,
+  close: 888,
+  open: 801,
+  high: 1000,
+  low: 200,
+  volume: 3278111,
 };
 
-export const stockDailyAdjData1: DataDomain.StockDailyAdj = {
-  'Meta Data': {
-    '1. Information': 'Daily Time Series with Splits and Dividend Events',
-    '2. Symbol': 'IBM',
-    '3. Last Refreshed': '2020-05-22',
-    '4. Output Size': 'Compact',
-    '5. Time Zone': 'US/Eastern',
-  },
-  'Time Series (Daily)': {
-    '2020-05-22': {
-      '1. open': '119.3700',
-      '2. high': '119.4650',
-      '3. low': '117.5900',
-      '4. close': '118.3900',
-      '5. adjusted close': '118.3900',
-      '6. volume': '4179906',
-      '7. dividend amount': '0.0000',
-      '8. split coefficient': '1.0000',
-    },
-    '2020-05-21': {
-      '1. open': '120.9900',
-      '2. high': '121.7200',
-      '3. low': '118.9700',
-      '4. close': '119.1200',
-      '5. adjusted close': '119.1200',
-      '6. volume': '4018329',
-      '7. dividend amount': '0.0000',
-      '8. split coefficient': '1.0000',
-    },
-  },
+export const stockQuoteData4: DataDomain.Quote = {
+  symbol: 'AMZN',
+  companyName: 'Amazon.com, Inc.',
+  primaryExchange: 'NASDAQ',
+  latestPrice: 2671.13,
+  latestTime: 'June 19, 2020',
+  latestUpdate: 1592596797333,
+  latestVolume: 2487774,
+  extendedPrice: 2609,
+  extendedChange: 12,
+  extendedChangePercent: 1.5,
+  previousClose: 2653.98,
+  previousVolume: 2487774,
+  change: 17.15,
+  changePercent: 0.6459999999999999,
+  avgTotalVolume: 3808703,
+  marketCap: 1332295536880,
+  peRatio: 125.32,
+  week52High: 2722.35,
+  week52Low: 1626.03,
+  ytdChange: 40.4756,
+  close: 2650,
+  open: 2668,
+  high: 3000,
+  low: 1500,
+  volume: 2487733,
 };
 
-export const stockDailyAdjData2: DataDomain.StockDailyAdj = {
-  'Meta Data': {
-    '1. Information': 'Daily Time Series with Splits and Dividend Events',
-    '2. Symbol': 'AAPL',
-    '3. Last Refreshed': '2020-05-22',
-    '4. Output Size': 'Compact',
-    '5. Time Zone': 'US/Eastern',
+export const stockChartData1: DataDomain.Chart[] = [
+  {
+    date: '2020-06-12',
+    label: 'Jun 12',
+    open: 121.25,
+    close: 121.91,
+    high: 123.12,
+    low: 119.28,
+    volume: 6220327,
+    change: 0,
+    changePercent: 0,
+    changeOverTime: 0,
   },
-  'Time Series (Daily)': {
-    '2020-05-22': {
-      '1. open': '315.7700',
-      '2. high': '319.2300',
-      '3. low': '315.3500',
-      '4. close': '318.8900',
-      '5. adjusted close': '318.8900',
-      '6. volume': '20240356',
-      '7. dividend amount': '0.0000',
-      '8. split coefficient': '1.0000',
-    },
-    '2020-05-21': {
-      '1. open': '318.6600',
-      '2. high': '320.8900',
-      '3. low': '315.8700',
-      '4. close': '316.8500',
-      '5. adjusted close': '316.8500',
-      '6. volume': '25672211',
-      '7. dividend amount': '0.0000',
-      '8. split coefficient': '1.0000',
-    },
+  {
+    date: '2020-06-15',
+    label: 'Jun 15',
+    open: 119.19,
+    close: 121.65,
+    high: 122.37,
+    low: 118.29,
+    volume: 5151240,
+    change: -0.26,
+    changePercent: -0.2133,
+    changeOverTime: -0.002133,
   },
-};
+];
 
-export const stockSearchData1: DataDomain.StockSearch = {
+export const stockChartData2: DataDomain.Chart[] = [
+  {
+    date: '2020-06-12',
+    label: 'Jun 12',
+    open: 344.72,
+    close: 338.8,
+    high: 347.8,
+    low: 334.22,
+    volume: 50036513,
+    change: 0,
+    changePercent: 0,
+    changeOverTime: 0,
+  },
+  {
+    date: '2020-06-15',
+    label: 'Jun 15',
+    open: 333.25,
+    close: 342.99,
+    high: 345.68,
+    low: 332.58,
+    volume: 34702230,
+    change: 4.19,
+    changePercent: 1.2367,
+    changeOverTime: 0.012367,
+  },
+];
+
+export const stockSearchData1 = {
   bestMatches: [
     {
       '1. symbol': 'IBM',
@@ -161,7 +218,7 @@ export const stockSearchData1: DataDomain.StockSearch = {
   ],
 };
 
-export const stockSearchData2: DataDomain.StockSearch = {
+export const stockSearchData2 = {
   bestMatches: [
     {
       '1. symbol': 'AAPL',
@@ -188,7 +245,7 @@ export const stockSearchData2: DataDomain.StockSearch = {
   ],
 };
 
-export const stockSearchData3: DataDomain.StockSearch = {
+export const stockSearchData3 = {
   bestMatches: [
     {
       '1. symbol': 'SHOP',
@@ -245,4 +302,60 @@ export const stockMetadata4: FavoritesReducer.FavoriteStockData = {
   '4. region': 'United States',
   '7. timezone': 'UTC-05',
   '8. currency': 'USD',
+};
+
+export const symbolsMetadata1: DataDomain.Symbols = {
+  symbol: 'IBM',
+  exchange: 'NYS',
+  name: 'International Business Machines Corporation',
+  date: '2020-06-19',
+  type: 'cs',
+  iexId: 'IEX_534A593238312D52',
+  region: 'US',
+  currency: 'USD',
+  isEnabled: true,
+  figi: 'BBG000BLNNH6',
+  cik: '51143',
+};
+
+export const symbolsMetadata2: DataDomain.Symbols = {
+  symbol: 'AAPL',
+  exchange: 'NAS',
+  name: 'Apple Inc.',
+  date: '2020-06-19',
+  type: 'cs',
+  iexId: 'IEX_4D48333344362D52',
+  region: 'US',
+  currency: 'USD',
+  isEnabled: true,
+  figi: 'BBG000B9XRY4',
+  cik: '320193',
+};
+
+export const symbolsMetadata3: DataDomain.Symbols = {
+  symbol: 'SHOP',
+  exchange: 'NYS',
+  name: 'Shopify Inc. Class A',
+  date: '2020-06-19',
+  type: 'cs',
+  iexId: 'IEX_5643305A37472D52',
+  region: 'US',
+  currency: 'USD',
+  isEnabled: true,
+  figi: 'BBG008HBD923',
+  cik: '1594805',
+};
+
+export const symbolsMetadata4: DataDomain.Symbols = {
+  symbol: 'AMZN',
+  exchange: 'NAS',
+  name: 'Amazon.com Inc.',
+  date: '2020-06-19',
+  type: 'cs',
+  iexId: 'IEX_4D434E59594C2D52',
+  region: 'US',
+  currency: 'USD',
+  isEnabled: true,
+  figi: 'BBG000BVPV84',
+  cik: '1018724',
 };
