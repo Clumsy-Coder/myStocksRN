@@ -35,8 +35,8 @@ export namespace Reducer {
   /**
    * Favorites reducer state
    */
-  export interface FavoritesReducerState {
-    symbols: FavoriteStockData[];
+  export interface ReducerState {
+    symbols: string[];
   }
 }
 
@@ -80,7 +80,7 @@ export namespace Actions {
    */
   export interface AddFavoriteStockAction extends Action<ActionTypes.ADD_FAVORITE_STOCK> {
     type: ActionTypes.ADD_FAVORITE_STOCK;
-    readonly stockMetadata: Reducer.FavoriteStockData;
+    readonly stockSymbol: string;
   }
 
   /**
