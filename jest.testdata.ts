@@ -1,5 +1,24 @@
-import { DataDomain } from '@redux/Stocks/Types';
+import { DataDomain, Reducer as StocksReducer } from '@redux/Stocks/Types';
 import { Reducer as FavoritesReducer } from '@redux/Favorites/Types';
+import { AppState } from '@redux/index.reducers';
+
+export const baseStocksState: StocksReducer.ReducerState = {
+  symbols: {},
+  symbolsMetadata: {
+    fetching: false,
+    data: [],
+    error: undefined,
+  },
+};
+
+export const baseFavoritesState: FavoritesReducer.ReducerState = {
+  symbols: [],
+};
+
+export const baseAppState: AppState = {
+  Stocks: { ...baseStocksState },
+  Favorites: { ...baseFavoritesState },
+};
 
 export const stockSymbol1 = 'IBM';
 export const stockSymbol2 = 'AAPL';
