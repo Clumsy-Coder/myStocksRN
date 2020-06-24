@@ -13,7 +13,7 @@ import { Reducer } from 'src/redux/Favorites/Types';
  * @param state - RootState - Root redux state
  * @returns FavoritesReducerState - Favorites reducer state
  */
-export const selectFavorites = (state: AppState): Reducer.FavoritesReducerState => state.Favorites;
+export const selectFavorites = (state: AppState): Reducer.ReducerState => state.Favorites;
 
 /**
  * Select Favorites stock 'symbols'
@@ -23,9 +23,9 @@ export const selectFavorites = (state: AppState): Reducer.FavoritesReducerState 
  * }
  * ```
  * @param state - RootState - Root redux state
- * @returns FavoriteStockData[] - Array of stock symbols in uppercase
+ * @returns string[] - Array of stock symbols in uppercase
  */
 export const selectFavoriteSymbols = createSelector(
   [selectFavorites],
-  (favorites: Reducer.FavoritesReducerState): Reducer.FavoriteStockData[] => favorites.symbols,
+  (favorites: Reducer.ReducerState): string[] => favorites.symbols,
 );
