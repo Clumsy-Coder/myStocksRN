@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { call, put, all, takeEvery, takeLatest, select } from 'redux-saga/effects';
-import { AxiosResponse } from 'axios';
 
 import * as stocksActions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
-import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
+import { ActionTypes, Actions } from 'src/redux/Stocks/Types';
 import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
 import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';
 
@@ -27,21 +26,21 @@ export function* fetchStockQuoteSaga(action: Actions.Quote.FetchAction) {
 }
 
 /**
- * Initiate the fetching of stock Daily Adjusted data.
- * It will dispatch STOCKS/FETCH_STOCK_DAILY_ADJUSTED_PENDING action.
- * STOCKS/FETCH_STOCK_DAILY_ADJUSTED_FULFILLED action will be dispatched if data fetching was successful.
- * STOCKS/FETCH_STOCK_DAILY_ADJUSTED_REJECTED action will be dispatched if data fetching was unsuccessful.
+ * Initiate the fetching of stock Chart data.
+ * It will dispatch STOCKS/FETCH_STOCK_CHART_PENDING action.
+ * STOCKS/FETCH_STOCK_CHART_FULFILLED action will be dispatched if data fetching was successful.
+ * STOCKS/FETCH_STOCK_CHART_REJECTED action will be dispatched if data fetching was unsuccessful.
  *
- * @param action - Fetch stock Daily Adjusted action
+ * @param action - Fetch stock Chart action
  */
-export function* fetchStockDailyAdjustedSaga(action: Actions.DailyAdjusted.FetchAction) {
+export function* fetchStockChartSaga(action: Actions.Chart.FetchAction) {
   try {
-    const { stockSymbol, outputsize } = action;
-    yield put(stocksActions.fetchStockDailyAdjPending(action.stockSymbol));
-    const response = yield call(api.fetchStockDailyAdjustedUrl, stockSymbol, outputsize);
-    yield put(stocksActions.fetchStockDailyAdjFulfilled(action.stockSymbol, response.data));
+    const { stockSymbol, chartRange } = action;
+    yield put(stocksActions.fetchStockChartPending(action.stockSymbol));
+    const response = yield call(api.fetchStockChartUrl, stockSymbol, chartRange);
+    yield put(stocksActions.fetchStockChartFulfilled(action.stockSymbol, response.data));
   } catch (error) {
-    yield put(stocksActions.fetchStockDailyAdjRejected(action.stockSymbol, error));
+    yield put(stocksActions.fetchStockChartRejected(action.stockSymbol, error));
   }
 }
 
@@ -57,8 +56,8 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
   // dispatch fetchStockQuote for all stock symbols in Favorites
 
   try {
-    const stockSymbols: FavoritesReducer.FavoriteStockData[] = yield select(selectFavoriteSymbols);
-    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuote(stock['1. symbol']))));
+    const stockSymbols: string[] = yield select(selectFavoriteSymbols);
+    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuote(stock))));
   } catch (error) {}
 }
 
@@ -70,7 +69,7 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
 //  *
 //  * @param action - Fetch stock chart batch action
 //  */
-// export function* fetchStockChartBatchSaga(action: FetchStockDailyAdjustedBatchAction) {
+// export function* fetchStockChartBatchSaga(action: FetchStockChartBatchAction) {
 //   try {
 //     const { stockSymbols, range, sort } = action;
 
@@ -129,10 +128,30 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
 //   }
 // }
 
+/**
+ * Initiate the fetching of Symbols metadata.
+ *
+ * It will dispatch STOCKS/FETCH_SYMBOLS_METADATA_PENDING action.
+ * STOCKS/FETCH_SYMBOLS_METADATA_FULFILLED action is dispatched if data fetching was successful.
+ * STOCKS/FETCH_SYMBOLS_METADATA_REJECTED action is dispatched if data fetching was unsuccessful.
+ *
+ * @param action - Fetch Symbols metadata action
+ */
+export function* fetchSymbolsMetadataSaga(action: Actions.SymbolsMetadata.FetchAction) {
+  try {
+    yield put(stocksActions.fetchSymbolsMetadataPending());
+    const response = yield call(api.fetchSymbolsMetadataUrl);
+    yield put(stocksActions.fetchSymbolsMetadataFulfilled(response.data));
+  } catch (error) {
+    yield put(stocksActions.fetchSymbolsMetadataRejected(error));
+  }
+}
+
 export default function* watchStocksSagas() {
   yield takeEvery(ActionTypes.FETCH_STOCK_QUOTE, fetchStockQuoteSaga);
-  yield takeEvery(ActionTypes.FETCH_STOCK_DAILY_ADJUSTED, fetchStockDailyAdjustedSaga);
+  yield takeEvery(ActionTypes.FETCH_STOCK_CHART, fetchStockChartSaga);
   yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_BATCH, fetchStockQuoteBatchSaga);
   // yield takeLatest(ActionTypes.FETCH_STOCK_CHART_BATCH, fetchStockChartBatchSaga);
   // yield takeLatest(ActionTypes.FETCH_STOCK_QUOTE_CHART_BATCH, fetchStockQuoteChartBatchSaga);
+  yield takeLatest(ActionTypes.FETCH_SYMBOLS_METADATA, fetchSymbolsMetadataSaga);
 }

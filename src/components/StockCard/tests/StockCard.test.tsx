@@ -11,45 +11,45 @@ const stockCardProps1: Selectors.SelectQuoteTrim = {
   fetching: false,
   symbol: stockSymbol1,
   companyName: companyName1,
-  price: '100',
-  change: '1.0',
-  changePercent: '10.0',
+  price: 100,
+  change: 1.0,
+  changePercent: 10.0,
 };
 
 const stockCardProps2: Selectors.SelectQuoteTrim = {
   fetching: true,
   symbol: stockSymbol1,
   companyName: companyName1,
-  price: undefined,
-  change: undefined,
-  changePercent: undefined,
+  price: 0,
+  change: 0,
+  changePercent: 0,
 };
 
 const stockCardProps3: Selectors.SelectQuoteTrim = {
   fetching: false,
   symbol: stockSymbol1,
   companyName: companyName1,
-  price: '100',
-  change: undefined,
-  changePercent: '10.0',
+  price: 100,
+  change: 0,
+  changePercent: 10.0,
 };
 
 const stockCardProps4: Selectors.SelectQuoteTrim = {
   fetching: false,
   symbol: stockSymbol1,
   companyName: companyName1,
-  price: '100',
-  change: '-1.0',
-  changePercent: '-10.0',
+  price: 100,
+  change: -1.0,
+  changePercent: -10.0,
 };
 
 const stockCardProps5: Selectors.SelectQuoteTrim = {
   fetching: false,
   symbol: stockSymbol1,
   companyName: companyName1,
-  price: '100',
-  change: '1.0',
-  changePercent: '10.0',
+  price: 100,
+  change: 1.0,
+  changePercent: 10.0,
 };
 
 describe('<StockCard />', () => {

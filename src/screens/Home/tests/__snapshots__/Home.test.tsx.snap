@@ -9,11 +9,12 @@ exports[`<Home /> Should render correctly 1`] = `
       <StockCard
         data={
           Object {
-            "change": "-0.7300",
-            "changePercent": "-0.6128%",
-            "companyName": "International Business Machines Corporation",
+            "change": -1.69,
+            "changePercent": -1.361,
+            "companyName": "International Business Machines Corp.",
+            "currency": "USD",
             "fetching": false,
-            "price": "118.3900",
+            "price": 122.47,
             "symbol": "IBM",
           }
         }
@@ -22,11 +23,12 @@ exports[`<Home /> Should render correctly 1`] = `
       <StockCard
         data={
           Object {
-            "change": "2.0400",
-            "changePercent": "0.6438%",
-            "companyName": "Apple Inc.",
+            "change": -2.18,
+            "changePercent": -0.62,
+            "companyName": "Apple, Inc.",
+            "currency": "USD",
             "fetching": false,
-            "price": "318.8900",
+            "price": 349.55,
             "symbol": "AAPL",
           }
         }
@@ -35,11 +37,12 @@ exports[`<Home /> Should render correctly 1`] = `
       <StockCard
         data={
           Object {
-            "change": "22.8200",
-            "changePercent": "2.8441%",
-            "companyName": "Shopify Inc.",
+            "change": 17.44,
+            "changePercent": 2.02,
+            "companyName": "Shopify, Inc.",
+            "currency": "USD",
             "fetching": false,
-            "price": "825.1700",
+            "price": 881,
             "symbol": "SHOP",
           }
         }

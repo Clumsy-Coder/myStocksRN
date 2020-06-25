@@ -48,7 +48,7 @@ exports[`<StockCard /> After fetching data Full data presented Renders as expect
       }
     >
       <Styled(H3)>
-        100
+        100.00
       </Styled(H3)>
       <View
         style={
@@ -74,7 +74,7 @@ exports[`<StockCard /> After fetching data Full data presented Renders as expect
             }
           }
         >
-          1.0
+          1
         </Styled(H3)>
       </View>
     </View>
@@ -130,7 +130,7 @@ exports[`<StockCard /> After fetching data Stock price greater than 0 Renders as
       }
     >
       <Styled(H3)>
-        100
+        100.00
       </Styled(H3)>
       <View
         style={
@@ -156,7 +156,7 @@ exports[`<StockCard /> After fetching data Stock price greater than 0 Renders as
             }
           }
         >
-          1.0
+          1
         </Styled(H3)>
       </View>
     </View>
@@ -212,7 +212,7 @@ exports[`<StockCard /> After fetching data Stock price less than 0 Renders as ex
       }
     >
       <Styled(H3)>
-        100
+        100.00
       </Styled(H3)>
       <View
         style={
@@ -238,7 +238,7 @@ exports[`<StockCard /> After fetching data Stock price less than 0 Renders as ex
             }
           }
         >
-          -1.0
+          -1
         </Styled(H3)>
       </View>
     </View>
@@ -294,7 +294,7 @@ exports[`<StockCard /> After fetching data Undefined stock price Renders as expe
       }
     >
       <Styled(H3)>
-        100
+        100.00
       </Styled(H3)>
       <View
         style={
@@ -319,7 +319,9 @@ exports[`<StockCard /> After fetching data Undefined stock price Renders as expe
               "color": "white",
             }
           }
-        />
+        >
+          0
+        </Styled(H3)>
       </View>
     </View>
   </View>

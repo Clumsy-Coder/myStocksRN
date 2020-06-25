@@ -6,13 +6,13 @@ import { DataDomain as StocksDataDomain } from 'src/redux/Stocks/Types';
 
 /**
  * Add stock to Favorites action creator.
- * @param stockMetadata - Stock symbol in uppercase. Ex: AAPL
+ * @param stockSymbol - Stock symbol in uppercase. Ex: AAPL
  */
 export const addFavoriteStock: ActionCreator<Actions.AddFavoriteStockAction> = (
-  stockMetadata: StocksDataDomain.StockSearchBase,
+  stockSymbol: string,
 ): Actions.AddFavoriteStockAction => ({
   type: ActionTypes.ADD_FAVORITE_STOCK,
-  stockMetadata,
+  stockSymbol,
 });
 
 /**
