@@ -1,9 +1,39 @@
 /* eslint-disable jest/no-commented-out-tests */
 import * as selectors from 'src/redux/Stocks/Selectors';
 import { AppState } from 'src/redux/index.reducers';
-import { DataDomain, Reducer, Selectors as SelectorsType } from 'src/redux/Stocks/Types';
+import { DataDomain, Reducer, Selectors as SelectorsTypes } from 'src/redux/Stocks/Types';
 
 import * as testdata from 'jest.testdata';
+
+const selectStockQuoteTrim1: SelectorsTypes.SelectQuoteTrim = {
+  fetching: false,
+  symbol: testdata.stockSymbol1,
+  companyName: testdata.stockQuoteData1.companyName,
+  price: testdata.stockQuoteData1.latestPrice,
+  change: testdata.stockQuoteData1.change,
+  changePercent: testdata.stockQuoteData1.changePercent,
+  currency: testdata.symbolsMetadata1.currency,
+};
+
+const selectStockQuoteTrim2: SelectorsTypes.SelectQuoteTrim = {
+  fetching: false,
+  symbol: testdata.stockSymbol2,
+  companyName: testdata.stockQuoteData2.companyName,
+  price: testdata.stockQuoteData2.latestPrice,
+  change: testdata.stockQuoteData2.change,
+  changePercent: testdata.stockQuoteData2.changePercent,
+  currency: testdata.symbolsMetadata2.currency,
+};
+
+const selectStockQuoteTrim3: SelectorsTypes.SelectQuoteTrim = {
+  fetching: false,
+  symbol: testdata.stockSymbol3,
+  companyName: testdata.stockQuoteData3.companyName,
+  price: testdata.stockQuoteData3.latestPrice,
+  change: testdata.stockQuoteData3.change,
+  changePercent: testdata.stockQuoteData3.changePercent,
+  currency: testdata.symbolsMetadata3.currency,
+};
 
 describe('Stocks selectors', () => {
   describe('Empty store', () => {
@@ -1491,72 +1521,179 @@ describe('Stocks selectors', () => {
   });
 
   describe('Data processing', () => {
-    // describe('selectStockQuoteTrim', () => {
-    //   it('[Empty store]: Should return empty array', () => {
-    //     const rootState: AppState = {
-    //       ...testdata.baseAppState,
-    //     };
-    //     const expected: SelectorsType.SelectQuoteTrim[] = [];
-    //     expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
-    //   });
-    //   it('[Non-empty store]: Should return array of SelectQuoteTrim objects', () => {
-    //     const rootState: AppState = {
-    //       ...testdata.baseAppState,
-    //       Stocks: {
-    //         ...testdata.baseStocksState,
-    //         ...baseStockReducerState,
-    //         symbols: {
-    //           [testdata.stockSymbol1]: {
-    //             quote: {
-    //               fetching: false,
-    //               data: testdata.stockQuoteData1,
-    //               error: undefined,
-    //             },
-    //           },
-    //           [testdata.stockSymbol2]: {
-    //             quote: {
-    //               fetching: true,
-    //               data: undefined,
-    //               error: undefined,
-    //             },
-    //           },
-    //           [testdata.stockSymbol3]: {
-    //             quote: {
-    //               fetching: false,
-    //               data: testdata.stockQuoteData3,
-    //               error: undefined,
-    //             },
-    //           },
-    //         },
-    //       },
-    //       Favorites: {
-    //         symbols: [
-    //           testdata.stockSearchData1.bestMatches[0],
-    //           testdata.stockSearchData2.bestMatches[0],
-    //           testdata.stockSearchData3.bestMatches[0],
-    //         ],
-    //       },
-    //     };
-    //     const expected: SelectorsType.SelectQuoteTrim[] = [
-    //       {
-    //         fetching: false,
-    //         symbol: testdata.stockSymbol1,
-    //         companyName: testdata.stockSearchData1.bestMatches[0]['2. name'],
-    //         price: testdata.stockQuoteData1['Global Quote']['05. price'],
-    //         change: testdata.stockQuoteData1['Global Quote']['09. change'],
-    //         changePercent: testdata.stockQuoteData1['Global Quote']['10. change percent'],
-    //       },
-    //       {
-    //         fetching: false,
-    //         symbol: testdata.stockSymbol3,
-    //         companyName: testdata.stockSearchData3.bestMatches[0]['2. name'],
-    //         price: testdata.stockQuoteData3['Global Quote']['05. price'],
-    //         change: testdata.stockQuoteData3['Global Quote']['09. change'],
-    //         changePercent: testdata.stockQuoteData3['Global Quote']['10. change percent'],
-    //       },
-    //     ];
-    //     expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
-    //   });
-    // });
+    describe('selectStockQuoteTrim', () => {
+      it('[Empty store]: Should return empty array', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+        };
+        const expected: SelectorsTypes.SelectQuoteTrim[] = [];
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+
+      it('Should handle if a Stock Quote data is undefined', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Favorites: {
+            symbols: ['IBM', 'AAPL', 'SHOP'],
+          },
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [
+                testdata.symbolsMetadata1,
+                testdata.symbolsMetadata2,
+                testdata.symbolsMetadata3,
+              ],
+              error: undefined,
+            },
+            symbols: {
+              AAPL: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData2,
+                  error: undefined,
+                },
+              },
+              SHOP: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData3,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+
+        const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          selectStockQuoteTrim2,
+          selectStockQuoteTrim3,
+        ];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+
+      it('Should handle if all data is provided', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Favorites: {
+            symbols: ['IBM', 'AAPL', 'SHOP'],
+          },
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [
+                testdata.symbolsMetadata1,
+                testdata.symbolsMetadata2,
+                testdata.symbolsMetadata3,
+              ],
+              error: undefined,
+            },
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData1,
+                  error: undefined,
+                },
+              },
+              AAPL: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData2,
+                  error: undefined,
+                },
+              },
+              SHOP: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData3,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+
+        const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          selectStockQuoteTrim1,
+          selectStockQuoteTrim2,
+          selectStockQuoteTrim3,
+        ];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+
+      it('Should handle if all data is NOT provided', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Favorites: {
+            symbols: ['IBM', 'AAPL', 'SHOP'],
+          },
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [],
+              error: undefined,
+            },
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: undefined,
+                  error: new Error(''),
+                },
+              },
+              AAPL: {
+                quote: {
+                  fetching: false,
+                  data: undefined,
+                  error: new Error(''),
+                },
+              },
+              SHOP: {
+                quote: {
+                  fetching: false,
+                  data: undefined,
+                  error: new Error(''),
+                },
+              },
+            },
+          },
+        };
+
+        const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          {
+            ...selectStockQuoteTrim1,
+            companyName: 'N/A',
+            price: 0,
+            change: 0,
+            changePercent: 0,
+            currency: '',
+          },
+          {
+            ...selectStockQuoteTrim2,
+            companyName: 'N/A',
+            price: 0,
+            change: 0,
+            changePercent: 0,
+            currency: '',
+          },
+          {
+            ...selectStockQuoteTrim3,
+            companyName: 'N/A',
+            price: 0,
+            change: 0,
+            changePercent: 0,
+            currency: '',
+          },
+        ];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+    });
   });
 });
