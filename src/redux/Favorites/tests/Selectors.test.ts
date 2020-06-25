@@ -8,9 +8,7 @@ describe('Favorites selectors', () => {
   describe('Empty store', () => {
     it('Selects Favorites with empty reducer', () => {
       const store: AppState = {
-        Stocks: {
-          symbols: {},
-        },
+        ...testdata.baseAppState,
         Favorites: {
           symbols: [],
         },
@@ -24,14 +22,12 @@ describe('Favorites selectors', () => {
 
     it('Selects Favorite symbols with empty store', () => {
       const store: AppState = {
-        Stocks: {
-          symbols: {},
-        },
+        ...testdata.baseAppState,
         Favorites: {
           symbols: [],
         },
       };
-      const expected: Reducer.FavoriteStockData[] = [];
+      const expected: string[] = [];
 
       expect(selectors.selectFavoriteSymbols(store)).toEqual(expected);
     });
@@ -40,15 +36,13 @@ describe('Favorites selectors', () => {
   describe('Stored favorite stock symbols', () => {
     it('Selects Favorite reducer state', () => {
       const store: AppState = {
-        Stocks: {
-          symbols: {},
-        },
+        ...testdata.baseAppState,
         Favorites: {
-          symbols: [testdata.stockMetadata1, testdata.stockMetadata2, testdata.stockMetadata3],
+          symbols: [testdata.stockSymbol1, testdata.stockSymbol2, testdata.stockSymbol3],
         },
       };
       const expected = {
-        symbols: [testdata.stockMetadata1, testdata.stockMetadata2, testdata.stockMetadata3],
+        symbols: [testdata.stockSymbol1, testdata.stockSymbol2, testdata.stockSymbol3],
       };
 
       const actual = selectors.selectFavorites(store);
@@ -57,14 +51,12 @@ describe('Favorites selectors', () => {
 
     it('Selects Favorite symbols', () => {
       const store: AppState = {
-        Stocks: {
-          symbols: {},
-        },
+        ...testdata.baseAppState,
         Favorites: {
-          symbols: [testdata.stockMetadata1, testdata.stockMetadata2, testdata.stockMetadata3],
+          symbols: [testdata.stockSymbol1, testdata.stockSymbol2, testdata.stockSymbol3],
         },
       };
-      const expected = [testdata.stockMetadata1, testdata.stockMetadata2, testdata.stockMetadata3];
+      const expected = [testdata.stockSymbol1, testdata.stockSymbol2, testdata.stockSymbol3];
 
       const actual = selectors.selectFavoriteSymbols(store);
       expect(actual).toEqual(expected);

@@ -1,5 +1,6 @@
+/* eslint-disable jest/no-commented-out-tests */
 import * as actions from 'src/redux/Stocks/Actions';
-import { ActionTypes, DataDomain, Actions } from 'src/redux/Stocks/Types';
+import { ActionTypes, Actions } from 'src/redux/Stocks/Types';
 
 import * as testdata from 'jest.testdata';
 
@@ -44,42 +45,42 @@ describe('Stock action creators', () => {
     });
   });
 
-  describe('Stock Daily Adjusted', () => {
-    it('Should create an action to fetch Stock Daily Adjusted', () => {
-      const expectedAction: Actions.DailyAdjusted.FetchAction = {
-        type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED,
+  describe('Stock Chart', () => {
+    it('Should create an action to fetch Stock Chart', () => {
+      const expectedAction: Actions.Chart.FetchAction = {
+        type: ActionTypes.FETCH_STOCK_CHART,
         stockSymbol: testdata.stockSymbol1,
-        outputsize: 'compact',
+        chartRange: 'max',
       };
-      expect(actions.fetchStockDailyAdj(testdata.stockSymbol1, 'compact')).toEqual(expectedAction);
+      expect(actions.fetchStockChart(testdata.stockSymbol1, 'max')).toEqual(expectedAction);
     });
 
-    it('Should create an action to fetch Stock Daily Adjusted PENDING', () => {
-      const expectedAction: Actions.DailyAdjusted.FetchPendingAction = {
-        type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
+    it('Should create an action to fetch Stock Chart PENDING', () => {
+      const expectedAction: Actions.Chart.FetchPendingAction = {
+        type: ActionTypes.FETCH_STOCK_CHART_PENDING,
         stockSymbol: testdata.stockSymbol1,
       };
-      expect(actions.fetchStockDailyAdjPending(testdata.stockSymbol1)).toEqual(expectedAction);
+      expect(actions.fetchStockChartPending(testdata.stockSymbol1)).toEqual(expectedAction);
     });
 
-    it('Should create an action to fetch Stock Daily Adjusted FULFILLED', () => {
-      const expectedAction: Actions.DailyAdjusted.FetchFulfilledAction = {
-        type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
+    it('Should create an action to fetch Stock Chart FULFILLED', () => {
+      const expectedAction: Actions.Chart.FetchFulfilledAction = {
+        type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
         stockSymbol: testdata.stockSymbol1,
-        payload: testdata.stockDailyAdjData1,
+        payload: testdata.stockChartData1,
       };
       expect(
-        actions.fetchStockDailyAdjFulfilled(testdata.stockSymbol1, testdata.stockDailyAdjData1),
+        actions.fetchStockChartFulfilled(testdata.stockSymbol1, testdata.stockChartData1),
       ).toEqual(expectedAction);
     });
 
-    it('Should create an action to fetch Stock Daily Adjusted REJECTED', () => {
-      const expectedAction: Actions.DailyAdjusted.FetchRejectedAction = {
-        type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
+    it('Should create an action to fetch Stock Chart REJECTED', () => {
+      const expectedAction: Actions.Chart.FetchRejectedAction = {
+        type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
         stockSymbol: testdata.stockSymbol1,
         error: new Error(''),
       };
-      expect(actions.fetchStockDailyAdjRejected(testdata.stockSymbol1, new Error(''))).toEqual(
+      expect(actions.fetchStockChartRejected(testdata.stockSymbol1, new Error(''))).toEqual(
         expectedAction,
       );
     });

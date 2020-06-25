@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-commented-out-tests */
 import axios, { AxiosResponse } from 'axios';
 
 import * as api from 'src/share/Utilities';
@@ -11,7 +12,7 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 describe('Fetch data functions', () => {
   describe('fetchStockQuoteUrl', () => {
     it('Should return a Promise', async () => {
-      const promiseResponse: AxiosResponse<DataDomain.StockQuote> = {
+      const promiseResponse: AxiosResponse<DataDomain.Quote> = {
         headers: {},
         status: 200,
         statusText: '',
@@ -30,53 +31,53 @@ describe('Fetch data functions', () => {
     });
   });
 
-  describe('fetchStockDailyAdjustedUrl', () => {
+  describe('fetchStockChartUrl', () => {
     it('Should return a Promise', async () => {
-      const promiseResponse: AxiosResponse<DataDomain.StockDailyAdj> = {
+      const promiseResponse: AxiosResponse<DataDomain.Chart[]> = {
         headers: {},
         status: 200,
         statusText: '',
         request: {},
         config: {},
-        data: testdata.stockDailyAdjData1,
+        data: testdata.stockChartData1,
       };
 
       mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(
-        api.fetchStockDailyAdjustedUrl(testdata.stockSymbol1, 'compact'),
-      ).resolves.toEqual(promiseResponse);
-    });
-
-    it('Should return Error', async () => {
-      mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(
-        api.fetchStockDailyAdjustedUrl(testdata.stockSymbol1, 'compact'),
-      ).rejects.toThrow(new Error(''));
-    });
-  });
-
-  describe('fetchStockSearchUrl', () => {
-    it('Should return a Promise', async () => {
-      const promiseResponse: AxiosResponse<DataDomain.StockSearch> = {
-        headers: {},
-        status: 200,
-        statusText: '',
-        request: {},
-        config: {},
-        data: testdata.stockSearchData1,
-      };
-
-      mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockSearchUrl(testdata.stockSymbol1)).resolves.toEqual(
+      await expect(api.fetchStockChartUrl(testdata.stockSymbol1, 'max')).resolves.toEqual(
         promiseResponse,
       );
     });
 
     it('Should return Error', async () => {
       mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockSearchUrl(testdata.stockSymbol1)).rejects.toThrow(new Error(''));
+      await expect(api.fetchStockChartUrl(testdata.stockSymbol1, 'max')).rejects.toThrow(
+        new Error(''),
+      );
     });
   });
+
+  // describe('fetchStockSearchUrl', () => {
+  //   it('Should return a Promise', async () => {
+  //     const promiseResponse: AxiosResponse<DataDomain.StockSearch> = {
+  //       headers: {},
+  //       status: 200,
+  //       statusText: '',
+  //       request: {},
+  //       config: {},
+  //       data: testdata.stockSearchData1,
+  //     };
+
+  //     mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
+  //     await expect(api.fetchStockSearchUrl(testdata.stockSymbol1)).resolves.toEqual(
+  //       promiseResponse,
+  //     );
+  //   });
+
+  //   it('Should return Error', async () => {
+  //     mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
+  //     await expect(api.fetchStockSearchUrl(testdata.stockSymbol1)).rejects.toThrow(new Error(''));
+  //   });
+  // });
 
   // describe('fetchStockQuoteBatchUrl', () => {
   //   it('Should return a Promise', async () => {

@@ -7,10 +7,10 @@ describe('Favorites action creators', () => {
   it('Should create action to add stock to favorites', () => {
     const expected = {
       type: ActionTypes.ADD_FAVORITE_STOCK,
-      stockMetadata: testdata.stockMetadata1,
+      stockSymbol: testdata.stockSymbol1,
     };
 
-    expect(actions.addFavoriteStock(testdata.stockMetadata1)).toEqual(expected);
+    expect(actions.addFavoriteStock(testdata.stockSymbol1)).toEqual(expected);
   });
 
   it('Should create action to remove stock from favorites', () => {

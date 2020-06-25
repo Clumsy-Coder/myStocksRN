@@ -1,5 +1,6 @@
+/* eslint-disable jest/no-commented-out-tests */
 import reducer from 'src/redux/Stocks/Reducer';
-import { ActionTypes, DataDomain, Reducer, Actions } from 'src/redux/Stocks/Types';
+import { ActionTypes, Reducer, Actions } from 'src/redux/Stocks/Types';
 
 import * as testdata from 'jest.testdata';
 
@@ -8,6 +9,7 @@ describe('Stocks reducer', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_PENDING}`, () => {
       it('Should handle one Stock quote', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
         };
         const action: Actions.Quote.FetchPendingAction = {
@@ -15,6 +17,7 @@ describe('Stocks reducer', () => {
           stockSymbol: testdata.stockSymbol1,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -28,6 +31,7 @@ describe('Stocks reducer', () => {
       });
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -42,6 +46,7 @@ describe('Stocks reducer', () => {
           stockSymbol: testdata.stockSymbol2,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -63,6 +68,7 @@ describe('Stocks reducer', () => {
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -83,6 +89,7 @@ describe('Stocks reducer', () => {
           stockSymbol: testdata.stockSymbol3,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -112,6 +119,7 @@ describe('Stocks reducer', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_FULFILLED}`, () => {
       it('Should handle one Stock quote', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -122,6 +130,7 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -143,6 +152,7 @@ describe('Stocks reducer', () => {
 
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -160,6 +170,7 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -189,6 +200,7 @@ describe('Stocks reducer', () => {
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -212,6 +224,7 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -249,6 +262,7 @@ describe('Stocks reducer', () => {
     describe(`It should handle ${ActionTypes.FETCH_STOCK_QUOTE_REJECTED}`, () => {
       it('Should handle one Stock quote', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -259,6 +273,7 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -279,6 +294,7 @@ describe('Stocks reducer', () => {
 
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -296,6 +312,7 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -323,6 +340,7 @@ describe('Stocks reducer', () => {
 
       it('Should handle three Stock quotes', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -347,6 +365,7 @@ describe('Stocks reducer', () => {
           },
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -382,9 +401,10 @@ describe('Stocks reducer', () => {
   });
 
   describe('Stocks Daily Adjusted', () => {
-    describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING}`, () => {
+    describe(`${ActionTypes.FETCH_STOCK_CHART_PENDING}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -395,11 +415,12 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: Actions.DailyAdjusted.FetchPendingAction = {
-          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
+        const action: Actions.Chart.FetchPendingAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_PENDING,
           stockSymbol: testdata.stockSymbol1,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -407,7 +428,7 @@ describe('Stocks reducer', () => {
                 error: undefined,
                 data: undefined,
               },
-              dailyAdj: {
+              chart: {
                 fetching: true,
                 error: undefined,
                 data: undefined,
@@ -421,6 +442,7 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -438,11 +460,12 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: Actions.DailyAdjusted.FetchPendingAction = {
-          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_PENDING,
+        const action: Actions.Chart.FetchPendingAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_PENDING,
           stockSymbol: testdata.stockSymbol2,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -457,7 +480,7 @@ describe('Stocks reducer', () => {
                 error: undefined,
                 data: undefined,
               },
-              dailyAdj: {
+              chart: {
                 fetching: true,
                 error: undefined,
                 data: undefined,
@@ -470,9 +493,10 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED}`, () => {
+    describe(`${ActionTypes.FETCH_STOCK_CHART_FULFILLED}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -483,12 +507,13 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: Actions.DailyAdjusted.FetchFulfilledAction = {
-          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
+        const action: Actions.Chart.FetchFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
           stockSymbol: testdata.stockSymbol1,
-          payload: testdata.stockDailyAdjData1,
+          payload: testdata.stockChartData1,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -496,10 +521,10 @@ describe('Stocks reducer', () => {
                 error: undefined,
                 data: undefined,
               },
-              dailyAdj: {
+              chart: {
                 fetching: false,
                 error: undefined,
-                data: testdata.stockDailyAdjData1,
+                data: testdata.stockChartData1,
               },
             },
           },
@@ -510,6 +535,7 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -524,7 +550,7 @@ describe('Stocks reducer', () => {
                 error: undefined,
                 data: undefined,
               },
-              dailyAdj: {
+              chart: {
                 fetching: true,
                 error: undefined,
                 data: undefined,
@@ -532,12 +558,13 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: Actions.DailyAdjusted.FetchFulfilledAction = {
-          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_FULFILLED,
+        const action: Actions.Chart.FetchFulfilledAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_FULFILLED,
           stockSymbol: testdata.stockSymbol2,
-          payload: testdata.stockDailyAdjData2,
+          payload: testdata.stockChartData2,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -552,10 +579,10 @@ describe('Stocks reducer', () => {
                 error: undefined,
                 data: undefined,
               },
-              dailyAdj: {
+              chart: {
                 fetching: false,
                 error: undefined,
-                data: testdata.stockDailyAdjData2,
+                data: testdata.stockChartData2,
               },
             },
           },
@@ -565,9 +592,10 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`${ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED}`, () => {
+    describe(`${ActionTypes.FETCH_STOCK_CHART_REJECTED}`, () => {
       it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -578,12 +606,13 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: Actions.DailyAdjusted.FetchRejectedAction = {
-          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
+        const action: Actions.Chart.FetchRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
           stockSymbol: testdata.stockSymbol1,
           error: new Error(''),
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -591,7 +620,7 @@ describe('Stocks reducer', () => {
                 error: undefined,
                 data: undefined,
               },
-              dailyAdj: {
+              chart: {
                 fetching: false,
                 error: new Error(''),
                 data: undefined,
@@ -605,6 +634,7 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -619,7 +649,7 @@ describe('Stocks reducer', () => {
                 error: undefined,
                 data: undefined,
               },
-              dailyAdj: {
+              chart: {
                 fetching: true,
                 error: undefined,
                 data: undefined,
@@ -627,12 +657,13 @@ describe('Stocks reducer', () => {
             },
           },
         };
-        const action: Actions.DailyAdjusted.FetchRejectedAction = {
-          type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_REJECTED,
+        const action: Actions.Chart.FetchRejectedAction = {
+          type: ActionTypes.FETCH_STOCK_CHART_REJECTED,
           stockSymbol: testdata.stockSymbol2,
           error: new Error(''),
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -647,7 +678,7 @@ describe('Stocks reducer', () => {
                 error: undefined,
                 data: undefined,
               },
-              dailyAdj: {
+              chart: {
                 fetching: false,
                 error: new Error(''),
                 data: undefined,
@@ -665,6 +696,7 @@ describe('Stocks reducer', () => {
     describe(`${ActionTypes.SET_SEARCH_KEYWORD}`, () => {
       it('[Empty store]: Should set stock search keyword', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
           search: {
             keyword: '',
@@ -675,6 +707,7 @@ describe('Stocks reducer', () => {
           keyword: testdata.stockSymbol1,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
           search: {
             keyword: testdata.stockSymbol1,
@@ -686,6 +719,7 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set stock search keyword', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
           search: {
             keyword: testdata.stockSymbol1,
@@ -696,6 +730,7 @@ describe('Stocks reducer', () => {
           keyword: testdata.stockSymbol2,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
           search: {
             keyword: testdata.stockSymbol2,
@@ -707,6 +742,7 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should not overwrite data other than searchKeyword', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -725,6 +761,7 @@ describe('Stocks reducer', () => {
           keyword: testdata.stockSymbol2,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -746,6 +783,7 @@ describe('Stocks reducer', () => {
     describe(`${ActionTypes.CLEAR_SEARCH_KEYWORD}`, () => {
       it('[Empty store]: Should set stock search keyword', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
           search: {
             keyword: '',
@@ -755,6 +793,7 @@ describe('Stocks reducer', () => {
           type: ActionTypes.CLEAR_SEARCH_KEYWORD,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
           search: {
             keyword: '',
@@ -766,6 +805,7 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should set stock search keyword', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
           search: {
             keyword: testdata.stockSymbol1,
@@ -775,6 +815,7 @@ describe('Stocks reducer', () => {
           type: ActionTypes.CLEAR_SEARCH_KEYWORD,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {},
           search: {
             keyword: '',
@@ -786,6 +827,7 @@ describe('Stocks reducer', () => {
 
       it('[Non-empty store]: Should not overwrite data other than searchKeyword', () => {
         const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -803,6 +845,7 @@ describe('Stocks reducer', () => {
           type: ActionTypes.CLEAR_SEARCH_KEYWORD,
         };
         const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
               quote: {
@@ -821,235 +864,251 @@ describe('Stocks reducer', () => {
       });
     });
 
-    describe(`${ActionTypes.SET_STOCK_METADATA}`, () => {
-      it('[Empty store]: Should set stock metadata', () => {
-        const state: Reducer.ReducerState = {
-          symbols: {
-            [testdata.stockSymbol1]: {
-              quote: {
-                fetching: false,
-              },
-            },
-          },
-        };
-        const action: Actions.Search.SetStockMetadata = {
-          type: ActionTypes.SET_STOCK_METADATA,
-          stockSymbol: testdata.stockSymbol1,
-          payload: testdata.stockSearchData1.bestMatches[0],
-        };
-        const expected: Reducer.ReducerState = {
-          symbols: {
-            [testdata.stockSymbol1]: {
-              quote: {
-                fetching: false,
-              },
-              metadata: testdata.stockSearchData1.bestMatches[0],
-            },
-          },
-        };
+    // describe(`${ActionTypes.SET_STOCK_METADATA}`, () => {
+    //   it('[Empty store]: Should set stock metadata', () => {
+    //     const state: Reducer.ReducerState = {
+    //       ...testdata.baseStocksState,
+    //       symbols: {
+    //         [testdata.stockSymbol1]: {
+    //           quote: {
+    //             fetching: false,
+    //           },
+    //         },
+    //       },
+    //     };
+    //     const action: Actions.Search.SetStockMetadata = {
+    //       type: ActionTypes.SET_STOCK_METADATA,
+    //       stockSymbol: testdata.stockSymbol1,
+    //       payload: testdata.stockSearchData1.bestMatches[0],
+    //     };
+    //     const expected: Reducer.ReducerState = {
+    //       ...testdata.baseStocksState,
+    //       symbols: {
+    //         [testdata.stockSymbol1]: {
+    //           quote: {
+    //             fetching: false,
+    //           },
+    //           metadata: testdata.stockSearchData1.bestMatches[0],
+    //         },
+    //       },
+    //     };
 
-        expect(reducer(state, action)).toEqual(expected);
-      });
+    //     expect(reducer(state, action)).toEqual(expected);
+    //   });
 
-      it('[Non-empty]: Should set stock metadata', () => {
-        const state: Reducer.ReducerState = {
-          symbols: {
-            [testdata.stockSymbol1]: {
-              quote: {
-                fetching: false,
-                data: testdata.stockQuoteData1,
-                error: undefined,
-              },
-            },
-          },
-        };
-        const action: Actions.Search.SetStockMetadata = {
-          type: ActionTypes.SET_STOCK_METADATA,
-          stockSymbol: testdata.stockSymbol1,
-          payload: testdata.stockSearchData1.bestMatches[0],
-        };
-        const expected: Reducer.ReducerState = {
-          symbols: {
-            [testdata.stockSymbol1]: {
-              quote: {
-                fetching: false,
-                data: testdata.stockQuoteData1,
-                error: undefined,
-              },
-              metadata: testdata.stockSearchData1.bestMatches[0],
-            },
-          },
-        };
+    //   it('[Non-empty]: Should set stock metadata', () => {
+    //     const state: Reducer.ReducerState = {
+    //        ...testdata.baseStocksState,
+    //        symbols: {
+    //         [testdata.stockSymbol1]: {
+    //           quote: {
+    //             fetching: false,
+    //             data: testdata.stockQuoteData1,
+    //             error: undefined,
+    //           },
+    //         },
+    //       },
+    //     };
+    //     const action: Actions.Search.SetStockMetadata = {
+    //       type: ActionTypes.SET_STOCK_METADATA,
+    //       stockSymbol: testdata.stockSymbol1,
+    //       payload: testdata.stockSearchData1.bestMatches[0],
+    //     };
+    //     const expected: Reducer.ReducerState = {
+    //        ...testdata.baseStocksState,
+    //        symbols: {
+    //         [testdata.stockSymbol1]: {
+    //           quote: {
+    //             fetching: false,
+    //             data: testdata.stockQuoteData1,
+    //             error: undefined,
+    //           },
+    //           metadata: testdata.stockSearchData1.bestMatches[0],
+    //         },
+    //       },
+    //     };
 
-        expect(reducer(state, action)).toEqual(expected);
-      });
-    });
+    //     expect(reducer(state, action)).toEqual(expected);
+    //   });
+    // });
 
-    describe(`${ActionTypes.SEARCH_KEYWORD_PENDING}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
-        const state: Reducer.ReducerState = {
-          symbols: {},
-        };
-        const action: Actions.Search.FetchPendingAction = {
-          type: ActionTypes.SEARCH_KEYWORD_PENDING,
-          keyword: testdata.stockSymbol1,
-        };
-        const expected: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            // keyword: testdata.stockSymbol1,
-            results: {
-              fetching: true,
-              data: undefined,
-              error: undefined,
-            },
-          },
-        };
+    // describe(`${ActionTypes.SEARCH_KEYWORD_PENDING}`, () => {
+    //   it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
+    //     const state: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //     };
+    //     const action: Actions.Search.FetchPendingAction = {
+    //       type: ActionTypes.SEARCH_KEYWORD_PENDING,
+    //       keyword: testdata.stockSymbol1,
+    //     };
+    //     const expected: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         // keyword: testdata.stockSymbol1,
+    //         results: {
+    //           fetching: true,
+    //           data: undefined,
+    //           error: undefined,
+    //         },
+    //       },
+    //     };
 
-        expect(reducer(state, action)).toEqual(expected);
-      });
+    //     expect(reducer(state, action)).toEqual(expected);
+    //   });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
-        const state: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            keyword: testdata.stockSymbol1,
-          },
-        };
-        const action: Actions.Search.FetchPendingAction = {
-          type: ActionTypes.SEARCH_KEYWORD_PENDING,
-          keyword: testdata.stockSymbol1,
-        };
-        const expected: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            keyword: testdata.stockSymbol1,
-            results: {
-              fetching: true,
-              data: undefined,
-              error: undefined,
-            },
-          },
-        };
+    //   it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
+    //     const state: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         keyword: testdata.stockSymbol1,
+    //       },
+    //     };
+    //     const action: Actions.Search.FetchPendingAction = {
+    //       type: ActionTypes.SEARCH_KEYWORD_PENDING,
+    //       keyword: testdata.stockSymbol1,
+    //     };
+    //     const expected: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         keyword: testdata.stockSymbol1,
+    //         results: {
+    //           fetching: true,
+    //           data: undefined,
+    //           error: undefined,
+    //         },
+    //       },
+    //     };
 
-        expect(reducer(state, action)).toEqual(expected);
-      });
-    });
+    //     expect(reducer(state, action)).toEqual(expected);
+    //   });
+    // });
 
-    describe(`${ActionTypes.SEARCH_KEYWORD_FULFILLED}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
-        const state: Reducer.ReducerState = {
-          symbols: {},
-        };
-        const action: Actions.Search.FetchFulfilledAction = {
-          type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
-          keyword: testdata.stockSymbol1,
-          payload: testdata.stockSearchData1,
-        };
-        const expected: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            // keyword: testdata.stockSymbol1,
-            results: {
-              fetching: false,
-              data: testdata.stockSearchData1.bestMatches,
-              error: undefined,
-            },
-          },
-        };
+    // describe(`${ActionTypes.SEARCH_KEYWORD_FULFILLED}`, () => {
+    //   it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
+    //     const state: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //     };
+    //     const action: Actions.Search.FetchFulfilledAction = {
+    //       type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
+    //       keyword: testdata.stockSymbol1,
+    //       payload: testdata.stockSearchData1,
+    //     };
+    //     const expected: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         // keyword: testdata.stockSymbol1,
+    //         results: {
+    //           fetching: false,
+    //           data: testdata.stockSearchData1.bestMatches,
+    //           error: undefined,
+    //         },
+    //       },
+    //     };
 
-        expect(reducer(state, action)).toEqual(expected);
-      });
+    //     expect(reducer(state, action)).toEqual(expected);
+    //   });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
-        const state: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            keyword: testdata.stockSymbol1,
-            results: {
-              fetching: true,
-              data: undefined,
-              error: undefined,
-            },
-          },
-        };
-        const action: Actions.Search.FetchFulfilledAction = {
-          type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
-          keyword: testdata.stockSymbol1,
-          payload: testdata.stockSearchData1,
-        };
-        const expected: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            keyword: testdata.stockSymbol1,
-            results: {
-              fetching: false,
-              data: testdata.stockSearchData1.bestMatches,
-              error: undefined,
-            },
-          },
-        };
+    //   it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
+    //     const state: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         keyword: testdata.stockSymbol1,
+    //         results: {
+    //           fetching: true,
+    //           data: undefined,
+    //           error: undefined,
+    //         },
+    //       },
+    //     };
+    //     const action: Actions.Search.FetchFulfilledAction = {
+    //       type: ActionTypes.SEARCH_KEYWORD_FULFILLED,
+    //       keyword: testdata.stockSymbol1,
+    //       payload: testdata.stockSearchData1,
+    //     };
+    //     const expected: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         keyword: testdata.stockSymbol1,
+    //         results: {
+    //           fetching: false,
+    //           data: testdata.stockSearchData1.bestMatches,
+    //           error: undefined,
+    //         },
+    //       },
+    //     };
 
-        expect(reducer(state, action)).toEqual(expected);
-      });
-    });
+    //     expect(reducer(state, action)).toEqual(expected);
+    //   });
+    // });
 
-    describe(`${ActionTypes.SEARCH_KEYWORD_REJECTED}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
-        const state: Reducer.ReducerState = {
-          symbols: {},
-        };
-        const action: Actions.Search.FetchRejectedAction = {
-          type: ActionTypes.SEARCH_KEYWORD_REJECTED,
-          keyword: testdata.stockSymbol1,
-          error: new Error(''),
-        };
-        const expected: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            // keyword: testdata.stockSymbol1,
-            results: {
-              fetching: false,
-              data: undefined,
-              error: new Error(''),
-            },
-          },
-        };
+    // describe(`${ActionTypes.SEARCH_KEYWORD_REJECTED}`, () => {
+    //   it('[Empty store]: Should set fetching, error and data for StockSearch', () => {
+    //     const state: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //     };
+    //     const action: Actions.Search.FetchRejectedAction = {
+    //       type: ActionTypes.SEARCH_KEYWORD_REJECTED,
+    //       keyword: testdata.stockSymbol1,
+    //       error: new Error(''),
+    //     };
+    //     const expected: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         // keyword: testdata.stockSymbol1,
+    //         results: {
+    //           fetching: false,
+    //           data: undefined,
+    //           error: new Error(''),
+    //         },
+    //       },
+    //     };
 
-        expect(reducer(state, action)).toEqual(expected);
-      });
+    //     expect(reducer(state, action)).toEqual(expected);
+    //   });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
-        const state: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            keyword: testdata.stockSymbol1,
-            results: {
-              fetching: true,
-              data: undefined,
-              error: undefined,
-            },
-          },
-        };
-        const action: Actions.Search.FetchRejectedAction = {
-          type: ActionTypes.SEARCH_KEYWORD_REJECTED,
-          keyword: testdata.stockSymbol1,
-          error: new Error(''),
-        };
-        const expected: Reducer.ReducerState = {
-          symbols: {},
-          search: {
-            keyword: testdata.stockSymbol1,
-            results: {
-              fetching: false,
-              data: undefined,
-              error: new Error(''),
-            },
-          },
-        };
+    //   it('[Non-empty store]: Should set fetching, error and data for StockSearch', () => {
+    //     const state: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         keyword: testdata.stockSymbol1,
+    //         results: {
+    //           fetching: true,
+    //           data: undefined,
+    //           error: undefined,
+    //         },
+    //       },
+    //     };
+    //     const action: Actions.Search.FetchRejectedAction = {
+    //       type: ActionTypes.SEARCH_KEYWORD_REJECTED,
+    //       keyword: testdata.stockSymbol1,
+    //       error: new Error(''),
+    //     };
+    //     const expected: Reducer.ReducerState = {
+    //      ...testdata.baseStocksState,
+    //      symbols: {},
+    //       search: {
+    //         keyword: testdata.stockSymbol1,
+    //         results: {
+    //           fetching: false,
+    //           data: undefined,
+    //           error: new Error(''),
+    //         },
+    //       },
+    //     };
 
-        expect(reducer(state, action)).toEqual(expected);
-      });
-    });
+    //     expect(reducer(state, action)).toEqual(expected);
+    //   });
+    // });
   });
 });

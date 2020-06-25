@@ -7,10 +7,10 @@ import * as matchers from 'redux-saga-test-plan/matchers';
 
 import sagaWatcher, {
   fetchStockQuoteSaga,
-  fetchStockDailyAdjustedSaga,
+  fetchStockChartSaga,
   fetchStockQuoteBatchSaga,
 } from 'src/redux/Stocks/Sagas';
-import { ActionTypes, StocksActions, DataDomain } from 'src/redux/Stocks/Types';
+import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 import * as actions from 'src/redux/Stocks/Actions';
 import * as api from 'src/share/Utilities';
 import { AppState } from 'src/redux/index.reducers';
@@ -59,12 +59,12 @@ describe('Stocks Saga', () => {
 
   describe('Stocks quote saga', () => {
     it('Should load and handle Stock quote data in case of success', async () => {
-      const dispatchedActions: StocksActions[] = [];
+      const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
-        dispatch: (action: StocksActions): number => dispatchedActions.push(action),
+        dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
-      const promiseResponse: AxiosResponse<DataDomain.StockQuote> = {
+      const promiseResponse: AxiosResponse<DataDomain.Quote> = {
         data: testdata.stockQuoteData1,
         headers: {},
         status: 200,
@@ -87,10 +87,10 @@ describe('Stocks Saga', () => {
     });
 
     it('Should load and handle Stock quote data in case of failure', async () => {
-      const dispatchedActions: StocksActions[] = [];
+      const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
-        dispatch: (action: StocksActions): number => dispatchedActions.push(action),
+        dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
 
       const stub = sinon.stub(api, 'fetchStockQuoteUrl').returns(Promise.reject(new Error('')));
@@ -109,13 +109,13 @@ describe('Stocks Saga', () => {
 
   describe('Stocks Daily Adjusted saga', () => {
     it('Should load and handle Stock Daily Adjusted data in case of success', async () => {
-      const dispatchedActions: StocksActions[] = [];
+      const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
-        dispatch: (action: StocksActions): number => dispatchedActions.push(action),
+        dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
-      const promiseResponse: AxiosResponse<DataDomain.StockDailyAdj> = {
-        data: testdata.stockDailyAdjData1,
+      const promiseResponse: AxiosResponse<DataDomain.Chart[]> = {
+        data: testdata.stockChartData1,
         headers: {},
         status: 200,
         statusText: '',
@@ -123,50 +123,42 @@ describe('Stocks Saga', () => {
         config: {},
       };
 
-      const stub = sinon
-        .stub(api, 'fetchStockDailyAdjustedUrl')
-        .returns(Promise.resolve(promiseResponse));
+      const stub = sinon.stub(api, 'fetchStockChartUrl').returns(Promise.resolve(promiseResponse));
       await runSaga(
         fakeStore,
-        fetchStockDailyAdjustedSaga,
-        actions.fetchStockDailyAdj(testdata.stockSymbol1, 'compact'),
+        fetchStockChartSaga,
+        actions.fetchStockChart(testdata.stockSymbol1, 'max'),
       );
 
       expect(stub.calledOnce).toBe(true);
       expect(dispatchedActions.length).toEqual(2);
-      expect(dispatchedActions[0]).toEqual(
-        actions.fetchStockDailyAdjPending(testdata.stockSymbol1),
-      );
+      expect(dispatchedActions[0]).toEqual(actions.fetchStockChartPending(testdata.stockSymbol1));
       expect(dispatchedActions[1]).toEqual(
-        actions.fetchStockDailyAdjFulfilled(testdata.stockSymbol1, testdata.stockDailyAdjData1),
+        actions.fetchStockChartFulfilled(testdata.stockSymbol1, testdata.stockChartData1),
       );
 
       stub.restore(); // important: do NOT remove
     });
 
     it('Should load and handle Stock Daily Adjusted data in case of failure', async () => {
-      const dispatchedActions: StocksActions[] = [];
+      const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
-        dispatch: (action: StocksActions): number => dispatchedActions.push(action),
+        dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
 
-      const stub = sinon
-        .stub(api, 'fetchStockDailyAdjustedUrl')
-        .returns(Promise.reject(new Error('')));
+      const stub = sinon.stub(api, 'fetchStockChartUrl').returns(Promise.reject(new Error('')));
       await runSaga(
         fakeStore,
-        fetchStockDailyAdjustedSaga,
-        actions.fetchStockDailyAdj(testdata.stockSymbol1, 'compact'),
+        fetchStockChartSaga,
+        actions.fetchStockChart(testdata.stockSymbol1, 'max'),
       );
 
       expect(stub.calledOnce).toBe(true);
       expect(dispatchedActions.length).toEqual(2);
-      expect(dispatchedActions[0]).toEqual(
-        actions.fetchStockDailyAdjPending(testdata.stockSymbol1),
-      );
+      expect(dispatchedActions[0]).toEqual(actions.fetchStockChartPending(testdata.stockSymbol1));
       expect(dispatchedActions[1]).toEqual(
-        actions.fetchStockDailyAdjRejected(testdata.stockSymbol1, new Error('')),
+        actions.fetchStockChartRejected(testdata.stockSymbol1, new Error('')),
       );
 
       stub.restore(); // important: do NOT remove
@@ -189,16 +181,9 @@ describe('Stocks Saga', () => {
     describe('Saga', () => {
       it('Should dispatch action to fetch Stock quote for every stock symbol', async () => {
         const rootState: AppState = {
-          Stocks: {
-            symbols: {},
-            search: {},
-          },
+          ...testdata.baseAppState,
           Favorites: {
-            symbols: [
-              testdata.stockSearchData1.bestMatches[0],
-              testdata.stockSearchData2.bestMatches[0],
-              testdata.stockSearchData3.bestMatches[0],
-            ],
+            symbols: [testdata.stockSymbol1, testdata.stockSymbol2, testdata.stockSymbol3],
           },
         };
 

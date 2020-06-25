@@ -272,7 +272,7 @@ export const stockSearchData3 = {
   ],
 };
 
-export const stockMetadata1: FavoritesReducer.FavoriteStockData = {
+export const stockMetadata1 = {
   '1. symbol': 'IBM',
   '2. name': 'International Business Machines Corporation',
   '4. region': 'United States',
@@ -280,7 +280,7 @@ export const stockMetadata1: FavoritesReducer.FavoriteStockData = {
   '8. currency': 'USD',
 };
 
-export const stockMetadata2: FavoritesReducer.FavoriteStockData = {
+export const stockMetadata2 = {
   '1. symbol': 'AAPL',
   '2. name': 'Apple Inc.',
   '4. region': 'United States',
@@ -288,7 +288,7 @@ export const stockMetadata2: FavoritesReducer.FavoriteStockData = {
   '8. currency': 'USD',
 };
 
-export const stockMetadata3: FavoritesReducer.FavoriteStockData = {
+export const stockMetadata3 = {
   '1. symbol': 'SHOP',
   '2. name': 'Shopify Inc.',
   '4. region': 'United States',
@@ -296,7 +296,7 @@ export const stockMetadata3: FavoritesReducer.FavoriteStockData = {
   '8. currency': 'USD',
 };
 
-export const stockMetadata4: FavoritesReducer.FavoriteStockData = {
+export const stockMetadata4 = {
   '1. symbol': 'AMZN',
   '2. name': 'Amazon.com Inc.',
   '4. region': 'United States',
