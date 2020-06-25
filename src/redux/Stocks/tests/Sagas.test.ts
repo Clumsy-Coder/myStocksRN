@@ -9,6 +9,7 @@ import sagaWatcher, {
   fetchStockQuoteSaga,
   fetchStockChartSaga,
   fetchStockQuoteBatchSaga,
+  fetchSymbolsMetadataSaga,
 } from 'src/redux/Stocks/Sagas';
 import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 import * as actions from 'src/redux/Stocks/Actions';
@@ -160,6 +161,64 @@ describe('Stocks Saga', () => {
       expect(dispatchedActions[1]).toEqual(
         actions.fetchStockChartRejected(testdata.stockSymbol1, new Error('')),
       );
+
+      stub.restore(); // important: do NOT remove
+    });
+  });
+
+  describe('Stocks Symbol Metadata saga', () => {
+    it('Should load and handle Stock Symbols Metadata in case of success', async () => {
+      const dispatchedActions: Actions.StocksActions[] = [];
+      const fakeStore = {
+        getState: (): {} => ({}),
+        dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
+      };
+      const promiseResponse: AxiosResponse<DataDomain.Symbols[]> = {
+        data: [testdata.symbolsMetadata1, testdata.symbolsMetadata2, testdata.symbolsMetadata3],
+        headers: {},
+        status: 200,
+        statusText: '',
+        request: {},
+        config: {},
+      };
+
+      const stub = sinon
+        .stub(api, 'fetchSymbolsMetadataUrl')
+        .returns(Promise.resolve(promiseResponse));
+      await runSaga(fakeStore, fetchSymbolsMetadataSaga, actions.fetchSymbolsMetadata());
+
+      expect(stub.calledOnce).toBe(true);
+      expect(dispatchedActions.length).toEqual(2);
+      expect(dispatchedActions[0]).toEqual(
+        actions.fetchSymbolsMetadataPending(testdata.stockSymbol1),
+      );
+      expect(dispatchedActions[1]).toEqual(
+        actions.fetchSymbolsMetadataFulfilled([
+          testdata.symbolsMetadata1,
+          testdata.symbolsMetadata2,
+          testdata.symbolsMetadata3,
+        ]),
+      );
+
+      stub.restore(); // important: do NOT remove
+    });
+
+    it('Should load and handle Stock Symbols Metadata in case of failure', async () => {
+      const dispatchedActions: Actions.StocksActions[] = [];
+      const fakeStore = {
+        getState: (): {} => ({}),
+        dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
+      };
+
+      const stub = sinon
+        .stub(api, 'fetchSymbolsMetadataUrl')
+        .returns(Promise.reject(new Error('')));
+      await runSaga(fakeStore, fetchSymbolsMetadataSaga, actions.fetchSymbolsMetadata());
+
+      expect(stub.calledOnce).toBe(true);
+      expect(dispatchedActions.length).toEqual(2);
+      expect(dispatchedActions[0]).toEqual(actions.fetchSymbolsMetadataPending());
+      expect(dispatchedActions[1]).toEqual(actions.fetchSymbolsMetadataRejected(new Error('')));
 
       stub.restore(); // important: do NOT remove
     });
