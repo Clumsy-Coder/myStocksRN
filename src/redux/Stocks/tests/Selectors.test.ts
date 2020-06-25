@@ -1348,6 +1348,148 @@ describe('Stocks selectors', () => {
     // });
   });
 
+  describe('Stock Symbols Metadata selectors', () => {
+    describe('selectSymbolsMetadata', () => {
+      it('[Empty store]: Should return empty SymbolsMetadata', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+        };
+
+        const expected: Reducer.SymbolsData = {
+          fetching: false,
+          data: [],
+          error: undefined,
+        };
+
+        expect(selectors.selectSymbolsMetadata(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return SymbolsMetadata', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [
+                testdata.symbolsMetadata1,
+                testdata.symbolsMetadata2,
+                testdata.symbolsMetadata3,
+              ],
+              error: undefined,
+            },
+          },
+        };
+
+        const expected: Reducer.SymbolsData = {
+          fetching: false,
+          data: [testdata.symbolsMetadata1, testdata.symbolsMetadata2, testdata.symbolsMetadata3],
+          error: undefined,
+        };
+
+        expect(selectors.selectSymbolsMetadata(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSymbolsMetadataFetching', () => {
+      it('[Empty store]: Should return default value', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+        };
+
+        const expected = false;
+
+        expect(selectors.selectSymbolsMetadataFetching(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return boolean', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: true,
+              data: [],
+              error: undefined,
+            },
+          },
+        };
+
+        const expected = true;
+
+        expect(selectors.selectSymbolsMetadataFetching(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSymbolsMetadataData', () => {
+      it('[Empty store]: Should return empty array', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+        };
+
+        const expected: DataDomain.Symbols[] = [];
+
+        expect(selectors.selectSymbolsMetadataData(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return array of Symbols Metadata', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [
+                testdata.symbolsMetadata1,
+                testdata.symbolsMetadata2,
+                testdata.symbolsMetadata3,
+              ],
+              error: undefined,
+            },
+          },
+        };
+
+        const expected: DataDomain.Symbols[] = [
+          testdata.symbolsMetadata1,
+          testdata.symbolsMetadata2,
+          testdata.symbolsMetadata3,
+        ];
+
+        expect(selectors.selectSymbolsMetadataData(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectSymbolsMetadataError', () => {
+      it('[Empty store]: Should return default value', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+        };
+
+        const expected = undefined;
+
+        expect(selectors.selectSymbolsMetadataError(rootState)).toEqual(expected);
+      });
+
+      it('[Non-empty store]: Should return the proper value', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [],
+              error: new Error(''),
+            },
+          },
+        };
+
+        const expected = new Error('');
+
+        expect(selectors.selectSymbolsMetadataError(rootState)).toEqual(expected);
+      });
+    });
+  });
+
   describe('Data processing', () => {
     // describe('selectStockQuoteTrim', () => {
     //   it('[Empty store]: Should return empty array', () => {
