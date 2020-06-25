@@ -1111,4 +1111,90 @@ describe('Stocks reducer', () => {
     //   });
     // });
   });
+
+  describe('Symbols metadata', () => {
+    describe(`${ActionTypes.FETCH_SYMBOLS_METADATA_PENDING}`, () => {
+      it('Should handle the action', () => {
+        const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
+          symbolsMetadata: {
+            fetching: false,
+            data: [],
+            error: undefined,
+          },
+        };
+        const action: Actions.SymbolsMetadata.FetchPendingAction = {
+          type: ActionTypes.FETCH_SYMBOLS_METADATA_PENDING,
+        };
+        const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
+          symbolsMetadata: {
+            fetching: true,
+            data: [],
+            error: undefined,
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+    });
+
+    describe(`${ActionTypes.FETCH_SYMBOLS_METADATA_FULFILLED}`, () => {
+      it('Should handle the action', () => {
+        const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
+          symbolsMetadata: {
+            fetching: true,
+            data: [],
+            error: undefined,
+          },
+        };
+        const action: Actions.SymbolsMetadata.FetchFulfilledAction = {
+          type: ActionTypes.FETCH_SYMBOLS_METADATA_FULFILLED,
+          payload: [
+            testdata.symbolsMetadata1,
+            testdata.symbolsMetadata2,
+            testdata.symbolsMetadata3,
+          ],
+        };
+        const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
+          symbolsMetadata: {
+            fetching: false,
+            data: [testdata.symbolsMetadata1, testdata.symbolsMetadata2, testdata.symbolsMetadata3],
+            error: undefined,
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+    });
+
+    describe(`${ActionTypes.FETCH_SYMBOLS_METADATA_REJECTED}`, () => {
+      it('Should handle the action', () => {
+        const state: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
+          symbolsMetadata: {
+            fetching: true,
+            data: [],
+            error: undefined,
+          },
+        };
+        const action: Actions.SymbolsMetadata.FetchRejectedAction = {
+          type: ActionTypes.FETCH_SYMBOLS_METADATA_REJECTED,
+          error: new Error(''),
+        };
+        const expected: Reducer.ReducerState = {
+          ...testdata.baseStocksState,
+          symbolsMetadata: {
+            fetching: false,
+            data: [],
+            error: new Error(''),
+          },
+        };
+
+        expect(reducer(state, action)).toEqual(expected);
+      });
+    });
+  });
 });
