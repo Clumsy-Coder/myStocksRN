@@ -157,7 +157,7 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
       return {
         ...state,
         symbolsMetadata: {
-          fetching: true,
+          fetching: false,
           data: [],
           error: action.error,
         },
