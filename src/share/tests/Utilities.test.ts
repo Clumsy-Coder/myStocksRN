@@ -56,6 +56,27 @@ describe('Fetch data functions', () => {
     });
   });
 
+  describe('fetchSymbolsMetadataUrl', () => {
+    it('Should return a Promise', async () => {
+      const promiseResponse: AxiosResponse<DataDomain.Symbols[]> = {
+        headers: {},
+        status: 200,
+        statusText: '',
+        request: {},
+        config: {},
+        data: [testdata.symbolsMetadata1, testdata.symbolsMetadata2, testdata.symbolsMetadata3],
+      };
+
+      mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
+      await expect(api.fetchSymbolsMetadataUrl()).resolves.toEqual(promiseResponse);
+    });
+
+    it('Should return Error', async () => {
+      mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
+      await expect(api.fetchSymbolsMetadataUrl()).rejects.toThrow(new Error(''));
+    });
+  });
+
   // describe('fetchStockSearchUrl', () => {
   //   it('Should return a Promise', async () => {
   //     const promiseResponse: AxiosResponse<DataDomain.StockSearch> = {
