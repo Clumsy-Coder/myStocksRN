@@ -44,7 +44,7 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.10.3",
     "@babel/runtime": "^7.9.2",
     "@microsoft/tsdoc": "^0.12.19",
     "@react-native-community/eslint-config": "^2.0.0",
