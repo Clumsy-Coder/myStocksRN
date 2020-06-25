@@ -138,10 +138,10 @@ describe('Fetch data functions', () => {
   //       config: {},
   //       data: {
   //         SHOP: {
-  //           chart: testdata.stockDailyAdjData2,
+  //           chart: testdata.stockChartData2,
   //         },
   //         AAPL: {
-  //           chart: testdata.stockDailyAdjData1,
+  //           chart: testdata.stockChartData1,
   //         },
   //       },
   //     };
@@ -170,10 +170,10 @@ describe('Fetch data functions', () => {
   //       config: {},
   //       data: {
   //         SHOP: {
-  //           chart: testdata.stockDailyAdjData2,
+  //           chart: testdata.stockChartData2,
   //         },
   //         AAPL: {
-  //           chart: testdata.stockDailyAdjData1,
+  //           chart: testdata.stockChartData1,
   //         },
   //       },
   //     };

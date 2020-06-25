@@ -108,8 +108,8 @@ describe('Stocks Saga', () => {
     });
   });
 
-  describe('Stocks Daily Adjusted saga', () => {
-    it('Should load and handle Stock Daily Adjusted data in case of success', async () => {
+  describe('Stocks Chart saga', () => {
+    it('Should load and handle Stock Chart data in case of success', async () => {
       const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
@@ -141,7 +141,7 @@ describe('Stocks Saga', () => {
       stub.restore(); // important: do NOT remove
     });
 
-    it('Should load and handle Stock Daily Adjusted data in case of failure', async () => {
+    it('Should load and handle Stock Chart data in case of failure', async () => {
       const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
         getState: (): {} => ({}),
@@ -230,7 +230,7 @@ describe('Stocks Saga', () => {
         const gen = sagaWatcher();
         const expected = takeLatest(ActionTypes.FETCH_STOCK_QUOTE_BATCH, fetchStockQuoteBatchSaga);
         gen.next(); // ignore FETCH_STOCK_QUOTE action
-        gen.next(); // ignore FETCH_STOCK_DAILY_ADJUSTED action
+        gen.next(); // ignore FETCH_STOCK_CHART action
         const actual = gen.next().value;
 
         expect(actual).toEqual(expected);

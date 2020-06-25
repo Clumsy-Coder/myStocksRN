@@ -896,8 +896,8 @@ describe('Stocks selectors', () => {
     // });
   });
 
-  describe('Stock Daily Adjusted selectors', () => {
-    describe('selectStockDailyAdjusted', () => {
+  describe('Stock Chart selectors', () => {
+    describe('selectStockChart', () => {
       it('[Empty store]: Should return empty ChartData', () => {
         const rootState: AppState = {
           ...testdata.baseAppState,
@@ -958,7 +958,7 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe('selectStockDailyAdjustedFetching', () => {
+    describe('selectStockChartFetching', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           ...testdata.baseAppState,
@@ -1016,7 +1016,7 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe('selectStockDailyAdjustedData', () => {
+    describe('selectStockChartData', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           ...testdata.baseAppState,
@@ -1071,7 +1071,7 @@ describe('Stocks selectors', () => {
       });
     });
 
-    describe('selectStockDailyAdjustedError', () => {
+    describe('selectStockChartError', () => {
       it('[Empty store]: Should return empty undefined', () => {
         const rootState: AppState = {
           ...testdata.baseAppState,

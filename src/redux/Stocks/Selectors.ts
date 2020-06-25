@@ -233,15 +233,15 @@ export const selectStockQuoteError = createCachedSelector(
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Select stock Daily Adjusted data by Stock symbol.
+ * Select stock Chart data by Stock symbol.
  * ```ts
  * {
- *    selectedStock: selectStockDailyAdjusted(state, { stockSymbol: 'AAPL' })
+ *    selectedStock: selectStockChart(state, { stockSymbol: 'AAPL' })
  * }
  * ```
  * @param state - AppState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns Reducer.StockDailyAdjustedData | undefined - Stock Daily Adjusted data
+ * @returns Reducer.StockChartData | undefined - Stock Chart data
  */
 export const selectStockChart = createCachedSelector(
   [selectStock],
@@ -249,54 +249,52 @@ export const selectStockChart = createCachedSelector(
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
- * Select stock Daily Adjusted **fetching** status by Stock symbol.
+ * Select stock Chart **fetching** status by Stock symbol.
  * ```ts
  * {
- *    selectedStockFetching: selectStockDailyAdjustedFetching(state, { stockSymbol: 'AAPL' })
+ *    selectedStockFetching: selectStockChartFetching(state, { stockSymbol: 'AAPL' })
  * }
  * ```
  * @param state - AppState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns boolean | undefined - Stock Daily Adjusted data fetching status
+ * @returns boolean | undefined - Stock Chart data fetching status
  */
 export const selectStockChartFetching = createCachedSelector(
   [selectStockChart],
-  (stockDailyAdjustedData: Reducer.ChartData | undefined): boolean | undefined =>
-    stockDailyAdjustedData?.fetching,
+  (stockChartData: Reducer.ChartData | undefined): boolean | undefined => stockChartData?.fetching,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
- * Select stock Daily Adjusted **data** by Stock symbol.
+ * Select stock Chart **data** by Stock symbol.
  * ```ts
  * {
- *    selectedStockData: selectStockDailyAdjustedData(state, { stockSymbol: 'AAPL' })
+ *    selectedStockData: selectStockChartData(state, { stockSymbol: 'AAPL' })
  * }
  * ```
  * @param state - AppState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns DataDomain.StockDailyAdj | undefined - Stock Daily Adjusted data
+ * @returns DataDomain.ChartData | undefined - Stock Chart data
  */
 export const selectStockChartData = createCachedSelector(
   [selectStockChart],
-  (stockDailyAdjustedData: Reducer.ChartData | undefined): DataDomain.Chart[] | undefined =>
-    stockDailyAdjustedData?.data,
+  (stockChartData: Reducer.ChartData | undefined): DataDomain.Chart[] | undefined =>
+    stockChartData?.data,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
- * Select stock Daily Adjusted **error** by Stock symbol.
+ * Select stock Chart **error** by Stock symbol.
  * ```ts
  * {
- *    selectedDataError: selectStockDailyAdjustedError(state, { stockSymbol: 'AAPL' })
+ *    selectedDataError: selectStockChartError(state, { stockSymbol: 'AAPL' })
  * }
  * ```
  * @param state - AppState - Root redux state
  * @param props - \{ stockSymbol: string \} - Stock symbol to select in uppercase. Ex: AAPL
- * @returns Error | undefined - Stock Daily Adjusted Error
+ * @returns Error | undefined - Stock Chart Error
  */
 export const selectStockChartError = createCachedSelector(
   [selectStockChart],
-  (stockDailyAdjustedData: Reducer.ChartData | undefined): Error | undefined =>
-    stockDailyAdjustedData?.error,
+  (stockChartData: Reducer.ChartData | undefined): Error | undefined => stockChartData?.error,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //

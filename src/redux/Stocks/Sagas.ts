@@ -26,12 +26,12 @@ export function* fetchStockQuoteSaga(action: Actions.Quote.FetchAction) {
 }
 
 /**
- * Initiate the fetching of stock Daily Adjusted data.
- * It will dispatch STOCKS/FETCH_STOCK_DAILY_ADJUSTED_PENDING action.
- * STOCKS/FETCH_STOCK_DAILY_ADJUSTED_FULFILLED action will be dispatched if data fetching was successful.
- * STOCKS/FETCH_STOCK_DAILY_ADJUSTED_REJECTED action will be dispatched if data fetching was unsuccessful.
+ * Initiate the fetching of stock Chart data.
+ * It will dispatch STOCKS/FETCH_STOCK_CHART_PENDING action.
+ * STOCKS/FETCH_STOCK_CHART_FULFILLED action will be dispatched if data fetching was successful.
+ * STOCKS/FETCH_STOCK_CHART_REJECTED action will be dispatched if data fetching was unsuccessful.
  *
- * @param action - Fetch stock Daily Adjusted action
+ * @param action - Fetch stock Chart action
  */
 export function* fetchStockChartSaga(action: Actions.Chart.FetchAction) {
   try {
@@ -69,7 +69,7 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
 //  *
 //  * @param action - Fetch stock chart batch action
 //  */
-// export function* fetchStockChartBatchSaga(action: FetchStockDailyAdjustedBatchAction) {
+// export function* fetchStockChartBatchSaga(action: FetchStockChartBatchAction) {
 //   try {
 //     const { stockSymbols, range, sort } = action;
 

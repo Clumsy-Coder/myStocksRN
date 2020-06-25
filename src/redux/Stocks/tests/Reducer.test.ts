@@ -400,9 +400,9 @@ describe('Stocks reducer', () => {
     });
   });
 
-  describe('Stocks Daily Adjusted', () => {
+  describe('Stocks Charts', () => {
     describe(`${ActionTypes.FETCH_STOCK_CHART_PENDING}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+      it('[Empty store]: Should set fetching, error and data for ChartData', () => {
         const state: Reducer.ReducerState = {
           ...testdata.baseStocksState,
           symbols: {
@@ -440,7 +440,7 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+      it('[Non-empty store]: Should set fetching, error and data for ChartData', () => {
         const state: Reducer.ReducerState = {
           ...testdata.baseStocksState,
           symbols: {
@@ -494,7 +494,7 @@ describe('Stocks reducer', () => {
     });
 
     describe(`${ActionTypes.FETCH_STOCK_CHART_FULFILLED}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+      it('[Empty store]: Should set fetching, error and data for ChartData', () => {
         const state: Reducer.ReducerState = {
           ...testdata.baseStocksState,
           symbols: {
@@ -533,7 +533,7 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+      it('[Non-empty store]: Should set fetching, error and data for ChartData', () => {
         const state: Reducer.ReducerState = {
           ...testdata.baseStocksState,
           symbols: {
@@ -593,7 +593,7 @@ describe('Stocks reducer', () => {
     });
 
     describe(`${ActionTypes.FETCH_STOCK_CHART_REJECTED}`, () => {
-      it('[Empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+      it('[Empty store]: Should set fetching, error and data for ChartData', () => {
         const state: Reducer.ReducerState = {
           ...testdata.baseStocksState,
           symbols: {
@@ -632,7 +632,7 @@ describe('Stocks reducer', () => {
         expect(reducer(state, action)).toEqual(expected);
       });
 
-      it('[Non-empty store]: Should set fetching, error and data for StockDailyAdj', () => {
+      it('[Non-empty store]: Should set fetching, error and data for ChartData', () => {
         const state: Reducer.ReducerState = {
           ...testdata.baseStocksState,
           symbols: {

@@ -10,7 +10,7 @@ export interface QuoteData {
 }
 
 /**
- * Data structure for Stock Daily Adjusted used in Stock Reducer
+ * Data structure for Stock Chart used in Stock Reducer
  */
 export interface ChartData {
   fetching: boolean;

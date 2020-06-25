@@ -240,7 +240,7 @@ export const fetchStockQuoteBatch: ActionCreator<Actions.Batch.FetchQuoteAction>
 //  * @param range - Date range for the stock chart
 //  * @param sort - sort data by date in ascending or descending order
 //  */
-// export const fetchStockChartBatch: ActionCreator<Actions.Batch.FetchDailyAdjustedBatchAction> = (): Actions.Batch.FetchDailyAdjustedBatchAction => ({
+// export const fetchStockChartBatch: ActionCreator<Actions.Batch.FetchChartBatchAction> = (): Actions.Batch.FetchChartBatchAction => ({
 //   type: ActionTypes.FETCH_STOCK_DAILY_ADJUSTED_BATCH,
 // });
 
