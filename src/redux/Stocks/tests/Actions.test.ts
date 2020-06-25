@@ -161,4 +161,42 @@ describe('Stock action creators', () => {
       expect(actions.fetchStockQuoteBatch()).toEqual(expectedAction);
     });
   });
+
+  describe('Stock Symbols Metadata', () => {
+    it('Should create an action to fetch Stock Symbols Metadata', () => {
+      const expectedAction: Actions.SymbolsMetadata.FetchAction = {
+        type: ActionTypes.FETCH_SYMBOLS_METADATA,
+      };
+      expect(actions.fetchSymbolsMetadata()).toEqual(expectedAction);
+    });
+
+    it('Should create an action to fetch Stock Symbols Metadata PENDING', () => {
+      const expectedAction: Actions.SymbolsMetadata.FetchPendingAction = {
+        type: ActionTypes.FETCH_SYMBOLS_METADATA_PENDING,
+      };
+      expect(actions.fetchSymbolsMetadataPending()).toEqual(expectedAction);
+    });
+
+    it('Should create an action to fetch Stock Symbols Metadata FULFILLED', () => {
+      const expectedAction: Actions.SymbolsMetadata.FetchFulfilledAction = {
+        type: ActionTypes.FETCH_SYMBOLS_METADATA_FULFILLED,
+        payload: [testdata.symbolsMetadata1, testdata.symbolsMetadata2, testdata.symbolsMetadata3],
+      };
+      expect(
+        actions.fetchSymbolsMetadataFulfilled([
+          testdata.symbolsMetadata1,
+          testdata.symbolsMetadata2,
+          testdata.symbolsMetadata3,
+        ]),
+      ).toEqual(expectedAction);
+    });
+
+    it('Should create an action to fetch Stock Symbols Metadata REJECTED', () => {
+      const expectedAction: Actions.SymbolsMetadata.FetchRejectedAction = {
+        type: ActionTypes.FETCH_SYMBOLS_METADATA_REJECTED,
+        error: new Error(''),
+      };
+      expect(actions.fetchSymbolsMetadataRejected(new Error(''))).toEqual(expectedAction);
+    });
+  });
 });
