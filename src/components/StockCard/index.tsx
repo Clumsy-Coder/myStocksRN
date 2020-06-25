@@ -80,7 +80,7 @@ const StockCard: React.FC<OwnProps> = (props: OwnProps) => {
           <H3 style={styleSheet.companyName}>{data.companyName}</H3>
         </View>
         <View style={styleSheet.priceContainer}>
-          <H3>{data.price}</H3>
+          <H3>{data.price.toFixed(2)}</H3>
           <View
             style={[
               styleSheet.priceChangeContainer,
