@@ -1,0 +1,98 @@
+on: push
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Install npm dependencies
+        run: yarn install
+
+  lint:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Lint project
+        run: yarn lint
+
+  test:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Test project
+        run: yarn test
+
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Create properties file
+        run: |
+          printf 'RELEASE_KEY_STORE=%s\n' ${{ secrets.RELEASE_KEY_STORE }} >> android/release-keystore.properties
+          printf 'RELEASE_KEY_ALIAS_NAME=%s\n' ${{ secrets.RELEASE_KEY_ALIAS_NAME }} >> android/release-keystore.properties
+          printf 'RELEASE_KEY_ALIAS_PASSWORD=%s\n' ${{ secrets.RELEASE_KEY_ALIAS_PASSWORD }} >> android/release-keystore.properties
+          printf 'RELEASE_KEY_STORE_PASSWORD=%s\n' ${{ secrets.RELEASE_KEY_STORE_PASSWORD }} >> android/release-keystore.properties
+      - name: Decode Android key
+        run: |
+          echo "${{ secrets.KEYSTORE }}" > keystore-base64
+          base64 -d -i keystore-base64 > android/app/release.keystore
+      - name: Cache Android dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-android-dependencies
+        with:
+          path: |
+            ~/.gradle/
+            ~/.m2/
+          key: jars-{{ hashFiles('android/gradle/wrapper/gradle-wrapper.properties') }}-{{ hashFiles("android/build.gradle") }}-{{ hashFiles('android/app/build.gradle') }}
+          restore-keys: jars-{{ hashFiles('android/gradle/wrapper/gradle-wrapper.properties') }}-{{ hashFiles("android/build.gradle") }}-
+      - name: Download Android dependencies
+        run: |
+          cd android
+          ./gradlew androidDependencies
+          cd ..
+      - name: Generate .ENV file
+        run: |
+          printf 'BUILD_VERSION=%s\n' $(echo ${{ github.sha }} | cut -c -7) >> .env
+      - name: Build Android APK
+        run: yarn build:android:release
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
