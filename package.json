@@ -81,7 +81,7 @@
     "eslint-plugin-tsdoc": "^0.2.4",
     "faker": "^4.1.0",
     "husky": "^4.2.5",
-    "jest": "^25.3.0",
+    "jest": "^25.5.4",
     "jest-html-reporters": "^1.2.1",
     "jest-junit": "^10.0.0",
     "lint-staged": "^10.1.3",
