@@ -1,7 +1,14 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 
-import NavigationRoutePath from '@routes/RoutePath.enum';
+/**
+ * All navigation routes available
+ */
+export enum NavigationRoutePath {
+  Home = 'Home',
+  StockDetails = 'StockDetails',
+  About = 'About',
+}
 
 export type RootStackParamList = {
   Home: undefined;
