@@ -11,11 +11,11 @@ export enum NavigationRoutePath {
 }
 
 export type RootStackParamList = {
-  Home: undefined;
-  StockDetails: {
+  [NavigationRoutePath.Home]: undefined;
+  [NavigationRoutePath.StockDetails]: {
     symbol: string;
   };
-  About: undefined;
+  [NavigationRoutePath.About]: undefined;
 };
 
 export type StockDetailsNavigationProp = StackNavigationProp<
