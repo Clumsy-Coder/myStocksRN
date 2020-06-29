@@ -1,5 +1,7 @@
 export type RootStackParamList = {
   Home: undefined;
-  StockDetails: undefined;
+  StockDetails: {
+    symbol: string;
+  };
   About: undefined;
 };
