@@ -4,7 +4,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import HomeScreen from 'src/screens/Home';
 import StockDetailsScreen from 'src/screens/StockDetails';
 import AboutScreen from 'src/screens/About';
-import { NavigationRoutePath, RootStackParamList } from 'src/routes/AppRouteTypes';
+import { NavigationRoutePath, RootStackParamList } from '@routes/Types';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

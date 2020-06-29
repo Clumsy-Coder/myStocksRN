@@ -4,7 +4,7 @@ import { ListItem, Text, H1, H3 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
 import { Selectors } from 'src/redux/Stocks/Types';
-import { StockDetailsNavigationProp } from '@routes/AppRouteTypes';
+import { StockDetailsNavigationProp } from '@routes/Types';
 
 interface OwnProps {
   data: Selectors.SelectQuoteTrim;

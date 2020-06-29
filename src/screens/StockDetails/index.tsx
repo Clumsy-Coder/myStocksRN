@@ -2,11 +2,7 @@ import * as React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import {
-  NavigationRoutePath,
-  RootStackParamList,
-  StockDetailsRouteProp,
-} from 'src/routes/AppRouteTypes';
+import { NavigationRoutePath, RootStackParamList, StockDetailsRouteProp } from '@routes/Types';
 import { useRoute } from '@react-navigation/native';
 
 type Props = {
