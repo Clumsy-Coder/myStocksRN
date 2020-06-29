@@ -4,7 +4,7 @@ import { ListItem, Text, H1, H3 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
 import { Selectors } from 'src/redux/Stocks/Types';
-import { StockDetailsNavigationProp } from '@routes/Types';
+import { StockDetailsNavigationProp, NavigationRoutePath } from '@routes/Types';
 
 interface OwnProps {
   data: Selectors.SelectQuoteTrim;
@@ -79,7 +79,9 @@ const StockCard: React.FC<OwnProps> = (props: OwnProps) => {
   return (
     <ListItem
       style={styleSheet.container}
-      onPress={(): void => navigation.navigate('StockDetails', { symbol: data.symbol })}
+      onPress={(): void =>
+        navigation.navigate(NavigationRoutePath.StockDetails, { symbol: data.symbol })
+      }
     >
       <View style={styleSheet.listItemContainer}>
         <View style={styleSheet.companyContainer}>

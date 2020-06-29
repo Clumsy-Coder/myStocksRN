@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { NavigationRoutePath, RootStackParamList } from '@routes/Types';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList, 'About'>;
+  navigation: StackNavigationProp<RootStackParamList, NavigationRoutePath.About>;
 };
 
 const styles = StyleSheet.create({

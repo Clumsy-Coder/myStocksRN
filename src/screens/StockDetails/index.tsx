@@ -6,7 +6,7 @@ import { NavigationRoutePath, RootStackParamList, StockDetailsRouteProp } from '
 import { useRoute } from '@react-navigation/native';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList, 'StockDetails'>;
+  navigation: StackNavigationProp<RootStackParamList, NavigationRoutePath.StockDetails>;
 };
 
 const styles = StyleSheet.create({
