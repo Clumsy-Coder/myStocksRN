@@ -57,6 +57,11 @@ jobs:
         with:
           name: code-coverage
           path: coverage/lcov-report/
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1.0.7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage/lcov.info
 
   build:
     needs: install
