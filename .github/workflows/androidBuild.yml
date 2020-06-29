@@ -64,9 +64,9 @@ jobs:
       - name: Create properties file
         run: |
           printf 'RELEASE_KEY_STORE=%s\n' ${{ secrets.RELEASE_KEY_STORE }} >> android/release-keystore.properties
-          printf 'RELEASE_KEY_ALIAS_NAME=%s\n' ${{ secrets.RELEASE_KEY_ALIAS_NAME }} >> android/release-keystore.properties
-          printf 'RELEASE_KEY_ALIAS_PASSWORD=%s\n' ${{ secrets.RELEASE_KEY_ALIAS_PASSWORD }} >> android/release-keystore.properties
-          printf 'RELEASE_KEY_STORE_PASSWORD=%s\n' ${{ secrets.RELEASE_KEY_STORE_PASSWORD }} >> android/release-keystore.properties
+          printf 'RELEASE_KEY_ALIAS_NAME=%s\n' '${{ secrets.RELEASE_KEY_ALIAS_NAME }}' >> android/release-keystore.properties
+          printf 'RELEASE_KEY_ALIAS_PASSWORD=%s\n' '${{ secrets.RELEASE_KEY_ALIAS_PASSWORD }}' >> android/release-keystore.properties
+          printf 'RELEASE_KEY_STORE_PASSWORD=%s\n' '${{ secrets.RELEASE_KEY_STORE_PASSWORD }}' >> android/release-keystore.properties
       - name: Decode Android key
         run: |
           echo "${{ secrets.KEYSTORE }}" > keystore-base64
