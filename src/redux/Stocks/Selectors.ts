@@ -5,6 +5,7 @@ import { AppState } from 'src/redux/index.reducers';
 import { DataDomain, Reducer, Selectors } from 'src/redux/Stocks/Types';
 import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
 import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';
+import { defaultQuote } from '@redux/Stocks/Reducer';
 
 /**
  * Select 'Stocks' from root reducer.
@@ -205,7 +206,7 @@ export const selectStockQuoteFetching = createCachedSelector(
  */
 export const selectStockQuoteData = createCachedSelector(
   [selectStockQuote],
-  (stockQuoteData: Reducer.QuoteData): DataDomain.Quote | undefined => stockQuoteData.data,
+  (stockQuoteData: Reducer.QuoteData): DataDomain.Quote => stockQuoteData.data,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
