@@ -451,3 +451,35 @@ export const selectStockQuoteTrim = createSelector(
     return result;
   },
 );
+
+/**
+ * Selector for displaying info on StockDetails screen.
+ *
+ * If the stock is in the process of fetching or theres no stock quote data or no stock chart data,
+ * return an object { fetching: true, quote: defaultQuote, chart: [] }.
+ *
+ * ```ts
+ * {
+ *    selectedStockDetailsTrim: selectStockDetailsTrim(state, { stockSymbol: 'IBM' })
+ * }
+ * ```
+ *
+ * @param state - AppState - Root redux state
+ * @returns Selectors.SelectStockDetailsTrim - StockDetails screen data info
+ */
+export const selectStockDetailsTrim = createCachedSelector(
+  [selectStockQuote, selectStockChart],
+  (
+    quote: Reducer.QuoteData,
+    chart: Reducer.ChartData | undefined,
+  ): Selectors.SelectStockDetailsTrim => {
+    if (chart === undefined || quote.fetching || chart.fetching)
+      return { fetching: true, quote: defaultQuote, chart: [] };
+
+    return {
+      fetching: false,
+      quote: quote.data,
+      chart: chart.data,
+    };
+  },
+)((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
