@@ -2,6 +2,7 @@
 import * as selectors from 'src/redux/Stocks/Selectors';
 import { AppState } from 'src/redux/index.reducers';
 import { DataDomain, Reducer, Selectors as SelectorsTypes } from 'src/redux/Stocks/Types';
+import { defaultQuote } from '@redux/Stocks/Reducer';
 
 import * as testdata from 'jest.testdata';
 
@@ -361,7 +362,7 @@ describe('Stocks selectors', () => {
                 quote: {
                   fetching: true,
                   error: undefined,
-                  data: undefined,
+                  data: defaultQuote,
                 },
               },
             },
@@ -394,7 +395,7 @@ describe('Stocks selectors', () => {
                 quote: {
                   fetching: true,
                   error: undefined,
-                  data: undefined,
+                  data: defaultQuote,
                 },
               },
               [testdata.stockSymbol3]: {
@@ -539,7 +540,7 @@ describe('Stocks selectors', () => {
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -563,14 +564,14 @@ describe('Stocks selectors', () => {
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol2]: {
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -597,21 +598,21 @@ describe('Stocks selectors', () => {
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol2]: {
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol3]: {
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -646,7 +647,7 @@ describe('Stocks selectors', () => {
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol1}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -670,14 +671,14 @@ describe('Stocks selectors', () => {
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol1}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol2]: {
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol2}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -704,21 +705,21 @@ describe('Stocks selectors', () => {
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol1}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol2]: {
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol2}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol3]: {
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol3}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -936,7 +937,7 @@ describe('Stocks selectors', () => {
                 chart: {
                   fetching: true,
                   error: undefined,
-                  data: undefined,
+                  data: [],
                 },
               },
             },
@@ -949,7 +950,7 @@ describe('Stocks selectors', () => {
         const expected: Reducer.ChartData = {
           fetching: true,
           error: undefined,
-          data: undefined,
+          data: [],
         };
 
         expect(
@@ -999,7 +1000,7 @@ describe('Stocks selectors', () => {
                 chart: {
                   fetching: true,
                   error: undefined,
-                  data: undefined,
+                  data: [],
                 },
               },
             },
@@ -1113,7 +1114,7 @@ describe('Stocks selectors', () => {
                 chart: {
                   fetching: false,
                   error: new Error(''),
-                  data: undefined,
+                  data: [],
                 },
               },
             },
@@ -1643,21 +1644,21 @@ describe('Stocks selectors', () => {
               IBM: {
                 quote: {
                   fetching: false,
-                  data: undefined,
+                  data: defaultQuote,
                   error: new Error(''),
                 },
               },
               AAPL: {
                 quote: {
                   fetching: false,
-                  data: undefined,
+                  data: defaultQuote,
                   error: new Error(''),
                 },
               },
               SHOP: {
                 quote: {
                   fetching: false,
-                  data: undefined,
+                  data: defaultQuote,
                   error: new Error(''),
                 },
               },

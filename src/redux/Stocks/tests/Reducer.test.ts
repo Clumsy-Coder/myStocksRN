@@ -1,5 +1,5 @@
 /* eslint-disable jest/no-commented-out-tests */
-import reducer from 'src/redux/Stocks/Reducer';
+import reducer, { defaultQuote } from 'src/redux/Stocks/Reducer';
 import { ActionTypes, Reducer, Actions } from 'src/redux/Stocks/Types';
 
 import * as testdata from 'jest.testdata';
@@ -23,6 +23,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -37,6 +38,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -52,12 +54,14 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -74,12 +78,14 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: false,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: false,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -95,18 +101,21 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: false,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: false,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol3]: {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -125,6 +134,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -165,6 +175,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -213,12 +224,14 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol3]: {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -237,6 +250,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol3]: {
@@ -268,6 +282,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -279,6 +294,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: false,
                 error: new Error(''),
+                data: defaultQuote,
               },
             },
           },
@@ -307,6 +323,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -325,6 +342,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: false,
                 error: new Error(''),
+                data: defaultQuote,
               },
             },
           },
@@ -360,6 +378,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: false,
                 error: new Error(''),
+                data: defaultQuote,
               },
             },
           },
@@ -385,6 +404,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: false,
                 error: new Error(''),
+                data: defaultQuote,
               },
             },
           },
@@ -410,7 +430,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -426,12 +446,12 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -448,14 +468,14 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -471,19 +491,19 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -502,7 +522,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -519,7 +539,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: false,
@@ -541,19 +561,19 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -570,14 +590,14 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: false,
@@ -601,7 +621,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -618,12 +638,12 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: false,
                 error: new Error(''),
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -640,19 +660,19 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -669,19 +689,19 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: false,
                 error: new Error(''),
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -748,7 +768,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -767,7 +787,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -833,7 +853,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -851,7 +871,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
