@@ -547,7 +547,7 @@ describe('Stocks selectors', () => {
             },
           };
 
-          const expected: DataDomain.Quote | undefined = undefined;
+          const expected: DataDomain.Quote = defaultQuote;
 
           expect(
             selectors.selectStockQuoteData(rootState, { stockSymbol: testdata.stockSymbol1 }),
@@ -578,8 +578,8 @@ describe('Stocks selectors', () => {
             },
           };
 
-          const expected1: DataDomain.Quote | undefined = undefined;
-          const expected2: DataDomain.Quote | undefined = undefined;
+          const expected1: DataDomain.Quote = defaultQuote;
+          const expected2: DataDomain.Quote = defaultQuote;
           expect(
             selectors.selectStockQuoteData(rootState, { stockSymbol: testdata.stockSymbol1 }),
           ).toEqual(expected1);
@@ -619,9 +619,9 @@ describe('Stocks selectors', () => {
             },
           };
 
-          const expected1: DataDomain.Quote | undefined = undefined;
-          const expected2: DataDomain.Quote | undefined = undefined;
-          const expected3: DataDomain.Quote | undefined = undefined;
+          const expected1: DataDomain.Quote = defaultQuote;
+          const expected2: DataDomain.Quote = defaultQuote;
+          const expected3: DataDomain.Quote = defaultQuote;
           expect(
             selectors.selectStockQuoteData(rootState, { stockSymbol: testdata.stockSymbol1 }),
           ).toEqual(expected1);
