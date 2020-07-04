@@ -3,16 +3,20 @@ import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Content, Text, H1, H2, H3, View } from 'native-base';
 import { Dispatch } from 'redux';
+import { LineChartProps } from 'react-native-chart-kit/dist/line-chart/LineChart';
 
 import { StockDetailsRouteProp } from '@routes/Types';
 import { AppState, AppActions } from '@redux/index.reducers';
 import { Actions, Selectors } from '@redux/Stocks/Types';
 import { fetchStockChart } from '@redux/Stocks/Actions';
-import { selectStockDetailsTrim } from '@redux/Stocks/Selectors';
+import { selectStockDetailsTrim, selectStockDetailsLineChart } from '@redux/Stocks/Selectors';
 import StocksKeyStats from '@components/StocksKeyStats';
+import LineChartView from '@components/LineChart';
 
 interface SelectorProps {
   data: Selectors.SelectStockDetailsTrim;
+  // lineChartData: LineChartProps;
+  lineChartData: { date: string; price: number }[];
 }
 
 interface DispatchProps {
@@ -46,8 +50,10 @@ class StockDetailsScreen extends React.Component<Props> {
   }
 
   render(): JSX.Element {
-    const { route, data } = this.props;
+    const { route, data, lineChartData } = this.props;
     const { symbol } = route.params;
+
+    console.log(lineChartData);
 
     if (data.fetching) {
       return (
@@ -66,6 +72,7 @@ class StockDetailsScreen extends React.Component<Props> {
             <H1>{data.quote?.companyName}</H1>
           </View>
           <H1 style={styles.price}>{data.quote.latestPrice}</H1>
+          <LineChartView data={lineChartData} />
           <StocksKeyStats data={data.quote} />
         </Content>
       </Container>
@@ -75,6 +82,9 @@ class StockDetailsScreen extends React.Component<Props> {
 
 export const mapStateToProps = (state: AppState, ownProps: Props): SelectorProps => ({
   data: selectStockDetailsTrim(state, {
+    stockSymbol: ownProps.route.params.symbol,
+  }),
+  lineChartData: selectStockDetailsLineChart(state, {
     stockSymbol: ownProps.route.params.symbol,
   }),
 });
