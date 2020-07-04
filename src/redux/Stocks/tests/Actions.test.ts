@@ -1,6 +1,6 @@
 /* eslint-disable jest/no-commented-out-tests */
 import * as actions from 'src/redux/Stocks/Actions';
-import { ActionTypes, Actions } from 'src/redux/Stocks/Types';
+import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 
 import * as testdata from 'jest.testdata';
 
@@ -50,7 +50,7 @@ describe('Stock action creators', () => {
       const expectedAction: Actions.Chart.FetchAction = {
         type: ActionTypes.FETCH_STOCK_CHART,
         stockSymbol: testdata.stockSymbol1,
-        chartRange: 'max',
+        chartRange: DataDomain.ChartRange.MAX,
       };
       expect(actions.fetchStockChart(testdata.stockSymbol1, 'max')).toEqual(expectedAction);
     });
