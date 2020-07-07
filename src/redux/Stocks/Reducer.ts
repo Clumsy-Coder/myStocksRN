@@ -53,7 +53,12 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
             ...state.symbols[action.stockSymbol],
             quote: {
               fetching: true,
-              data: defaultQuote,
+              data:
+                state.symbols[action.stockSymbol] !== undefined &&
+                state.symbols[action.stockSymbol].quote !== undefined &&
+                state.symbols[action.stockSymbol].quote.data !== defaultQuote
+                  ? state.symbols[action.stockSymbol].quote.data
+                  : defaultQuote,
               error: undefined,
             },
           },
