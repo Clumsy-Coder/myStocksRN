@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Content, Text, H1, H2, H3, View, Button } from 'native-base';
+import { Container, Content, Text, H1, H2, H3, View, Button, Spinner } from 'native-base';
 import { Dispatch } from 'redux';
 import { LineChartProps } from 'react-native-chart-kit/dist/line-chart/LineChart';
 
@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexGrow: 1,
     flexBasis: '100%',
+  },
+  loadingView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -123,7 +129,7 @@ class StockDetailsScreen extends React.Component<Props, State> {
       return (
         <Container>
           <Content>
-            <Text>Loading</Text>
+            <Spinner />
           </Content>
         </Container>
       );
