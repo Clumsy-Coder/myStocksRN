@@ -425,33 +425,34 @@ export const selectStockQuoteTrim = createSelector(
     favorites: string[],
     symbolsMetadata: DataDomain.Symbols[],
   ): Selectors.SelectQuoteTrim[] => {
-    const result: Selectors.SelectQuoteTrim[] = favorites.reduce(
-      (acc: Selectors.SelectQuoteTrim[], symbol: string) => {
+    return favorites.map(
+      (symbol): Selectors.SelectQuoteTrim => {
         if (
           stocks.symbols[symbol] === undefined ||
           stocks.symbols[symbol].quote === undefined ||
-          stocks.symbols[symbol].quote.fetching
+          (stocks.symbols[symbol].quote.fetching &&
+            stocks.symbols[symbol].quote.data === defaultQuote)
         ) {
-          return acc;
+          return {
+            fetching: true,
+            symbol,
+            companyName: symbolsMetadata.find((obj) => obj.symbol === symbol)?.name || '',
+            price: 0,
+            change: 0,
+            changePercent: 0,
+          };
         }
 
-        return [
-          ...acc,
-          {
-            fetching: false,
-            symbol,
-            companyName: stocks.symbols[symbol].quote.data?.companyName || 'N/A',
-            price: stocks.symbols[symbol].quote.data?.latestPrice || 0,
-            change: stocks.symbols[symbol].quote.data?.change || 0,
-            changePercent: stocks.symbols[symbol].quote.data?.changePercent || 0,
-            currency: symbolsMetadata.find((obj) => obj.symbol === symbol)?.currency || '',
-          },
-        ];
+        return {
+          fetching: false,
+          symbol,
+          companyName: stocks.symbols[symbol].quote.data?.companyName || 'N/A',
+          price: stocks.symbols[symbol].quote.data?.latestPrice || 0,
+          change: stocks.symbols[symbol].quote.data?.change || 0,
+          changePercent: stocks.symbols[symbol].quote.data?.changePercent || 0,
+        };
       },
-      [],
     );
-
-    return result;
   },
 );
 
