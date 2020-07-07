@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
 });
 
 class StockDetailsScreen extends React.Component<Props, State> {
+  private fetchChartInterval: NodeJS.Timeout | undefined;
+
+  private fetchChartIntervalTimeout = 10;
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -67,7 +71,10 @@ class StockDetailsScreen extends React.Component<Props, State> {
     const { route, fetchChart } = this.props;
     const { chartRange } = this.state;
 
-    fetchChart(route.params.symbol, chartRange);
+    this.fetchChartInterval = setInterval(
+      fetchChart.bind(this, route.params.symbol, chartRange),
+      this.fetchChartIntervalTimeout * 1000,
+    );
   };
 
   componentDidUpdate = (prevProps: Props, prevState: State): void => {
@@ -77,14 +84,22 @@ class StockDetailsScreen extends React.Component<Props, State> {
       const { route, fetchChart } = this.props;
 
       fetchChart(route.params.symbol, chartRange);
+
+      this.fetchChartInterval = setInterval(
+        fetchChart.bind(this, route.params.symbol, chartRange),
+        this.fetchChartIntervalTimeout * 1000,
+      );
     }
   };
 
   componentWillUnmount = (): void => {
     console.log('component unmounted');
+
+    if (this.fetchChartInterval) clearInterval(this.fetchChartInterval);
   };
 
   onChartRangeChange = (newChartRange: DataDomain.ChartRange): void => {
+    if (this.fetchChartInterval) clearInterval(this.fetchChartInterval);
     this.setState({ chartRange: newChartRange });
   };
 
