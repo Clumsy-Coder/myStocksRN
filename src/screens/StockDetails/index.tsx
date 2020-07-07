@@ -10,6 +10,7 @@ import { AppState, AppActions } from '@redux/index.reducers';
 import { Actions, Selectors, DataDomain } from '@redux/Stocks/Types';
 import { fetchStockChart } from '@redux/Stocks/Actions';
 import { selectStockDetailsTrim, selectStockDetailsLineChart } from '@redux/Stocks/Selectors';
+import { defaultQuote } from '@redux/Stocks/Reducer';
 import StocksKeyStats from '@components/StocksKeyStats';
 import LineChartView from '@components/LineChart';
 
@@ -125,7 +126,7 @@ class StockDetailsScreen extends React.Component<Props, State> {
 
     console.log(lineChartData);
 
-    if (data.fetching) {
+    if (data.fetching && data.quote === defaultQuote && data.chart.length === 0) {
       return (
         <Container>
           <Content>
