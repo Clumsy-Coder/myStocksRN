@@ -106,7 +106,12 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
             ...state.symbols[action.stockSymbol],
             chart: {
               fetching: true,
-              data: [],
+              data:
+                state.symbols[action.stockSymbol] !== undefined &&
+                state.symbols[action.stockSymbol].chart !== undefined &&
+                state.symbols[action.stockSymbol].chart.data.length > 0
+                  ? state.symbols[action.stockSymbol].chart?.data
+                  : [],
               error: undefined,
             },
           },
