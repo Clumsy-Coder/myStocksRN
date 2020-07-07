@@ -1,7 +1,8 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Container, Content, List } from 'native-base';
+import { Container, Content, List, Spinner } from 'native-base';
 
 import { AppActions, AppState } from 'src/redux/index.reducers';
 import { fetchStockQuoteBatch } from 'src/redux/Stocks/Actions';
@@ -18,6 +19,14 @@ interface DispatchProps {
 }
 
 type Props = SelectorProps & DispatchProps;
+
+const styles = StyleSheet.create({
+  loadingView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+});
 
 export class Home extends React.Component<Props> {
   private fetchQuoteInterval: NodeJS.Timeout | undefined;
@@ -36,6 +45,16 @@ export class Home extends React.Component<Props> {
 
   render(): JSX.Element {
     const { selectedStockQuoteTrim } = this.props;
+
+    if (selectedStockQuoteTrim.some((cur) => cur.fetching === true)) {
+      return (
+        <Container style={styles.loadingView}>
+          <Content>
+            <Spinner />
+          </Content>
+        </Container>
+      );
+    }
 
     return (
       <Container>
