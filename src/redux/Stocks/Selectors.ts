@@ -1,13 +1,9 @@
 import { createCachedSelector } from 're-reselect';
 import { createSelector } from 'reselect';
-import { LineChartProps } from 'react-native-chart-kit/dist/line-chart/LineChart';
-// import { AbstractChartConfig } from 'react-native-chart-kit/dist/AbstractChart/AbstractChartConfig';
-import { Dimensions } from 'react-native';
 
 import { AppState } from 'src/redux/index.reducers';
 import { DataDomain, Reducer, Selectors } from 'src/redux/Stocks/Types';
 import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
-import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';
 import { defaultQuote } from '@redux/Stocks/Reducer';
 
 /**
@@ -460,7 +456,7 @@ export const selectStockQuoteTrim = createSelector(
  * Selector for displaying info on StockDetails screen.
  *
  * If the stock is in the process of fetching or theres no stock quote data or no stock chart data,
- * return an object { fetching: true, quote: defaultQuote, chart: [] }.
+ * return an object \{ fetching: true, quote: defaultQuote, chart: [] \}.
  *
  * ```ts
  * {
@@ -469,6 +465,7 @@ export const selectStockQuoteTrim = createSelector(
  * ```
  *
  * @param state - AppState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Select stock chart to process
  * @returns Selectors.SelectStockDetailsTrim - StockDetails screen data info
  */
 export const selectStockDetailsTrim = createCachedSelector(
@@ -488,6 +485,22 @@ export const selectStockDetailsTrim = createCachedSelector(
   },
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
+/**
+ * Selector for processing stock chart data to be display the line chart in Stock Details screen.
+ *
+ * If the stock chart is being fetched AND the data array length is 0 (initially loading chart data),
+ * return empty array.
+ *
+ * ```ts
+ * {
+ *    selectedStockDetailsLineChart: selectStockDetailsLineChart(state, { stockSymbol: 'IBM' })
+ * }
+ * ```
+ *
+ * @param state - AppState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Select stock chart to process
+ * @returns \{ date: string, price: number \}[] - Processed data
+ */
 export const selectStockDetailsLineChart = createSelector(
   [selectStockChart],
   (chart: Reducer.ChartData | undefined): { date: string; price: number }[] => {
