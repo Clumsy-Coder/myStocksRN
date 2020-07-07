@@ -34,7 +34,7 @@ export interface StockSearch {
  */
 export interface StockData {
   quote: QuoteData;
-  chart?: ChartData;
+  chart: ChartData;
   // metadata?: DataDomain.StockSearchBase;
 }
 
