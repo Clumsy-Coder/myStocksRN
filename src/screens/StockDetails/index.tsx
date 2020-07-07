@@ -120,7 +120,7 @@ class StockDetailsScreen extends React.Component<Props, State> {
           <View>
             <H1>{data.quote?.companyName}</H1>
           </View>
-          <H1 style={styles.price}>{data.quote.latestPrice}</H1>
+          <H1 style={styles.price}>{data.quote.latestPrice.toFixed(2)}</H1>
           <LineChartView data={lineChartData} />
           <View style={styles.chartRange}>
             {chartRangeList.map((cur) => (
