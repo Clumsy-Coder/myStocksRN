@@ -476,7 +476,7 @@ export const selectStockDetailsTrim = createCachedSelector(
     quote: Reducer.QuoteData,
     chart: Reducer.ChartData | undefined,
   ): Selectors.SelectStockDetailsTrim => {
-    if (chart === undefined || quote.fetching || chart.fetching)
+    if (chart === undefined || (quote.fetching && chart.fetching))
       return { fetching: true, quote: defaultQuote, chart: [] };
 
     return {
