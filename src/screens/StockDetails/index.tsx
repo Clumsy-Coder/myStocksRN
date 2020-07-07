@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Content, Text, H1, H2, H3, View, Button, Spinner } from 'native-base';
+import { Container, Content, Text, H1, View, Button, Spinner } from 'native-base';
 import { Dispatch } from 'redux';
-import { LineChartProps } from 'react-native-chart-kit/dist/line-chart/LineChart';
 
 import { StockDetailsRouteProp } from '@routes/Types';
 import { AppState, AppActions } from '@redux/index.reducers';
@@ -16,7 +15,6 @@ import LineChartView from '@components/LineChart';
 
 interface SelectorProps {
   data: Selectors.SelectStockDetailsTrim;
-  // lineChartData: LineChartProps;
   lineChartData: { date: string; price: number }[];
 }
 
