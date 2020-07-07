@@ -20,10 +20,19 @@ interface DispatchProps {
 type Props = SelectorProps & DispatchProps;
 
 export class Home extends React.Component<Props> {
-  componentDidMount(): void {
+  private fetchQuoteInterval: NodeJS.Timeout | undefined;
+
+  private fetchQuoteIntervalTimeout = 10;
+
+  componentDidMount = (): void => {
     const { fetchQuoteBatch } = this.props;
-    fetchQuoteBatch();
-  }
+
+    this.fetchQuoteInterval = setInterval(fetchQuoteBatch, this.fetchQuoteIntervalTimeout * 1000);
+  };
+
+  componentWillUnmount = (): void => {
+    if (this.fetchQuoteInterval !== undefined) clearInterval(this.fetchQuoteInterval);
+  };
 
   render(): JSX.Element {
     const { selectedStockQuoteTrim } = this.props;
