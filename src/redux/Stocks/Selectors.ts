@@ -488,38 +488,6 @@ export const selectStockDetailsTrim = createCachedSelector(
   },
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
-// export const selectStockDetailsLineChart = createSelector(
-//   [selectStockChart],
-//   (chart: Reducer.ChartData | undefined): LineChartProps => {
-//     if (chart === undefined || chart.fetching)
-//       return {
-//         data: {
-//           labels: [],
-//           datasets: [],
-//         },
-//         width: Dimensions.get('window').width,
-//         height: 500,
-//       };
-
-//     const results: LineChartProps = {
-//       data: {
-//         labels: chart.data.map((cur) => cur.date),
-//         datasets: [
-//           {
-//             data: chart.data.map((cur) => cur.close),
-//             color: (opacity = 1): string => `rgba(134, 65, 244, ${opacity})`,
-//             strokeWidth: 2,
-//           },
-//         ],
-//       },
-//       width: Dimensions.get('window').width,
-//       height: 500,
-//     };
-
-//     return results;
-//   },
-// );
-
 export const selectStockDetailsLineChart = createSelector(
   [selectStockChart],
   (chart: Reducer.ChartData | undefined): { date: string; price: number }[] => {
