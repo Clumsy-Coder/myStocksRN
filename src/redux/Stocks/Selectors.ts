@@ -522,7 +522,7 @@ export const selectStockDetailsTrim = createCachedSelector(
 export const selectStockDetailsLineChart = createSelector(
   [selectStockChart],
   (chart: Reducer.ChartData | undefined): { date: string; price: number }[] => {
-    if (chart === undefined || chart.fetching) return [];
+    if (chart === undefined || (chart.fetching && chart.data.length === 0)) return [];
 
     return chart.data.map((cur) => ({ date: cur.date, price: cur.close }));
   },
