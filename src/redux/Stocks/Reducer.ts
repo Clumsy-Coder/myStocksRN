@@ -45,6 +45,16 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
 ): StockReducer.ReducerState => {
   switch (action.type) {
     case ActionTypes.FETCH_STOCK_QUOTE_PENDING: {
+      const chart: StockReducer.ChartData =
+        state.symbols[action.stockSymbol] === undefined ||
+        state.symbols[action.stockSymbol].chart === undefined
+          ? {
+              fetching: false,
+              data: [],
+              error: undefined,
+            }
+          : state.symbols[action.stockSymbol].chart;
+
       return {
         ...state,
         symbols: {
@@ -61,6 +71,7 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
                   : defaultQuote,
               error: undefined,
             },
+            chart,
           },
         },
       };
