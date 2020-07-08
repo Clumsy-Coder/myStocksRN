@@ -11,6 +11,12 @@ export const baseStocksState: StocksReducer.ReducerState = {
   },
 };
 
+export const baseStockChartState: StocksReducer.ChartData = {
+  data: [],
+  fetching: false,
+  error: undefined,
+};
+
 export const baseFavoritesState: FavoritesReducer.ReducerState = {
   symbols: [],
 };
