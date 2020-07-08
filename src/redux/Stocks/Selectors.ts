@@ -436,6 +436,7 @@ export const selectStockQuoteTrim = createSelector(
             price: 0,
             change: 0,
             changePercent: 0,
+            currency: '',
           };
         }
 
@@ -446,6 +447,7 @@ export const selectStockQuoteTrim = createSelector(
           price: stocks.symbols[symbol].quote.data?.latestPrice || 0,
           change: stocks.symbols[symbol].quote.data?.change || 0,
           changePercent: stocks.symbols[symbol].quote.data?.changePercent || 0,
+          currency: symbolsMetadata.find((obj) => obj.symbol === symbol)?.currency || '',
         };
       },
     );
