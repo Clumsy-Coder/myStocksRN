@@ -965,7 +965,7 @@ describe('Stocks selectors', () => {
           },
         };
 
-        const expected = undefined;
+        const expected = testdata.baseStockChartState;
 
         expect(
           selectors.selectStockChart(rootState, { stockSymbol: testdata.stockSymbol1 }),
@@ -1027,7 +1027,7 @@ describe('Stocks selectors', () => {
           },
         };
 
-        const expected = undefined;
+        const expected = testdata.baseStockChartState.fetching;
 
         expect(
           selectors.selectStockChartFetching(rootState, {
@@ -1086,7 +1086,7 @@ describe('Stocks selectors', () => {
           },
         };
 
-        const expected = undefined;
+        const expected = testdata.baseStockChartState.data;
 
         expect(
           selectors.selectStockChartData(rootState, { stockSymbol: testdata.stockSymbol1 }),
@@ -1622,6 +1622,15 @@ describe('Stocks selectors', () => {
         };
 
         const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          {
+            symbol: testdata.stockSymbol1,
+            change: 0,
+            changePercent: 0,
+            companyName: 'International Business Machines Corporation',
+            fetching: true,
+            price: 0,
+            currency: '',
+          },
           selectStockQuoteTrim2,
           selectStockQuoteTrim3,
         ];
