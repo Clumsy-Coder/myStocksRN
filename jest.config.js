@@ -60,7 +60,7 @@ module.exports = {
   },
   setupFiles: ['./jest.setup.js', './node_modules/react-native-gesture-handler/jestSetup.js'],
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|@?react-navigation|native-base-[a-z, -]*)',
+    'node_modules/(?!(jest-)?react-native|@?react-navigation|native-base-[a-z, -]*|victory-*)',
   ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   setupFilesAfterEnv: ['@testing-library/react-native/cleanup-after-each'],
