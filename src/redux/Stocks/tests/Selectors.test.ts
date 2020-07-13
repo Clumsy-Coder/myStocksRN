@@ -1738,7 +1738,7 @@ describe('Stocks selectors', () => {
         const expected: SelectorsTypes.SelectQuoteTrim[] = [
           {
             ...selectStockQuoteTrim1,
-            companyName: 'N/A',
+            companyName: '',
             price: 0,
             change: 0,
             changePercent: 0,
@@ -1746,7 +1746,7 @@ describe('Stocks selectors', () => {
           },
           {
             ...selectStockQuoteTrim2,
-            companyName: 'N/A',
+            companyName: '',
             price: 0,
             change: 0,
             changePercent: 0,
@@ -1754,12 +1754,134 @@ describe('Stocks selectors', () => {
           },
           {
             ...selectStockQuoteTrim3,
-            companyName: 'N/A',
+            companyName: '',
             price: 0,
             change: 0,
             changePercent: 0,
             currency: '',
           },
+        ];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+
+      it('Should return default data if stock quote is set to defaultQuote', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Favorites: {
+            symbols: ['IBM', 'AAPL', 'SHOP'],
+          },
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [
+                testdata.symbolsMetadata1,
+                testdata.symbolsMetadata2,
+                testdata.symbolsMetadata3,
+              ],
+              error: undefined,
+            },
+            symbols: {
+              IBM: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+              },
+              AAPL: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData2,
+                  error: undefined,
+                },
+              },
+              SHOP: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData3,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+
+        const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          {
+            symbol: testdata.stockSymbol1,
+            change: 0,
+            changePercent: 0,
+            companyName: 'International Business Machines Corporation',
+            fetching: true,
+            price: 0,
+            currency: '',
+          },
+          selectStockQuoteTrim2,
+          selectStockQuoteTrim3,
+        ];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+
+      it('Should return default data if symbolsMetadata is not provided', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Favorites: {
+            symbols: ['IBM', 'AAPL', 'SHOP'],
+          },
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [testdata.symbolsMetadata2, testdata.symbolsMetadata3],
+              error: undefined,
+            },
+            symbols: {
+              IBM: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+              },
+              AAPL: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData2,
+                  error: undefined,
+                },
+              },
+              SHOP: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData3,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+
+        const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          {
+            symbol: testdata.stockSymbol1,
+            change: 0,
+            changePercent: 0,
+            companyName: '',
+            fetching: true,
+            price: 0,
+            currency: '',
+          },
+          selectStockQuoteTrim2,
+          selectStockQuoteTrim3,
         ];
 
         expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
