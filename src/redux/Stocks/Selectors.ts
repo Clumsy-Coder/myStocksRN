@@ -245,7 +245,7 @@ export const selectStockQuoteError = createCachedSelector(
  */
 export const selectStockChart = createCachedSelector(
   [selectStock],
-  (stockData: Reducer.StockData): Reducer.ChartData | undefined => stockData.chart,
+  (stockData: Reducer.StockData): Reducer.ChartData => stockData.chart,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
@@ -261,7 +261,7 @@ export const selectStockChart = createCachedSelector(
  */
 export const selectStockChartFetching = createCachedSelector(
   [selectStockChart],
-  (stockChartData: Reducer.ChartData | undefined): boolean | undefined => stockChartData?.fetching,
+  (stockChartData: Reducer.ChartData): boolean => stockChartData.fetching,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
@@ -277,8 +277,7 @@ export const selectStockChartFetching = createCachedSelector(
  */
 export const selectStockChartData = createCachedSelector(
   [selectStockChart],
-  (stockChartData: Reducer.ChartData | undefined): DataDomain.Chart[] | undefined =>
-    stockChartData?.data,
+  (stockChartData: Reducer.ChartData): DataDomain.Chart[] => stockChartData.data,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
@@ -294,7 +293,7 @@ export const selectStockChartData = createCachedSelector(
  */
 export const selectStockChartError = createCachedSelector(
   [selectStockChart],
-  (stockChartData: Reducer.ChartData | undefined): Error | undefined => stockChartData?.error,
+  (stockChartData: Reducer.ChartData): Error | undefined => stockChartData.error,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
