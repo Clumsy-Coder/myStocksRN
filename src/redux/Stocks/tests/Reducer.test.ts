@@ -650,6 +650,70 @@ describe('Stocks reducer', () => {
 
         expect(reducer(state, action)).toEqual(expected);
       });
+
+      describe('Chart initialization', () => {
+        it("Should handle chart init if it's the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: { ...testdata.baseStockQuoteState },
+                chart: { ...testdata.baseStockChartState },
+              },
+            },
+          };
+          const action: Actions.Chart.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_CHART_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                quote: { ...testdata.baseStockQuoteState },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  fetching: true,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
+
+        it("Should handle chart init if it's NOT the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: { ...testdata.baseStockQuoteState },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  data: testdata.stockChartData1,
+                },
+              },
+            },
+          };
+          const action: Actions.Chart.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_CHART_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                quote: { ...testdata.baseStockQuoteState },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  fetching: true,
+                  data: testdata.stockChartData1,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
+      });
     });
 
     describe(`${ActionTypes.FETCH_STOCK_CHART_FULFILLED}`, () => {
