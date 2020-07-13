@@ -31,6 +31,7 @@ describe('Stocks reducer', () => {
         };
         expect(reducer(state, action)).toEqual(expected);
       });
+
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
           ...testdata.baseStocksState,
@@ -131,6 +132,107 @@ describe('Stocks reducer', () => {
         };
 
         expect(reducer(state, action)).toEqual(expected);
+      });
+
+      describe('Quote initialization', () => {
+        it("Should hande quote init if it's NOT the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData1,
+                  error: undefined,
+                },
+                chart: { ...testdata.baseStockChartState },
+              },
+            },
+          };
+          const action: Actions.Quote.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  error: undefined,
+                  data: testdata.stockQuoteData1,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
+      });
+
+      describe('Chart initialization', () => {
+        it("Should handle chart init if it's the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {},
+          };
+          const action: Actions.Quote.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  error: undefined,
+                  data: defaultQuote,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
+
+        it("Should handle chart init if it's NOT the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+                chart: {
+                  fetching: false,
+                  data: [],
+                  error: undefined,
+                },
+              },
+            },
+          };
+          const action: Actions.Quote.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  error: undefined,
+                  data: defaultQuote,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
       });
     });
 
