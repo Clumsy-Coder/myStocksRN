@@ -1,12 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-
-import { NavigationRoutePath, RootStackParamList } from '@routes/Types';
-
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, NavigationRoutePath.About>;
-};
+import { View, Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   root: {
@@ -16,16 +9,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const SettingScreen: React.FC<Props> = ({ navigation }: Props) => {
+const AboutScreen: React.FC = () => {
   return (
     <View style={styles.root}>
       <Text>About screen</Text>
-      <Button
-        onPress={(): void => navigation.navigate(NavigationRoutePath.Home)}
-        title='Go to Home screen'
-      />
     </View>
   );
 };
 
-export default SettingScreen;
+export default AboutScreen;
