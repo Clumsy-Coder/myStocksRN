@@ -443,10 +443,10 @@ export const selectStockQuoteTrim = createSelector(
         return {
           fetching: false,
           symbol,
-          companyName: stocks.symbols[symbol].quote.data?.companyName || 'N/A',
-          price: stocks.symbols[symbol].quote.data?.latestPrice || 0,
-          change: stocks.symbols[symbol].quote.data?.change || 0,
-          changePercent: stocks.symbols[symbol].quote.data?.changePercent || 0,
+          companyName: stocks.symbols[symbol].quote.data.companyName,
+          price: stocks.symbols[symbol].quote.data.latestPrice,
+          change: stocks.symbols[symbol].quote.data.change,
+          changePercent: stocks.symbols[symbol].quote.data.changePercent,
           currency: symbolsMetadata.find((obj) => obj.symbol === symbol)?.currency || '',
         };
       },
