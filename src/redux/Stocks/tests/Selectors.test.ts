@@ -1887,5 +1887,68 @@ describe('Stocks selectors', () => {
         expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
       });
     });
+
+    describe('selectStockDetailsTrim', () => {
+      it('[Empty store]: Should return default value', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: true,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  fetching: true,
+                },
+              },
+            },
+          },
+        };
+        const expected: SelectorsTypes.SelectStockDetailsTrim = {
+          fetching: true,
+          quote: defaultQuote,
+          chart: [],
+        };
+        expect(selectors.selectStockDetailsTrim(rootState, { stockSymbol: 'IBM' })).toEqual(
+          expected,
+        );
+      });
+
+      it('Should handle if all data is provided', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData1,
+                  error: undefined,
+                },
+                chart: {
+                  fetching: false,
+                  data: testdata.stockChartData1,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+        const expected: SelectorsTypes.SelectStockDetailsTrim = {
+          fetching: false,
+          quote: testdata.stockQuoteData1,
+          chart: testdata.stockChartData1,
+        };
+        expect(selectors.selectStockDetailsTrim(rootState, { stockSymbol: 'IBM' })).toEqual(
+          expected,
+        );
+      });
+    });
   });
 });
