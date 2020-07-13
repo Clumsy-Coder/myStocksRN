@@ -22,14 +22,7 @@ const LineChartView: React.FC<OwnProps> = (props: OwnProps) => {
         theme={VictoryTheme.material}
         domainPadding={10}
       >
-        <VictoryAxis
-          fixLabelOverlap
-          style={{
-            axis: { stroke: 'transparent' },
-            ticks: { stroke: 'transparent' },
-            tickLabels: { fill: 'transparent' },
-          }}
-        />
+        <VictoryAxis fixLabelOverlap />
         <VictoryAxis dependentAxis />
         <VictoryLine data={data} x='date' y='price' />
       </VictoryChart>
