@@ -1950,5 +1950,63 @@ describe('Stocks selectors', () => {
         );
       });
     });
+
+    describe('selectStockDetailsLineChart', () => {
+      it('Empty store]: Should return empty array', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: true,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  fetching: true,
+                },
+              },
+            },
+          },
+        };
+        const expected: { date: string; price: number }[] = [];
+        expect(selectors.selectStockDetailsLineChart(rootState, { stockSymbol: 'IBM' })).toEqual(
+          expected,
+        );
+      });
+
+      it('Should handle if all data us provided', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData1,
+                  error: undefined,
+                },
+                chart: {
+                  fetching: false,
+                  data: testdata.stockChartData1,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+        const expected: { date: string; price: number }[] = testdata.stockChartData1.map((cur) => ({
+          date: cur.date,
+          price: cur.close,
+        }));
+        expect(selectors.selectStockDetailsLineChart(rootState, { stockSymbol: 'IBM' })).toEqual(
+          expected,
+        );
+      });
+    });
   });
 });
