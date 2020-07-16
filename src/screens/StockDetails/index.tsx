@@ -98,8 +98,6 @@ class StockDetailsScreen extends React.Component<Props, State> {
   };
 
   componentWillUnmount = (): void => {
-    console.log('component unmounted');
-
     if (this.fetchChartInterval) clearInterval(this.fetchChartInterval);
   };
 
@@ -121,8 +119,6 @@ class StockDetailsScreen extends React.Component<Props, State> {
       DataDomain.ChartRange.FIVE_YEARS,
       DataDomain.ChartRange.MAX,
     ];
-
-    console.log(lineChartData);
 
     if (data.fetching && data.quote === defaultQuote && data.chart.length === 0) {
       return (

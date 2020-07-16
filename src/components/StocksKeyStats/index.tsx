@@ -88,7 +88,6 @@ const column2: { title: string; key: keyof DataDomain.Quote }[] = [
 
 const StocksKeyStats: React.FC<OwnProps> = (props: OwnProps) => {
   const { data } = props;
-  console.log(data);
 
   return (
     <View style={styles.root}>
