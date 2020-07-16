@@ -74,8 +74,6 @@ const StockCard: React.FC<OwnProps> = (props: OwnProps) => {
     );
   }
 
-  const change = data.change === undefined ? '0' : data.change;
-
   return (
     <ListItem
       style={styleSheet.container}
@@ -93,7 +91,7 @@ const StockCard: React.FC<OwnProps> = (props: OwnProps) => {
           <View
             style={[
               styleSheet.priceChangeContainer,
-              +change > 0 ? styleSheet.priceGreen : styleSheet.priceRed,
+              data.change > 0 ? styleSheet.priceGreen : styleSheet.priceRed,
             ]}
           >
             <H3 style={styleSheet.priceChange}>{data.change}</H3>
