@@ -83,6 +83,7 @@ describe('<Home />', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 data: testdata.stockQuoteData1,
@@ -90,6 +91,7 @@ describe('<Home />', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 data: testdata.stockQuoteData2,
@@ -97,6 +99,7 @@ describe('<Home />', () => {
               },
             },
             [testdata.stockSymbol3]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 data: testdata.stockQuoteData3,

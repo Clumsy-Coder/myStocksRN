@@ -2,6 +2,7 @@
 import * as selectors from 'src/redux/Stocks/Selectors';
 import { AppState } from 'src/redux/index.reducers';
 import { DataDomain, Reducer, Selectors as SelectorsTypes } from 'src/redux/Stocks/Types';
+import { defaultQuote } from '@redux/Stocks/Reducer';
 
 import * as testdata from 'jest.testdata';
 
@@ -63,6 +64,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -74,6 +76,7 @@ describe('Stocks selectors', () => {
         };
 
         const expected: Reducer.StockData = {
+          chart: { ...testdata.baseStockChartState },
           quote: {
             fetching: false,
             error: undefined,
@@ -93,6 +96,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -100,6 +104,7 @@ describe('Stocks selectors', () => {
                 },
               },
               [testdata.stockSymbol2]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -111,6 +116,7 @@ describe('Stocks selectors', () => {
         };
 
         const expected1: Reducer.StockData = {
+          chart: { ...testdata.baseStockChartState },
           quote: {
             fetching: false,
             error: undefined,
@@ -118,6 +124,7 @@ describe('Stocks selectors', () => {
           },
         };
         const expected2: Reducer.StockData = {
+          chart: { ...testdata.baseStockChartState },
           quote: {
             fetching: false,
             error: undefined,
@@ -139,6 +146,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -146,6 +154,7 @@ describe('Stocks selectors', () => {
                 },
               },
               [testdata.stockSymbol2]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -153,6 +162,7 @@ describe('Stocks selectors', () => {
                 },
               },
               [testdata.stockSymbol3]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -164,6 +174,7 @@ describe('Stocks selectors', () => {
         };
 
         const expected1: Reducer.StockData = {
+          chart: { ...testdata.baseStockChartState },
           quote: {
             fetching: false,
             error: undefined,
@@ -171,6 +182,7 @@ describe('Stocks selectors', () => {
           },
         };
         const expected2: Reducer.StockData = {
+          chart: { ...testdata.baseStockChartState },
           quote: {
             fetching: false,
             error: undefined,
@@ -178,6 +190,7 @@ describe('Stocks selectors', () => {
           },
         };
         const expected3: Reducer.StockData = {
+          chart: { ...testdata.baseStockChartState },
           quote: {
             fetching: false,
             error: undefined,
@@ -204,6 +217,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -230,6 +244,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -237,6 +252,7 @@ describe('Stocks selectors', () => {
                 },
               },
               [testdata.stockSymbol2]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -271,6 +287,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -278,6 +295,7 @@ describe('Stocks selectors', () => {
                 },
               },
               [testdata.stockSymbol2]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -285,6 +303,7 @@ describe('Stocks selectors', () => {
                 },
               },
               [testdata.stockSymbol3]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -329,6 +348,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -351,6 +371,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -358,10 +379,11 @@ describe('Stocks selectors', () => {
                 },
               },
               [testdata.stockSymbol2]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: true,
                   error: undefined,
-                  data: undefined,
+                  data: defaultQuote,
                 },
               },
             },
@@ -384,6 +406,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -391,13 +414,15 @@ describe('Stocks selectors', () => {
                 },
               },
               [testdata.stockSymbol2]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: true,
                   error: undefined,
-                  data: undefined,
+                  data: defaultQuote,
                 },
               },
               [testdata.stockSymbol3]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -431,6 +456,7 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -455,6 +481,7 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -462,6 +489,7 @@ describe('Stocks selectors', () => {
                   },
                 },
                 [testdata.stockSymbol2]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -489,6 +517,7 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -496,6 +525,7 @@ describe('Stocks selectors', () => {
                   },
                 },
                 [testdata.stockSymbol2]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -503,6 +533,7 @@ describe('Stocks selectors', () => {
                   },
                 },
                 [testdata.stockSymbol3]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -536,17 +567,18 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
             },
           };
 
-          const expected: DataDomain.Quote | undefined = undefined;
+          const expected: DataDomain.Quote = defaultQuote;
 
           expect(
             selectors.selectStockQuoteData(rootState, { stockSymbol: testdata.stockSymbol1 }),
@@ -560,25 +592,27 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol2]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
             },
           };
 
-          const expected1: DataDomain.Quote | undefined = undefined;
-          const expected2: DataDomain.Quote | undefined = undefined;
+          const expected1: DataDomain.Quote = defaultQuote;
+          const expected2: DataDomain.Quote = defaultQuote;
           expect(
             selectors.selectStockQuoteData(rootState, { stockSymbol: testdata.stockSymbol1 }),
           ).toEqual(expected1);
@@ -594,33 +628,36 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol2]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol3]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: true,
                     error: undefined,
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
             },
           };
 
-          const expected1: DataDomain.Quote | undefined = undefined;
-          const expected2: DataDomain.Quote | undefined = undefined;
-          const expected3: DataDomain.Quote | undefined = undefined;
+          const expected1: DataDomain.Quote = defaultQuote;
+          const expected2: DataDomain.Quote = defaultQuote;
+          const expected3: DataDomain.Quote = defaultQuote;
           expect(
             selectors.selectStockQuoteData(rootState, { stockSymbol: testdata.stockSymbol1 }),
           ).toEqual(expected1);
@@ -643,10 +680,11 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol1}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -667,17 +705,19 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol1}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol2]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol2}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -701,24 +741,27 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol1}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol2]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol2}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
                 [testdata.stockSymbol3]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: new Error(`error for ${testdata.stockSymbol3}`),
-                    data: undefined,
+                    data: defaultQuote,
                   },
                 },
               },
@@ -748,6 +791,7 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -772,6 +816,7 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -779,6 +824,7 @@ describe('Stocks selectors', () => {
                   },
                 },
                 [testdata.stockSymbol2]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -806,6 +852,7 @@ describe('Stocks selectors', () => {
               ...testdata.baseStocksState,
               symbols: {
                 [testdata.stockSymbol1]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -813,6 +860,7 @@ describe('Stocks selectors', () => {
                   },
                 },
                 [testdata.stockSymbol2]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -820,6 +868,7 @@ describe('Stocks selectors', () => {
                   },
                 },
                 [testdata.stockSymbol3]: {
+                  chart: { ...testdata.baseStockChartState },
                   quote: {
                     fetching: false,
                     error: undefined,
@@ -905,6 +954,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -915,7 +965,7 @@ describe('Stocks selectors', () => {
           },
         };
 
-        const expected = undefined;
+        const expected = testdata.baseStockChartState;
 
         expect(
           selectors.selectStockChart(rootState, { stockSymbol: testdata.stockSymbol1 }),
@@ -936,7 +986,7 @@ describe('Stocks selectors', () => {
                 chart: {
                   fetching: true,
                   error: undefined,
-                  data: undefined,
+                  data: [],
                 },
               },
             },
@@ -949,7 +999,7 @@ describe('Stocks selectors', () => {
         const expected: Reducer.ChartData = {
           fetching: true,
           error: undefined,
-          data: undefined,
+          data: [],
         };
 
         expect(
@@ -966,6 +1016,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -976,7 +1027,7 @@ describe('Stocks selectors', () => {
           },
         };
 
-        const expected = undefined;
+        const expected = testdata.baseStockChartState.fetching;
 
         expect(
           selectors.selectStockChartFetching(rootState, {
@@ -999,7 +1050,7 @@ describe('Stocks selectors', () => {
                 chart: {
                   fetching: true,
                   error: undefined,
-                  data: undefined,
+                  data: [],
                 },
               },
             },
@@ -1024,6 +1075,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -1034,7 +1086,7 @@ describe('Stocks selectors', () => {
           },
         };
 
-        const expected = undefined;
+        const expected = testdata.baseStockChartState.data;
 
         expect(
           selectors.selectStockChartData(rootState, { stockSymbol: testdata.stockSymbol1 }),
@@ -1079,6 +1131,7 @@ describe('Stocks selectors', () => {
             ...testdata.baseStocksState,
             symbols: {
               [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   error: undefined,
@@ -1113,7 +1166,7 @@ describe('Stocks selectors', () => {
                 chart: {
                   fetching: false,
                   error: new Error(''),
-                  data: undefined,
+                  data: [],
                 },
               },
             },
@@ -1549,6 +1602,7 @@ describe('Stocks selectors', () => {
             },
             symbols: {
               AAPL: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   data: testdata.stockQuoteData2,
@@ -1556,6 +1610,7 @@ describe('Stocks selectors', () => {
                 },
               },
               SHOP: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   data: testdata.stockQuoteData3,
@@ -1567,6 +1622,15 @@ describe('Stocks selectors', () => {
         };
 
         const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          {
+            symbol: testdata.stockSymbol1,
+            change: 0,
+            changePercent: 0,
+            companyName: 'International Business Machines Corporation',
+            fetching: true,
+            price: 0,
+            currency: '',
+          },
           selectStockQuoteTrim2,
           selectStockQuoteTrim3,
         ];
@@ -1593,6 +1657,7 @@ describe('Stocks selectors', () => {
             },
             symbols: {
               IBM: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   data: testdata.stockQuoteData1,
@@ -1600,6 +1665,7 @@ describe('Stocks selectors', () => {
                 },
               },
               AAPL: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   data: testdata.stockQuoteData2,
@@ -1607,6 +1673,7 @@ describe('Stocks selectors', () => {
                 },
               },
               SHOP: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
                   data: testdata.stockQuoteData3,
@@ -1641,23 +1708,26 @@ describe('Stocks selectors', () => {
             },
             symbols: {
               IBM: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
-                  data: undefined,
+                  data: defaultQuote,
                   error: new Error(''),
                 },
               },
               AAPL: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
-                  data: undefined,
+                  data: defaultQuote,
                   error: new Error(''),
                 },
               },
               SHOP: {
+                chart: { ...testdata.baseStockChartState },
                 quote: {
                   fetching: false,
-                  data: undefined,
+                  data: defaultQuote,
                   error: new Error(''),
                 },
               },
@@ -1668,7 +1738,7 @@ describe('Stocks selectors', () => {
         const expected: SelectorsTypes.SelectQuoteTrim[] = [
           {
             ...selectStockQuoteTrim1,
-            companyName: 'N/A',
+            companyName: '',
             price: 0,
             change: 0,
             changePercent: 0,
@@ -1676,7 +1746,7 @@ describe('Stocks selectors', () => {
           },
           {
             ...selectStockQuoteTrim2,
-            companyName: 'N/A',
+            companyName: '',
             price: 0,
             change: 0,
             changePercent: 0,
@@ -1684,7 +1754,7 @@ describe('Stocks selectors', () => {
           },
           {
             ...selectStockQuoteTrim3,
-            companyName: 'N/A',
+            companyName: '',
             price: 0,
             change: 0,
             changePercent: 0,
@@ -1693,6 +1763,249 @@ describe('Stocks selectors', () => {
         ];
 
         expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+
+      it('Should return default data if stock quote is set to defaultQuote', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Favorites: {
+            symbols: ['IBM', 'AAPL', 'SHOP'],
+          },
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [
+                testdata.symbolsMetadata1,
+                testdata.symbolsMetadata2,
+                testdata.symbolsMetadata3,
+              ],
+              error: undefined,
+            },
+            symbols: {
+              IBM: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+              },
+              AAPL: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData2,
+                  error: undefined,
+                },
+              },
+              SHOP: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData3,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+
+        const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          {
+            symbol: testdata.stockSymbol1,
+            change: 0,
+            changePercent: 0,
+            companyName: 'International Business Machines Corporation',
+            fetching: true,
+            price: 0,
+            currency: '',
+          },
+          selectStockQuoteTrim2,
+          selectStockQuoteTrim3,
+        ];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+
+      it('Should return default data if symbolsMetadata is not provided', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Favorites: {
+            symbols: ['IBM', 'AAPL', 'SHOP'],
+          },
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbolsMetadata: {
+              fetching: false,
+              data: [testdata.symbolsMetadata2, testdata.symbolsMetadata3],
+              error: undefined,
+            },
+            symbols: {
+              IBM: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+              },
+              AAPL: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData2,
+                  error: undefined,
+                },
+              },
+              SHOP: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData3,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+
+        const expected: SelectorsTypes.SelectQuoteTrim[] = [
+          {
+            symbol: testdata.stockSymbol1,
+            change: 0,
+            changePercent: 0,
+            companyName: '',
+            fetching: true,
+            price: 0,
+            currency: '',
+          },
+          selectStockQuoteTrim2,
+          selectStockQuoteTrim3,
+        ];
+
+        expect(selectors.selectStockQuoteTrim(rootState)).toEqual(expected);
+      });
+    });
+
+    describe('selectStockDetailsTrim', () => {
+      it('[Empty store]: Should return default value', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: true,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  fetching: true,
+                },
+              },
+            },
+          },
+        };
+        const expected: SelectorsTypes.SelectStockDetailsTrim = {
+          fetching: true,
+          quote: defaultQuote,
+          chart: [],
+        };
+        expect(selectors.selectStockDetailsTrim(rootState, { stockSymbol: 'IBM' })).toEqual(
+          expected,
+        );
+      });
+
+      it('Should handle if all data is provided', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData1,
+                  error: undefined,
+                },
+                chart: {
+                  fetching: false,
+                  data: testdata.stockChartData1,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+        const expected: SelectorsTypes.SelectStockDetailsTrim = {
+          fetching: false,
+          quote: testdata.stockQuoteData1,
+          chart: testdata.stockChartData1,
+        };
+        expect(selectors.selectStockDetailsTrim(rootState, { stockSymbol: 'IBM' })).toEqual(
+          expected,
+        );
+      });
+    });
+
+    describe('selectStockDetailsLineChart', () => {
+      it('Empty store]: Should return empty array', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: true,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  fetching: true,
+                },
+              },
+            },
+          },
+        };
+        const expected: { date: string; price: number }[] = [];
+        expect(selectors.selectStockDetailsLineChart(rootState, { stockSymbol: 'IBM' })).toEqual(
+          expected,
+        );
+      });
+
+      it('Should handle if all data us provided', () => {
+        const rootState: AppState = {
+          ...testdata.baseAppState,
+          Stocks: {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData1,
+                  error: undefined,
+                },
+                chart: {
+                  fetching: false,
+                  data: testdata.stockChartData1,
+                  error: undefined,
+                },
+              },
+            },
+          },
+        };
+        const expected: { date: string; price: number }[] = testdata.stockChartData1.map((cur) => ({
+          date: cur.date,
+          price: cur.close,
+        }));
+        expect(selectors.selectStockDetailsLineChart(rootState, { stockSymbol: 'IBM' })).toEqual(
+          expected,
+        );
       });
     });
   });

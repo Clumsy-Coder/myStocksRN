@@ -1,5 +1,5 @@
 /* eslint-disable jest/no-commented-out-tests */
-import reducer from 'src/redux/Stocks/Reducer';
+import reducer, { defaultQuote } from 'src/redux/Stocks/Reducer';
 import { ActionTypes, Reducer, Actions } from 'src/redux/Stocks/Types';
 
 import * as testdata from 'jest.testdata';
@@ -20,23 +20,28 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
         };
         expect(reducer(state, action)).toEqual(expected);
       });
+
       it('Should handle two Stock quotes', () => {
         const state: Reducer.ReducerState = {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -49,15 +54,19 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -71,15 +80,19 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -92,27 +105,134 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol3]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
         };
 
         expect(reducer(state, action)).toEqual(expected);
+      });
+
+      describe('Quote initialization', () => {
+        it("Should hande quote init if it's NOT the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: testdata.stockQuoteData1,
+                  error: undefined,
+                },
+                chart: { ...testdata.baseStockChartState },
+              },
+            },
+          };
+          const action: Actions.Quote.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  error: undefined,
+                  data: testdata.stockQuoteData1,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
+      });
+
+      describe('Chart initialization', () => {
+        it("Should handle chart init if it's the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {},
+          };
+          const action: Actions.Quote.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  error: undefined,
+                  data: defaultQuote,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
+
+        it("Should handle chart init if it's NOT the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: {
+                  fetching: false,
+                  data: defaultQuote,
+                  error: undefined,
+                },
+                chart: {
+                  fetching: false,
+                  data: [],
+                  error: undefined,
+                },
+              },
+            },
+          };
+          const action: Actions.Quote.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_QUOTE_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                chart: { ...testdata.baseStockChartState },
+                quote: {
+                  fetching: true,
+                  error: undefined,
+                  data: defaultQuote,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
       });
     });
 
@@ -122,9 +242,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -133,6 +255,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -155,6 +278,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -162,9 +286,11 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -173,6 +299,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -180,6 +307,7 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -203,6 +331,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -210,15 +339,19 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol3]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -227,6 +360,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -234,12 +368,15 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol3]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -265,9 +402,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -276,9 +415,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: new Error(''),
+                data: defaultQuote,
               },
             },
           },
@@ -297,6 +438,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -304,9 +446,11 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -315,6 +459,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -322,9 +467,11 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: new Error(''),
+                data: defaultQuote,
               },
             },
           },
@@ -343,6 +490,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -350,6 +498,7 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -357,9 +506,11 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol3]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: new Error(''),
+                data: defaultQuote,
               },
             },
           },
@@ -368,6 +519,7 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -375,6 +527,7 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: undefined,
@@ -382,9 +535,11 @@ describe('Stocks reducer', () => {
               },
             },
             [testdata.stockSymbol3]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: false,
                 error: new Error(''),
+                data: defaultQuote,
               },
             },
           },
@@ -407,10 +562,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -426,12 +582,12 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -445,17 +601,19 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -468,28 +626,93 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: [],
               },
             },
           },
         };
 
         expect(reducer(state, action)).toEqual(expected);
+      });
+
+      describe('Chart initialization', () => {
+        it("Should handle chart init if it's the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: { ...testdata.baseStockQuoteState },
+                chart: { ...testdata.baseStockChartState },
+              },
+            },
+          };
+          const action: Actions.Chart.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_CHART_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                quote: { ...testdata.baseStockQuoteState },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  fetching: true,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
+
+        it("Should handle chart init if it's NOT the first time", () => {
+          const state: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              IBM: {
+                quote: { ...testdata.baseStockQuoteState },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  data: testdata.stockChartData1,
+                },
+              },
+            },
+          };
+          const action: Actions.Chart.FetchPendingAction = {
+            type: ActionTypes.FETCH_STOCK_CHART_PENDING,
+            stockSymbol: testdata.stockSymbol1,
+          };
+          const expected: Reducer.ReducerState = {
+            ...testdata.baseStocksState,
+            symbols: {
+              [testdata.stockSymbol1]: {
+                quote: { ...testdata.baseStockQuoteState },
+                chart: {
+                  ...testdata.baseStockChartState,
+                  fetching: true,
+                  data: testdata.stockChartData1,
+                },
+              },
+            },
+          };
+          expect(reducer(state, action)).toEqual(expected);
+        });
       });
     });
 
@@ -499,10 +722,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -519,7 +743,7 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: false,
@@ -538,22 +762,23 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -567,17 +792,18 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: false,
@@ -598,10 +824,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -618,12 +845,12 @@ describe('Stocks reducer', () => {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: false,
                 error: new Error(''),
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -637,22 +864,23 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -666,22 +894,23 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
             [testdata.stockSymbol2]: {
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
               chart: {
                 fetching: false,
                 error: new Error(''),
-                data: undefined,
+                data: [],
               },
             },
           },
@@ -745,10 +974,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -764,10 +994,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -830,10 +1061,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },
@@ -848,10 +1080,11 @@ describe('Stocks reducer', () => {
           ...testdata.baseStocksState,
           symbols: {
             [testdata.stockSymbol1]: {
+              chart: { ...testdata.baseStockChartState },
               quote: {
                 fetching: true,
                 error: undefined,
-                data: undefined,
+                data: defaultQuote,
               },
             },
           },

@@ -1,4 +1,4 @@
-import { DataDomain } from '@redux/Stocks/Types';
+import { Quote, Chart } from '@redux/Stocks/Types/DataDomain';
 
 /**
  * Data that is used for displaying stock quote on the Home screen.
@@ -14,27 +14,12 @@ export interface SelectQuoteTrim {
 }
 
 /**
- * Data that is used for displaying stock details on the Home screen.
+ * Data that is used for displaying stock details on the Stock Details screen.
  */
 export interface SelectStockDetailsTrim {
   fetching: boolean;
-  symbol: string;
-  companyName: string;
-  price: number;
-  change: number;
-  changePercent: number;
-  currency?: string;
-  open: number;
-  close: number;
-  previousClose: number;
-  previousVolume: number;
-  high: number;
-  low: number;
-  week52High: number;
-  week52Low: number;
-  ytdChange: number;
-  peRatio: number;
-  charts: DataDomain.Chart[];
+  quote: Quote;
+  chart: Chart[];
 }
 
 export type SelectorTypes = SelectQuoteTrim | SelectStockDetailsTrim;

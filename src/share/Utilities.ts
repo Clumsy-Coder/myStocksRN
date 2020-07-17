@@ -30,7 +30,7 @@ export const fetchStockQuoteUrl = (symbol: string): Promise<AxiosResponse<DataDo
  */
 export const fetchStockChartUrl = (
   symbol: string,
-  range: DataDomain.ChartRange = 'max',
+  range: DataDomain.ChartRange = DataDomain.ChartRange.ONE_MONTH,
 ): Promise<AxiosResponse<DataDomain.Chart[]>> =>
   axios.get(
     buildUrl(API_URL, {

@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { ActionTypes, Reducer as StockReducer, Actions } from 'src/redux/Stocks/Types';
+import { ActionTypes, Reducer as StockReducer, Actions, DataDomain } from 'src/redux/Stocks/Types';
 
 const initialState: StockReducer.ReducerState = {
   symbols: {},
@@ -14,12 +14,47 @@ const initialState: StockReducer.ReducerState = {
   },
 };
 
+export const defaultQuote: DataDomain.Quote = {
+  symbol: '',
+  companyName: '',
+  latestPrice: 0,
+  latestVolume: 0,
+  latestTime: '',
+  latestUpdate: 0,
+  change: 0,
+  changePercent: 0,
+  open: 0,
+  close: 0,
+  high: 0,
+  low: 0,
+  volume: 0,
+  previousClose: 0,
+  previousVolume: 0,
+  week52High: 0,
+  week52Low: 0,
+  ytdChange: 0,
+  peRatio: 0,
+  marketCap: 0,
+  avgTotalVolume: 0,
+  primaryExchange: '',
+};
+
 const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
   state = initialState,
   action: Actions.StocksActions,
 ): StockReducer.ReducerState => {
   switch (action.type) {
     case ActionTypes.FETCH_STOCK_QUOTE_PENDING: {
+      const chart: StockReducer.ChartData =
+        state.symbols[action.stockSymbol] === undefined ||
+        state.symbols[action.stockSymbol].chart === undefined
+          ? {
+              fetching: false,
+              data: [],
+              error: undefined,
+            }
+          : state.symbols[action.stockSymbol].chart;
+
       return {
         ...state,
         symbols: {
@@ -28,9 +63,15 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
             ...state.symbols[action.stockSymbol],
             quote: {
               fetching: true,
-              // data: undefined,
+              data:
+                state.symbols[action.stockSymbol] !== undefined &&
+                state.symbols[action.stockSymbol].quote !== undefined &&
+                state.symbols[action.stockSymbol].quote.data !== defaultQuote
+                  ? state.symbols[action.stockSymbol].quote.data
+                  : defaultQuote,
               error: undefined,
             },
+            chart,
           },
         },
       };
@@ -60,7 +101,7 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
             ...state.symbols[action.stockSymbol],
             quote: {
               fetching: false,
-              data: undefined,
+              data: defaultQuote,
               error: action.error,
             },
           },
@@ -76,7 +117,12 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
             ...state.symbols[action.stockSymbol],
             chart: {
               fetching: true,
-              data: undefined,
+              data:
+                state.symbols[action.stockSymbol] !== undefined &&
+                state.symbols[action.stockSymbol].chart !== undefined &&
+                state.symbols[action.stockSymbol].chart.data.length > 0
+                  ? state.symbols[action.stockSymbol].chart.data
+                  : [],
               error: undefined,
             },
           },
@@ -108,7 +154,7 @@ const reducer: Reducer<StockReducer.ReducerState, Actions.StocksActions> = (
             ...state.symbols[action.stockSymbol],
             chart: {
               fetching: false,
-              data: undefined,
+              data: [],
               error: action.error,
             },
           },

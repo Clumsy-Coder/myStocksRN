@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ListItem, Text, H1, H3 } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 
 import { Selectors } from 'src/redux/Stocks/Types';
+import { StockDetailsNavigationProp, NavigationRoutePath } from '@routes/Types';
 
 interface OwnProps {
   data: Selectors.SelectQuoteTrim;
@@ -62,6 +64,8 @@ const styleSheet = StyleSheet.create({
 
 const StockCard: React.FC<OwnProps> = (props: OwnProps) => {
   const { data } = props;
+  const navigation = useNavigation<StockDetailsNavigationProp>();
+
   if (data.fetching) {
     return (
       <ListItem>
@@ -70,10 +74,13 @@ const StockCard: React.FC<OwnProps> = (props: OwnProps) => {
     );
   }
 
-  const change = data.change === undefined ? '0' : data.change;
-
   return (
-    <ListItem style={styleSheet.container}>
+    <ListItem
+      style={styleSheet.container}
+      onPress={(): void =>
+        navigation.navigate(NavigationRoutePath.StockDetails, { symbol: data.symbol })
+      }
+    >
       <View style={styleSheet.listItemContainer}>
         <View style={styleSheet.companyContainer}>
           <H1 style={styleSheet.companySymbol}>{data.symbol}</H1>
@@ -84,7 +91,7 @@ const StockCard: React.FC<OwnProps> = (props: OwnProps) => {
           <View
             style={[
               styleSheet.priceChangeContainer,
-              +change > 0 ? styleSheet.priceGreen : styleSheet.priceRed,
+              data.change > 0 ? styleSheet.priceGreen : styleSheet.priceRed,
             ]}
           >
             <H3 style={styleSheet.priceChange}>{data.change}</H3>

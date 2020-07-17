@@ -7,3 +7,9 @@ Enzyme.configure({ adapter: new Adapter() });
 // eslint-disable-next-line global-require
 jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useNavigation: () => ({
+    navigation: () => jest.fn(),
+  }),
+}));

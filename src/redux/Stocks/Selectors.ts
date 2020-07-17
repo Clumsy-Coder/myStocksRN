@@ -4,7 +4,7 @@ import { createSelector } from 'reselect';
 import { AppState } from 'src/redux/index.reducers';
 import { DataDomain, Reducer, Selectors } from 'src/redux/Stocks/Types';
 import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
-import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';
+import { defaultQuote } from '@redux/Stocks/Reducer';
 
 /**
  * Select 'Stocks' from root reducer.
@@ -205,7 +205,7 @@ export const selectStockQuoteFetching = createCachedSelector(
  */
 export const selectStockQuoteData = createCachedSelector(
   [selectStockQuote],
-  (stockQuoteData: Reducer.QuoteData): DataDomain.Quote | undefined => stockQuoteData.data,
+  (stockQuoteData: Reducer.QuoteData): DataDomain.Quote => stockQuoteData.data,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
@@ -245,7 +245,7 @@ export const selectStockQuoteError = createCachedSelector(
  */
 export const selectStockChart = createCachedSelector(
   [selectStock],
-  (stockData: Reducer.StockData): Reducer.ChartData | undefined => stockData.chart,
+  (stockData: Reducer.StockData): Reducer.ChartData => stockData.chart,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
@@ -261,7 +261,7 @@ export const selectStockChart = createCachedSelector(
  */
 export const selectStockChartFetching = createCachedSelector(
   [selectStockChart],
-  (stockChartData: Reducer.ChartData | undefined): boolean | undefined => stockChartData?.fetching,
+  (stockChartData: Reducer.ChartData): boolean => stockChartData.fetching,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
@@ -277,8 +277,7 @@ export const selectStockChartFetching = createCachedSelector(
  */
 export const selectStockChartData = createCachedSelector(
   [selectStockChart],
-  (stockChartData: Reducer.ChartData | undefined): DataDomain.Chart[] | undefined =>
-    stockChartData?.data,
+  (stockChartData: Reducer.ChartData): DataDomain.Chart[] => stockChartData.data,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 /**
@@ -294,7 +293,7 @@ export const selectStockChartData = createCachedSelector(
  */
 export const selectStockChartError = createCachedSelector(
   [selectStockChart],
-  (stockChartData: Reducer.ChartData | undefined): Error | undefined => stockChartData?.error,
+  (stockChartData: Reducer.ChartData): Error | undefined => stockChartData.error,
 )((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
 
 // ////////////////////////////////////////////////////////////////////////////////////////////// //
@@ -421,32 +420,93 @@ export const selectStockQuoteTrim = createSelector(
     favorites: string[],
     symbolsMetadata: DataDomain.Symbols[],
   ): Selectors.SelectQuoteTrim[] => {
-    const result: Selectors.SelectQuoteTrim[] = favorites.reduce(
-      (acc: Selectors.SelectQuoteTrim[], symbol: string) => {
+    return favorites.map(
+      (symbol): Selectors.SelectQuoteTrim => {
         if (
           stocks.symbols[symbol] === undefined ||
           stocks.symbols[symbol].quote === undefined ||
-          stocks.symbols[symbol].quote.fetching
+          (stocks.symbols[symbol].quote.fetching &&
+            stocks.symbols[symbol].quote.data === defaultQuote)
         ) {
-          return acc;
+          return {
+            fetching: true,
+            symbol,
+            companyName: symbolsMetadata.find((obj) => obj.symbol === symbol)?.name || '',
+            price: 0,
+            change: 0,
+            changePercent: 0,
+            currency: '',
+          };
         }
 
-        return [
-          ...acc,
-          {
-            fetching: false,
-            symbol,
-            companyName: stocks.symbols[symbol].quote.data?.companyName || 'N/A',
-            price: stocks.symbols[symbol].quote.data?.latestPrice || 0,
-            change: stocks.symbols[symbol].quote.data?.change || 0,
-            changePercent: stocks.symbols[symbol].quote.data?.changePercent || 0,
-            currency: symbolsMetadata.find((obj) => obj.symbol === symbol)?.currency || '',
-          },
-        ];
+        return {
+          fetching: false,
+          symbol,
+          companyName: stocks.symbols[symbol].quote.data.companyName,
+          price: stocks.symbols[symbol].quote.data.latestPrice,
+          change: stocks.symbols[symbol].quote.data.change,
+          changePercent: stocks.symbols[symbol].quote.data.changePercent,
+          currency: symbolsMetadata.find((obj) => obj.symbol === symbol)?.currency || '',
+        };
       },
-      [],
     );
+  },
+);
 
-    return result;
+/**
+ * Selector for displaying info on StockDetails screen.
+ *
+ * If the stock is in the process of fetching or theres no stock quote data or no stock chart data,
+ * return an object \{ fetching: true, quote: defaultQuote, chart: [] \}.
+ *
+ * ```ts
+ * {
+ *    selectedStockDetailsTrim: selectStockDetailsTrim(state, { stockSymbol: 'IBM' })
+ * }
+ * ```
+ *
+ * @param state - AppState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Select stock chart to process
+ * @returns Selectors.SelectStockDetailsTrim - StockDetails screen data info
+ */
+export const selectStockDetailsTrim = createCachedSelector(
+  [selectStockQuote, selectStockChart],
+  (
+    quote: Reducer.QuoteData,
+    chart: Reducer.ChartData | undefined,
+  ): Selectors.SelectStockDetailsTrim => {
+    if (chart === undefined || (quote.fetching && chart.fetching))
+      return { fetching: true, quote: defaultQuote, chart: [] };
+
+    return {
+      fetching: false,
+      quote: quote.data,
+      chart: chart.data,
+    };
+  },
+)((rootState: AppState, props: { stockSymbol: string }): string => props.stockSymbol);
+
+/**
+ * Selector for processing stock chart data to be display the line chart in Stock Details screen.
+ *
+ * If the stock chart is being fetched AND the data array length is 0 (initially loading chart data),
+ * return empty array.
+ *
+ * ```ts
+ * {
+ *    selectedStockDetailsLineChart: selectStockDetailsLineChart(state, { stockSymbol: 'IBM' })
+ * }
+ * ```
+ *
+ * @param state - AppState - Root redux state
+ * @param props - \{ stockSymbol: string \} - Select stock chart to process
+ * @returns \{ date: string, price: number \}[] - Processed data
+ */
+export const selectStockDetailsLineChart = createSelector(
+  [selectStockChart],
+  (chart: Reducer.ChartData | undefined): { date: string; price: number }[] => {
+    if (chart === undefined || (chart.fetching && chart.data.length === 0)) return [];
+
+    return chart.data.map((cur) => ({ date: cur.date, price: cur.close }));
   },
 );

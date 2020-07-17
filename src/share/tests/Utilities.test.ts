@@ -43,16 +43,16 @@ describe('Fetch data functions', () => {
       };
 
       mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-      await expect(api.fetchStockChartUrl(testdata.stockSymbol1, 'max')).resolves.toEqual(
-        promiseResponse,
-      );
+      await expect(
+        api.fetchStockChartUrl(testdata.stockSymbol1, DataDomain.ChartRange.MAX),
+      ).resolves.toEqual(promiseResponse);
     });
 
     it('Should return Error', async () => {
       mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-      await expect(api.fetchStockChartUrl(testdata.stockSymbol1, 'max')).rejects.toThrow(
-        new Error(''),
-      );
+      await expect(
+        api.fetchStockChartUrl(testdata.stockSymbol1, DataDomain.ChartRange.MAX),
+      ).rejects.toThrow(new Error(''));
     });
   });
 

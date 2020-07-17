@@ -174,34 +174,68 @@ export interface Chart {
  * Path Parameter for fetching stock Chart data.
  * This specifies the data range.
  *
- * - **max**: All available data up to 15 years
- * - **5y**: Five years
- * - **2y**: Two years
- * - **1y**: One year
- * - **ytd**: Year-to-date
- * - **6m**: Six months
- * - **3m**: Three months
- * - **1m**: One month (default)
- * - **1mm**:	One month. Historically adjusted market-wide data in 30 minute intervals
- * - **5d**: Five Days. Historically adjusted market-wide data by day.
- * - **5dm**:	Five Days. Historically adjusted market-wide data in 10 minute intervals
- * - **date**: Specific date. If used with the query parameter chartByDay, then this returns historical OHLCV data for that date. Otherwise, it returns data by minute for a specified date, if available. Date format **YYYYMMDD**. Currently supporting trailing 30 calendar days of minute bar data.
- * - **dynamic**: One day. Will return **1d** or **1m** data depending on the day or week and time of day. Intraday per minute data is only returned during market hours.
+ * https://iexcloud.io/docs/api. historical-prices
+ * Check Path parameters.
  */
-export type ChartRange =
-  | 'max'
-  | '5y'
-  | '2y'
-  | '1y'
-  | 'ytd'
-  | '6m'
-  | '3m'
-  | '1m'
-  | '1mm'
-  | '5d'
-  | '5dm'
-  | 'date'
-  | 'dynamic';
+export enum ChartRange {
+  /**
+   * All available data up to 15 years. Historically adjusted market-wide data
+   */
+  MAX = 'max',
+  /**
+   * Five years. Historically adjusted market-wide data
+   */
+  FIVE_YEARS = '5y',
+  /**
+   * Two years. Historically adjusted market-wide data
+   */
+  TWO_YEARS = '2y',
+  /**
+   * One year. Historically adjusted market-wide data
+   */
+  ONE_YEAR = '1y',
+  /**
+   * Year-to-date. Historically adjusted market-wide data
+   */
+  YEAR_TO_DATE = 'ytd',
+  /**
+   * Six months. Historically adjusted market-wide data
+   */
+  SIX_MONTHS = '6m',
+  /**
+   * Three months. Historically adjusted market-wide data
+   */
+  THREE_MONTHS = '3m',
+  /**
+   * One month (default). Historically adjusted market-wide data
+   */
+  ONE_MONTH = '1m',
+  /**
+   * One month. Historically adjusted market-wide data in 30 minute intervals
+   */
+  ONE_MONTH_30_MINUTE_INTERVAL = '1mm',
+  /**
+   * Five Days. Historically adjusted market-wide data by day.
+   */
+  FIVE_DAYS = '5d',
+  /**
+   * Five Days. Historically adjusted market-wide data in 10 minute intervals
+   */
+  FIVE_DAYS_10_MINUTE_INTERVAL = '5dm',
+  /**
+   * Specific date.
+   * If used with the query parameter chartByDay, then this return. historical OHLCV data for that date.
+   * Otherwise, it returns data by minute for a specified date, if available.
+   * Date format YYYYMMDD.
+   * Currently supporting trailing 30 calendar days of minute bar data.
+   */
+  DATE = 'date',
+  /**
+   * One day 	Will return 1d or 1m data depending on the day or week and time of day.
+   * Intraday per minute data is only returned during market hours.
+   */
+  DYNAMIC = 'dynamic',
+}
 
 /**
  * Data structure for fetching symbols

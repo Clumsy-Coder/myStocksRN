@@ -5,7 +5,7 @@ import * as DataDomain from '@redux/Stocks/Types/DataDomain';
  */
 export interface QuoteData {
   fetching: boolean;
-  data?: DataDomain.Quote;
+  data: DataDomain.Quote;
   error?: Error;
 }
 
@@ -14,7 +14,7 @@ export interface QuoteData {
  */
 export interface ChartData {
   fetching: boolean;
-  data?: DataDomain.Chart[];
+  data: DataDomain.Chart[];
   error?: Error;
 }
 
@@ -34,7 +34,7 @@ export interface StockSearch {
  */
 export interface StockData {
   quote: QuoteData;
-  chart?: ChartData;
+  chart: ChartData;
   // metadata?: DataDomain.StockSearchBase;
 }
 

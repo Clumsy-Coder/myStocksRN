@@ -1,6 +1,7 @@
 import { DataDomain, Reducer as StocksReducer } from '@redux/Stocks/Types';
 import { Reducer as FavoritesReducer } from '@redux/Favorites/Types';
 import { AppState } from '@redux/index.reducers';
+import { defaultQuote } from '@redux/Stocks/Reducer';
 
 export const baseStocksState: StocksReducer.ReducerState = {
   symbols: {},
@@ -9,6 +10,18 @@ export const baseStocksState: StocksReducer.ReducerState = {
     data: [],
     error: undefined,
   },
+};
+
+export const baseStockQuoteState: StocksReducer.QuoteData = {
+  fetching: false,
+  data: defaultQuote,
+  error: undefined,
+};
+
+export const baseStockChartState: StocksReducer.ChartData = {
+  data: [],
+  fetching: false,
+  error: undefined,
 };
 
 export const baseFavoritesState: FavoritesReducer.ReducerState = {
