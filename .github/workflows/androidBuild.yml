@@ -1,3 +1,4 @@
+name: Android APK Build
 on: push
 
 jobs:
