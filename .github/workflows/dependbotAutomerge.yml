@@ -1,0 +1,23 @@
+name: Dependbot Automerge
+on: pull_request
+
+jobs:
+  Automerge:
+    # provided by https://github.com/dependabot/dependabot-core/issues/2268#issuecomment-654608325
+    runs-on: ubuntu-latest
+    if: |
+      startsWith(github.actor, 'dependabot') &&
+      github.event_name == 'pull_request' &&
+      startsWith(github.event.pull_request.title, 'Bump')
+    steps:
+      - name: '@dependabot squash and merge'
+        uses: actions/github-script@v2
+        with:
+          github-token: ${{secrets.GH_TOKEN_DEPENDABOT}}
+          script: |
+            await github.issues.createComment({
+              owner: context.payload.repository.owner.login,
+              repo: context.payload.repository.name,
+              issue_number: context.payload.pull_request.number,
+              body: '@dependabot squash and merge'
+            })
