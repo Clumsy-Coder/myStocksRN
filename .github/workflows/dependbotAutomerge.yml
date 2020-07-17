@@ -13,7 +13,7 @@ jobs:
       - name: '@dependabot squash and merge'
         uses: actions/github-script@v2
         with:
-          github-token: ${{secrets.GH_TOKEN}}
+          github-token: ${{secrets.GH_TOKEN_DEPENDABOT}}
           script: |
             await github.issues.createComment({
               owner: context.payload.repository.owner.login,
