@@ -6,7 +6,7 @@ jobs:
     # provided by https://github.com/dependabot/dependabot-core/issues/2268#issuecomment-654608325
     runs-on: ubuntu-latest
     if: |
-      github.actor == 'dependabot[bot]' &&
+      startsWith(github.actor, 'dependabot') &&
       github.event_name == 'pull_request' &&
       startsWith(github.event.pull_request.title, 'Bump')
     steps:
