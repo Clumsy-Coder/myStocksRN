@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
+import { Button, Icon } from 'native-base';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
@@ -24,7 +25,11 @@ interface DispatchProps {
 type OwnProps = SelectorProps & DispatchProps;
 
 const Stack = createStackNavigator<RootStackParamList>();
-const HomeStackNavigator: React.FC<OwnProps> = () => (
+const HomeStackNavigator: React.FC<OwnProps> = ({
+  favoriteSymbols,
+  addToFavorites,
+  removeFromFavorites,
+}: OwnProps) => (
   <Stack.Navigator
     initialRouteName={NavigationRoutePath.Home}
     screenOptions={{
@@ -35,7 +40,32 @@ const HomeStackNavigator: React.FC<OwnProps> = () => (
     <Stack.Screen
       name={NavigationRoutePath.StockDetails}
       component={StockDetailsScreen}
-      options={({ route }): { title: string } => ({ title: route.params.symbol })}
+      options={({ route }): { title: string; headerRight: () => React.ReactNode } => ({
+        title: route.params.symbol,
+        headerRight: (): React.ReactNode => {
+          if (favoriteSymbols.find((symbol) => symbol === route.params.symbol) === undefined) {
+            return (
+              <Button
+                transparent
+                onPress={(): Actions.AddFavoriteStockAction => addToFavorites(route.params.symbol)}
+              >
+                <Icon name='star-border' type='MaterialIcons' />
+              </Button>
+            );
+          } else {
+            return (
+              <Button
+                transparent
+                onPress={(): Actions.RemoveFavoriteStockAction =>
+                  removeFromFavorites(route.params.symbol)
+                }
+              >
+                <Icon name='star' type='MaterialIcons' />
+              </Button>
+            );
+          }
+        },
+      })}
     />
     <Stack.Screen name={NavigationRoutePath.About} component={AboutScreen} />
   </Stack.Navigator>
