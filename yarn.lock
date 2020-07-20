@@ -9453,14 +9453,14 @@ victory-voronoi-container@^35.0.1, victory-voronoi-container@^35.0.2:
     victory-tooltip "^35.0.2"
 
 victory-voronoi@^35.0.0, victory-voronoi@^35.0.2:
-  version "35.0.2"
-  resolved "https://registry.yarnpkg.com/victory-voronoi/-/victory-voronoi-35.0.2.tgz#fea65cc5af17b1bb8811da67dbfff09f35e4db5e"
-  integrity sha512-xXsPQlvbtlf3uNwjjqRR+UDzQySKu12GPtmzcvftx5eks3ze9PpG8+7objhZqsBKofvmivHdzRUTw457kQNUSw==
+  version "35.0.5"
+  resolved "https://registry.yarnpkg.com/victory-voronoi/-/victory-voronoi-35.0.5.tgz#70e786931c7f8311379c3f4c197840a75e58cd50"
+  integrity sha512-s+/rEA3vY08fHq2NNcCaXzwX9iIrxv445zm6louOdyjw0X5A/+7wdEuh6qZr8LYRaLPLQlImeOOvBda1iz1Pkg==
   dependencies:
     d3-voronoi "^1.1.2"
-    lodash "^4.17.15"
+    lodash "^4.17.19"
     prop-types "^15.5.8"
-    victory-core "^35.0.2"
+    victory-core "^35.0.5"
 
 victory-zoom-container@^35.0.0, victory-zoom-container@^35.0.2:
   version "35.0.2"
