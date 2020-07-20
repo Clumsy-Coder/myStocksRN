@@ -9286,13 +9286,13 @@ victory-cursor-container@^35.0.0, victory-cursor-container@^35.0.2:
     victory-core "^35.0.2"
 
 victory-errorbar@^35.0.0, victory-errorbar@^35.0.2:
-  version "35.0.2"
-  resolved "https://registry.yarnpkg.com/victory-errorbar/-/victory-errorbar-35.0.2.tgz#ee69d5739c1fe72a162d2ea91f3a48e039cfb772"
-  integrity sha512-SHIFqx8B5Z6XdR7Xy2fgn2NX+jRI+iwy0vWDdtF2TYC35I4T5BW3dGbaHYI1SUK/MLE27TAFTePq9s/qQ9Vydw==
+  version "35.0.5"
+  resolved "https://registry.yarnpkg.com/victory-errorbar/-/victory-errorbar-35.0.5.tgz#f644a1127716c36888c5cbd3975e0711cb753b3e"
+  integrity sha512-3WhF9timAskRgOEJ45D1pZyTvh74T2hHEXQAiNK1BCji0UOvUHK/xBN+ETJUaHI59yrqa+y0KQcA6z7FsZ4wyw==
   dependencies:
-    lodash "^4.17.15"
+    lodash "^4.17.19"
     prop-types "^15.5.8"
-    victory-core "^35.0.2"
+    victory-core "^35.0.5"
 
 victory-group@^35.0.0, victory-group@^35.0.2:
   version "35.0.2"
