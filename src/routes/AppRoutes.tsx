@@ -16,7 +16,11 @@ const HomeStackNavigator: React.FC = () => (
     }}
   >
     <Stack.Screen name={NavigationRoutePath.Home} component={HomeScreen} />
-    <Stack.Screen name={NavigationRoutePath.StockDetails} component={StockDetailsScreen} />
+    <Stack.Screen
+      name={NavigationRoutePath.StockDetails}
+      component={StockDetailsScreen}
+      options={({ route }): { title: string } => ({ title: route.params.symbol })}
+    />
     <Stack.Screen name={NavigationRoutePath.About} component={AboutScreen} />
   </Stack.Navigator>
 );
