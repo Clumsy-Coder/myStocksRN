@@ -9169,14 +9169,14 @@ verror@1.10.0:
     extsprintf "^1.2.0"
 
 victory-area@^35.0.0, victory-area@^35.0.2:
-  version "35.0.2"
-  resolved "https://registry.yarnpkg.com/victory-area/-/victory-area-35.0.2.tgz#c8900502db1cc7142a6ec071d497c9327cf343f6"
-  integrity sha512-3Q4pEw5oZveGHxcMrYtZeJCU8XbPsCAjbnUMXeMQdeXrl5uYM1jLTDJiu0p1q+5hEgqeBImB7+o/XbAqK76gZA==
+  version "35.0.5"
+  resolved "https://registry.yarnpkg.com/victory-area/-/victory-area-35.0.5.tgz#5523143baf3336c286ee2309cfe172d8b111de67"
+  integrity sha512-4Wm0RnkuI+Fm9Hzpw3QCfRZM53uxaDx+wuDmWD19IQ6hFKxFbPRUCaLO6trGtKDDr6tMPT6MOtFUImbU/kIc5g==
   dependencies:
     d3-shape "^1.2.0"
-    lodash "^4.17.15"
+    lodash "^4.17.19"
     prop-types "^15.5.8"
-    victory-core "^35.0.2"
+    victory-core "^35.0.5"
 
 victory-axis@^35.0.0, victory-axis@^35.0.2:
   version "35.0.5"
