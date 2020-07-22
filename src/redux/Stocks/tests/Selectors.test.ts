@@ -43,6 +43,7 @@ describe('Stocks selectors', () => {
         ...testdata.baseAppState,
       };
       const expected: Reducer.ReducerState = {
+        ...testdata.baseStocksState,
         symbols: {},
         symbolsMetadata: {
           fetching: false,
