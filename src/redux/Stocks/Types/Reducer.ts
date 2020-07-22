@@ -51,7 +51,7 @@ export interface ReducerState {
   symbols: {
     [symbol: string]: StockData;
   };
-  search?: StockSearch;
+  search: StockSearch;
   symbolsMetadata: SymbolsData;
 }
 
