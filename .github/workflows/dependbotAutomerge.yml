@@ -10,7 +10,8 @@ jobs:
     if: |
       startsWith(github.actor, 'dependabot') &&
       github.event_name == 'pull_request' &&
-      startsWith(github.event.pull_request.title, 'build:')
+      (startsWith(github.event.pull_request.title, 'build(deps):') ||
+      startsWith(github.event.pull_request.title, 'build(dev-deps):'))
     steps:
       - name: '@dependabot squash and merge'
         uses: actions/github-script@v2
