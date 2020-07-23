@@ -69,6 +69,7 @@
     "babel-jest": "^26.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "3.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
@@ -119,5 +120,10 @@
     "*.{js,ts,tsx}": [
       "eslint -c .eslintrc.js"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
