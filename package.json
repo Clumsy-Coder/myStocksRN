@@ -112,6 +112,7 @@
   },
   "husky": {
     "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "pre-commit": "pretty-quick --staged && tsc --build tsconfig.json && lint-staged",
       "pre-push": "jest"
     }
