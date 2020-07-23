@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
 
 const SearchHeader: React.FC<Props> = (props: Props) => {
   const { setKeyword, clearKeyword, searchKeyword } = props;
+  const [inFocus, setFocus] = useState(false);
 
   return (
     <Header searchBar style={styles.headerBorder}>
@@ -36,11 +37,15 @@ const SearchHeader: React.FC<Props> = (props: Props) => {
         <Icon name='search' type='MaterialIcons' />
         <Input
           placeholder='Search'
-          onBlur={clearKeyword}
+          onFocus={(): void => setFocus(true)}
+          onBlur={(): void => {
+            clearKeyword();
+            setFocus(false);
+          }}
           onChangeText={setKeyword}
           value={searchKeyword}
         />
-        <Icon name='clear' type='MaterialIcons' onPress={clearKeyword} />
+        {inFocus ? <Icon name='clear' type='MaterialIcons' onPress={clearKeyword} /> : undefined}
       </Item>
     </Header>
   );
