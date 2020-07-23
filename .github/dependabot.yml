@@ -6,4 +6,5 @@ updates:
       interval: 'daily'
     open-pull-requests-limit: 15
     commit-message:
-      prefix: 'build: '
+      prefix: 'build(deps): '
+      prefix-development: 'build(dev-deps): '
