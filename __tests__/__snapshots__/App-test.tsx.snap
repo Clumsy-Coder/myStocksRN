@@ -29,7 +29,7 @@ exports[`<App /> Renders as expected 1`] = `
     }
   >
     <ForwardRef(NavigationContainer)>
-      <HomeStackNavigator />
+      <Connect(HomeStackNavigator) />
     </ForwardRef(NavigationContainer)>
   </PersistGate>
 </Provider>
