@@ -50,7 +50,7 @@
     "@babel/runtime": "^7.10.5",
     "@microsoft/tsdoc": "^0.12.20",
     "@react-native-community/eslint-config": "^2.0.0",
-    "@testing-library/react-native": "^5.0.3",
+    "@testing-library/react-native": "^6.0.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/faker": "^4.1.12",
