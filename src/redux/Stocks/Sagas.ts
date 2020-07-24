@@ -2,7 +2,7 @@
 import { call, put, all, takeEvery, takeLatest, select } from 'redux-saga/effects';
 
 import * as stocksActions from 'src/redux/Stocks/Actions';
-import * as api from 'src/share/Utilities';
+import * as api from '@share/Api';
 import { ActionTypes, Actions } from 'src/redux/Stocks/Types';
 import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
 import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';

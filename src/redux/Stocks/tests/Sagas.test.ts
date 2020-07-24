@@ -13,7 +13,7 @@ import sagaWatcher, {
 } from 'src/redux/Stocks/Sagas';
 import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 import * as actions from 'src/redux/Stocks/Actions';
-import * as api from 'src/share/Utilities';
+import * as api from '@share/Api';
 import { AppState } from 'src/redux/index.reducers';
 
 import * as testdata from 'jest.testdata';
