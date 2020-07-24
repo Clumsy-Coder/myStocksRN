@@ -1,7 +1,7 @@
 /* eslint-disable jest/no-commented-out-tests */
 import axios, { AxiosResponse } from 'axios';
 
-import * as api from 'src/share/Utilities';
+import * as api from '@share/Api';
 import { DataDomain } from 'src/redux/Stocks/Types';
 
 import * as testdata from 'jest.testdata';
