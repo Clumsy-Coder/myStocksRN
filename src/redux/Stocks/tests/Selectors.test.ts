@@ -43,6 +43,7 @@ describe('Stocks selectors', () => {
         ...testdata.baseAppState,
       };
       const expected: Reducer.ReducerState = {
+        ...testdata.baseStocksState,
         symbols: {},
         symbolsMetadata: {
           fetching: false,
@@ -1203,7 +1204,7 @@ describe('Stocks selectors', () => {
         expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
       });
 
-      it('[Empty store]: Should return undefined', () => {
+      it('[Empty store]: Should return empty string', () => {
         const rootState: AppState = {
           ...testdata.baseAppState,
           Stocks: {
@@ -1212,7 +1213,7 @@ describe('Stocks selectors', () => {
           },
         };
 
-        const expected = undefined;
+        const expected = '';
 
         expect(selectors.selectSearchKeyword(rootState)).toEqual(expected);
       });

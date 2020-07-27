@@ -10,6 +10,9 @@ export const baseStocksState: StocksReducer.ReducerState = {
     data: [],
     error: undefined,
   },
+  search: {
+    keyword: '',
+  },
 };
 
 export const baseStockQuoteState: StocksReducer.QuoteData = {

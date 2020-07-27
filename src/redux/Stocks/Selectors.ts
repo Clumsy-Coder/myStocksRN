@@ -70,7 +70,7 @@ export const selectStock = createCachedSelector(
  */
 export const selectSearch = createSelector(
   [selectAllStocks],
-  (stocks: Reducer.ReducerState): Reducer.StockSearch | undefined => stocks.search,
+  (stocks: Reducer.ReducerState): Reducer.StockSearch => stocks.search,
 );
 
 /**
@@ -81,11 +81,11 @@ export const selectSearch = createSelector(
  * }
  * ```
  * @param state - AppState - Root redux state
- * @returns string | undefined - Stock search keyword
+ * @returns string - Stock search keyword
  */
 export const selectSearchKeyword = createSelector(
   [selectSearch],
-  (search: Reducer.StockSearch | undefined): string | undefined => search?.keyword,
+  (search: Reducer.StockSearch): string => search.keyword,
 );
 
 // /**
