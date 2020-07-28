@@ -5,7 +5,7 @@ import { Dispatch } from 'redux';
 import { Container, Content, List, Spinner } from 'native-base';
 
 import { AppActions, AppState } from 'src/redux/index.reducers';
-import { fetchStockQuoteBatch } from 'src/redux/Stocks/Actions';
+import { fetchStockQuoteBatch, fetchSymbolsMetadata } from 'src/redux/Stocks/Actions';
 import { Actions as StocksActions, Selectors as StocksSelectors } from 'src/redux/Stocks/Types';
 import { selectStockQuoteTrim } from 'src/redux/Stocks/Selectors';
 import StockCard from 'src/components/StockCard';
@@ -16,6 +16,7 @@ interface SelectorProps {
 
 interface DispatchProps {
   fetchQuoteBatch: () => StocksActions.Batch.FetchQuoteAction;
+  fetchSymbolsMeta: () => StocksActions.SymbolsMetadata.FetchAction;
 }
 
 type Props = SelectorProps & DispatchProps;
@@ -34,8 +35,9 @@ export class Home extends React.Component<Props> {
   private fetchQuoteIntervalTimeout = 10;
 
   componentDidMount = (): void => {
-    const { fetchQuoteBatch } = this.props;
+    const { fetchQuoteBatch, fetchSymbolsMeta } = this.props;
 
+    fetchSymbolsMeta();
     this.fetchQuoteInterval = setInterval(fetchQuoteBatch, this.fetchQuoteIntervalTimeout * 1000);
   };
 
@@ -80,7 +82,8 @@ export const mapStateToProps = (state: AppState): SelectorProps => ({
 });
 
 export const mapDispatchToProps = (dispatch: Dispatch<AppActions>): DispatchProps => ({
-  fetchQuoteBatch: (): StocksActions.Batch.FetchQuoteAction => dispatch(fetchStockQuoteBatch()),
+  fetchQuoteBatch: () => dispatch(fetchStockQuoteBatch()),
+  fetchSymbolsMeta: () => dispatch(fetchSymbolsMetadata()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
