@@ -8,6 +8,7 @@ export enum NavigationRoutePath {
   Home = 'Home',
   StockDetails = 'StockDetails',
   About = 'About',
+  Search = 'Search',
 }
 
 /**
@@ -19,6 +20,7 @@ export type RootStackParamList = {
     symbol: string;
   };
   [NavigationRoutePath.About]: undefined;
+  [NavigationRoutePath.Search]: undefined;
 };
 
 /**
@@ -28,6 +30,16 @@ export type RootStackParamList = {
 export type StockDetailsNavigationProp = StackNavigationProp<
   RootStackParamList,
   NavigationRoutePath.StockDetails
+>;
+
+export type StockSearchNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  NavigationRoutePath.Search
+>;
+
+export type AboutNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  NavigationRoutePath.About
 >;
 
 /**
