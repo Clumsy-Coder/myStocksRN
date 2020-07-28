@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import HomeScreen from 'src/screens/Home';
 import StockDetailsScreen from 'src/screens/StockDetails';
 import AboutScreen from 'src/screens/About';
+import SearchScreen from '@screens/Search';
 import { NavigationRoutePath, RootStackParamList } from '@routes/Types';
 import { selectFavoriteSymbols } from '@redux/Favorites/Selectors';
 import { Actions } from '@redux/Favorites/Types';
@@ -36,7 +37,19 @@ const HomeStackNavigator: React.FC<OwnProps> = ({
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     }}
   >
-    <Stack.Screen name={NavigationRoutePath.Home} component={HomeScreen} />
+    <Stack.Screen
+      name={NavigationRoutePath.Home}
+      component={HomeScreen}
+      options={({ navigation }) => ({
+        headerRight: (): React.ReactNode => {
+          return (
+            <Button transparent onPress={() => navigation.navigate(NavigationRoutePath.Search)}>
+              <Icon name='search' type='MaterialIcons' />
+            </Button>
+          );
+        },
+      })}
+    />
     <Stack.Screen
       name={NavigationRoutePath.StockDetails}
       component={StockDetailsScreen}
@@ -68,6 +81,7 @@ const HomeStackNavigator: React.FC<OwnProps> = ({
       })}
     />
     <Stack.Screen name={NavigationRoutePath.About} component={AboutScreen} />
+    <Stack.Screen name={NavigationRoutePath.Search} component={SearchScreen} />
   </Stack.Navigator>
 );
 
