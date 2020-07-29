@@ -69,14 +69,11 @@ const SearchHeader: React.FC<Props> = (props: Props) => {
             data={filterSearch(searchKeyword, symbolsMetadata)}
             onChangeText={setKeyword}
             renderItem={(obj: { item: DataDomain.Symbols }) => (
-              <SearchResultItem
-                data={obj.item}
-                onPress={() => fetchQuote(obj.item.symbol)}
-                key={`search-result-${obj.item.symbol}`}
-              />
+              <SearchResultItem data={obj.item} onPress={() => fetchQuote(obj.item.symbol)} />
             )}
             // inputContainerStyle={styles.header}
             value={searchKeyword}
+            keyExtractor={(item) => `search-result-${item.symbol}`}
           />
         </Item>
       </View>
