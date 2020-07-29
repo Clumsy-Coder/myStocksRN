@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
 
 const SearchHeader: React.FC<Props> = (props: Props) => {
   const { setKeyword, clearKeyword, searchKeyword, fetchQuote, symbolsMetadata } = props;
-  const [inFocus, setFocus] = useState(false);
 
   return (
     <View style={styles.headerContainer}>
@@ -78,11 +77,6 @@ const SearchHeader: React.FC<Props> = (props: Props) => {
               />
             )}
             // inputContainerStyle={styles.header}
-            onFocus={() => setFocus(true)}
-            onBlur={() => {
-              clearKeyword();
-              setFocus(false);
-            }}
             value={searchKeyword}
           />
         </Item>
