@@ -4,7 +4,6 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { Header, Icon, Input, Item, View } from 'native-base';
 import AutoComplete from 'react-native-autocomplete-input';
-import { filter, debounce } from 'lodash';
 
 import SearchResultItem from '@components/SearchResultItem';
 import { AppState, AppActions } from '@redux/index.reducers';
@@ -63,21 +62,13 @@ const SearchHeader: React.FC<Props> = (props: Props) => {
   const { setKeyword, clearKeyword, searchKeyword, fetchQuote, symbolsMetadata } = props;
   const [inFocus, setFocus] = useState(false);
 
-  const debounceFilterSearch = useCallback(
-    debounce((keyword: string, metadata: DataDomain.Symbols[]) => {
-      console.log('here');
-      return filterSearch(keyword, metadata);
-    }, 500),
-    [],
-  );
-
   return (
     <View style={styles.headerContainer}>
       <View>
         <Item>
           <AutoComplete
             placeholder='Search'
-            data={debounceFilterSearch(searchKeyword, symbolsMetadata)}
+            data={filterSearch(searchKeyword, symbolsMetadata)}
             onChangeText={setKeyword}
             renderItem={(obj: { item: DataDomain.Symbols }) => (
               <SearchResultItem
