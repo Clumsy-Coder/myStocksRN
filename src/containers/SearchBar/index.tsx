@@ -9,7 +9,7 @@ import SearchResultItem from '@components/SearchResultItem';
 import { AppState, AppActions } from '@redux/index.reducers';
 import { Actions, DataDomain } from '@redux/Stocks/Types';
 import { selectSearchKeyword, selectSymbolsMetadataData } from '@redux/Stocks/Selectors';
-import { setSearchKeyword, clearSearchKeyword, fetchStockQuote } from '@redux/Stocks/Actions';
+import { setSearchKeyword, fetchStockQuote } from '@redux/Stocks/Actions';
 import { filterSearch } from '@share/Utilities';
 
 interface SelectorProps {
@@ -19,7 +19,6 @@ interface SelectorProps {
 
 interface DispatchProps {
   setKeyword: (keyword: string) => Actions.Search.SetSearchKeywordAction;
-  clearKeyword: () => Actions.Search.ClearSearchKeywordAction;
   fetchQuote: (symbol: string) => Actions.Quote.FetchAction;
 }
 
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
 });
 
 const SearchHeader: React.FC<Props> = (props: Props) => {
-  const { setKeyword, clearKeyword, searchKeyword, fetchQuote, symbolsMetadata } = props;
+  const { setKeyword, fetchQuote, searchKeyword, symbolsMetadata } = props;
 
   return (
     <View style={styles.headerContainer}>
@@ -92,7 +91,6 @@ export const mapStateToProps = (state: AppState): SelectorProps => ({
 
 export const mapDispatchToProps = (dispatch: Dispatch<AppActions>): DispatchProps => ({
   setKeyword: (keyword: string) => dispatch(setSearchKeyword(keyword)),
-  clearKeyword: () => dispatch(clearSearchKeyword()),
   fetchQuote: (symbol: string) => dispatch(fetchStockQuote(symbol)),
 });
 
