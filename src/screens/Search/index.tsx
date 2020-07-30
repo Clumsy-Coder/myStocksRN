@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
 
 export const Search: React.FC<Props> = (props: Props) => {
   return (
-    <View>
-      <View style={styles.autocompleteContainer}>
+    <Container>
+      <Content>
         <SearchHeader />
-      </View>
-    </View>
+      </Content>
+    </Container>
   );
 };
 
