@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ListItem, Text, View } from 'native-base';
+import { ListItem, Text, Left, Right, Icon } from 'native-base';
 
 import { DataDomain } from '@redux/Stocks/Types';
 import { NavigationRoutePath, StockDetailsNavigationProp } from '@routes/Types';
@@ -22,9 +22,14 @@ const StockSearchResultItem: React.FC<Props> = (props: Props) => {
       }}
       key={`search-result-item-${data.symbol}`}
     >
-      <Text>
-        {data.symbol}: {data.name}
-      </Text>
+      <Left>
+        <Text>
+          {data.symbol}: {data.name}
+        </Text>
+      </Left>
+      <Right>
+        <Icon name='arrow-forward' type='MaterialIcons' />
+      </Right>
     </ListItem>
   );
 };
