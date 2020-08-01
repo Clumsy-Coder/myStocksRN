@@ -10,6 +10,6 @@ jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),
   useNavigation: () => ({
-    navigation: () => jest.fn(),
+    navigate: jest.fn(),
   }),
 }));
