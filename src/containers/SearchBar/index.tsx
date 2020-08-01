@@ -45,7 +45,6 @@ const SearchHeader: React.FC<Props> = (props: Props) => {
           <SearchResultItem data={obj.item} onPress={() => fetchQuote(obj.item.symbol)} />
         )}
         inputContainerStyle={styles.header}
-        value={searchKeyword}
         keyExtractor={(item) => `search-result-${item.symbol}`}
       />
     </Item>
