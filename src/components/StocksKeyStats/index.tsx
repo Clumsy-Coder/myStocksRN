@@ -90,6 +90,10 @@ const StocksKeyStats: React.FC<OwnProps> = ({ data }: OwnProps) => (
           <H3 style={styles.boldFont}>{cur.title}</H3>
           <Text>
             {data[cur.key] === (undefined || null) ? 'N/A' : Number(data[cur.key]).toLocaleString()}
+            {/* NOTE: cannot unit test if data[cur.key] === (undefined || null)
+             * This due to the way DataDomain.Quote was designed. It assumes the data is always available.
+             * Changing it to allow nullables will require refactor for Reducer, selectors to handle nullables
+             */}
           </Text>
         </View>
       ))}
