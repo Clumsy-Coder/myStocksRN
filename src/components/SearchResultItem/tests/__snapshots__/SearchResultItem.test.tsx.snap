@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchResultItem /> Handles onPress event 1`] = `
+<Styled(ListItem)
+  key="search-result-item-IBM"
+  onPress={[Function]}
+>
+  <Styled(Left)>
+    <Styled(Text)>
+      IBM
+      : 
+      International Business Machines Corporation
+    </Styled(Text)>
+  </Styled(Left)>
+  <Styled(Right)>
+    <Styled(Icon)
+      name="arrow-forward"
+      type="MaterialIcons"
+    />
+  </Styled(Right)>
+</Styled(ListItem)>
+`;
+
+exports[`<SearchResultItem /> Render correctly 1`] = `
+<Styled(ListItem)
+  key="search-result-item-IBM"
+  onPress={[Function]}
+>
+  <Styled(Left)>
+    <Styled(Text)>
+      IBM
+      : 
+      International Business Machines Corporation
+    </Styled(Text)>
+  </Styled(Left)>
+  <Styled(Right)>
+    <Styled(Icon)
+      name="arrow-forward"
+      type="MaterialIcons"
+    />
+  </Styled(Right)>
+</Styled(ListItem)>
+`;
