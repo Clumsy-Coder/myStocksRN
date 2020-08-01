@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Search /> Renders correctly 1`] = `
+<Styled(Container)>
+  <Styled(Content)>
+    <Connect(Component) />
+  </Styled(Content)>
+</Styled(Container)>
+`;
