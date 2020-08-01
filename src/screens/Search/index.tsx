@@ -5,7 +5,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { filter, debounce } from 'lodash';
 
-import SearchHeader from '@containers/SearchBar';
+import SearchBar from '@containers/SearchBar';
 import StockSearchResultItem from '@components/SearchResultItem';
 import { fetchStockQuote } from '@redux/Stocks/Actions';
 import { selectSearchKeyword, selectSymbolsMetadataData } from '@redux/Stocks/Selectors';
@@ -40,7 +40,7 @@ export const Search: React.FC<Props> = (props: Props) => {
   return (
     <Container>
       <Content>
-        <SearchHeader />
+        <SearchBar />
       </Content>
     </Container>
   );

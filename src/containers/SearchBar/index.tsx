@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SearchHeader: React.FC<Props> = (props: Props) => {
+export const SearchBar: React.FC<Props> = (props: Props) => {
   const { setKeyword, fetchQuote, searchKeyword, symbolsMetadata } = props;
 
   return (
@@ -61,4 +61,4 @@ export const mapDispatchToProps = (dispatch: Dispatch<AppActions>): DispatchProp
   fetchQuote: (symbol: string) => dispatch(fetchStockQuote(symbol)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
