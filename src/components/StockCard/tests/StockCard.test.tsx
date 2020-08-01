@@ -53,6 +53,16 @@ const stockCardProps5: Selectors.SelectQuoteTrim = {
 };
 
 describe('<StockCard />', () => {
+  describe('onPress event handling', () => {
+    it('Render correctly', () => {
+      const wrapper = shallow(<StockCard data={stockCardProps1} />);
+
+      wrapper.props().onPress();
+
+      expect(wrapper).toMatchSnapshot();
+    });
+  });
+
   describe('During fetching data', () => {
     const wrapper = shallow(<StockCard data={stockCardProps2} />);
 

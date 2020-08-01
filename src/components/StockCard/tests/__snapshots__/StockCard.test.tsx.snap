@@ -339,3 +339,86 @@ exports[`<StockCard /> During fetching data Renders as expected 1`] = `
   </Styled(Text)>
 </Styled(ListItem)>
 `;
+
+exports[`<StockCard /> onPress event handling Render correctly 1`] = `
+<Styled(ListItem)
+  onPress={[Function]}
+  style={Object {}}
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 70,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 3,
+          "flexDirection": "column",
+          "justifyContent": "space-around",
+        }
+      }
+    >
+      <Styled(H1)
+        style={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        IBM
+      </Styled(H1)>
+      <Styled(H3)
+        style={Object {}}
+      >
+        International Business Machines Corporation
+      </Styled(H3)>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "space-around",
+        }
+      }
+    >
+      <Styled(H3)>
+        100.00
+      </Styled(H3)>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-end",
+              "borderRadius": 4,
+              "padding": 1,
+              "paddingRight": 5,
+              "paddingVertical": 2,
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "green",
+            },
+          ]
+        }
+      >
+        <Styled(H3)
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          1
+        </Styled(H3)>
+      </View>
+    </View>
+  </View>
+</Styled(ListItem)>
+`;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBar /> Render correctly 1`] = `
+<Styled(Item)>
+  <Autocomplete
+    data={Array []}
+    flatListProps={Object {}}
+    inputContainerStyle={
+      Object {
+        "borderWidth": 0,
+        "paddingHorizontal": 20,
+        "paddingVertical": 10,
+      }
+    }
+    keyExtractor={[Function]}
+    keyboardShouldPersistTaps="always"
+    onChangeText={[MockFunction]}
+    onStartShouldSetResponderCapture={[Function]}
+    placeholder="Search"
+    renderItem={[Function]}
+    renderSeparator={null}
+    renderTextInput={[Function]}
+  />
+</Styled(Item)>
+`;

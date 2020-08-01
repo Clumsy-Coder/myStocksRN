@@ -19,107 +19,86 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
   },
-  column: {
-    width: '50%',
-    paddingBottom: 10,
-  },
   item: {
     paddingBottom: 10,
+    flexBasis: '50%', // make flexbox fit two key stats per row.
   },
-  keyTitle: {
+  boldFont: {
     fontWeight: 'bold',
   },
 });
 
-const column1: { title: string; key: keyof DataDomain.Quote }[] = [
+// key stats to display. Will display data in two columns.
+// every index % 2 === 0 is a new row.
+const keyStats: { title: string; key: keyof DataDomain.Quote }[] = [
   {
     title: 'Previous close',
     key: 'previousClose',
+  },
+  {
+    title: 'Previous volume',
+    key: 'previousVolume',
   },
   {
     title: 'Open',
     key: 'open',
   },
   {
-    title: 'High',
-    key: 'high',
-  },
-  {
-    title: '52 Week High',
-    key: 'week52High',
-  },
-  {
-    title: 'Market capital',
-    key: 'marketCap',
-  },
-  {
-    title: 'Avg total volume',
-    key: 'avgTotalVolume',
-  },
-];
-
-const column2: { title: string; key: keyof DataDomain.Quote }[] = [
-  {
-    title: 'Previous volume',
-    key: 'previousVolume',
-  },
-  {
     title: 'Close',
     key: 'close',
+  },
+  {
+    title: 'High',
+    key: 'high',
   },
   {
     title: 'Low',
     key: 'low',
   },
   {
+    title: '52 Week High',
+    key: 'week52High',
+  },
+  {
     title: '52 Week Low',
     key: 'week52Low',
+  },
+  {
+    title: 'Market capital',
+    key: 'marketCap',
   },
   {
     title: 'PE ratio',
     key: 'peRatio',
   },
-
+  {
+    title: 'Avg total volume',
+    key: 'avgTotalVolume',
+  },
   {
     title: 'Volume',
     key: 'volume',
   },
 ];
 
-const StocksKeyStats: React.FC<OwnProps> = (props: OwnProps) => {
-  const { data } = props;
-
-  return (
-    <View style={styles.root}>
-      <H2 style={{ fontWeight: 'bold' }}>Key stats</H2>
-      <View style={styles.statsContainer}>
-        <View style={styles.column}>
-          {column1.map((cur) => (
-            <View key={`keyStat-${cur.title}`} style={styles.item}>
-              <H3 style={styles.keyTitle}>{cur.title}</H3>
-              <Text>
-                {data[cur.key] === (undefined || null)
-                  ? 'N/A'
-                  : Number(data[cur.key]).toLocaleString()}
-              </Text>
-            </View>
-          ))}
+const StocksKeyStats: React.FC<OwnProps> = ({ data }: OwnProps) => (
+  <View style={styles.root}>
+    <H2 style={styles.boldFont}>Key stats</H2>
+    <View style={styles.statsContainer}>
+      {keyStats.map((cur) => (
+        <View key={`keyStat-${cur.title}`} style={styles.item}>
+          <H3 style={styles.boldFont}>{cur.title}</H3>
+          <Text>
+            {data[cur.key] === (undefined || null) ? 'N/A' : Number(data[cur.key]).toLocaleString()}
+            {/* NOTE: cannot unit test if data[cur.key] === (undefined || null)
+             * This due to the way DataDomain.Quote was designed. It assumes the data is always available.
+             * Changing it to allow nullables will require refactor for Reducer, selectors to handle nullables
+             */}
+          </Text>
         </View>
-        <View style={styles.column}>
-          {column2.map((cur) => (
-            <View key={`keyStat-${cur.title}`} style={styles.item}>
-              <H3 style={styles.keyTitle}>{cur.title}</H3>
-              <Text>
-                {data[cur.key] === (undefined || null)
-                  ? 'N/A'
-                  : Number(data[cur.key]).toLocaleString()}
-              </Text>
-            </View>
-          ))}
-        </View>
-      </View>
+      ))}
     </View>
-  );
-};
+  </View>
+);
 
 export default StocksKeyStats;
