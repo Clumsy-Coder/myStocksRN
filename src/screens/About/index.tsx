@@ -1,19 +1,26 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Container, Content, H1 } from 'native-base';
+
+import { BUILD_VERSION } from 'react-native-dotenv';
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  h1: {
+    paddingTop: 30,
   },
 });
 
 const AboutScreen: React.FC = () => {
   return (
-    <View style={styles.root}>
-      <Text>About screen</Text>
-    </View>
+    <Container style={styles.root}>
+      <Content style={styles.h1}>
+        <H1>Build version: {BUILD_VERSION}</H1>
+      </Content>
+    </Container>
   );
 };
 

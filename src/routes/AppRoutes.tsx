@@ -5,7 +5,7 @@ import {
   CardStyleInterpolators,
   HeaderBackButton,
 } from '@react-navigation/stack';
-import { Button, Icon } from 'native-base';
+import { Button, Icon, View } from 'native-base';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
@@ -51,9 +51,14 @@ const HomeStackNavigator: React.FC<OwnProps> = ({
       component={HomeScreen}
       options={({ navigation }) => ({
         headerRight: () => (
-          <Button transparent onPress={() => navigation.navigate(NavigationRoutePath.Search)}>
-            <Icon name='search' type='MaterialIcons' style={{ color: 'black' }} />
-          </Button>
+          <View style={{ flex: 1, flexDirection: 'row', paddingTop: 5 }}>
+            <Button transparent onPress={() => navigation.navigate(NavigationRoutePath.Search)}>
+              <Icon name='search' type='MaterialIcons' style={{ color: 'black' }} />
+            </Button>
+            <Button transparent onPress={() => navigation.navigate(NavigationRoutePath.About)}>
+              <Icon name='info' type='MaterialIcons' style={{ color: 'black' }} />
+            </Button>
+          </View>
         ),
       })}
     />

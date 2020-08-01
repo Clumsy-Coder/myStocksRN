@@ -1,17 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<AboutScreen /> Renders correctly 1`] = `
-<View
+<Styled(Container)
   style={
     Object {
       "alignItems": "center",
       "flex": 1,
-      "justifyContent": "center",
     }
   }
 >
-  <Text>
-    About screen
-  </Text>
-</View>
+  <Styled(Content)
+    style={
+      Object {
+        "paddingTop": 30,
+      }
+    }
+  >
+    <Styled(H1)>
+      Build version: 
+    </Styled(H1)>
+  </Styled(Content)>
+</Styled(Container)>
 `;
