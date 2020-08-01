@@ -29,274 +29,268 @@ exports[`<StocksKeyStats /> Renders correctly 1`] = `
     }
   >
     <Styled(ViewNB)
+      key="keyStat-Previous close"
       style={
         Object {
+          "flexBasis": "50%",
           "paddingBottom": 10,
-          "width": "50%",
         }
       }
     >
-      <Styled(ViewNB)
-        key="keyStat-Previous close"
+      <Styled(H3)
         style={
           Object {
-            "paddingBottom": 10,
+            "fontWeight": "bold",
           }
         }
       >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Previous close
-        </Styled(H3)>
-        <Styled(Text)>
-          124.16
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-Open"
-        style={
-          Object {
-            "paddingBottom": 10,
-          }
-        }
-      >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Open
-        </Styled(H3)>
-        <Styled(Text)>
-          110
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-High"
-        style={
-          Object {
-            "paddingBottom": 10,
-          }
-        }
-      >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          High
-        </Styled(H3)>
-        <Styled(Text)>
-          140
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-52 Week High"
-        style={
-          Object {
-            "paddingBottom": 10,
-          }
-        }
-      >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          52 Week High
-        </Styled(H3)>
-        <Styled(Text)>
-          158.75
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-Market capital"
-        style={
-          Object {
-            "paddingBottom": 10,
-          }
-        }
-      >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Market capital
-        </Styled(H3)>
-        <Styled(Text)>
-          108,740,133,240
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-Avg total volume"
-        style={
-          Object {
-            "paddingBottom": 10,
-          }
-        }
-      >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Avg total volume
-        </Styled(H3)>
-        <Styled(Text)>
-          4,866,120
-        </Styled(Text)>
-      </Styled(ViewNB)>
+        Previous close
+      </Styled(H3)>
+      <Styled(Text)>
+        124.16
+      </Styled(Text)>
     </Styled(ViewNB)>
     <Styled(ViewNB)
+      key="keyStat-Previous volume"
       style={
         Object {
+          "flexBasis": "50%",
           "paddingBottom": 10,
-          "width": "50%",
         }
       }
     >
-      <Styled(ViewNB)
-        key="keyStat-Previous volume"
+      <Styled(H3)
         style={
           Object {
-            "paddingBottom": 10,
+            "fontWeight": "bold",
           }
         }
       >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Previous volume
-        </Styled(H3)>
-        <Styled(Text)>
-          2,865,362
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-Close"
+        Previous volume
+      </Styled(H3)>
+      <Styled(Text)>
+        2,865,362
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-Open"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
         style={
           Object {
-            "paddingBottom": 10,
+            "fontWeight": "bold",
           }
         }
       >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Close
-        </Styled(H3)>
-        <Styled(Text)>
-          130
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-Low"
+        Open
+      </Styled(H3)>
+      <Styled(Text)>
+        110
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-Close"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
         style={
           Object {
-            "paddingBottom": 10,
+            "fontWeight": "bold",
           }
         }
       >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Low
-        </Styled(H3)>
-        <Styled(Text)>
-          100
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-52 Week Low"
+        Close
+      </Styled(H3)>
+      <Styled(Text)>
+        130
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-High"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
         style={
           Object {
-            "paddingBottom": 10,
+            "fontWeight": "bold",
           }
         }
       >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          52 Week Low
-        </Styled(H3)>
-        <Styled(Text)>
-          90.56
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-PE ratio"
+        High
+      </Styled(H3)>
+      <Styled(Text)>
+        140
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-Low"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
         style={
           Object {
-            "paddingBottom": 10,
+            "fontWeight": "bold",
           }
         }
       >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
-          }
-        >
-          PE ratio
-        </Styled(H3)>
-        <Styled(Text)>
-          12.05
-        </Styled(Text)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)
-        key="keyStat-Volume"
+        Low
+      </Styled(H3)>
+      <Styled(Text)>
+        100
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-52 Week High"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
         style={
           Object {
-            "paddingBottom": 10,
+            "fontWeight": "bold",
           }
         }
       >
-        <Styled(H3)
-          style={
-            Object {
-              "fontWeight": "bold",
-            }
+        52 Week High
+      </Styled(H3)>
+      <Styled(Text)>
+        158.75
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-52 Week Low"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
+        style={
+          Object {
+            "fontWeight": "bold",
           }
-        >
-          Volume
-        </Styled(H3)>
-        <Styled(Text)>
-          2,865,320
-        </Styled(Text)>
-      </Styled(ViewNB)>
+        }
+      >
+        52 Week Low
+      </Styled(H3)>
+      <Styled(Text)>
+        90.56
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-Market capital"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
+        style={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Market capital
+      </Styled(H3)>
+      <Styled(Text)>
+        108,740,133,240
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-PE ratio"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
+        style={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        PE ratio
+      </Styled(H3)>
+      <Styled(Text)>
+        12.05
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-Avg total volume"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
+        style={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Avg total volume
+      </Styled(H3)>
+      <Styled(Text)>
+        4,866,120
+      </Styled(Text)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      key="keyStat-Volume"
+      style={
+        Object {
+          "flexBasis": "50%",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(H3)
+        style={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Volume
+      </Styled(H3)>
+      <Styled(Text)>
+        2,865,320
+      </Styled(Text)>
     </Styled(ViewNB)>
   </Styled(ViewNB)>
 </Styled(ViewNB)>
