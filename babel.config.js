@@ -1,6 +1,13 @@
 module.exports = {
-  presets: ['module:metro-react-native-babel-preset', 'module:react-native-dotenv'],
+  presets: ['module:metro-react-native-babel-preset'],
   plugins: [
+    [
+      'dotenv-import',
+      {
+        moduleName: '@env',
+        path: '.env',
+      },
+    ],
     [
       'module-resolver',
       {
