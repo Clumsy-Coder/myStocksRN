@@ -7,7 +7,7 @@ import createSagaMiddleware from 'redux-saga';
 import AsyncStorage from '@react-native-community/async-storage';
 import { persistStore, persistReducer, PersistConfig } from 'redux-persist';
 
-import { BUILD_VERSION } from 'react-native-dotenv';
+import { BUILD_VERSION } from '@env';
 import rootReducer, { AppState, AppActions } from 'src/redux/index.reducers';
 import rootSaga from 'src/redux/index.sagas';
 

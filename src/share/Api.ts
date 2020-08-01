@@ -1,7 +1,7 @@
 import buildUrl from 'build-url';
 import axios, { AxiosResponse } from 'axios';
 
-import { API_KEY } from 'react-native-dotenv';
+import { API_KEY } from '@env';
 import { API_URL } from 'src/share/Constants';
 import { DataDomain } from 'src/redux/Stocks/Types';
 
