@@ -47,6 +47,7 @@ describe('<Home />', () => {
   const props = {
     selectedStockQuoteTrim,
     fetchQuoteBatch: jest.fn(),
+    fetchSymbolsMeta: jest.fn(),
   };
 
   const testID = 'stocks-home-list';
