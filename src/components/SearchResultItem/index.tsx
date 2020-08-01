@@ -7,6 +7,11 @@ import { NavigationRoutePath, StockDetailsNavigationProp } from '@routes/Types';
 
 interface Props {
   data: DataDomain.Symbols;
+  /**
+   * function used for fetching Stock Quote. Check src/Containers/SearchBar/index.tsx .
+   * The stock quote needs to be fetched before rendering data in StockDetails screen.
+   * Or it will crash.
+   */
   onPress: () => void;
 }
 
