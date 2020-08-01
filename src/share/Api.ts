@@ -1,6 +1,7 @@
 import buildUrl from 'build-url';
 import axios, { AxiosResponse } from 'axios';
 
+// eslint-disable-next-line import/no-unresolved
 import { API_KEY } from '@env';
 import { API_URL } from 'src/share/Constants';
 import { DataDomain } from 'src/redux/Stocks/Types';
