@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { call, put, all, takeEvery, takeLatest, select } from 'redux-saga/effects';
+import { AxiosResponse } from 'axios';
 
 import * as stocksActions from 'src/redux/Stocks/Actions';
 import * as api from '@share/Api';
-import { ActionTypes, Actions } from 'src/redux/Stocks/Types';
+import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 import { selectFavoriteSymbols } from 'src/redux/Favorites/Selectors';
 import { Reducer as FavoritesReducer } from 'src/redux/Favorites/Types';
 
@@ -53,12 +55,27 @@ export function* fetchStockChartSaga(action: Actions.Chart.FetchAction) {
  * @param action - Fetch stock quote batch action
  */
 export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction) {
-  // dispatch fetchStockQuote for all stock symbols in Favorites
-
   try {
     const stockSymbols: string[] = yield select(selectFavoriteSymbols);
-    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuote(stock))));
-  } catch (error) {}
+    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuotePending(stock))));
+
+    const response: AxiosResponse<DataDomain.QuoteBatch> = yield call(
+      api.fetchStockQuoteBatchUrl,
+      stockSymbols,
+    );
+    const { data } = response;
+
+    yield all(
+      stockSymbols.map((stock) =>
+        put(stocksActions.fetchStockQuoteFulfilled(stock, data[stock].quote)),
+      ),
+    );
+  } catch (error) {
+    const stockSymbols: string[] = yield select(selectFavoriteSymbols);
+    yield all(
+      stockSymbols.map((stock) => put(stocksActions.fetchStockQuoteRejected(stock, error))),
+    );
+  }
 }
 
 // /**

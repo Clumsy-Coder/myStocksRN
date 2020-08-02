@@ -1,4 +1,4 @@
-import { runSaga } from 'redux-saga';
+import { runSaga, Saga } from 'redux-saga';
 import sinon from 'sinon';
 import { AxiosResponse } from 'axios';
 import { takeEvery, takeLatest } from 'redux-saga/effects';
@@ -15,6 +15,7 @@ import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 import * as actions from 'src/redux/Stocks/Actions';
 import * as api from '@share/Api';
 import { AppState } from 'src/redux/index.reducers';
+import * as favoritesSelector from '@redux/Favorites/Selectors';
 
 import * as testdata from 'jest.testdata';
 
@@ -238,22 +239,101 @@ describe('Stocks Saga', () => {
     });
 
     describe('Saga', () => {
-      it('Should dispatch action to fetch Stock quote for every stock symbol', async () => {
-        const rootState: AppState = {
-          ...testdata.baseAppState,
-          Favorites: {
-            symbols: [testdata.stockSymbol1, testdata.stockSymbol2, testdata.stockSymbol3],
-          },
+      it('Should load and handle Stock quote batch data in case of success', async () => {
+        const dispatchedActions: Actions.StocksActions[] = [];
+        const fakeStore = {
+          getState: (): AppState => ({
+            ...testdata.baseAppState,
+            Favorites: {
+              symbols: [testdata.stockSymbol1, testdata.stockSymbol2, testdata.stockSymbol3],
+            },
+          }),
+          dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
         };
 
-        return expectSaga(fetchStockQuoteBatchSaga, actions.fetchStockQuoteBatch())
-          .withState(rootState)
-          .put(actions.fetchStockQuote(testdata.stockSymbol1))
-          .put(actions.fetchStockQuote(testdata.stockSymbol2))
-          .put(actions.fetchStockQuote(testdata.stockSymbol3))
-          .dispatch(actions.fetchStockQuoteBatch())
-          .silentRun()
-          .then((result) => expect(result.toJSON()).toMatchSnapshot());
+        const promiseResponse: AxiosResponse<DataDomain.QuoteBatch> = {
+          data: {
+            [testdata.stockSymbol1]: {
+              quote: testdata.stockQuoteData1,
+            },
+            [testdata.stockSymbol2]: {
+              quote: testdata.stockQuoteData2,
+            },
+            [testdata.stockSymbol3]: {
+              quote: testdata.stockQuoteData3,
+            },
+          },
+          headers: {},
+          status: 200,
+          statusText: '',
+          request: {},
+          config: {},
+        };
+
+        const stub = sinon
+          .stub(api, 'fetchStockQuoteBatchUrl')
+          .returns(Promise.resolve(promiseResponse));
+        await runSaga(
+          fakeStore,
+          <Saga<any[]>>fetchStockQuoteBatchSaga,
+          actions.fetchStockQuoteBatch(),
+        );
+
+        expect(stub.calledOnce).toBe(true);
+        expect(dispatchedActions.length).toEqual(6);
+        expect(dispatchedActions[0]).toEqual(actions.fetchStockQuotePending(testdata.stockSymbol1));
+        expect(dispatchedActions[1]).toEqual(actions.fetchStockQuotePending(testdata.stockSymbol2));
+        expect(dispatchedActions[2]).toEqual(actions.fetchStockQuotePending(testdata.stockSymbol3));
+        expect(dispatchedActions[3]).toEqual(
+          actions.fetchStockQuoteFulfilled(testdata.stockSymbol1, testdata.stockQuoteData1),
+        );
+        expect(dispatchedActions[4]).toEqual(
+          actions.fetchStockQuoteFulfilled(testdata.stockSymbol2, testdata.stockQuoteData2),
+        );
+        expect(dispatchedActions[5]).toEqual(
+          actions.fetchStockQuoteFulfilled(testdata.stockSymbol3, testdata.stockQuoteData3),
+        );
+
+        stub.restore(); // important: do NOT remove
+      });
+
+      it('Should load and handle Stock quote batch data in case of failure', async () => {
+        const dispatchedActions: Actions.StocksActions[] = [];
+        const fakeStore = {
+          getState: (): AppState => ({
+            ...testdata.baseAppState,
+            Favorites: {
+              symbols: [testdata.stockSymbol1, testdata.stockSymbol2, testdata.stockSymbol3],
+            },
+          }),
+          dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
+        };
+
+        const stub = sinon
+          .stub(api, 'fetchStockQuoteBatchUrl')
+          .returns(Promise.reject(new Error('')));
+        await runSaga(
+          fakeStore,
+          <Saga<any[]>>fetchStockQuoteBatchSaga,
+          actions.fetchStockQuoteBatch(),
+        );
+
+        expect(stub.calledOnce).toBe(true);
+        expect(dispatchedActions.length).toEqual(6);
+        expect(dispatchedActions[0]).toEqual(actions.fetchStockQuotePending(testdata.stockSymbol1));
+        expect(dispatchedActions[1]).toEqual(actions.fetchStockQuotePending(testdata.stockSymbol2));
+        expect(dispatchedActions[2]).toEqual(actions.fetchStockQuotePending(testdata.stockSymbol3));
+        expect(dispatchedActions[3]).toEqual(
+          actions.fetchStockQuoteRejected(testdata.stockSymbol1, new Error('')),
+        );
+        expect(dispatchedActions[4]).toEqual(
+          actions.fetchStockQuoteRejected(testdata.stockSymbol2, new Error('')),
+        );
+        expect(dispatchedActions[5]).toEqual(
+          actions.fetchStockQuoteRejected(testdata.stockSymbol3, new Error('')),
+        );
+
+        stub.restore(); // important: do NOT remove
       });
     });
   });

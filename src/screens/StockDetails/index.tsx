@@ -76,6 +76,7 @@ class StockDetailsScreen extends React.Component<Props, State> {
     const { route, fetchChart } = this.props;
     const { chartRange } = this.state;
 
+    fetchChart(route.params.symbol, chartRange); // setInterval won't fetch chart. It will wait until time runs out.
     this.fetchChartInterval = setInterval(
       fetchChart.bind(this, route.params.symbol, chartRange),
       this.fetchChartIntervalTimeout * 1000,
