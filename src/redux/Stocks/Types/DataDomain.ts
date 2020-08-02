@@ -357,3 +357,14 @@ export const chartFilter: (keyof Chart)[] = [
  * A union of Stocks data domain types
  */
 export type StocksDataDomain = Quote | Chart;
+
+/**
+ * Data structure when fetching Stock quote for multiple stock symbols in a single batch.
+ *
+ * https://iexcloud.io/docs/api/#batch-requests
+ */
+export interface QuoteBatch {
+  [symbol: string]: {
+    quote: Quote[];
+  };
+}
