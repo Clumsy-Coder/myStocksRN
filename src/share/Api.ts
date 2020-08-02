@@ -57,3 +57,25 @@ export const fetchSymbolsMetadataUrl = (): Promise<AxiosResponse<DataDomain.Symb
       },
     }),
   );
+
+/**
+ * Fetch stock quote data for multiple stock symbols.
+ * Check https://iexcloud.io/docs/api/#batch-requests
+ *
+ * @param symbols - company stock symbols. Ex: AAPL, GOOGL
+ * @param range - The range of the data to fetch. Ex: 5y
+ */
+export const fetchStockChartBatchUrl = (
+  symbols: string[],
+): Promise<AxiosResponse<DataDomain.QuoteBatch>> =>
+  axios.get(
+    buildUrl(API_URL, {
+      path: `stock/market/batch`,
+      queryParams: {
+        displayPercent: 'true',
+        types: ['quote'],
+        symbols,
+        token: API_KEY,
+      },
+    }),
+  );
