@@ -365,6 +365,6 @@ export type StocksDataDomain = Quote | Chart;
  */
 export interface QuoteBatch {
   [symbol: string]: {
-    quote: Quote[];
+    quote: Quote;
   };
 }
