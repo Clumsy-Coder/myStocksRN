@@ -21,6 +21,7 @@ module.exports = {
     '!./coverage/**',
     '!.eslintrc.js',
     '!.prettierrc.js',
+    '!index.js',
   ],
   // coverageDirectory: './test-results/coverage/',
   coverageReporters: ['text', 'text-summary', 'lcov', 'clover', 'json'],
