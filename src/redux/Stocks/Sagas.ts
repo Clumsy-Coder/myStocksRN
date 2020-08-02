@@ -72,7 +72,9 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
     );
   } catch (error) {
     const stockSymbols: string[] = yield select(selectFavoriteSymbols);
-    yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuoteRejected(stock))));
+    yield all(
+      stockSymbols.map((stock) => put(stocksActions.fetchStockQuoteRejected(stock, error))),
+    );
   }
 }
 
