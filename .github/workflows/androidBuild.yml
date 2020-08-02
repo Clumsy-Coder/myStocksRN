@@ -10,6 +10,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
@@ -26,6 +27,7 @@ jobs:
   lint:
     needs: install
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
@@ -42,6 +44,7 @@ jobs:
   test:
     needs: install
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
@@ -77,6 +80,7 @@ jobs:
   build:
     needs: install
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
