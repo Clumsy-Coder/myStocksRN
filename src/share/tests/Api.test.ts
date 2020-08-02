@@ -100,33 +100,33 @@ describe('Fetch data functions', () => {
   //   });
   // });
 
-  // describe('fetchStockQuoteBatchUrl', () => {
-  //   it('Should return a Promise', async () => {
-  //     const promiseResponse: AxiosResponse<StockQuoteBatch> = {
-  //       headers: {},
-  //       status: 200,
-  //       statusText: '',
-  //       request: {},
-  //       config: {},
-  //       data: {
-  //         SHOP: {
-  //           quote: testdata.stockQuoteData2,
-  //         },
-  //         AAPL: {
-  //           quote: testdata.stockQuoteData1,
-  //         },
-  //       },
-  //     };
+  describe('fetchStockQuoteBatchUrl', () => {
+    it('Should return a Promise', async () => {
+      const promiseResponse: AxiosResponse<DataDomain.QuoteBatch> = {
+        headers: {},
+        status: 200,
+        statusText: '',
+        request: {},
+        config: {},
+        data: {
+          [testdata.stockSymbol1]: {
+            quote: testdata.stockQuoteData1,
+          },
+          [testdata.stockSymbol2]: {
+            quote: testdata.stockQuoteData2,
+          },
+        },
+      };
 
-  //     mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
-  //     await expect(api.fetchStockQuoteBatchUrl(['SHOP', 'AAPL'])).resolves.toEqual(promiseResponse);
-  //   });
+      mockedAxios.get.mockReturnValue(Promise.resolve(promiseResponse));
+      await expect(api.fetchStockQuoteBatchUrl(['IBM', 'AAPL'])).resolves.toEqual(promiseResponse);
+    });
 
-  //   it('Should return Error', async () => {
-  //     mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
-  //     await expect(api.fetchStockQuoteBatchUrl(['SHOP', 'AAPL'])).rejects.toThrow(new Error(''));
-  //   });
-  // });
+    it('Should return Error', async () => {
+      mockedAxios.get.mockReturnValue(Promise.reject(new Error('')));
+      await expect(api.fetchStockQuoteBatchUrl(['IBM', 'AAPL'])).rejects.toThrow(new Error(''));
+    });
+  });
 
   // describe('fetchStockChartBatchUrl', () => {
   //   it('Should return a Promise', async () => {
