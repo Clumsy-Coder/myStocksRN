@@ -1,8 +1,8 @@
 module.exports = {
   preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  verbose: true,
-  collectCoverage: true,
+  verbose: false,
+  collectCoverage: false,
   collectCoverageFrom: [
     '**/*.{js,jsx, ts, tsx}',
     './src/**',
@@ -19,6 +19,9 @@ module.exports = {
     '!./src/**/**/tests/**/*.test.ts.snap',
     '!./src/**/**/tests/**/*.test.ts?.snap',
     '!./coverage/**',
+    '!.eslintrc.js',
+    '!.prettierrc.js',
+    '!index.js',
   ],
   // coverageDirectory: './test-results/coverage/',
   coverageReporters: ['text', 'text-summary', 'lcov', 'clover', 'json'],
