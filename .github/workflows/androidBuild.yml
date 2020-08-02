@@ -1,6 +1,12 @@
 name: Android APK Build
 on: push
 
+env:
+  YARN_MODULES_CACHE_KEY: v1
+  YARN_PACKAGE_CACHE_KEY: v1
+  YARN_CACHE_FOLDER: .cache/yarn
+  FORCE_COLOR: true # display terminal colors
+
 jobs:
   install:
     runs-on: ubuntu-latest
