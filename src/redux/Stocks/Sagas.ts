@@ -60,7 +60,7 @@ export function* fetchStockQuoteBatchSaga(action: Actions.Batch.FetchQuoteAction
     yield all(stockSymbols.map((stock) => put(stocksActions.fetchStockQuotePending(stock))));
 
     const response: AxiosResponse<DataDomain.QuoteBatch> = yield call(
-      api.fetchStockChartBatchUrl,
+      api.fetchStockQuoteBatchUrl,
       stockSymbols,
     );
     const { data } = response;

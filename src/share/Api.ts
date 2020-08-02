@@ -65,7 +65,7 @@ export const fetchSymbolsMetadataUrl = (): Promise<AxiosResponse<DataDomain.Symb
  * @param symbols - company stock symbols. Ex: AAPL, GOOGL
  * @param range - The range of the data to fetch. Ex: 5y
  */
-export const fetchStockChartBatchUrl = (
+export const fetchStockQuoteBatchUrl = (
   symbols: string[],
 ): Promise<AxiosResponse<DataDomain.QuoteBatch>> =>
   axios.get(
