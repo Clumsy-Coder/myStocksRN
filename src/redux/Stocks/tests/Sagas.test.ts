@@ -15,6 +15,7 @@ import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 import * as actions from 'src/redux/Stocks/Actions';
 import * as api from '@share/Api';
 import { AppState } from 'src/redux/index.reducers';
+import * as favoritesSelector from '@redux/Favorites/Selectors';
 
 import * as testdata from 'jest.testdata';
 
@@ -238,7 +239,7 @@ describe('Stocks Saga', () => {
     });
 
     describe('Saga', () => {
-      it('Should dispatch action to fetch Stock quote for every stock symbol', async () => {
+      it('Should dispatch action to fetch Stock quote pending for every stock symbol', async () => {
         const rootState: AppState = {
           ...testdata.baseAppState,
           Favorites: {
@@ -248,9 +249,15 @@ describe('Stocks Saga', () => {
 
         return expectSaga(fetchStockQuoteBatchSaga, actions.fetchStockQuoteBatch())
           .withState(rootState)
-          .put(actions.fetchStockQuote(testdata.stockSymbol1))
-          .put(actions.fetchStockQuote(testdata.stockSymbol2))
-          .put(actions.fetchStockQuote(testdata.stockSymbol3))
+          .select(favoritesSelector.selectFavoriteSymbols)
+          .put(actions.fetchStockQuotePending(testdata.stockSymbol1))
+          .put(actions.fetchStockQuotePending(testdata.stockSymbol2))
+          .put(actions.fetchStockQuotePending(testdata.stockSymbol3))
+          .call(api.fetchStockChartBatchUrl, [
+            testdata.stockSymbol1,
+            testdata.stockSymbol2,
+            testdata.stockSymbol3,
+          ])
           .dispatch(actions.fetchStockQuoteBatch())
           .silentRun()
           .then((result) => expect(result.toJSON()).toMatchSnapshot());

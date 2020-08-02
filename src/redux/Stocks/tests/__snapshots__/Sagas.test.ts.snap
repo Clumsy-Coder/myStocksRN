@@ -1,20 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Stocks Saga Stock quote batch saga Saga Should dispatch action to fetch Stock quote for every stock symbol 1`] = `
-Object {
-  "select": Array [
-    Object {
-      "@@redux-saga/IO": true,
-      "combinator": false,
-      "payload": Object {
-        "args": Array [],
-        "selector": "@@redux-saga-test-plan/json/function/<anonymous>",
-      },
-      "type": "SELECT",
-    },
-  ],
-}
-`;
+exports[`Stocks Saga Stock quote batch saga Saga Should dispatch action to fetch Stock quote pending for every stock symbol 1`] = `Object {}`;
 
 exports[`Stocks Saga Stocks quote watcher Should fire on STOCKS/FETCH_STOCK_QUOTE action in case failure 1`] = `
 Object {
