@@ -19,6 +19,8 @@ module.exports = {
     '!./src/**/**/tests/**/*.test.ts.snap',
     '!./src/**/**/tests/**/*.test.ts?.snap',
     '!./coverage/**',
+    '!.eslintrc.js',
+    '!.prettierrc.js',
   ],
   // coverageDirectory: './test-results/coverage/',
   coverageReporters: ['text', 'text-summary', 'lcov', 'clover', 'json'],
