@@ -1,7 +1,7 @@
 module.exports = {
   preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  verbose: true,
+  verbose: false,
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.{js,jsx, ts, tsx}',
