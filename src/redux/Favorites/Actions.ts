@@ -2,8 +2,6 @@ import { ActionCreator } from 'redux';
 
 import { ActionTypes, Actions } from 'src/redux/Favorites/Types';
 
-import { DataDomain as StocksDataDomain } from 'src/redux/Stocks/Types';
-
 /**
  * Add stock to Favorites action creator.
  * @param stockSymbol - Stock symbol in uppercase. Ex: AAPL

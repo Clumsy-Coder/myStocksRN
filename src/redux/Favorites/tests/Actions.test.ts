@@ -1,5 +1,5 @@
 import * as actions from 'src/redux/Favorites/Actions';
-import { ActionTypes, Reducer } from 'src/redux/Favorites/Types';
+import { ActionTypes } from 'src/redux/Favorites/Types';
 
 import * as testdata from 'jest.testdata';
 

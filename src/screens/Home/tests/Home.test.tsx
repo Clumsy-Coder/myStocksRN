@@ -1,17 +1,14 @@
 import 'react-native';
 import React from 'react';
 import { shallow } from 'enzyme';
-import configureStore from 'redux-mock-store';
 
 import { Home, mapStateToProps, mapDispatchToProps } from 'src/screens/Home';
 import StockCard from 'src/components/StockCard';
 import { AppState } from 'src/redux/index.reducers';
-import { Reducer, DataDomain, Selectors } from 'src/redux/Stocks/Types';
+import { Selectors } from 'src/redux/Stocks/Types';
 import { fetchStockQuoteBatch } from 'src/redux/Stocks/Actions';
 
 import * as testdata from 'jest.testdata';
-
-const configureMockStore = configureStore<AppState>();
 
 describe('<Home />', () => {
   const selectedStockQuoteTrim: Selectors.SelectQuoteTrim[] = [

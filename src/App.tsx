@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from 'src/redux/store';
 import HomeNavigator from 'src/routes/AppRoutes';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

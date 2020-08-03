@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container, Content } from 'native-base';
 
-import SearchBar from '@containers/SearchBar';
+import SearchBarHeader from '@containers/SearchBar';
 
 const SearchScreen: React.FC = () => (
   <Container>
     <Content>
-      <SearchBar />
+      <SearchBarHeader />
     </Content>
   </Container>
 );
