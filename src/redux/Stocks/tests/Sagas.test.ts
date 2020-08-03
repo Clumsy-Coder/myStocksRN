@@ -15,7 +15,6 @@ import { ActionTypes, Actions, DataDomain } from 'src/redux/Stocks/Types';
 import * as actions from 'src/redux/Stocks/Actions';
 import * as api from '@share/Api';
 import { AppState } from 'src/redux/index.reducers';
-import * as favoritesSelector from '@redux/Favorites/Selectors';
 
 import * as testdata from 'jest.testdata';
 
@@ -275,6 +274,7 @@ describe('Stocks Saga', () => {
           .returns(Promise.resolve(promiseResponse));
         await runSaga(
           fakeStore,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           <Saga<any[]>>fetchStockQuoteBatchSaga,
           actions.fetchStockQuoteBatch(),
         );
@@ -314,6 +314,7 @@ describe('Stocks Saga', () => {
           .returns(Promise.reject(new Error('')));
         await runSaga(
           fakeStore,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           <Saga<any[]>>fetchStockQuoteBatchSaga,
           actions.fetchStockQuoteBatch(),
         );
