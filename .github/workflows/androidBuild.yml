@@ -66,18 +66,17 @@ jobs:
       - name: Test project
         run: yarn test --maxWorkers=2 --ci --coverage
 
-      # - name: Archive test results
-      #   if: ${{ contains(github.ref, 'master') }}
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: test-results
-      #     path: test-results/test-report.html
-      # - name: Archive code coverage
-      #   if: ${{ contains(github.ref, 'master') }}
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: code-coverage
-      #     path: coverage/lcov-report/
+      - name: Archive test results
+        uses: actions/upload-artifact@v1
+        with:
+          name: test-results
+          path: test-results/test-report.html
+
+      - name: Archive code coverage
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage
+          path: coverage/lcov-report/
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1.0.7
@@ -137,9 +136,9 @@ jobs:
 
       - name: Build Android APK
         run: yarn build:android:release
-      # - name: Upload Artifact
-      #   if: ${{ contains(github.ref, 'master') }}
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: app-release.apk
-      #     path: android/app/build/outputs/apk/release/
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
