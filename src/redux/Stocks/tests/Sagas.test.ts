@@ -63,7 +63,7 @@ describe('Stocks Saga', () => {
     it('Should load and handle Stock quote data in case of success', async () => {
       const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
-        getState: (): {} => ({}),
+        getState: () => ({}),
         dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
       const promiseResponse: AxiosResponse<DataDomain.Quote> = {
@@ -91,7 +91,7 @@ describe('Stocks Saga', () => {
     it('Should load and handle Stock quote data in case of failure', async () => {
       const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
-        getState: (): {} => ({}),
+        getState: () => ({}),
         dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
 
@@ -113,7 +113,7 @@ describe('Stocks Saga', () => {
     it('Should load and handle Stock Chart data in case of success', async () => {
       const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
-        getState: (): {} => ({}),
+        getState: () => ({}),
         dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
       const promiseResponse: AxiosResponse<DataDomain.Chart[]> = {
@@ -145,7 +145,7 @@ describe('Stocks Saga', () => {
     it('Should load and handle Stock Chart data in case of failure', async () => {
       const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
-        getState: (): {} => ({}),
+        getState: () => ({}),
         dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
 
@@ -171,7 +171,7 @@ describe('Stocks Saga', () => {
     it('Should load and handle Stock Symbols Metadata in case of success', async () => {
       const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
-        getState: (): {} => ({}),
+        getState: () => ({}),
         dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
       const promiseResponse: AxiosResponse<DataDomain.Symbols[]> = {
@@ -207,7 +207,7 @@ describe('Stocks Saga', () => {
     it('Should load and handle Stock Symbols Metadata in case of failure', async () => {
       const dispatchedActions: Actions.StocksActions[] = [];
       const fakeStore = {
-        getState: (): {} => ({}),
+        getState: () => ({}),
         dispatch: (action: Actions.StocksActions): number => dispatchedActions.push(action),
       };
 
