@@ -1,6 +1,5 @@
 import * as selectors from 'src/redux/Favorites/Selectors';
 import { AppState } from 'src/redux/index.reducers';
-import { Reducer } from 'src/redux/Favorites/Types';
 
 import * as testdata from 'jest.testdata';
 
