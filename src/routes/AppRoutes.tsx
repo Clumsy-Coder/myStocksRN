@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import {
   createStackNavigator,
   CardStyleInterpolators,
@@ -33,6 +34,17 @@ interface DispatchProps {
 
 type OwnProps = SelectorProps & DispatchProps;
 
+const styles = StyleSheet.create({
+  blackColor: {
+    color: 'black',
+  },
+  homeHeaderRight: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingTop: 5,
+  },
+});
+
 const Stack = createStackNavigator<RootStackParamList>();
 const HomeStackNavigator: React.FC<OwnProps> = ({
   favoriteSymbols,
@@ -51,12 +63,12 @@ const HomeStackNavigator: React.FC<OwnProps> = ({
       component={HomeScreen}
       options={({ navigation }) => ({
         headerRight: () => (
-          <View style={{ flex: 1, flexDirection: 'row', paddingTop: 5 }}>
+          <View style={styles.homeHeaderRight}>
             <Button transparent onPress={() => navigation.navigate(NavigationRoutePath.Search)}>
-              <Icon name='search' type='MaterialIcons' style={{ color: 'black' }} />
+              <Icon name='search' type='MaterialIcons' style={styles.blackColor} />
             </Button>
             <Button transparent onPress={() => navigation.navigate(NavigationRoutePath.About)}>
-              <Icon name='info' type='MaterialIcons' style={{ color: 'black' }} />
+              <Icon name='info' type='MaterialIcons' style={styles.blackColor} />
             </Button>
           </View>
         ),
@@ -74,13 +86,13 @@ const HomeStackNavigator: React.FC<OwnProps> = ({
           if (favoriteSymbols.find((symbol) => symbol === route.params.symbol) === undefined) {
             return (
               <Button transparent onPress={() => addToFavorites(route.params.symbol)}>
-                <Icon name='star-border' type='MaterialIcons' style={{ color: 'black' }} />
+                <Icon name='star-border' type='MaterialIcons' style={styles.blackColor} />
               </Button>
             );
           } else {
             return (
               <Button transparent onPress={() => removeFromFavorites(route.params.symbol)}>
-                <Icon name='star' type='MaterialIcons' style={{ color: 'black' }} />
+                <Icon name='star' type='MaterialIcons' style={styles.blackColor} />
               </Button>
             );
           }
