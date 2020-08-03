@@ -66,12 +66,12 @@ jobs:
       - name: Test project
         run: yarn test --maxWorkers=2 --ci --coverage
 
-      # - name: Archive test results
-      #   if: ${{ contains(github.ref, 'master') }}
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: test-results
-      #     path: test-results/test-report.html
+      - name: Archive test results
+        if: ${{ contains(github.ref, 'master') }}
+        uses: actions/upload-artifact@v1
+        with:
+          name: test-results
+          path: test-results/test-report.html
       # - name: Archive code coverage
       #   if: ${{ contains(github.ref, 'master') }}
       #   uses: actions/upload-artifact@v1
