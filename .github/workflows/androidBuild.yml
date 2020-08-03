@@ -138,9 +138,10 @@ jobs:
 
       - name: Build Android APK
         run: yarn build:android:release
-      # - name: Upload Artifact
-      #   if: ${{ contains(github.ref, 'master') }}
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: app-release.apk
-      #     path: android/app/build/outputs/apk/release/
+
+      - name: Upload Artifact
+        if: ${{ contains(github.ref, 'master') }}
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
