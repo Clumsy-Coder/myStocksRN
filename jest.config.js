@@ -67,5 +67,4 @@ module.exports = {
     'node_modules/(?!(jest-)?react-native|@?react-navigation|native-base|native-base-[a-z, -]*|victory-*|react-native-vector-icons)',
   ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
-  setupFilesAfterEnv: ['@testing-library/react-native/cleanup-after-each'],
 };
