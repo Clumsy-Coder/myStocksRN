@@ -12,15 +12,6 @@ module.exports = {
             files: ['package.json'],
             from: '"version": ".*"',
             to: '"version": "${nextRelease.version}"',
-            results: [
-              {
-                file: 'package.json',
-                hasChanged: true,
-                numMatches: 1,
-                numReplacements: 1,
-              },
-            ],
-            countMatches: true,
           },
         ],
       },
