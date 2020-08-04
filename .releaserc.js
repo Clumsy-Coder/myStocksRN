@@ -14,14 +14,6 @@ module.exports = {
         ],
       },
     ],
-    [
-      '@semantic-release/exec',
-      {
-        verifyConditionsCmd: 'run-s verify',
-        publishCmd:
-          'run-s "release -- {@}" -- --release=${nextRelease.version} --sha=${nextRelease.gitHead}',
-      },
-    ],
   ],
   analyzeCommits: {
     releaseRules: [
