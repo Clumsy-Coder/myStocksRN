@@ -11,6 +11,7 @@ jobs:
   install:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     steps:
       - uses: actions/checkout@v2
 
@@ -87,7 +88,6 @@ jobs:
   build:
     needs: install
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
 
