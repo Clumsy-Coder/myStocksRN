@@ -9,7 +9,7 @@ module.exports = {
       {
         assets: [
           {
-            path: 'android/app/build/outputs/apk/release/',
+            path: 'android/app/build/outputs/apk/release/app-release.apk',
             label: 'Android APK',
           },
         ],
