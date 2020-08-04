@@ -11,7 +11,7 @@ jobs:
   install:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: "! contains(toJSON(github.event.head_commit.message), '[skip ci]')"
+    if: "! contains(toJSON(github.event.head_commit.message), '[skip ci]')" # skip job if git message contains [skip ci]
     steps:
       - uses: actions/checkout@v2
 
