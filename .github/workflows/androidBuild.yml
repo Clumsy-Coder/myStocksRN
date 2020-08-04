@@ -1,5 +1,10 @@
 name: Android APK Build
-on: push
+on:
+  push:
+  pull_request:
+    types: [closed]
+    branches:
+      - master
 
 env:
   YARN_MODULES_CACHE_KEY: v1
@@ -142,3 +147,30 @@ jobs:
         with:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged && github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
+
+      - name: semantic-release
+        if: github.ref == 'refs/heads/master'
+        run: yarn semantic-release --dry-run ${{github.ref != 'refs/heads/master'}} --ci ${{github.ref == 'refs/heads/master'}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
