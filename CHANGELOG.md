@@ -1,3 +1,11 @@
+### [1.0.1](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.0...1.0.1) (2020-08-04)
+
+
+### Build System
+
+* **deps:** bump @react-navigation/native from 5.7.2 to 5.7.3 ([#195](https://github.com/Clumsy-Coder/myStocksRN/issues/195)) ([f5548f7](https://github.com/Clumsy-Coder/myStocksRN/commit/f5548f73f1d3200bd1d8f6658f112b63ce5529cb))
+* **devDep:** bump @babel/core from 7.11.0 to 7.11.1 ([#196](https://github.com/Clumsy-Coder/myStocksRN/issues/196)) ([9b131c3](https://github.com/Clumsy-Coder/myStocksRN/commit/9b131c3812e16ebad705c380590422eb942bf15f))
+
 ## 1.0.0 (2020-08-04)
 
 
