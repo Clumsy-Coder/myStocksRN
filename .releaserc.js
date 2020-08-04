@@ -5,9 +5,30 @@ module.exports = {
     '@semantic-release/release-notes-generator',
     '@semantic-release/changelog',
     [
+      '@google/semantic-release-replace-plugin',
+      {
+        replacements: [
+          {
+            files: ['package.json'],
+            from: '"version": ".*"',
+            to: '"version": "${nextRelease.version}"',
+            results: [
+              {
+                file: 'package.json',
+                hasChanged: true,
+                numMatches: 1,
+                numReplacements: 1,
+              },
+            ],
+            countMatches: true,
+          },
+        ],
+      },
+    ],
+    [
       '@semantic-release/git',
       {
-        assets: ['CHANGELOG.md'],
+        assets: ['CHANGELOG.md', 'package.json'],
       },
     ],
     [
