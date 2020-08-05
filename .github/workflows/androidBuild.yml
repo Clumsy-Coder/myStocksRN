@@ -131,7 +131,7 @@ jobs:
 
       - name: Generate .ENV file
         run: |
-          printf 'BUILD_VERSION=%s\n' $(echo ${{ github.sha }} | cut -c -7) >> .env
+          printf 'BUILD_VERSION=development\n' >> .env
           printf 'API_KEY=%s\n' '$API_KEY' >> .env
 
       - name: Build Android APK
