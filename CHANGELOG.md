@@ -1,3 +1,10 @@
+### [1.0.4](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.3...1.0.4) (2020-08-05)
+
+
+### Build System
+
+* **npm:** reinstall victory-native v35.0.1 ([#197](https://github.com/Clumsy-Coder/myStocksRN/issues/197)) ([33ab4dd](https://github.com/Clumsy-Coder/myStocksRN/commit/33ab4dd92dc089fab5a608d8e42e6303aac57309))
+
 ### [1.0.3](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.2...1.0.3) (2020-08-05)
 
 
