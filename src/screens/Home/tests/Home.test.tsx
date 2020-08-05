@@ -7,7 +7,7 @@ import { Home, mapStateToProps, mapDispatchToProps } from 'src/screens/Home';
 import StockCard from 'src/components/StockCard';
 import { AppState } from 'src/redux/index.reducers';
 import { Selectors } from 'src/redux/Stocks/Types';
-import { fetchStockQuoteBatch } from 'src/redux/Stocks/Actions';
+import { fetchStockQuoteBatch, fetchSymbolsMetadata } from 'src/redux/Stocks/Actions';
 
 import * as testdata from 'jest.testdata';
 
@@ -189,6 +189,16 @@ describe('<Home />', () => {
 
       expect(dispatch.mock.calls[0].length).toEqual(1);
       expect(dispatch.mock.calls[0][0]).toEqual(fetchStockQuoteBatch());
+    });
+
+    it('fetchSymbolsMeta works properly', () => {
+      const dispatch = jest.fn();
+
+      const dispatchToProps = mapDispatchToProps(dispatch);
+      dispatchToProps.fetchSymbolsMeta();
+
+      expect(dispatch.mock.calls[0].length).toEqual(1);
+      expect(dispatch.mock.calls[0][0]).toEqual(fetchSymbolsMetadata());
     });
   });
 });
