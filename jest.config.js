@@ -21,6 +21,7 @@ module.exports = {
     '!./coverage/**',
     '!.eslintrc.js',
     '!.prettierrc.js',
+    '!.releaserc.js',
     '!index.js',
   ],
   // coverageDirectory: './test-results/coverage/',
