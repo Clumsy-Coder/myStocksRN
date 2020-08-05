@@ -135,7 +135,7 @@ export class StockDetailsScreen extends React.Component<Props, State> {
       <Container style={styles.root}>
         <Content>
           <View>
-            <H1>{data.quote?.companyName}</H1>
+            <H1>{data.quote.companyName}</H1>
           </View>
           <H1 style={styles.price}>{data.quote.latestPrice.toFixed(2)}</H1>
           <LineChartView data={lineChartData} />
