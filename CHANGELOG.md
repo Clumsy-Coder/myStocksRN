@@ -1,3 +1,20 @@
+### [1.0.5](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.4...1.0.5) (2020-08-05)
+
+
+### Bug Fixes
+
+* **github-actions:** use the API_KEY secret correctly ([6dc6412](https://github.com/Clumsy-Coder/myStocksRN/commit/6dc6412f4cfa94c1d5067b0cfb5859c893ff3ba6))
+
+
+### Reverts
+
+* **github-actions:** undo the previous commit bd5d38d0c40b30e7862b71afea5d3bc136b896ce ([9d4f1cb](https://github.com/Clumsy-Coder/myStocksRN/commit/9d4f1cb29da9c499242ce2741124e5ed713b67f0))
+
+
+### Continuous Integration
+
+* **github-actions:** pass 'development' when creating the .env file ([bd5d38d](https://github.com/Clumsy-Coder/myStocksRN/commit/bd5d38d0c40b30e7862b71afea5d3bc136b896ce))
+
 ### [1.0.4](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.3...1.0.4) (2020-08-05)
 
 
