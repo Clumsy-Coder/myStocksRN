@@ -1,3 +1,11 @@
+### [1.0.6](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.5...1.0.6) (2020-08-05)
+
+
+### Build System
+
+* **deps:** bump react-native-screens from 2.9.0 to 2.10.1 ([#199](https://github.com/Clumsy-Coder/myStocksRN/issues/199)) ([8185d55](https://github.com/Clumsy-Coder/myStocksRN/commit/8185d557a4808aaef5e49bde630104a3f03bf199))
+* **devDep:** bump @babel/runtime from 7.11.1 to 7.11.2 ([#200](https://github.com/Clumsy-Coder/myStocksRN/issues/200)) ([6e1ea77](https://github.com/Clumsy-Coder/myStocksRN/commit/6e1ea7784a805eb1135e6c78a568311367a0bb8d))
+
 ### [1.0.5](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.4...1.0.5) (2020-08-05)
 
 
