@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class StockDetailsScreen extends React.Component<Props, State> {
+export class StockDetailsScreen extends React.Component<Props, State> {
   private fetchChartInterval: NodeJS.Timeout | undefined;
 
   private fetchChartIntervalTimeout = 10;
