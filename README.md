@@ -77,6 +77,8 @@ Display Stocks using React Native written in Typescript
 
 # building
 
+Assuming you have environment setup for building the **Android** APK [link](https://reactnative.dev/docs/environment-setup) using **React Native CLI Quickstart**
+
 If you wish to build the app, you need `.env` file that contains **API_KEY** and **BUILD_VERSION**
 
 obtain the api key from [iexcloud](https://iexcloud.io/)
