@@ -1,12 +1,13 @@
 import 'react-native';
 import React from 'react';
 import { shallow } from 'enzyme';
+import { Container, Content, Spinner } from 'native-base';
 
 import { Home, mapStateToProps, mapDispatchToProps } from 'src/screens/Home';
 import StockCard from 'src/components/StockCard';
 import { AppState } from 'src/redux/index.reducers';
 import { Selectors } from 'src/redux/Stocks/Types';
-import { fetchStockQuoteBatch } from 'src/redux/Stocks/Actions';
+import { fetchStockQuoteBatch, fetchSymbolsMetadata } from 'src/redux/Stocks/Actions';
 
 import * as testdata from 'jest.testdata';
 
@@ -41,7 +42,7 @@ describe('<Home />', () => {
     },
   ];
 
-  const props = {
+  const homeProps = {
     selectedStockQuoteTrim,
     fetchQuoteBatch: jest.fn(),
     fetchSymbolsMeta: jest.fn(),
@@ -50,7 +51,9 @@ describe('<Home />', () => {
   const testID = 'stocks-home-list';
 
   it('Should render correctly', () => {
-    const wrapper = shallow(<Home {...props} selectedStockQuoteTrim={selectedStockQuoteTrim} />);
+    const wrapper = shallow(
+      <Home {...homeProps} selectedStockQuoteTrim={selectedStockQuoteTrim} />,
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -58,7 +61,9 @@ describe('<Home />', () => {
   it.skip('Should call fetchStockQuoteBatch in componentDidMount', () => {});
 
   it('Should render StockCard components', () => {
-    const wrapper = shallow(<Home {...props} selectedStockQuoteTrim={selectedStockQuoteTrim} />);
+    const wrapper = shallow(
+      <Home {...homeProps} selectedStockQuoteTrim={selectedStockQuoteTrim} />,
+    );
     const stockList = wrapper.find({ testID });
 
     expect(stockList.children().length).toEqual(3);
@@ -71,6 +76,54 @@ describe('<Home />', () => {
     expect(stockList.childAt(2).equals(<StockCard data={selectedStockQuoteTrim[2]} />)).toEqual(
       true,
     );
+  });
+
+  it('Should render spinner when loading data', () => {
+    const props = {
+      selectedStockQuoteTrim: [
+        {
+          fetching: false,
+          companyName: testdata.stockQuoteData1.companyName,
+          symbol: testdata.stockSymbol1,
+          price: testdata.stockQuoteData1.latestPrice,
+          changePercent: testdata.stockQuoteData1.changePercent,
+          change: testdata.stockQuoteData1.change,
+          currency: testdata.symbolsMetadata1.currency,
+        },
+        {
+          fetching: true,
+          companyName: testdata.stockQuoteData2.companyName,
+          symbol: testdata.stockSymbol2,
+          price: testdata.stockQuoteData2.latestPrice,
+          changePercent: testdata.stockQuoteData2.changePercent,
+          change: testdata.stockQuoteData2.change,
+          currency: testdata.symbolsMetadata2.currency,
+        },
+        {
+          fetching: false,
+          companyName: testdata.stockQuoteData3.companyName,
+          symbol: testdata.stockSymbol3,
+          price: testdata.stockQuoteData3.latestPrice,
+          changePercent: testdata.stockQuoteData3.changePercent,
+          change: testdata.stockQuoteData3.change,
+          currency: testdata.symbolsMetadata3.currency,
+        },
+      ],
+      fetchQuoteBatch: jest.fn(),
+      fetchSymbolsMeta: jest.fn(),
+    };
+
+    const wrapper = shallow(<Home {...props} />);
+
+    expect(
+      wrapper.equals(
+        <Container style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
+          <Content>
+            <Spinner />
+          </Content>
+        </Container>,
+      ),
+    ).toEqual(true);
   });
 
   describe('mapStateToProps', () => {
@@ -136,6 +189,16 @@ describe('<Home />', () => {
 
       expect(dispatch.mock.calls[0].length).toEqual(1);
       expect(dispatch.mock.calls[0][0]).toEqual(fetchStockQuoteBatch());
+    });
+
+    it('fetchSymbolsMeta works properly', () => {
+      const dispatch = jest.fn();
+
+      const dispatchToProps = mapDispatchToProps(dispatch);
+      dispatchToProps.fetchSymbolsMeta();
+
+      expect(dispatch.mock.calls[0].length).toEqual(1);
+      expect(dispatch.mock.calls[0][0]).toEqual(fetchSymbolsMetadata());
     });
   });
 });

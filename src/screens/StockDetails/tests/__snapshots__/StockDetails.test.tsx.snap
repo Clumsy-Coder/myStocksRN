@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StockDetailsScreen /> Renders correctly 1`] = `
+<Styled(Container)
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "padding": 10,
+    }
+  }
+>
+  <Styled(Content)>
+    <Styled(ViewNB)>
+      <Styled(H1)>
+        International Business Machines Corp.
+      </Styled(H1)>
+    </Styled(ViewNB)>
+    <Styled(H1)
+      style={
+        Object {
+          "fontSize": 40,
+          "fontWeight": "bold",
+          "paddingTop": 20,
+        }
+      }
+    >
+      122.47
+    </Styled(H1)>
+    <LineChartView
+      data={
+        Array [
+          Object {
+            "date": "2020-06-12",
+            "price": 121.91,
+          },
+          Object {
+            "date": "2020-06-15",
+            "price": 121.65,
+          },
+        ]
+      }
+    />
+    <Styled(ViewNB)
+      style={
+        Object {
+          "flex": 1,
+          "flexBasis": "100%",
+          "flexDirection": "row",
+          "flexGrow": 1,
+          "flexWrap": "nowrap",
+          "justifyContent": "space-between",
+          "paddingBottom": 10,
+        }
+      }
+    >
+      <Styled(Button)
+        bordered={true}
+        key="chartRange-5D"
+        onPress={[Function]}
+      >
+        <Styled(Text)>
+          5D
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        key="chartRange-1M"
+        onPress={[Function]}
+      >
+        <Styled(Text)>
+          1M
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        bordered={true}
+        key="chartRange-6M"
+        onPress={[Function]}
+      >
+        <Styled(Text)>
+          6M
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        bordered={true}
+        key="chartRange-YTD"
+        onPress={[Function]}
+      >
+        <Styled(Text)>
+          YTD
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        bordered={true}
+        key="chartRange-1Y"
+        onPress={[Function]}
+      >
+        <Styled(Text)>
+          1Y
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        bordered={true}
+        key="chartRange-5Y"
+        onPress={[Function]}
+      >
+        <Styled(Text)>
+          5Y
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
+        bordered={true}
+        key="chartRange-MAX"
+        onPress={[Function]}
+      >
+        <Styled(Text)>
+          MAX
+        </Styled(Text)>
+      </Styled(Button)>
+    </Styled(ViewNB)>
+    <StocksKeyStats
+      data={
+        Object {
+          "avgTotalVolume": 4866120,
+          "change": -1.69,
+          "changePercent": -1.361,
+          "close": 130,
+          "companyName": "International Business Machines Corp.",
+          "extendedChange": 2,
+          "extendedChangePercent": 0.1,
+          "extendedPrice": 120,
+          "high": 140,
+          "latestPrice": 122.47,
+          "latestTime": "June 19, 2020",
+          "latestUpdate": 1592596802601,
+          "latestVolume": 2865362,
+          "low": 100,
+          "marketCap": 108740133240,
+          "open": 110,
+          "peRatio": 12.05,
+          "previousClose": 124.16,
+          "previousVolume": 2865362,
+          "primaryExchange": "New York Stock Exchange",
+          "symbol": "IBM",
+          "volume": 2865320,
+          "week52High": 158.75,
+          "week52Low": 90.56,
+          "ytdChange": -9.6759,
+        }
+      }
+    />
+  </Styled(Content)>
+</Styled(Container)>
+`;
