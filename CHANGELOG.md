@@ -1,3 +1,29 @@
+### [1.0.7](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.6...1.0.7) (2020-08-06)
+
+
+### Code Refactoring
+
+* **stockdetails:** export non-connected component ([b9ec68c](https://github.com/Clumsy-Coder/myStocksRN/commit/b9ec68caf0b93cce63e1cd54286b74e5de225ae9))
+* **stockdetails:** remove '?' when using companyName object ([14a08ba](https://github.com/Clumsy-Coder/myStocksRN/commit/14a08baebcb1469e9940ee63e8b584e0d3b92e96))
+
+
+### Miscellaneous Chores
+
+* **config:** ignore testing .releaserc.js file ([cd349df](https://github.com/Clumsy-Coder/myStocksRN/commit/cd349df9a8b36cefe9e5d10795a9035e93bb3d8e))
+
+
+### Tests
+
+* **screen:** add tests for StockDetails screen ([45376e4](https://github.com/Clumsy-Coder/myStocksRN/commit/45376e4d531c302baf58860590ab598ac99559b8))
+* **screen:** test 'fetchSymbolMeta' dispatch in <Home /> screen component ([12fb89d](https://github.com/Clumsy-Coder/myStocksRN/commit/12fb89de6bfb1704172c7ab7855490263a55d840))
+* **screen:** test loading spinner for <Home /> screen component ([51bf88a](https://github.com/Clumsy-Coder/myStocksRN/commit/51bf88a82379b9155b2c18e82ffad39e968303e1))
+* **utilities:** add test for 'filterSearch' utility function ([d1e90c0](https://github.com/Clumsy-Coder/myStocksRN/commit/d1e90c0c6024f63a63edc7b3fed9ed1b431d358c))
+
+
+### Build System
+
+* **devDep:** bump @types/jest from 26.0.8 to 26.0.9 ([#202](https://github.com/Clumsy-Coder/myStocksRN/issues/202)) ([ad40a6d](https://github.com/Clumsy-Coder/myStocksRN/commit/ad40a6d864ef2968544f506f88f56685e11c3685))
+
 ### [1.0.6](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.5...1.0.6) (2020-08-05)
 
 
