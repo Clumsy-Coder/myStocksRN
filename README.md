@@ -8,11 +8,22 @@
 
 Display Stocks using React Native written in Typescript
 
+# Screenshots
+
+![home-screen-stocks](docs/assets/home-screen-stocks.jpg)
+
+![search-screen-results](docs/assets/search-screen-results.jpg)
+
+![stock-details-1m](docs/assets/stock-details-1m.jpg)
+
+![stock-details-ytd](docs/assets/stock-details-ytd.jpg)
+
 ---
 
 <!-- TOC -->
 
 - [myStocksRN](#mystocksrn)
+- [Screenshots](#screenshots)
 - [npm scripts](#npm-scripts)
   - [common used scripts](#common-used-scripts)
 
