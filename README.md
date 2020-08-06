@@ -35,6 +35,8 @@ Display Stocks using React Native written in Typescript
     - [Release](#release)
       - [Android release keystore](#android-release-keystore)
       - [Gradle variables](#gradle-variables)
+- [Developer notes](#developer-notes)
+  - [Tools used in the project](#tools-used-in-the-project)
 
 <!-- /TOC -->
 
@@ -152,3 +154,46 @@ RELEASE_KEY_STORE_PASSWORD=<android release keystore password>
 **IMPORTANT**
 
 **DON'T** commit `release.keystore` and `release-keystore.properties` file to git.
+
+---
+
+# Developer notes
+
+## Tools used in the project
+
+Developing
+
+- [Redux](https://redux.js.org/)
+- [Redux saga](https://redux-saga.js.org/)
+- [reselect](https://github.com/reduxjs/reselect)
+- [re-reselect](https://github.com/toomuchdesign/re-reselect)
+- [react-navigation](https://reactnavigation.org/)
+- [axios](https://github.com/axios/axios)
+- [native-base](https://nativebase.io/)
+- [redux-persist](https://github.com/rt2zz/redux-persist)
+- [victory-native](https://formidable.com/open-source/victory/)
+- [react-native-dotenv](https://github.com/goatandsheep/react-native-dotenv)
+
+Testing
+
+- [jest](https://jestjs.io/)
+- [enzyme](https://enzymejs.github.io/enzyme/)
+- [sinon](https://sinonjs.org/)
+- [ts-jest](https://kulshekhar.github.io/ts-jest/)
+
+CI/CD
+
+- [semantic release](https://semantic-release.gitbook.io/semantic-release/)
+- [github-actions](https://github.com/features/actions)
+- [~~circleci~~](https://circleci.com/)
+- [fastlane](https://fastlane.tools/)
+
+Miscellaneous
+
+- [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- [commitizen](https://github.com/commitizen/cz-cli)
+- [husky](https://github.com/typicode/husky)
+- [redux-logger](https://github.com/LogRocket/redux-logger)
+- [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools)
+- [eslint](https://eslint.org/)
+- [prettier](https://prettier.io/)
