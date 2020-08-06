@@ -1,3 +1,10 @@
+### [1.0.8](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.7...1.0.8) (2020-08-06)
+
+
+### Build System
+
+* **devDep:** bump @types/lodash from 4.14.158 to 4.14.159 ([#203](https://github.com/Clumsy-Coder/myStocksRN/issues/203)) ([8008236](https://github.com/Clumsy-Coder/myStocksRN/commit/80082360312ad7f17b328dba8d75263b4e77b803))
+
 ### [1.0.7](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.6...1.0.7) (2020-08-06)
 
 
