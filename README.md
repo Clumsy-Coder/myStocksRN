@@ -10,13 +10,24 @@ Display Stocks using React Native written in Typescript
 
 # Screenshots
 
-![home-screen-stocks](docs/assets/home-screen-stocks.jpg)
+<!-- ![home-screen-stocks-short](docs/assets/home-screen-stocks-short.jpg)
 
 ![search-screen-results](docs/assets/search-screen-results.jpg)
 
 ![stock-details-1m](docs/assets/stock-details-1m.jpg)
 
-![stock-details-ytd](docs/assets/stock-details-ytd.jpg)
+![stock-details-ytd](docs/assets/stock-details-ytd.jpg) -->
+
+<table>
+  <tr>
+    <td><img src="docs/assets/home-screen-stocks-short.jpg" alt=""></td>
+    <td><img src="docs/assets/search-screen-results.jpg" alt=""></td>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/stock-details-1m.jpg" alt=""></td>
+    <td><img src="docs/assets/stock-details-ytd.jpg" alt=""></td>
+  </tr>
+</table>
 
 ---
 
