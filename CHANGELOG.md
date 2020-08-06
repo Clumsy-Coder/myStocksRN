@@ -1,3 +1,22 @@
+### [1.0.9](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.8...1.0.9) (2020-08-06)
+
+
+### Documentation
+
+* **readme:** add a note when building Android APK ([2617874](https://github.com/Clumsy-Coder/myStocksRN/commit/261787418b29b2d4d2fddac74968486e2aeec272))
+* **readme:** add app screenshots to readme ([66b2908](https://github.com/Clumsy-Coder/myStocksRN/commit/66b29086c836ec8628ce58e1002fbdf64c6b7c03))
+* **readme:** add docs about npm scripts ([b3303f0](https://github.com/Clumsy-Coder/myStocksRN/commit/b3303f05dd12a16cadfce00a5a8e1984092ae73b))
+* **readme:** add docs on building the android app ([0fb36c4](https://github.com/Clumsy-Coder/myStocksRN/commit/0fb36c47344519411a440ccbd8a8b6e10e0da71f))
+* **readme:** display screenshots in a grid ([cfd4c41](https://github.com/Clumsy-Coder/myStocksRN/commit/cfd4c41d079e6f5261e0e18ab7d2a5b30e493d38))
+* **readme:** list tools used for developing the app ([5e6a26e](https://github.com/Clumsy-Coder/myStocksRN/commit/5e6a26e3752942a8d734ccb36facb5bd2148ab98))
+* **screenshots:** add app screenshot images ([0d3641d](https://github.com/Clumsy-Coder/myStocksRN/commit/0d3641dcbdf0a05fefa9779429e911d6839c1995))
+* **screenshots:** add screenshot of home screen ([82bfe48](https://github.com/Clumsy-Coder/myStocksRN/commit/82bfe48ccb113cb63e628026517eefa0841241c4))
+
+
+### Build System
+
+* **deps:** bump react-native-reanimated from 1.10.1 to 1.10.2 ([#206](https://github.com/Clumsy-Coder/myStocksRN/issues/206)) ([2cc982c](https://github.com/Clumsy-Coder/myStocksRN/commit/2cc982cad577b348ad3956c5a772d862fbfdd943))
+
 ### [1.0.8](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.7...1.0.8) (2020-08-06)
 
 
