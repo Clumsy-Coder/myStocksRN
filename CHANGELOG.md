@@ -1,3 +1,11 @@
+### [1.0.12](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.11...1.0.12) (2020-08-10)
+
+
+### Build System
+
+* **devDep:** bump @types/react-native from 0.63.4 to 0.63.6 ([#209](https://github.com/Clumsy-Coder/myStocksRN/issues/209)) ([3f64d9f](https://github.com/Clumsy-Coder/myStocksRN/commit/3f64d9f3cc9cd6c60258e0c97770c7550003488c))
+* **devDep:** bump conventional-changelog-conventionalcommits ([#212](https://github.com/Clumsy-Coder/myStocksRN/issues/212)) ([9a0bff9](https://github.com/Clumsy-Coder/myStocksRN/commit/9a0bff9b9cf3dac1e4f05e63493ca1f3eb2aa549))
+
 ### [1.0.11](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.10...1.0.11) (2020-08-10)
 
 
