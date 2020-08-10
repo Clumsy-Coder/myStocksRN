@@ -13,3 +13,9 @@ jest.mock('@react-navigation/native', () => ({
     navigate: jest.fn(),
   }),
 }));
+jest.mock('redux-persist/lib/createPersistoid', () =>
+  jest.fn(() => ({
+    update: jest.fn(),
+    flush: jest.fn(),
+  })),
+);
