@@ -1,3 +1,12 @@
+### [1.0.11](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.10...1.0.11) (2020-08-10)
+
+
+### Build System
+
+* **deps:** bump react-native-safe-area-context from 3.1.3 to 3.1.4 ([#208](https://github.com/Clumsy-Coder/myStocksRN/issues/208)) ([5e0316f](https://github.com/Clumsy-Coder/myStocksRN/commit/5e0316f2d10afebbfebf91cd9d0ee7a61e63537b))
+* **devDep:** bump @types/react from 16.9.44 to 16.9.45 ([#211](https://github.com/Clumsy-Coder/myStocksRN/issues/211)) ([740fdb5](https://github.com/Clumsy-Coder/myStocksRN/commit/740fdb5ca1342c1bc1e55085622afaa8687ed184))
+* **devDep:** bump enzyme-adapter-react-16 from 1.15.2 to 1.15.3 ([#210](https://github.com/Clumsy-Coder/myStocksRN/issues/210)) ([1dec6da](https://github.com/Clumsy-Coder/myStocksRN/commit/1dec6dab03b5409f4ff1703846c6dfa3a717d3e5))
+
 ### [1.0.10](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.9...1.0.10) (2020-08-06)
 
 
