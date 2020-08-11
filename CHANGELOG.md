@@ -1,3 +1,12 @@
+### [1.0.14](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.13...1.0.14) (2020-08-11)
+
+
+### Build System
+
+* **devDep:** bump @types/react from 16.9.45 to 16.9.46 ([#215](https://github.com/Clumsy-Coder/myStocksRN/issues/215)) ([ef06c96](https://github.com/Clumsy-Coder/myStocksRN/commit/ef06c96efec5afffb1f8b700dbfcb395de4eacd6))
+* **devDep:** bump @typescript-eslint/eslint-plugin from 3.8.0 to 3.9.0 ([#214](https://github.com/Clumsy-Coder/myStocksRN/issues/214)) ([45cd13b](https://github.com/Clumsy-Coder/myStocksRN/commit/45cd13b47c4308426c7a2ddcc61c31269b29055c))
+* **devDep:** bump metro-react-native-babel-preset ([#220](https://github.com/Clumsy-Coder/myStocksRN/issues/220)) ([a6bebd7](https://github.com/Clumsy-Coder/myStocksRN/commit/a6bebd73ae11e4b139231126bf26e41e36347c60))
+
 ### [1.0.13](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.12...1.0.13) (2020-08-11)
 
 
