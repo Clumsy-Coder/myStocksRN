@@ -1,3 +1,10 @@
+### [1.0.16](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.15...1.0.16) (2020-08-11)
+
+
+### Build System
+
+* **devDep:** bump babel-jest from 26.2.2 to 26.3.0 ([#218](https://github.com/Clumsy-Coder/myStocksRN/issues/218)) ([de081b2](https://github.com/Clumsy-Coder/myStocksRN/commit/de081b223e815e13d71710bce11b6d91159014ba))
+
 ### [1.0.15](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.14...1.0.15) (2020-08-11)
 
 
