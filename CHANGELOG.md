@@ -1,3 +1,10 @@
+### [1.0.17](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.16...1.0.17) (2020-08-11)
+
+
+### Build System
+
+* **deps:** bump react-native-reanimated from 1.10.2 to 1.11.0 ([#217](https://github.com/Clumsy-Coder/myStocksRN/issues/217)) ([9c66d76](https://github.com/Clumsy-Coder/myStocksRN/commit/9c66d7620a0ebe1f266c9e4b618e9b3a08906c79))
+
 ### [1.0.16](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.15...1.0.16) (2020-08-11)
 
 
