@@ -1,3 +1,10 @@
+### [1.0.13](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.12...1.0.13) (2020-08-11)
+
+
+### Bug Fixes
+
+* **jest:** mock redux-persist module ([#213](https://github.com/Clumsy-Coder/myStocksRN/issues/213)) ([9c866ce](https://github.com/Clumsy-Coder/myStocksRN/commit/9c866ce4f3dfd5493f23dbb0d7550335b9ad992e))
+
 ### [1.0.12](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.11...1.0.12) (2020-08-10)
 
 
