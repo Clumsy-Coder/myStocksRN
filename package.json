@@ -116,7 +116,7 @@
     "remote-redux-devtools": "^0.5.16",
     "semantic-release": "^17.1.1",
     "sinon": "^9.0.2",
-    "ts-jest": "^26.1.4",
+    "ts-jest": "^26.2.0",
     "typescript": "^3.9.7"
   },
   "jest": {
