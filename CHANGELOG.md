@@ -1,3 +1,12 @@
+### [1.0.18](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.17...1.0.18) (2020-08-12)
+
+
+### Build System
+
+* **deps:** bump react-native-reanimated from 1.11.0 to 1.12.0 ([#222](https://github.com/Clumsy-Coder/myStocksRN/issues/222)) ([e4235fb](https://github.com/Clumsy-Coder/myStocksRN/commit/e4235fba83f81ec65e12702bd01290b9a2f47252))
+* **devDep:** bump @types/react-native from 0.63.6 to 0.63.7 ([#223](https://github.com/Clumsy-Coder/myStocksRN/issues/223)) ([3b9747d](https://github.com/Clumsy-Coder/myStocksRN/commit/3b9747d9e797d5a1adcabde44f28424644066c71))
+* **devDep:** bump ts-jest from 26.1.4 to 26.2.0 ([#224](https://github.com/Clumsy-Coder/myStocksRN/issues/224)) ([413705c](https://github.com/Clumsy-Coder/myStocksRN/commit/413705c41dfe97c0ed2dc45259585d83ecc00451))
+
 ### [1.0.17](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.16...1.0.17) (2020-08-11)
 
 
