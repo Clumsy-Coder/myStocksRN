@@ -1,3 +1,13 @@
+### [1.0.23](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.22...1.0.23) (2020-08-17)
+
+
+### Build System
+
+* **devDep:** bump @testing-library/react-native from 7.0.1 to 7.0.2 ([#233](https://github.com/Clumsy-Coder/myStocksRN/issues/233)) ([e49d015](https://github.com/Clumsy-Coder/myStocksRN/commit/e49d015738ac64d25ac1001697e3a9fe2baaae3e))
+* **devDep:** bump @types/jest from 26.0.9 to 26.0.10 ([#231](https://github.com/Clumsy-Coder/myStocksRN/issues/231)) ([7afd8b9](https://github.com/Clumsy-Coder/myStocksRN/commit/7afd8b9b4d9c03ed102d7012762f1a5451e626ce))
+* **devDep:** bump eslint from 7.6.0 to 7.7.0 ([#234](https://github.com/Clumsy-Coder/myStocksRN/issues/234)) ([21dec5a](https://github.com/Clumsy-Coder/myStocksRN/commit/21dec5a23106ee6517d5cd310337ee13072d973b))
+* **devDep:** bump jest-html-reporters from 2.0.2 to 2.0.3 ([#232](https://github.com/Clumsy-Coder/myStocksRN/issues/232)) ([370520b](https://github.com/Clumsy-Coder/myStocksRN/commit/370520bb92142e25a43635f47ba61176c17616ea))
+
 ### [1.0.22](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.21...1.0.22) (2020-08-14)
 
 
