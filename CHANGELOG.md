@@ -1,3 +1,10 @@
+### [1.0.24](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.23...1.0.24) (2020-08-18)
+
+
+### Build System
+
+* **devDep:** bump @typescript-eslint/eslint-plugin from 3.9.0 to 3.9.1 ([#236](https://github.com/Clumsy-Coder/myStocksRN/issues/236)) ([beb776d](https://github.com/Clumsy-Coder/myStocksRN/commit/beb776d91208d6fec6bf94d1953316367c1fc112))
+
 ### [1.0.23](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.22...1.0.23) (2020-08-17)
 
 
