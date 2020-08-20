@@ -1,3 +1,11 @@
+### [1.0.27](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.26...1.0.27) (2020-08-20)
+
+
+### Build System
+
+* **deps:** bump native-base from 2.13.13 to 2.13.14 ([#238](https://github.com/Clumsy-Coder/myStocksRN/issues/238)) ([ac247f4](https://github.com/Clumsy-Coder/myStocksRN/commit/ac247f431e7fcd3c5d7fd3f249a1570ea6bfe133))
+* **deps:** bump react-native-safe-area-context from 3.1.4 to 3.1.6 ([#239](https://github.com/Clumsy-Coder/myStocksRN/issues/239)) ([b55036e](https://github.com/Clumsy-Coder/myStocksRN/commit/b55036ec348c4e3eb7ee8ddf7e684401cb3ddbe0))
+
 ### [1.0.26](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.25...1.0.26) (2020-08-19)
 
 
