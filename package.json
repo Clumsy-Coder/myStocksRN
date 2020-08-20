@@ -28,7 +28,7 @@
     "axios": "^0.19.2",
     "build-url": "^2.0.0",
     "lodash": "^4.17.20",
-    "native-base": "^2.13.13",
+    "native-base": "^2.13.14",
     "re-reselect": "^4.0.0",
     "react": "16.13.1",
     "react-native": "0.63.2",
