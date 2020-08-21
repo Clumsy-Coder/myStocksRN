@@ -1,3 +1,13 @@
+### [1.0.28](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.27...1.0.28) (2020-08-21)
+
+
+### Build System
+
+* **deps:** bump axios from 0.19.2 to 0.20.0 ([#242](https://github.com/Clumsy-Coder/myStocksRN/issues/242)) ([cd8f029](https://github.com/Clumsy-Coder/myStocksRN/commit/cd8f029c1ad7eb1dc8be30bb149353530bfb59be))
+* **devDep:** bump jest from 26.4.0 to 26.4.1 ([#240](https://github.com/Clumsy-Coder/myStocksRN/issues/240)) ([df57ae4](https://github.com/Clumsy-Coder/myStocksRN/commit/df57ae416e63a286777fd021bd6652d67670a528))
+* **devDep:** bump pretty-quick from 2.0.1 to 3.0.0 ([#243](https://github.com/Clumsy-Coder/myStocksRN/issues/243)) ([24bb5ea](https://github.com/Clumsy-Coder/myStocksRN/commit/24bb5eadfc93de70b217e2a129683741108f78e9))
+* **devDep:** bump typescript from 3.9.7 to 4.0.2 ([#241](https://github.com/Clumsy-Coder/myStocksRN/issues/241)) ([f33b326](https://github.com/Clumsy-Coder/myStocksRN/commit/f33b326671964898b544c6f40cf6754f4c2abdc9))
+
 ### [1.0.27](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.26...1.0.27) (2020-08-20)
 
 
