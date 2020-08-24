@@ -1,3 +1,14 @@
+### [1.0.30](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.29...1.0.30) (2020-08-24)
+
+
+### Build System
+
+* **deps:** bump build-url from 2.0.0 to 3.0.0 ([#245](https://github.com/Clumsy-Coder/myStocksRN/issues/245)) ([42aacc7](https://github.com/Clumsy-Coder/myStocksRN/commit/42aacc7dfa23f30c9b223146b482e5e629cce671))
+* **devDep:** bump @types/sinon from 9.0.4 to 9.0.5 ([#249](https://github.com/Clumsy-Coder/myStocksRN/issues/249)) ([c15b270](https://github.com/Clumsy-Coder/myStocksRN/commit/c15b2705594561590daa14c282066f4b97767f59))
+* **devDep:** bump commitizen from 4.1.2 to 4.1.5 ([#247](https://github.com/Clumsy-Coder/myStocksRN/issues/247)) ([e1be3e0](https://github.com/Clumsy-Coder/myStocksRN/commit/e1be3e0161cd61f233f9e2619abe47619b59994a))
+* **devDep:** bump faker from 4.1.0 to 5.0.0 ([#248](https://github.com/Clumsy-Coder/myStocksRN/issues/248)) ([83fe8b4](https://github.com/Clumsy-Coder/myStocksRN/commit/83fe8b4a7d4d7477c6dae70507186eee62b7a417))
+* **devDep:** bump metro-react-native-babel-preset ([#246](https://github.com/Clumsy-Coder/myStocksRN/issues/246)) ([aaa1e7e](https://github.com/Clumsy-Coder/myStocksRN/commit/aaa1e7e3cf392bb2885bc9d6afdc4e23816d4d28))
+
 ### [1.0.29](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.28...1.0.29) (2020-08-21)
 
 
