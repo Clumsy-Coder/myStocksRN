@@ -1,3 +1,10 @@
+### [1.0.33](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.32...1.0.33) (2020-08-25)
+
+
+### Build System
+
+* **devDep:** bump commitizen from 4.1.5 to 4.2.0 ([#256](https://github.com/Clumsy-Coder/myStocksRN/issues/256)) ([eefcee3](https://github.com/Clumsy-Coder/myStocksRN/commit/eefcee3eb20828b18e8b446770c3268de91af4b8))
+
 ### [1.0.32](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.31...1.0.32) (2020-08-25)
 
 
