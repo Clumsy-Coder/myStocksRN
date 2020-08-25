@@ -1,50 +1,50 @@
 module.exports = [
   {
     type: 'feat',
-    section: ':sparkles: Features',
+    section: '✨ Features',
   },
   {
     type: 'feature',
-    section: ':sparkles: Features',
+    section: '✨ Features',
   },
   {
     type: 'fix',
-    section: ':bug: Bug Fixes',
+    section: '🐛 Bug Fixes',
   },
   {
     type: 'perf',
-    section: ':zap: Performance Improvements',
+    section: '⚡️ Performance Improvements',
   },
   {
     type: 'revert',
-    section: ':rewind: Reverts',
+    section: '⏪ Reverts',
   },
   {
     type: 'docs',
-    section: ':pencil: Documentation',
+    section: '📝 Documentation',
   },
   {
     type: 'style',
-    section: ':lipstick: Styles',
+    section: '💄 Styles',
   },
   {
     type: 'chore',
-    section: ':robot: Miscellaneous Chores',
+    section: '🐙 Miscellaneous Chores',
   },
   {
     type: 'refactor',
-    section: ':recycle: Code Refactoring',
+    section: '♻️ Code Refactoring',
   },
   {
     type: 'test',
-    section: ':white_check_mark: Tests',
+    section: '✅ Tests',
   },
   {
     type: 'build',
-    section: ':package: Build System',
+    section: '📦 Build System',
   },
   {
     type: 'ci',
-    section: ':construction_worker: Continuous Integration',
+    section: '👷 Continuous Integration',
   },
 ];
