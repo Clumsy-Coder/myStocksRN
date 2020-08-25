@@ -134,6 +134,15 @@ jobs:
           printf 'BUILD_VERSION=%s\n' $(echo ${{ github.sha }} | cut -c -7) >> .env
           printf 'API_KEY=%s\n' '${{ secrets.API_KEY }}' >> .env
 
+      - name: Update semantic-version in package.json
+        # run semantic-version in dry-run mode
+        # extract string that starts with "Release note"
+        # extract version number
+        # update version using "npm version"
+        run: yarn semantic-release -d | egrep 'Release note' | egrep -o '(\d+)\.(\d+)\.(\d+)' | xargs npm version --allow-same-version --no-git-tag-version --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Android APK
         run: yarn build:android:release
 

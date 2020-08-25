@@ -22,6 +22,8 @@ module.exports = {
     '!.eslintrc.js',
     '!.prettierrc.js',
     '!.releaserc.js',
+    '!./semantic-release/commitRules.js',
+    '!./semantic-release/commitTypes.js',
     '!index.js',
   ],
   // coverageDirectory: './test-results/coverage/',
