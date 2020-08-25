@@ -1,3 +1,14 @@
+### [1.0.32](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.31...1.0.32) (2020-08-25)
+
+
+### Build System
+
+* **deps:** bump react-native-safe-area-context from 3.1.6 to 3.1.7 ([#252](https://github.com/Clumsy-Coder/myStocksRN/issues/252)) ([b890bf0](https://github.com/Clumsy-Coder/myStocksRN/commit/b890bf017b5b4df795569a22389ffb9797d0c341))
+* **devDep:** bump @types/lodash from 4.14.159 to 4.14.160 ([#251](https://github.com/Clumsy-Coder/myStocksRN/issues/251)) ([dbc63f8](https://github.com/Clumsy-Coder/myStocksRN/commit/dbc63f817185bc84cf8302ba76089ca37fec07a1))
+* **devDep:** bump @types/react-native from 0.63.8 to 0.63.9 ([#253](https://github.com/Clumsy-Coder/myStocksRN/issues/253)) ([14a7cd6](https://github.com/Clumsy-Coder/myStocksRN/commit/14a7cd69a187dd300c2c44e19be8707eb214410e))
+* **devDep:** bump @typescript-eslint/eslint-plugin ([#254](https://github.com/Clumsy-Coder/myStocksRN/issues/254)) ([1918f55](https://github.com/Clumsy-Coder/myStocksRN/commit/1918f551c5034189dbdb7aae9cf108f1e3eccd5e))
+* **devDep:** bump cz-conventional-changelog from 3.2.0 to 3.2.1 ([#255](https://github.com/Clumsy-Coder/myStocksRN/issues/255)) ([2980052](https://github.com/Clumsy-Coder/myStocksRN/commit/298005255412d1241bf125d5ddec84ffda52e0a1))
+
 ### [1.0.31](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.30...1.0.31) (2020-08-24)
 
 
