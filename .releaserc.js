@@ -52,51 +52,51 @@ module.exports = {
     types: [
       {
         type: 'feat',
-        section: 'Features',
+        section: ':sparkles: Features',
       },
       {
         type: 'feature',
-        section: 'Features',
+        section: ':sparkles: Features',
       },
       {
         type: 'fix',
-        section: 'Bug Fixes',
+        section: ':bug: Bug Fixes',
       },
       {
         type: 'perf',
-        section: 'Performance Improvements',
+        section: ':zap: Performance Improvements',
       },
       {
         type: 'revert',
-        section: 'Reverts',
+        section: ':rewind: Reverts',
       },
       {
         type: 'docs',
-        section: 'Documentation',
+        section: ':pencil: Documentation',
       },
       {
         type: 'style',
-        section: 'Styles',
+        section: ':lipstick: Styles',
       },
       {
         type: 'chore',
-        section: 'Miscellaneous Chores',
+        section: ':robot: Miscellaneous Chores',
       },
       {
         type: 'refactor',
-        section: 'Code Refactoring',
+        section: ':recycle: Code Refactoring',
       },
       {
         type: 'test',
-        section: 'Tests',
+        section: ':white_check_mark: Tests',
       },
       {
         type: 'build',
-        section: 'Build System',
+        section: ':package: Build System',
       },
       {
         type: 'ci',
-        section: 'Continuous Integration',
+        section: ':construction_worker: Continuous Integration',
       },
     ],
   },
