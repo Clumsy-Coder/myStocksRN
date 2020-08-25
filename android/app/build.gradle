@@ -142,8 +142,13 @@ android {
         applicationId "com.mystocksrn"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+
+        // use version number from ../build.gradle file
+        // code obtained from https://github.com/AndrewJack/versioning-react-native-app/blob/9196733cd09f5d72215e0f3dd2f592557cd813a5/android/app/build.gradle#L93-L94
+        // check https://medium.com/@andr3wjack/versioning-react-native-apps-407469707661
+        versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     splits {
