@@ -1,3 +1,10 @@
+### [1.0.34](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.33...1.0.34) (2020-08-25)
+
+
+### Build System
+
+* **devDep:** bump @typescript-eslint/parser from 3.9.1 to 3.10.0 ([#257](https://github.com/Clumsy-Coder/myStocksRN/issues/257)) ([d1edda5](https://github.com/Clumsy-Coder/myStocksRN/commit/d1edda56e2903048a0557ef50c9d06ceef22bbf8))
+
 ### [1.0.33](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.32...1.0.33) (2020-08-25)
 
 
