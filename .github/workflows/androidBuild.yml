@@ -134,7 +134,7 @@ jobs:
           printf 'BUILD_VERSION=%s\n' $(echo ${{ github.sha }} | cut -c -7) >> .env
           printf 'API_KEY=%s\n' '${{ secrets.API_KEY }}' >> .env
 
-      - name: update semantic-version in package.json
+      - name: Update semantic-version in package.json
         # run semantic-version in dry-run mode
         # extract string that starts with "Release note"
         # extract version number
