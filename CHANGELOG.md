@@ -1,3 +1,31 @@
+## [1.1.0](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.34...1.1.0) (2020-08-25)
+
+
+### 📦 Build System
+
+* **gradle:** add script to extract version number from package.json ([11c0820](https://github.com/Clumsy-Coder/myStocksRN/commit/11c082003ed98945615f09fc28afb5c2b801ca4c)), closes [/github.com/AndrewJack/versioning-react-native-app/blob/9196733cd09f5d72215e0f3dd2f592557cd813a5/android/build.gradle#L27-L45](https://github.com/Clumsy-Coder//github.com/AndrewJack/versioning-react-native-app/blob/9196733cd09f5d72215e0f3dd2f592557cd813a5/android/build.gradle/issues/L27-L45)
+
+
+### ✨ Features
+
+* **gradle:** use version number from package.json using android/build.gradle ([7f9537f](https://github.com/Clumsy-Coder/myStocksRN/commit/7f9537f13c48f6a2836b52f1171e7a08eea7904b))
+
+
+### 👷 Continuous Integration
+
+* **github-actions:** get next semantic-version and update it in package.json ([112da2c](https://github.com/Clumsy-Coder/myStocksRN/commit/112da2c668912a615a5944a07d00dd36f36ce630))
+* **semantic-release:** add commitRules file for each commit type ([564ce3d](https://github.com/Clumsy-Coder/myStocksRN/commit/564ce3d94451087005c63f2baccbed76f591d5aa))
+* **semantic-release:** add commitTypes file ([885c68c](https://github.com/Clumsy-Coder/myStocksRN/commit/885c68c2dad64aa43c7e4824ec31dd7bde6869d7))
+* **semantic-release:** add gitmoji when creating headers for Changelogs ([#258](https://github.com/Clumsy-Coder/myStocksRN/issues/258)) ([1997abf](https://github.com/Clumsy-Coder/myStocksRN/commit/1997abf2983d35e250c4906e2e8cc3b4f5aa1451))
+* **semantic-release:** simplify code when using commitTypes and commitRules ([141f89a](https://github.com/Clumsy-Coder/myStocksRN/commit/141f89a909a66a7352a1805bccf3aeca9eca9827))
+
+
+### 🐙 Miscellaneous Chores
+
+* **github-actions:** update step 'name' when generating next semantic-version for package.json ([58c7b1f](https://github.com/Clumsy-Coder/myStocksRN/commit/58c7b1fe1fd1d23f78f0efacf3ad73c54f6bdd5b))
+* **jest:** ignore ./semantic-release/ folder when running jest ([ad5c9c6](https://github.com/Clumsy-Coder/myStocksRN/commit/ad5c9c6efd8aedb525dd391a5afc5f89cadf84b3))
+* **semantic-release:** replace gitmoji markup code with unicode gitmoji ([079c989](https://github.com/Clumsy-Coder/myStocksRN/commit/079c98935f40c8697754d4700409319cd36a3ccd))
+
 ### [1.0.34](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.33...1.0.34) (2020-08-25)
 
 
