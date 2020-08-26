@@ -1,3 +1,10 @@
+### [1.1.1](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.0...1.1.1) (2020-08-26)
+
+
+### 🐛 Bug Fixes
+
+* **github-actions:** fix the command used when extracting next semantic-version number ([#260](https://github.com/Clumsy-Coder/myStocksRN/issues/260)) ([dcfbfa1](https://github.com/Clumsy-Coder/myStocksRN/commit/dcfbfa1499a4499320d976b3e8d1c56399664fa2))
+
 ## [1.1.0](https://github.com/Clumsy-Coder/myStocksRN/compare/1.0.34...1.1.0) (2020-08-25)
 
 
