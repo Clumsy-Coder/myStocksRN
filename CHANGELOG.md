@@ -1,3 +1,13 @@
+### [1.1.2](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.1...1.1.2) (2020-08-26)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-native from 0.63.9 to 0.63.10 ([#264](https://github.com/Clumsy-Coder/myStocksRN/issues/264)) ([7d62d54](https://github.com/Clumsy-Coder/myStocksRN/commit/7d62d54aca33ed252ef66d019bc057facb623864))
+* **devDep:** bump @typescript-eslint/eslint-plugin ([#261](https://github.com/Clumsy-Coder/myStocksRN/issues/261)) ([994c198](https://github.com/Clumsy-Coder/myStocksRN/commit/994c198ece9ab74d7191b6622d8d33393670382e))
+* **devDep:** bump commitizen from 4.2.0 to 4.2.1 ([#262](https://github.com/Clumsy-Coder/myStocksRN/issues/262)) ([cea257c](https://github.com/Clumsy-Coder/myStocksRN/commit/cea257c99423b0227f86e3125d4dd4ff89069ed1))
+* **devDep:** bump lint-staged from 10.2.11 to 10.2.13 ([#266](https://github.com/Clumsy-Coder/myStocksRN/issues/266)) ([5b7f452](https://github.com/Clumsy-Coder/myStocksRN/commit/5b7f452df4ce9e4585381d19c2e904784c3eb44c))
+
 ### [1.1.1](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.0...1.1.1) (2020-08-26)
 
 
