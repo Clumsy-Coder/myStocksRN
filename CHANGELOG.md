@@ -1,3 +1,10 @@
+### [1.1.4](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.3...1.1.4) (2020-08-26)
+
+
+### 📦 Build System
+
+* **devDep:** bump prettier from 2.1.0 to 2.1.1 ([#268](https://github.com/Clumsy-Coder/myStocksRN/issues/268)) ([9518217](https://github.com/Clumsy-Coder/myStocksRN/commit/9518217d5e9f4a0040fee48e58d2dccba84099af))
+
 ### [1.1.3](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.2...1.1.3) (2020-08-26)
 
 
