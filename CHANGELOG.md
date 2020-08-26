@@ -1,3 +1,12 @@
+### [1.1.3](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.2...1.1.3) (2020-08-26)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react from 16.9.46 to 16.9.47 ([#267](https://github.com/Clumsy-Coder/myStocksRN/issues/267)) ([9d3bb1d](https://github.com/Clumsy-Coder/myStocksRN/commit/9d3bb1dc19d352ff38dac01a66ecc02c4455adc0))
+* **devDep:** bump @typescript-eslint/parser from 3.10.0 to 3.10.1 ([#265](https://github.com/Clumsy-Coder/myStocksRN/issues/265)) ([ea7037d](https://github.com/Clumsy-Coder/myStocksRN/commit/ea7037dd8648502918d8ea0061d29f81381b5a26))
+* **devDep:** bump prettier from 2.0.5 to 2.1.0 ([#263](https://github.com/Clumsy-Coder/myStocksRN/issues/263)) ([7b5b2ca](https://github.com/Clumsy-Coder/myStocksRN/commit/7b5b2caf49c60c660ed679119f9c419b7f00119b))
+
 ### [1.1.2](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.1...1.1.2) (2020-08-26)
 
 
