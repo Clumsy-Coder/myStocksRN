@@ -102,7 +102,7 @@
     "lint-staged": "^10.2.13",
     "metro-react-native-babel-preset": "^0.63.0",
     "path": "^0.12.7",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.0",
     "pretty-quick": "^3.0.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.13.1",
