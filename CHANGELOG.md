@@ -1,3 +1,12 @@
+### [1.1.5](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.4...1.1.5) (2020-08-27)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react from 16.9.47 to 16.9.48 ([#269](https://github.com/Clumsy-Coder/myStocksRN/issues/269)) ([976b28c](https://github.com/Clumsy-Coder/myStocksRN/commit/976b28c8f2309b8d9735c4f06f97ceaaa7aa1e49))
+* **devDep:** bump cz-conventional-changelog from 3.2.1 to 3.3.0 ([#272](https://github.com/Clumsy-Coder/myStocksRN/issues/272)) ([63da03b](https://github.com/Clumsy-Coder/myStocksRN/commit/63da03b54239a5a93e3c031c4de92194f2db950e))
+* **devDep:** bump ts-jest from 26.2.0 to 26.3.0 ([#270](https://github.com/Clumsy-Coder/myStocksRN/issues/270)) ([d4d386c](https://github.com/Clumsy-Coder/myStocksRN/commit/d4d386ca729c2f2b45edd86f4b90e964961bb3b0))
+
 ### [1.1.4](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.3...1.1.4) (2020-08-26)
 
 
