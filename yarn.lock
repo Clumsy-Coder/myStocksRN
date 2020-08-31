@@ -2763,10 +2763,10 @@ buffer@^5.2.1:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
 
-build-url@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/build-url/-/build-url-3.0.0.tgz#36cfb26aecabd2df8f587751b57795302d2d29d2"
-  integrity sha512-qqxb4hC0d1m/BURyv1PrfV3HIYU1qnxxvgfaq865+SoeXim1hhdSLvH/8HcniL3Uu5u49APTaCW//l/H5Ncb3Q==
+build-url@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/build-url/-/build-url-5.0.2.tgz#f212d5ed1a4f2ab0df8a2fd9e467929507d7330c"
+  integrity sha512-qZJa7Mq0wj3oBZg+BJrbBu7w1WI/IRlQMoiaNd8LSIFOZdTViGVfNiHC/sxQlJqBaQlbwF6Kr94U3+acXWnBGQ==
 
 builtins@^1.0.3:
   version "1.0.3"
