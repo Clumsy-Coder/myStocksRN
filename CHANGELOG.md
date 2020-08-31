@@ -1,3 +1,10 @@
+### [1.1.9](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.8...1.1.9) (2020-08-31)
+
+
+### 📦 Build System
+
+* **devDep:** bump enzyme-adapter-react-16 from 1.15.3 to 1.15.4 ([#278](https://github.com/Clumsy-Coder/myStocksRN/issues/278)) ([cbcd42d](https://github.com/Clumsy-Coder/myStocksRN/commit/cbcd42d594e01ac757c2153913f954a8d1ae4352))
+
 ### [1.1.8](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.7...1.1.8) (2020-08-30)
 
 
