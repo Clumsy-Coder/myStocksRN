@@ -1,3 +1,13 @@
+### [1.1.11](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.10...1.1.11) (2020-09-01)
+
+
+### 📦 Build System
+
+* **devDep:** bump @babel/core from 7.11.4 to 7.11.5 ([#281](https://github.com/Clumsy-Coder/myStocksRN/issues/281)) ([230a6b9](https://github.com/Clumsy-Coder/myStocksRN/commit/230a6b90f4f8079e9bd166db57050ff9f98244a2))
+* **devDep:** bump @types/jest from 26.0.10 to 26.0.12 ([#285](https://github.com/Clumsy-Coder/myStocksRN/issues/285)) ([2dda0ff](https://github.com/Clumsy-Coder/myStocksRN/commit/2dda0ff11b33991c8600aa916db686e769622271))
+* **devDep:** bump @types/react from 16.9.48 to 16.9.49 ([#284](https://github.com/Clumsy-Coder/myStocksRN/issues/284)) ([1ee6237](https://github.com/Clumsy-Coder/myStocksRN/commit/1ee6237b74029c21c6b053711f2813149cf4e62f))
+* **devDep:** bump eslint from 7.7.0 to 7.8.0 ([#282](https://github.com/Clumsy-Coder/myStocksRN/issues/282)) ([b214cdd](https://github.com/Clumsy-Coder/myStocksRN/commit/b214cdd7bf9263223d3b1c331ee1a142925baa5f))
+
 ### [1.1.10](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.9...1.1.10) (2020-08-31)
 
 
