@@ -1,3 +1,10 @@
+### [1.1.14](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.13...1.1.14) (2020-09-02)
+
+
+### 👷 Continuous Integration
+
+* **github-actions:** add codeQL github actions workflow ([#288](https://github.com/Clumsy-Coder/myStocksRN/issues/288)) ([62f0715](https://github.com/Clumsy-Coder/myStocksRN/commit/62f0715fb28e89c2daa558591553a224f187253d))
+
 ### [1.1.13](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.12...1.1.13) (2020-09-01)
 
 
