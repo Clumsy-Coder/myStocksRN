@@ -1,3 +1,10 @@
+### [1.1.15](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.14...1.1.15) (2020-09-02)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/jest from 26.0.12 to 26.0.13 ([#289](https://github.com/Clumsy-Coder/myStocksRN/issues/289)) ([11a7751](https://github.com/Clumsy-Coder/myStocksRN/commit/11a775184b4d985d7b894b778f7be70106e00c0f))
+
 ### [1.1.14](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.13...1.1.14) (2020-09-02)
 
 
