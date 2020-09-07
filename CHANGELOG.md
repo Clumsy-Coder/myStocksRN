@@ -1,3 +1,10 @@
+### [1.2.2](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.1...1.2.2) (2020-09-07)
+
+
+### 📦 Build System
+
+* **devDep:** bump @semantic-release/github from 7.0.7 to 7.1.0 ([#302](https://github.com/Clumsy-Coder/myStocksRN/issues/302)) ([7398076](https://github.com/Clumsy-Coder/myStocksRN/commit/739807631db0b191cde9e175c32500059e3f90b0))
+
 ### [1.2.1](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.0...1.2.1) (2020-09-07)
 
 
