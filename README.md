@@ -1,5 +1,7 @@
 # myStocksRN
 
+[![GitHub release](https://img.shields.io/github/release/clumsy-coder/myStocksRN.svg)](https://gitHub.com/clumsy-coder/myStocksRN/releases/)
+
 ![Android APK Build](https://github.com/Clumsy-Coder/myStocksRN/workflows/Android%20APK%20Build/badge.svg)
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
