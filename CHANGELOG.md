@@ -1,3 +1,12 @@
+### [1.1.17](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.16...1.1.17) (2020-09-07)
+
+
+### 📦 Build System
+
+* **devDep:** bump @microsoft/tsdoc from 0.12.20 to 0.12.21 ([#295](https://github.com/Clumsy-Coder/myStocksRN/issues/295)) ([cadb6da](https://github.com/Clumsy-Coder/myStocksRN/commit/cadb6da5c8c2cf0e0d96431afac5ff9c3fe678f0))
+* **devDep:** bump @types/faker from 4.1.12 to 5.1.0 ([#294](https://github.com/Clumsy-Coder/myStocksRN/issues/294)) ([754fa6e](https://github.com/Clumsy-Coder/myStocksRN/commit/754fa6e492f3fb8a7b618aeeded1a70ab38c6f86))
+* **devDep:** bump eslint-plugin-jest from 23.20.0 to 24.0.0 ([#297](https://github.com/Clumsy-Coder/myStocksRN/issues/297)) ([94bc0fd](https://github.com/Clumsy-Coder/myStocksRN/commit/94bc0fd7567970ee8c9e2f68508739cc76417d8a))
+
 ### [1.1.16](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.15...1.1.16) (2020-09-04)
 
 
