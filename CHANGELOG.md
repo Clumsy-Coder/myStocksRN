@@ -1,3 +1,16 @@
+## [1.2.0](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.20...1.2.0) (2020-09-07)
+
+
+### ✨ Features
+
+* **android:** lock Android app to portrait mode ([fd455a6](https://github.com/Clumsy-Coder/myStocksRN/commit/fd455a6a88845a196da6df756b914e3622491383))
+* **env:** add DEVELOPMENT mode when fetching data from API ([52b134d](https://github.com/Clumsy-Coder/myStocksRN/commit/52b134db6d12faf23a6d05297cd4338fb0f7677a))
+
+
+### 👷 Continuous Integration
+
+* **github-actions:** extract DEV_API_KEY github secret and add it to .env ([bff0537](https://github.com/Clumsy-Coder/myStocksRN/commit/bff05379048a18fb2f21823417b6142306b98aed))
+
 ### [1.1.20](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.19...1.1.20) (2020-09-07)
 
 
