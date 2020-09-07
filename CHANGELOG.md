@@ -1,3 +1,10 @@
+### [1.2.1](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.0...1.2.1) (2020-09-07)
+
+
+### 📝 Documentation
+
+* **readme:** add markdown badge to display latest github release tag ([a2a9c23](https://github.com/Clumsy-Coder/myStocksRN/commit/a2a9c23ede73582e641218fe64d9156baf5e7b60))
+
 ## [1.2.0](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.20...1.2.0) (2020-09-07)
 
 
