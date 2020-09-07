@@ -1,3 +1,10 @@
+### [1.1.19](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.18...1.1.19) (2020-09-07)
+
+
+### 📦 Build System
+
+* **devDep:** bump husky from 4.2.5 to 4.3.0 ([#299](https://github.com/Clumsy-Coder/myStocksRN/issues/299)) ([6efe72c](https://github.com/Clumsy-Coder/myStocksRN/commit/6efe72c6844fc39eb83c4dbe871ad9a6b03cc3cc))
+
 ### [1.1.18](https://github.com/Clumsy-Coder/myStocksRN/compare/1.1.17...1.1.18) (2020-09-07)
 
 
