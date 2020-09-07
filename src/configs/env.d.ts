@@ -3,4 +3,5 @@
 declare module 'react-native-dotenv' {
   export const BUILD_VERSION: 'development' | string;
   export const API_KEY: string;
+  export const DEV_API_KEY: string;
 }

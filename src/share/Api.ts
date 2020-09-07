@@ -1,7 +1,7 @@
 import buildUrl from 'build-url';
 import axios, { AxiosResponse } from 'axios';
 
-import { API_KEY } from 'react-native-dotenv';
+import { API_KEY, DEV_API_KEY, BUILD_VERSION } from 'react-native-dotenv';
 import { API_URL } from 'src/share/Constants';
 import { DataDomain } from 'src/redux/Stocks/Types';
 
@@ -17,7 +17,7 @@ export const fetchStockQuoteUrl = (symbol: string): Promise<AxiosResponse<DataDo
       queryParams: {
         displayPercent: 'true',
         // filter: DataDomain.quoteFilter,
-        token: API_KEY,
+        token: BUILD_VERSION === 'development' ? DEV_API_KEY : API_KEY,
       },
     }),
   );
@@ -39,7 +39,7 @@ export const fetchStockChartUrl = (
         range,
         displayPercent: 'true',
         // filter: DataDomain.chartFilter,
-        token: API_KEY,
+        token: BUILD_VERSION === 'development' ? DEV_API_KEY : API_KEY,
       },
     }),
   );
@@ -53,7 +53,7 @@ export const fetchSymbolsMetadataUrl = (): Promise<AxiosResponse<DataDomain.Symb
     buildUrl(API_URL, {
       path: 'ref-data/symbols',
       queryParams: {
-        token: API_KEY,
+        token: BUILD_VERSION === 'development' ? DEV_API_KEY : API_KEY,
       },
     }),
   );
@@ -75,7 +75,7 @@ export const fetchStockQuoteBatchUrl = (
         displayPercent: 'true',
         types: ['quote'],
         symbols,
-        token: API_KEY,
+        token: BUILD_VERSION === 'development' ? DEV_API_KEY : API_KEY,
       },
     }),
   );
