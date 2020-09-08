@@ -81,9 +81,12 @@ Display Stocks using React Native written in Typescript
 
 Assuming you have environment setup for building the **Android** APK [link](https://reactnative.dev/docs/environment-setup) using **React Native CLI Quickstart**
 
-If you wish to build the app, you need `.env` file that contains **API_KEY** and **BUILD_VERSION**
+If you wish to build the app, you need `.env` file that contains **API_KEY**, **DEV_API_KEY** and **BUILD_VERSION**
 
 obtain the api key from [iexcloud](https://iexcloud.io/)
+
+DEV_API_KEY uses iexcloud sandbox API.
+[Sandbox API KEY](https://intercom.help/iexcloud/en/articles/2915433-testing-with-the-iex-cloud-sandbox)
 
 create a file in the **project root** with the filename `.env`
 
@@ -92,6 +95,7 @@ in the file, write the following
 ```
 BUILD_VERSION=development
 API_KEY=<api key>
+DEV_API_KEY=<sandbox api key>
 ```
 
 **IMPORTANT**
