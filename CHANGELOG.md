@@ -1,3 +1,10 @@
+### [1.2.4](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.3...1.2.4) (2020-09-08)
+
+
+### 📝 Documentation
+
+* **readme:** add docs for using DEV_API_KEY when building Android APK ([990b3ae](https://github.com/Clumsy-Coder/myStocksRN/commit/990b3ae83ba78d36362690a969a594153f09929f))
+
 ### [1.2.3](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.2...1.2.3) (2020-09-08)
 
 
