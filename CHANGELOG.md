@@ -1,3 +1,11 @@
+### [1.2.5](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.4...1.2.5) (2020-09-08)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/enzyme from 3.10.5 to 3.10.6 ([#305](https://github.com/Clumsy-Coder/myStocksRN/issues/305)) ([94e815c](https://github.com/Clumsy-Coder/myStocksRN/commit/94e815c2c827448024ee189b32188fcd53729a98))
+* **devDep:** bump @types/react-native from 0.63.15 to 0.63.16 ([#306](https://github.com/Clumsy-Coder/myStocksRN/issues/306)) ([cdbad58](https://github.com/Clumsy-Coder/myStocksRN/commit/cdbad58e005a8560b9cae66ca3c569969432a80e))
+
 ### [1.2.4](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.3...1.2.4) (2020-09-08)
 
 
