@@ -1,3 +1,12 @@
+### [1.2.8](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.7...1.2.8) (2020-09-11)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-vector-icons from 7.0.0 to 7.1.0 ([#311](https://github.com/Clumsy-Coder/myStocksRN/issues/311)) ([f542ba0](https://github.com/Clumsy-Coder/myStocksRN/commit/f542ba0cd6a3510855180390c3489b86a8b03320))
+* **devDep:** bump @types/react-native from 0.63.17 to 0.63.18 ([#310](https://github.com/Clumsy-Coder/myStocksRN/issues/310)) ([097819a](https://github.com/Clumsy-Coder/myStocksRN/commit/097819a022c3bc939c08c12f862a962a8584738a))
+* **devDep:** bump pretty-quick from 3.0.1 to 3.0.2 ([#309](https://github.com/Clumsy-Coder/myStocksRN/issues/309)) ([7d022fb](https://github.com/Clumsy-Coder/myStocksRN/commit/7d022fbb11722e20f93362f90ba397e51a78c2d8))
+
 ### [1.2.7](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.6...1.2.7) (2020-09-10)
 
 
