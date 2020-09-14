@@ -1,3 +1,13 @@
+### [1.2.9](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.8...1.2.9) (2020-09-14)
+
+
+### 📦 Build System
+
+* **devDep:** bump eslint from 7.8.1 to 7.9.0 ([#314](https://github.com/Clumsy-Coder/myStocksRN/issues/314)) ([91a84b5](https://github.com/Clumsy-Coder/myStocksRN/commit/91a84b55f23c1b925cc2b1184360eb4f12cc720d))
+* **devDep:** bump eslint-plugin-jest from 24.0.0 to 24.0.1 ([#313](https://github.com/Clumsy-Coder/myStocksRN/issues/313)) ([c799571](https://github.com/Clumsy-Coder/myStocksRN/commit/c7995715af439830caa73a94ca7b5ffd4b952ee8))
+* **devDep:** bump eslint-plugin-redux-saga from 1.1.3 to 1.2.0 ([#312](https://github.com/Clumsy-Coder/myStocksRN/issues/312)) ([5bde800](https://github.com/Clumsy-Coder/myStocksRN/commit/5bde800e39edc1b2199bce4ee229cd27e46bd6a1))
+* **devDep:** bump jest-html-reporters from 2.0.3 to 2.0.4 ([#315](https://github.com/Clumsy-Coder/myStocksRN/issues/315)) ([ec51c31](https://github.com/Clumsy-Coder/myStocksRN/commit/ec51c31c5438575c5a0ca7eaf20f2499361e79f1))
+
 ### [1.2.8](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.7...1.2.8) (2020-09-11)
 
 
