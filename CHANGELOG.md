@@ -1,3 +1,12 @@
+### [1.2.11](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.10...1.2.11) (2020-09-17)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-screens from 2.10.1 to 2.11.0 ([#319](https://github.com/Clumsy-Coder/myStocksRN/issues/319)) ([3f70b1f](https://github.com/Clumsy-Coder/myStocksRN/commit/3f70b1fcf367b2130bdb9bc42a8bb58c0f6bf917))
+* **devDep:** bump @types/jest from 26.0.13 to 26.0.14 ([#318](https://github.com/Clumsy-Coder/myStocksRN/issues/318)) ([5fa72d8](https://github.com/Clumsy-Coder/myStocksRN/commit/5fa72d8cff926170480af24da19341318b72d72c))
+* **devDep:** bump lint-staged from 10.3.0 to 10.4.0 ([#317](https://github.com/Clumsy-Coder/myStocksRN/issues/317)) ([d2b871d](https://github.com/Clumsy-Coder/myStocksRN/commit/d2b871deaf6f08d7418295e8c5f20a4652729822))
+
 ### [1.2.10](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.9...1.2.10) (2020-09-16)
 
 
