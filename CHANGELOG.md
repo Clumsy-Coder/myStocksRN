@@ -1,3 +1,10 @@
+### [1.2.14](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.13...1.2.14) (2020-09-21)
+
+
+### 📦 Build System
+
+* **devDep:** bump typescript from 4.0.2 to 4.0.3 ([#322](https://github.com/Clumsy-Coder/myStocksRN/issues/322)) ([45ce417](https://github.com/Clumsy-Coder/myStocksRN/commit/45ce417a74d8bc86157406e29d3b6109e5198eec))
+
 ### [1.2.13](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.12...1.2.13) (2020-09-21)
 
 
