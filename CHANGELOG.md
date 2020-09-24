@@ -1,3 +1,12 @@
+### [1.2.19](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.18...1.2.19) (2020-09-24)
+
+
+### 📦 Build System
+
+* **devDep:** bump @google/semantic-release-replace-plugin ([#331](https://github.com/Clumsy-Coder/myStocksRN/issues/331)) ([11bc950](https://github.com/Clumsy-Coder/myStocksRN/commit/11bc95035f082e66c84ccab289d84117dffe8398))
+* **devDep:** bump enzyme-adapter-react-16 from 1.15.4 to 1.15.5 ([#330](https://github.com/Clumsy-Coder/myStocksRN/issues/330)) ([031949a](https://github.com/Clumsy-Coder/myStocksRN/commit/031949a056698aee242331d42fa9922833f2e2e4))
+* **devDep:** bump eslint-plugin-react from 7.21.0 to 7.21.1 ([#332](https://github.com/Clumsy-Coder/myStocksRN/issues/332)) ([00c3129](https://github.com/Clumsy-Coder/myStocksRN/commit/00c3129754dfb74f108a778c929d15e6467f78e6))
+
 ### [1.2.18](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.17...1.2.18) (2020-09-23)
 
 
