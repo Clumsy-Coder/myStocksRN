@@ -1,3 +1,13 @@
+### [1.2.20](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.19...1.2.20) (2020-09-25)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-reanimated from 1.13.0 to 1.13.1 ([#336](https://github.com/Clumsy-Coder/myStocksRN/issues/336)) ([ee63e61](https://github.com/Clumsy-Coder/myStocksRN/commit/ee63e61a3f26d6c9bfcf45735f9f214010aa7b84))
+* **devDep:** bump @types/faker from 5.1.0 to 5.1.2 ([#334](https://github.com/Clumsy-Coder/myStocksRN/issues/334)) ([197fa43](https://github.com/Clumsy-Coder/myStocksRN/commit/197fa430c5dbe3b294490b90bc2abf8cd9e84cd1))
+* **devDep:** bump @types/react-native from 0.63.20 to 0.63.21 ([#335](https://github.com/Clumsy-Coder/myStocksRN/issues/335)) ([1b2c924](https://github.com/Clumsy-Coder/myStocksRN/commit/1b2c92414c71bd604e363ba27097f2a1f4932dc4))
+* **devDep:** bump eslint-plugin-react from 7.21.1 to 7.21.2 ([#337](https://github.com/Clumsy-Coder/myStocksRN/issues/337)) ([f694f3f](https://github.com/Clumsy-Coder/myStocksRN/commit/f694f3fcd06a521afafcb9c1301891a56c325626))
+
 ### [1.2.19](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.18...1.2.19) (2020-09-24)
 
 
