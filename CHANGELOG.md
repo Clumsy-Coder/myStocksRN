@@ -1,3 +1,12 @@
+### [1.2.21](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.20...1.2.21) (2020-09-28)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/sinon from 9.0.5 to 9.0.6 ([#339](https://github.com/Clumsy-Coder/myStocksRN/issues/339)) ([5302545](https://github.com/Clumsy-Coder/myStocksRN/commit/530254550d49364b946f6bfe04a10bba8f3027ba))
+* **devDep:** bump enzyme-to-json from 3.5.0 to 3.6.0 ([#342](https://github.com/Clumsy-Coder/myStocksRN/issues/342)) ([3969bdb](https://github.com/Clumsy-Coder/myStocksRN/commit/3969bdbae637da73a6f0c92032a63683b30ca9e2))
+* **devDep:** bump eslint-plugin-import from 2.22.0 to 2.22.1 ([#343](https://github.com/Clumsy-Coder/myStocksRN/issues/343)) ([72b96ef](https://github.com/Clumsy-Coder/myStocksRN/commit/72b96efcbd3c670ccb36df87e3c0ab12d93c8308))
+
 ### [1.2.20](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.19...1.2.20) (2020-09-25)
 
 
