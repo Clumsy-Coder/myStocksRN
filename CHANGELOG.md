@@ -1,3 +1,10 @@
+### [1.2.22](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.21...1.2.22) (2020-09-28)
+
+
+### 📦 Build System
+
+* **devDep:** bump eslint-config-prettier from 6.11.0 to 6.12.0 ([#338](https://github.com/Clumsy-Coder/myStocksRN/issues/338)) ([603568d](https://github.com/Clumsy-Coder/myStocksRN/commit/603568d575c984901a52b02ec8cbf14d90ecc722))
+
 ### [1.2.21](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.20...1.2.21) (2020-09-28)
 
 
