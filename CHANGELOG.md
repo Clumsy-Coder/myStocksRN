@@ -1,3 +1,10 @@
+### [1.2.25](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.24...1.2.25) (2020-09-29)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/native from 5.7.4 to 5.7.5 ([#346](https://github.com/Clumsy-Coder/myStocksRN/issues/346)) ([8f2cb11](https://github.com/Clumsy-Coder/myStocksRN/commit/8f2cb110fa28a71a9e3b183f0f337148bdcfc038))
+
 ### [1.2.24](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.23...1.2.24) (2020-09-29)
 
 
