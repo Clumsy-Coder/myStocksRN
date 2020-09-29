@@ -1,3 +1,11 @@
+### [1.2.24](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.23...1.2.24) (2020-09-29)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/stack from 5.9.1 to 5.9.2 ([#344](https://github.com/Clumsy-Coder/myStocksRN/issues/344)) ([cb67756](https://github.com/Clumsy-Coder/myStocksRN/commit/cb67756c76ac7a62b884fe665888fac3db6ed213))
+* **devDep:** bump @types/react-native from 0.63.21 to 0.63.23 ([#347](https://github.com/Clumsy-Coder/myStocksRN/issues/347)) ([12e639b](https://github.com/Clumsy-Coder/myStocksRN/commit/12e639b5005cf13936cbc16daa89e237e35a0d9a))
+
 ### [1.2.23](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.22...1.2.23) (2020-09-28)
 
 
