@@ -1,3 +1,10 @@
+### [1.2.27](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.26...1.2.27) (2020-09-30)
+
+
+### 📦 Build System
+
+* **devDep:** bump sinon from 9.0.3 to 9.1.0 ([#352](https://github.com/Clumsy-Coder/myStocksRN/issues/352)) ([b599338](https://github.com/Clumsy-Coder/myStocksRN/commit/b5993388a0a6a0bb6a62988576bd92be9591eceb))
+
 ### [1.2.26](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.25...1.2.26) (2020-09-30)
 
 
