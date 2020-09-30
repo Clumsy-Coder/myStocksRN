@@ -1,3 +1,13 @@
+### [1.2.26](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.25...1.2.26) (2020-09-30)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native from 0.63.2 to 0.63.3 ([#353](https://github.com/Clumsy-Coder/myStocksRN/issues/353)) ([ed0d0a9](https://github.com/Clumsy-Coder/myStocksRN/commit/ed0d0a9d2e8faf85d91e814f81319181fbbd9de7))
+* **devDep:** bump @types/sinon from 9.0.6 to 9.0.7 ([#351](https://github.com/Clumsy-Coder/myStocksRN/issues/351)) ([6913fc6](https://github.com/Clumsy-Coder/myStocksRN/commit/6913fc64b6ca28ee70bfd9df97d740adc25dd95d))
+* **devDep:** bump eslint-plugin-redux-saga from 1.2.0 to 1.2.1 ([#350](https://github.com/Clumsy-Coder/myStocksRN/issues/350)) ([ef1f0b8](https://github.com/Clumsy-Coder/myStocksRN/commit/ef1f0b8069857f28633cf71c5f75b1c90e5cfbb8))
+* **devDep:** bump ts-jest from 26.4.0 to 26.4.1 ([#349](https://github.com/Clumsy-Coder/myStocksRN/issues/349)) ([f6b363d](https://github.com/Clumsy-Coder/myStocksRN/commit/f6b363dcfac905ec263bf58da4217feb823f4828))
+
 ### [1.2.25](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.24...1.2.25) (2020-09-29)
 
 
