@@ -1,3 +1,10 @@
+### [1.2.28](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.27...1.2.28) (2020-10-02)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react from 16.9.49 to 16.9.50 ([#354](https://github.com/Clumsy-Coder/myStocksRN/issues/354)) ([319fe64](https://github.com/Clumsy-Coder/myStocksRN/commit/319fe64ce6075d73336bf898c0821627f3a848c9))
+
 ### [1.2.27](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.26...1.2.27) (2020-09-30)
 
 
