@@ -1,3 +1,12 @@
+### [1.2.29](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.28...1.2.29) (2020-10-05)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/sinon from 9.0.7 to 9.0.8 ([#355](https://github.com/Clumsy-Coder/myStocksRN/issues/355)) ([f292d43](https://github.com/Clumsy-Coder/myStocksRN/commit/f292d43bf108d05356eed73fe438fd36e1097418))
+* **devDep:** bump eslint-plugin-react from 7.21.2 to 7.21.3 ([#357](https://github.com/Clumsy-Coder/myStocksRN/issues/357)) ([fde9587](https://github.com/Clumsy-Coder/myStocksRN/commit/fde95879b53b96807b2e8863c1ee5c0c8c861594))
+* **devDep:** bump jest-junit from 11.1.0 to 12.0.0 ([#356](https://github.com/Clumsy-Coder/myStocksRN/issues/356)) ([9ac5770](https://github.com/Clumsy-Coder/myStocksRN/commit/9ac5770a878d6bb93406941276916ec00d6b683c))
+
 ### [1.2.28](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.27...1.2.28) (2020-10-02)
 
 
