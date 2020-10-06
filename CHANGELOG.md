@@ -1,3 +1,10 @@
+### [1.2.32](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.31...1.2.32) (2020-10-06)
+
+
+### 📦 Build System
+
+* **devDep:** bump jest from 26.4.2 to 26.5.0 ([#360](https://github.com/Clumsy-Coder/myStocksRN/issues/360)) ([935b3fa](https://github.com/Clumsy-Coder/myStocksRN/commit/935b3fa27921f84d56116b2a51aeab01fbf252a7))
+
 ### [1.2.31](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.30...1.2.31) (2020-10-06)
 
 
