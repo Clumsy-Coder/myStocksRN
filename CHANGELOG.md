@@ -1,3 +1,12 @@
+### [1.2.33](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.32...1.2.33) (2020-10-07)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-native from 0.63.23 to 0.63.25 ([#367](https://github.com/Clumsy-Coder/myStocksRN/issues/367)) ([ba7a785](https://github.com/Clumsy-Coder/myStocksRN/commit/ba7a785c01757597940f96444db8ea510d20e4ab))
+* **devDep:** bump jest from 26.5.0 to 26.5.2 ([#364](https://github.com/Clumsy-Coder/myStocksRN/issues/364)) ([b42c231](https://github.com/Clumsy-Coder/myStocksRN/commit/b42c23191f8a53934238da4ecbc1de31ee7336aa))
+* **devDep:** bump react-native-keyboard-aware-scroll-view ([#363](https://github.com/Clumsy-Coder/myStocksRN/issues/363)) ([38d1b4f](https://github.com/Clumsy-Coder/myStocksRN/commit/38d1b4fecffa8f1ff017e8406a27e62b77aedd8f))
+
 ### [1.2.32](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.31...1.2.32) (2020-10-06)
 
 
