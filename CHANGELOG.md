@@ -1,3 +1,11 @@
+### [1.2.34](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.33...1.2.34) (2020-10-07)
+
+
+### 📦 Build System
+
+* **devDep:** bump babel-jest from 26.5.0 to 26.5.2 ([#365](https://github.com/Clumsy-Coder/myStocksRN/issues/365)) ([928df88](https://github.com/Clumsy-Coder/myStocksRN/commit/928df88a1bcbbe8adaf73d463febbbce74397710))
+* **devDep:** bump sinon from 9.1.0 to 9.2.0 ([#366](https://github.com/Clumsy-Coder/myStocksRN/issues/366)) ([1979cce](https://github.com/Clumsy-Coder/myStocksRN/commit/1979cce690b818d479ca43da053521279a1616de))
+
 ### [1.2.33](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.32...1.2.33) (2020-10-07)
 
 
