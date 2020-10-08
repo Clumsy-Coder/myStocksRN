@@ -1,3 +1,10 @@
+### [1.2.37](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.36...1.2.37) (2020-10-08)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-native-community/async-storage ([#370](https://github.com/Clumsy-Coder/myStocksRN/issues/370)) ([074530b](https://github.com/Clumsy-Coder/myStocksRN/commit/074530bdf95ad564db664c679aa4718e4a5142e2))
+
 ### [1.2.36](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.35...1.2.36) (2020-10-08)
 
 
