@@ -1,3 +1,10 @@
+### [1.2.38](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.37...1.2.38) (2020-10-09)
+
+
+### 📦 Build System
+
+* **devDep:** bump @google/semantic-release-replace-plugin ([#371](https://github.com/Clumsy-Coder/myStocksRN/issues/371)) ([8280dfc](https://github.com/Clumsy-Coder/myStocksRN/commit/8280dfc44e851c5a4e9bded184a267f2fc48b3a8))
+
 ### [1.2.37](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.36...1.2.37) (2020-10-08)
 
 
