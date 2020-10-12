@@ -1,3 +1,11 @@
+### [1.2.40](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.39...1.2.40) (2020-10-12)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/lodash from 4.14.161 to 4.14.162 ([#376](https://github.com/Clumsy-Coder/myStocksRN/issues/376)) ([9a995d2](https://github.com/Clumsy-Coder/myStocksRN/commit/9a995d26d9c3cc947393bdab466ef17edfdedca6))
+* **devDep:** bump jest from 26.5.2 to 26.5.3 ([#373](https://github.com/Clumsy-Coder/myStocksRN/issues/373)) ([b26e5b8](https://github.com/Clumsy-Coder/myStocksRN/commit/b26e5b8e6fb94211d867c110e7716294b1ac3c10))
+
 ### [1.2.39](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.38...1.2.39) (2020-10-12)
 
 
