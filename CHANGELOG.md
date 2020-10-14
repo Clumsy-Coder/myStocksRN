@@ -1,3 +1,10 @@
+### [1.2.42](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.41...1.2.42) (2020-10-14)
+
+
+### 📦 Build System
+
+* **devDep:** bump pretty-quick from 3.0.2 to 3.1.0 ([#379](https://github.com/Clumsy-Coder/myStocksRN/issues/379)) ([57e4fe2](https://github.com/Clumsy-Coder/myStocksRN/commit/57e4fe2c3abdfac219925d9f221a88cbe7c18f34))
+
 ### [1.2.41](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.40...1.2.41) (2020-10-13)
 
 
