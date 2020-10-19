@@ -1,3 +1,12 @@
+### [1.2.47](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.46...1.2.47) (2020-10-19)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react from 16.9.52 to 16.9.53 ([#384](https://github.com/Clumsy-Coder/myStocksRN/issues/384)) ([a524b46](https://github.com/Clumsy-Coder/myStocksRN/commit/a524b46f283c4762ea1cfb27216b4fd8cb3834ee))
+* **devDep:** bump eslint-config-prettier from 6.12.0 to 6.13.0 ([#388](https://github.com/Clumsy-Coder/myStocksRN/issues/388)) ([8be2dd0](https://github.com/Clumsy-Coder/myStocksRN/commit/8be2dd0b737cda7aafdd839bb3ae4a975fba8a9f))
+* **devDep:** bump redux-saga-test-plan from 4.0.0-rc.3 to 4.0.1 ([#387](https://github.com/Clumsy-Coder/myStocksRN/issues/387)) ([d74c0d5](https://github.com/Clumsy-Coder/myStocksRN/commit/d74c0d56c4232443f6179e92e6fb12c510c30b15))
+
 ### [1.2.46](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.45...1.2.46) (2020-10-16)
 
 
