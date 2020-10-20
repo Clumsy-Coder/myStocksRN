@@ -1,3 +1,10 @@
+### [1.2.50](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.49...1.2.50) (2020-10-20)
+
+
+### 📦 Build System
+
+* **devDep:** bump lint-staged from 10.4.0 to 10.4.2 ([#386](https://github.com/Clumsy-Coder/myStocksRN/issues/386)) ([50122d6](https://github.com/Clumsy-Coder/myStocksRN/commit/50122d6ffc5097358655f96c25e98c20d7e7925b))
+
 ### [1.2.49](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.48...1.2.49) (2020-10-20)
 
 
