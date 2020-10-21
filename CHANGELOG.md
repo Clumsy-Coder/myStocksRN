@@ -1,3 +1,12 @@
+### [1.2.51](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.50...1.2.51) (2020-10-21)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-native from 0.63.25 to 0.63.27 ([#392](https://github.com/Clumsy-Coder/myStocksRN/issues/392)) ([368f47e](https://github.com/Clumsy-Coder/myStocksRN/commit/368f47eec6403667f07622534f448f2dabc650ac))
+* **devDep:** bump commitizen from 4.2.1 to 4.2.2 ([#394](https://github.com/Clumsy-Coder/myStocksRN/issues/394)) ([a0e5506](https://github.com/Clumsy-Coder/myStocksRN/commit/a0e550637a605a1359130359b71ea8632acef481))
+* **devDep:** bump eslint-import-resolver-babel-module ([#393](https://github.com/Clumsy-Coder/myStocksRN/issues/393)) ([dd157d5](https://github.com/Clumsy-Coder/myStocksRN/commit/dd157d534ef83b65c02348b3f658121dd018ecbe))
+
 ### [1.2.50](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.49...1.2.50) (2020-10-20)
 
 
