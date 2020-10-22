@@ -1,3 +1,11 @@
+### [1.2.53](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.52...1.2.53) (2020-10-22)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/faker from 5.1.2 to 5.1.3 ([#396](https://github.com/Clumsy-Coder/myStocksRN/issues/396)) ([0968699](https://github.com/Clumsy-Coder/myStocksRN/commit/09686999c26f9d09b657adba90a83a4105506733))
+* **devDep:** bump eslint-config-prettier from 6.13.0 to 6.14.0 ([#397](https://github.com/Clumsy-Coder/myStocksRN/issues/397)) ([58840f9](https://github.com/Clumsy-Coder/myStocksRN/commit/58840f9aefb6171321cf704f2ce0b72b775cc53e))
+
 ### [1.2.52](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.51...1.2.52) (2020-10-21)
 
 
