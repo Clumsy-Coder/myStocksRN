@@ -1,3 +1,12 @@
+### [1.2.57](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.56...1.2.57) (2020-10-27)
+
+
+### 📦 Build System
+
+* **deps:** bump axios from 0.20.0 to 0.21.0 ([#406](https://github.com/Clumsy-Coder/myStocksRN/issues/406)) ([3ebcbf6](https://github.com/Clumsy-Coder/myStocksRN/commit/3ebcbf6b4efbbc61327894f534145dc3cc5babb2))
+* **devDep:** bump eslint-plugin-jsx-a11y from 6.3.1 to 6.4.1 ([#407](https://github.com/Clumsy-Coder/myStocksRN/issues/407)) ([e875221](https://github.com/Clumsy-Coder/myStocksRN/commit/e87522167d52ce017462c2c08bae71a470b6a619))
+* **devDep:** bump ts-jest from 26.4.1 to 26.4.3 ([#408](https://github.com/Clumsy-Coder/myStocksRN/issues/408)) ([6f1c7d2](https://github.com/Clumsy-Coder/myStocksRN/commit/6f1c7d2986331fb89039b23814b6586d6f260b8d))
+
 ### [1.2.56](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.55...1.2.56) (2020-10-26)
 
 
