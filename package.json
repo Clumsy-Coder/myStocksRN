@@ -1,6 +1,6 @@
 {
   "name": "myStocksRN",
-  "version": "1.2.58",
+  "version": "1.2.59",
   "private": true,
   "scripts": {
     "start": "react-native start",
