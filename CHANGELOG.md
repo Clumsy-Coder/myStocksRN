@@ -1,3 +1,10 @@
+### [1.2.64](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.63...1.2.64) (2020-10-31)
+
+
+### 📦 Build System
+
+* **npm:** update @react-navigation/native and @react-navigation/stack npm package ([1881420](https://github.com/Clumsy-Coder/myStocksRN/commit/188142032a1be3eeadb962c6ee44c25e81cbab17))
+
 ### [1.2.63](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.62...1.2.63) (2020-10-31)
 
 
