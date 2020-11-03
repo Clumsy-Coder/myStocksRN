@@ -1,3 +1,11 @@
+### [1.2.68](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.67...1.2.68) (2020-11-03)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-redux from 7.1.9 to 7.1.10 ([#435](https://github.com/Clumsy-Coder/myStocksRN/issues/435)) ([fdfa248](https://github.com/Clumsy-Coder/myStocksRN/commit/fdfa248eba978507a66df3d26700c791d262c771))
+* **devDep:** bump jest from 26.6.1 to 26.6.2 ([#434](https://github.com/Clumsy-Coder/myStocksRN/issues/434)) ([2769667](https://github.com/Clumsy-Coder/myStocksRN/commit/27696674495990c089cf729139699a03118c79d0))
+
 ### [1.2.67](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.66...1.2.67) (2020-11-03)
 
 
