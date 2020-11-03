@@ -1,3 +1,12 @@
+### [1.2.67](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.66...1.2.67) (2020-11-03)
+
+
+### 📦 Build System
+
+* **deps:** bump victory-native from 35.0.1 to 35.3.0 ([#432](https://github.com/Clumsy-Coder/myStocksRN/issues/432)) ([d0f885d](https://github.com/Clumsy-Coder/myStocksRN/commit/d0f885d97331cf6071a2612f741da5de56873eef))
+* **devDep:** bump @types/react-native from 0.63.30 to 0.63.32 ([#433](https://github.com/Clumsy-Coder/myStocksRN/issues/433)) ([716c892](https://github.com/Clumsy-Coder/myStocksRN/commit/716c892bcfc0d1775e9909afb7ac6bf38e505993))
+* **devDep:** bump babel-jest from 26.6.1 to 26.6.2 ([#431](https://github.com/Clumsy-Coder/myStocksRN/issues/431)) ([3fab9ab](https://github.com/Clumsy-Coder/myStocksRN/commit/3fab9ab98cadee22f1dad1294f89ffa000fcf900))
+
 ### [1.2.66](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.65...1.2.66) (2020-10-31)
 
 
