@@ -1,3 +1,12 @@
+### [1.2.72](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.71...1.2.72) (2020-11-05)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/stack from 5.12.1 to 5.12.3 ([#443](https://github.com/Clumsy-Coder/myStocksRN/issues/443)) ([7abfdd4](https://github.com/Clumsy-Coder/myStocksRN/commit/7abfdd4ed0b642796796d37ca9d6a174161717d1))
+* **devDep:** bump conventional-changelog-conventionalcommits ([#440](https://github.com/Clumsy-Coder/myStocksRN/issues/440)) ([e6b5cf6](https://github.com/Clumsy-Coder/myStocksRN/commit/e6b5cf650ac53f2722773d4fadb984b4c8f3ff2e))
+* **devDep:** bump jest from 26.6.2 to 26.6.3 ([#444](https://github.com/Clumsy-Coder/myStocksRN/issues/444)) ([fe12084](https://github.com/Clumsy-Coder/myStocksRN/commit/fe12084c69b09841dc7b0446b28117d576e999c4))
+
 ### [1.2.71](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.70...1.2.71) (2020-11-05)
 
 
