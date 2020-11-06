@@ -1,3 +1,12 @@
+### [1.2.73](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.72...1.2.73) (2020-11-06)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-screens from 2.12.0 to 2.13.0 ([#447](https://github.com/Clumsy-Coder/myStocksRN/issues/447)) ([8582a60](https://github.com/Clumsy-Coder/myStocksRN/commit/8582a600b41bfd66112ee14a925019404d29628b))
+* **devDep:** bump @types/lodash from 4.14.164 to 4.14.165 ([#446](https://github.com/Clumsy-Coder/myStocksRN/issues/446)) ([ce33097](https://github.com/Clumsy-Coder/myStocksRN/commit/ce3309799fcdb988b0350f103e56b5a2ef9b941d))
+* **devDep:** bump metro-react-native-babel-preset ([#445](https://github.com/Clumsy-Coder/myStocksRN/issues/445)) ([3910d50](https://github.com/Clumsy-Coder/myStocksRN/commit/3910d50b24f44a322914bb5c0057f0a44760c313))
+
 ### [1.2.72](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.71...1.2.72) (2020-11-05)
 
 
