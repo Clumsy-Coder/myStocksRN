@@ -1,3 +1,12 @@
+### [1.2.78](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.77...1.2.78) (2020-11-11)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/native from 5.8.7 to 5.8.9 ([#456](https://github.com/Clumsy-Coder/myStocksRN/issues/456)) ([d660e73](https://github.com/Clumsy-Coder/myStocksRN/commit/d660e7358bb720feb9f6487f9d09c46f09257388))
+* **deps:** bump @react-navigation/stack from 5.12.4 to 5.12.5 ([#455](https://github.com/Clumsy-Coder/myStocksRN/issues/455)) ([54e8c90](https://github.com/Clumsy-Coder/myStocksRN/commit/54e8c90c09184ccc216310f4459c7ac7e5392f7b))
+* **deps:** bump victory-native from 35.3.0 to 35.3.1 ([#459](https://github.com/Clumsy-Coder/myStocksRN/issues/459)) ([04a8161](https://github.com/Clumsy-Coder/myStocksRN/commit/04a8161d8d77ecdc75969760d170d047abf4972c))
+
 ### [1.2.77](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.76...1.2.77) (2020-11-09)
 
 
