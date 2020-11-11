@@ -1,3 +1,10 @@
+### [1.2.79](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.78...1.2.79) (2020-11-11)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/stack from 5.12.5 to 5.12.6 ([#458](https://github.com/Clumsy-Coder/myStocksRN/issues/458)) ([fcac40d](https://github.com/Clumsy-Coder/myStocksRN/commit/fcac40d6daf9b2c671e86ce71bccc9278c1dea3a))
+
 ### [1.2.78](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.77...1.2.78) (2020-11-11)
 
 
