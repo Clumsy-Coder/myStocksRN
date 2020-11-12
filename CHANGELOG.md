@@ -1,3 +1,10 @@
+### [1.2.80](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.79...1.2.80) (2020-11-12)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-safe-area-context from 3.1.8 to 3.1.9 ([#460](https://github.com/Clumsy-Coder/myStocksRN/issues/460)) ([1c822db](https://github.com/Clumsy-Coder/myStocksRN/commit/1c822dbe1e3f85f986dde147152d7723bb957c83))
+
 ### [1.2.79](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.78...1.2.79) (2020-11-11)
 
 
