@@ -1,3 +1,10 @@
+### [1.2.82](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.81...1.2.82) (2020-11-13)
+
+
+### 📦 Build System
+
+* **devDep:** bump eslint-plugin-jest from 24.1.0 to 24.1.3 ([#462](https://github.com/Clumsy-Coder/myStocksRN/issues/462)) ([6bd7c9f](https://github.com/Clumsy-Coder/myStocksRN/commit/6bd7c9f316ed1d83be7008a9d0fd64f52e9ea607))
+
 ### [1.2.81](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.80...1.2.81) (2020-11-12)
 
 
