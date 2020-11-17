@@ -1,3 +1,14 @@
+### [1.2.83](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.82...1.2.83) (2020-11-17)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-reanimated from 1.13.1 to 1.13.2 ([#465](https://github.com/Clumsy-Coder/myStocksRN/issues/465)) ([e37bd69](https://github.com/Clumsy-Coder/myStocksRN/commit/e37bd6913748945ed52989d0638d16daaca0cd2f))
+* **deps:** bump react-native-screens from 2.14.0 to 2.15.0 ([#466](https://github.com/Clumsy-Coder/myStocksRN/issues/466)) ([6074df6](https://github.com/Clumsy-Coder/myStocksRN/commit/6074df64c9da3a75096a214f040359e271e1bab6))
+* **devDep:** bump @semantic-release/github from 7.1.1 to 7.1.2 ([#463](https://github.com/Clumsy-Coder/myStocksRN/issues/463)) ([ea1f61f](https://github.com/Clumsy-Coder/myStocksRN/commit/ea1f61fef98ca5cd17bf76dd0898231725e9f06f))
+* **devDep:** bump @types/react-native from 0.63.33 to 0.63.35 ([#464](https://github.com/Clumsy-Coder/myStocksRN/issues/464)) ([5c07ecf](https://github.com/Clumsy-Coder/myStocksRN/commit/5c07ecf7906c8c5a3c0965a7810768c6709e8093))
+* **devDep:** bump semantic-release from 17.2.2 to 17.2.3 ([#467](https://github.com/Clumsy-Coder/myStocksRN/issues/467)) ([bd40d60](https://github.com/Clumsy-Coder/myStocksRN/commit/bd40d60c343313c7aa78f53a95a811327724300d))
+
 ### [1.2.82](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.81...1.2.82) (2020-11-13)
 
 
