@@ -1,3 +1,12 @@
+### [1.2.85](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.84...1.2.85) (2020-11-23)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/native from 5.8.9 to 5.8.10 ([#474](https://github.com/Clumsy-Coder/myStocksRN/issues/474)) ([29cfa2b](https://github.com/Clumsy-Coder/myStocksRN/commit/29cfa2bcd62a083128e93ef34a9b60b483818a2c))
+* **devDep:** bump eslint from 7.13.0 to 7.14.0 ([#473](https://github.com/Clumsy-Coder/myStocksRN/issues/473)) ([875a2bc](https://github.com/Clumsy-Coder/myStocksRN/commit/875a2bcb601368abc7d64721d801b1c5152ccfd4))
+* **devDep:** bump semantic-release from 17.2.3 to 17.3.0 ([#476](https://github.com/Clumsy-Coder/myStocksRN/issues/476)) ([82b371f](https://github.com/Clumsy-Coder/myStocksRN/commit/82b371fb4c432f92f7e6b87ca5a0950ee6c9fbbb))
+
 ### [1.2.84](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.83...1.2.84) (2020-11-20)
 
 
