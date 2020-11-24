@@ -1,3 +1,14 @@
+### [1.2.86](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.85...1.2.86) (2020-11-24)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/stack from 5.12.6 to 5.12.8 ([#475](https://github.com/Clumsy-Coder/myStocksRN/issues/475)) ([b4710c0](https://github.com/Clumsy-Coder/myStocksRN/commit/b4710c0d81d933698f8fb3e3a80fb38cb836a281))
+* **deps:** bump react-native-gesture-handler from 1.8.0 to 1.9.0 ([#479](https://github.com/Clumsy-Coder/myStocksRN/issues/479)) ([4d1dab4](https://github.com/Clumsy-Coder/myStocksRN/commit/4d1dab409dc79db6e81b15a973f8edf4d0672b06))
+* **devDep:** bump @babel/core from 7.12.3 to 7.12.8 ([#480](https://github.com/Clumsy-Coder/myStocksRN/issues/480)) ([e4ba264](https://github.com/Clumsy-Coder/myStocksRN/commit/e4ba264200aa3ebab617549e8a169819cd3ab23d))
+* **devDep:** bump @types/react from 16.9.56 to 17.0.0 ([#477](https://github.com/Clumsy-Coder/myStocksRN/issues/477)) ([3ea46fc](https://github.com/Clumsy-Coder/myStocksRN/commit/3ea46fc38224476b4b348d6fc7db2669be6e7425))
+* **devDep:** bump lint-staged from 10.5.1 to 10.5.2 ([#478](https://github.com/Clumsy-Coder/myStocksRN/issues/478)) ([75531b2](https://github.com/Clumsy-Coder/myStocksRN/commit/75531b26df7e28fb171155111a237de56a3f3c32))
+
 ### [1.2.85](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.84...1.2.85) (2020-11-23)
 
 
