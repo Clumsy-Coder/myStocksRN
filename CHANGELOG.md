@@ -1,3 +1,11 @@
+### [1.2.87](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.86...1.2.87) (2020-11-25)
+
+
+### 📦 Build System
+
+* **devDep:** bump @babel/core from 7.12.8 to 7.12.9 ([#483](https://github.com/Clumsy-Coder/myStocksRN/issues/483)) ([2f254cf](https://github.com/Clumsy-Coder/myStocksRN/commit/2f254cfe1e2a0a32a2768090cb4eef0741768254))
+* **devDep:** bump @types/sinon from 9.0.8 to 9.0.9 ([#481](https://github.com/Clumsy-Coder/myStocksRN/issues/481)) ([aa93639](https://github.com/Clumsy-Coder/myStocksRN/commit/aa936392a223b534901931133792d1958fdae961))
+
 ### [1.2.86](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.85...1.2.86) (2020-11-24)
 
 
