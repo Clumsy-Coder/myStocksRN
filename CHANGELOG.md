@@ -1,3 +1,11 @@
+### [1.2.88](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.87...1.2.88) (2020-11-25)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-native from 0.63.35 to 0.63.37 ([#482](https://github.com/Clumsy-Coder/myStocksRN/issues/482)) ([497919f](https://github.com/Clumsy-Coder/myStocksRN/commit/497919f45541e123791308b70dd8edab88512132))
+* **devDep:** bump @types/react-test-renderer from 16.9.3 to 17.0.0 ([#472](https://github.com/Clumsy-Coder/myStocksRN/issues/472)) ([37be543](https://github.com/Clumsy-Coder/myStocksRN/commit/37be543ae7c6c1a86797e3e80d55f7be454aaedd))
+
 ### [1.2.87](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.86...1.2.87) (2020-11-25)
 
 
