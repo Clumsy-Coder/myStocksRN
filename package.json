@@ -62,7 +62,7 @@
     "@types/enzyme": "^3.10.6",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/faker": "^5.1.4",
-    "@types/jest": "^26.0.15",
+    "@types/jest": "^26.0.16",
     "@types/lodash": "^4.14.165",
     "@types/react": "^17.0.0",
     "@types/react-native": "^0.63.37",
