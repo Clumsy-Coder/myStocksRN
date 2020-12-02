@@ -1,3 +1,12 @@
+### [1.2.89](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.88...1.2.89) (2020-12-02)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/jest from 26.0.15 to 26.0.16 ([#489](https://github.com/Clumsy-Coder/myStocksRN/issues/489)) ([b2174c1](https://github.com/Clumsy-Coder/myStocksRN/commit/b2174c1611cbe1e423b71b2eed4513f79d82dc5f))
+* **devDep:** bump eslint-plugin-tsdoc from 0.2.7 to 0.2.8 ([#486](https://github.com/Clumsy-Coder/myStocksRN/issues/486)) ([376aa4d](https://github.com/Clumsy-Coder/myStocksRN/commit/376aa4db7a4aa079f0fba6e131ff53426fb44693))
+* **devDep:** bump prettier from 2.2.0 to 2.2.1 ([#485](https://github.com/Clumsy-Coder/myStocksRN/issues/485)) ([7bd428c](https://github.com/Clumsy-Coder/myStocksRN/commit/7bd428c986290de09fa045077d0ed34eae599a68))
+
 ### [1.2.88](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.87...1.2.88) (2020-11-25)
 
 
