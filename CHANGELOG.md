@@ -1,3 +1,11 @@
+### [1.2.90](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.89...1.2.90) (2020-12-03)
+
+
+### 📦 Build System
+
+* **deps:** bump native-base from 2.13.14 to 2.13.15 ([#492](https://github.com/Clumsy-Coder/myStocksRN/issues/492)) ([cde0968](https://github.com/Clumsy-Coder/myStocksRN/commit/cde0968ee6b9100bf8d20b0de1d79b689b57b8aa))
+* **devDep:** bump eslint-plugin-tsdoc from 0.2.8 to 0.2.9 ([#490](https://github.com/Clumsy-Coder/myStocksRN/issues/490)) ([d7ac634](https://github.com/Clumsy-Coder/myStocksRN/commit/d7ac63489e35fb9a57e047c8dbbfcb415c15e3a4))
+
 ### [1.2.89](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.88...1.2.89) (2020-12-02)
 
 
