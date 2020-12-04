@@ -1,3 +1,10 @@
+### [1.2.93](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.92...1.2.93) (2020-12-04)
+
+
+### 📦 Build System
+
+* **devDep:** bump eslint-plugin-tsdoc from 0.2.9 to 0.2.10 ([#493](https://github.com/Clumsy-Coder/myStocksRN/issues/493)) ([c99b549](https://github.com/Clumsy-Coder/myStocksRN/commit/c99b549ce8709cd8332280863f68cc833a46013d))
+
 ### [1.2.92](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.91...1.2.92) (2020-12-04)
 
 
