@@ -1,3 +1,12 @@
+### [1.2.94](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.93...1.2.94) (2020-12-08)
+
+
+### 📦 Build System
+
+* **devDep:** bump husky from 4.3.0 to 4.3.4 ([#498](https://github.com/Clumsy-Coder/myStocksRN/issues/498)) ([d6dbfa0](https://github.com/Clumsy-Coder/myStocksRN/commit/d6dbfa0cc41bc32fd5041e47b31a9e31bd36e640))
+* **devDep:** bump husky from 4.3.4 to 4.3.5 ([#503](https://github.com/Clumsy-Coder/myStocksRN/issues/503)) ([d828c39](https://github.com/Clumsy-Coder/myStocksRN/commit/d828c396a1496913a1c6201abdbe55f21d02d0d4))
+* **devDep:** bump jest-html-reporters from 2.1.0 to 2.1.1 ([#484](https://github.com/Clumsy-Coder/myStocksRN/issues/484)) ([317ff6c](https://github.com/Clumsy-Coder/myStocksRN/commit/317ff6cd18e2c3d6cb20ef79b1ff53e97fe8e22e))
+
 ### [1.2.93](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.92...1.2.93) (2020-12-04)
 
 
