@@ -1,3 +1,20 @@
+### [1.2.98](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.97...1.2.98) (2020-12-10)
+
+
+### 📦 Build System
+
+* **devDep:** bump typescript from 4.0.5 to 4.1.2 ([201a1e0](https://github.com/Clumsy-Coder/myStocksRN/commit/201a1e074452bbe0c5cd9bbdb172e7e2c74af1c2))
+
+
+### ✅ Tests
+
+* **snapshot:** update snapshot ([6155ff3](https://github.com/Clumsy-Coder/myStocksRN/commit/6155ff30b711551bdcb5ca8cc4717f25c4ef8b0f))
+
+
+### 🐙 Miscellaneous Chores
+
+* **jest:** fix ts-jest warning when using tsConfig property ([e8990be](https://github.com/Clumsy-Coder/myStocksRN/commit/e8990bee2e09875a3eccdfbcbfe16f4b0a2b5c85))
+
 ### [1.2.97](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.96...1.2.97) (2020-12-10)
 
 
