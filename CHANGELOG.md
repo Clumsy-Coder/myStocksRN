@@ -1,3 +1,13 @@
+### [1.2.97](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.96...1.2.97) (2020-12-10)
+
+
+### 📦 Build System
+
+* **devDep:** bump @babel/core from 7.12.9 to 7.12.10 ([#505](https://github.com/Clumsy-Coder/myStocksRN/issues/505)) ([3e2ee3a](https://github.com/Clumsy-Coder/myStocksRN/commit/3e2ee3afc243d0ca9d70ef388a24c27520930b71))
+* **devDep:** bump @semantic-release/github from 7.1.2 to 7.2.0 ([#468](https://github.com/Clumsy-Coder/myStocksRN/issues/468)) ([f37dea4](https://github.com/Clumsy-Coder/myStocksRN/commit/f37dea4754d5a47ddb3d245fb70411ba31eeb79d))
+* **devDep:** bump eslint from 7.14.0 to 7.15.0 ([#499](https://github.com/Clumsy-Coder/myStocksRN/issues/499)) ([298e4b9](https://github.com/Clumsy-Coder/myStocksRN/commit/298e4b9f066d2610d4be5dfafa599338205ab98a))
+* **devDep:** bump eslint-config-prettier from 6.15.0 to 7.0.0 ([#501](https://github.com/Clumsy-Coder/myStocksRN/issues/501)) ([e6d539e](https://github.com/Clumsy-Coder/myStocksRN/commit/e6d539e83b15072451a535acdc58df441b0608a6))
+
 ### [1.2.96](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.95...1.2.96) (2020-12-10)
 
 
