@@ -1,3 +1,10 @@
+### [1.2.99](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.98...1.2.99) (2020-12-10)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-screens from 2.15.0 to 2.16.1 ([#507](https://github.com/Clumsy-Coder/myStocksRN/issues/507)) ([51b3e92](https://github.com/Clumsy-Coder/myStocksRN/commit/51b3e927fa1faffcf53485803a851796ed975983))
+
 ### [1.2.98](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.97...1.2.98) (2020-12-10)
 
 
