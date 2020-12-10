@@ -131,6 +131,12 @@ def keyStoreProperties = new Properties()
 keyStoreProperties.load(new FileInputStream(keyStorePropertiesFile))
 
 android {
+    // set heap space when building Android APK
+    // https://stackoverflow.com/a/60026260/3053548
+    dexOptions {
+      javaMaxHeapSize "4g"
+    }
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
