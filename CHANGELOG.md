@@ -1,3 +1,10 @@
+### [1.2.95](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.94...1.2.95) (2020-12-10)
+
+
+### 🐛 Bug Fixes
+
+* **android:** add extra heap space when building Android APK ([ef6ca76](https://github.com/Clumsy-Coder/myStocksRN/commit/ef6ca7664a5bb48157ac01cdc40e0d44b367a2af))
+
 ### [1.2.94](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.93...1.2.94) (2020-12-08)
 
 
