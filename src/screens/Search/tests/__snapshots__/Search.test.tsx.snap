@@ -3,7 +3,7 @@
 exports[`<Search /> Renders correctly 1`] = `
 <Styled(Container)>
   <Styled(Content)>
-    <Connect(Component) />
+    <Connect(SearchBar) />
   </Styled(Content)>
 </Styled(Container)>
 `;
