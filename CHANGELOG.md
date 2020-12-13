@@ -1,3 +1,10 @@
+### [1.2.101](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.100...1.2.101) (2020-12-13)
+
+
+### 📦 Build System
+
+* **deps:** bump ini from 1.3.5 to 1.3.8 ([#509](https://github.com/Clumsy-Coder/myStocksRN/issues/509)) ([b802e5f](https://github.com/Clumsy-Coder/myStocksRN/commit/b802e5ff71ff1d5f4beefdfff82e6d33cfc442db))
+
 ### [1.2.100](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.99...1.2.100) (2020-12-11)
 
 
