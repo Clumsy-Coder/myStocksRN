@@ -1,3 +1,13 @@
+### [1.2.102](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.101...1.2.102) (2020-12-14)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-redux from 7.1.11 to 7.1.12 ([#510](https://github.com/Clumsy-Coder/myStocksRN/issues/510)) ([dc99d5a](https://github.com/Clumsy-Coder/myStocksRN/commit/dc99d5a5aabda4b29b2a97e1d6606949901dbe21))
+* **devDep:** bump eslint-plugin-prettier from 3.2.0 to 3.3.0 ([#514](https://github.com/Clumsy-Coder/myStocksRN/issues/514)) ([9133ab9](https://github.com/Clumsy-Coder/myStocksRN/commit/9133ab9b8f42dda34259de4b6b958e85e437bdeb))
+* **devDep:** bump husky from 4.3.5 to 4.3.6 ([#511](https://github.com/Clumsy-Coder/myStocksRN/issues/511)) ([d2724c2](https://github.com/Clumsy-Coder/myStocksRN/commit/d2724c215f8c8d3742c4f4e0bfb78b243049c602))
+* **devDep:** bump sinon from 9.2.1 to 9.2.2 ([#512](https://github.com/Clumsy-Coder/myStocksRN/issues/512)) ([a465bbf](https://github.com/Clumsy-Coder/myStocksRN/commit/a465bbfd3fdf7df281030bc3b949130ece1d7914))
+
 ### [1.2.101](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.100...1.2.101) (2020-12-13)
 
 
