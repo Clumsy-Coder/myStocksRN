@@ -1,3 +1,10 @@
+### [1.2.105](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.104...1.2.105) (2020-12-16)
+
+
+### 📦 Build System
+
+* **devDep:** bump babel-plugin-module-resolver from 4.0.0 to 4.1.0 ([#516](https://github.com/Clumsy-Coder/myStocksRN/issues/516)) ([922aa76](https://github.com/Clumsy-Coder/myStocksRN/commit/922aa76f603ed67b0e43c2e7426bea50d9047891))
+
 ### [1.2.104](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.103...1.2.104) (2020-12-15)
 
 
