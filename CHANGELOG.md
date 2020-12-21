@@ -1,3 +1,10 @@
+### [1.2.109](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.108...1.2.109) (2020-12-21)
+
+
+### 📦 Build System
+
+* **devDep:** bump eslint-config-prettier from 7.0.0 to 7.1.0 ([#521](https://github.com/Clumsy-Coder/myStocksRN/issues/521)) ([88ac3c4](https://github.com/Clumsy-Coder/myStocksRN/commit/88ac3c40c24c9a7f1e50aef9bf6ec8a8ccd85d81))
+
 ### [1.2.108](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.107...1.2.108) (2020-12-21)
 
 
