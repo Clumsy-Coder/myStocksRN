@@ -1,3 +1,10 @@
+### [1.2.110](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.109...1.2.110) (2020-12-22)
+
+
+### 📦 Build System
+
+* **deps:** bump axios from 0.21.0 to 0.21.1 ([#523](https://github.com/Clumsy-Coder/myStocksRN/issues/523)) ([6bd9f03](https://github.com/Clumsy-Coder/myStocksRN/commit/6bd9f03aa5470e88baa7d1818f226fc463869783))
+
 ### [1.2.109](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.108...1.2.109) (2020-12-21)
 
 
