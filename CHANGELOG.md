@@ -1,3 +1,10 @@
+### [1.2.111](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.110...1.2.111) (2020-12-22)
+
+
+### 📦 Build System
+
+* **deps:** bump node-notifier from 8.0.0 to 8.0.1 ([#524](https://github.com/Clumsy-Coder/myStocksRN/issues/524)) ([0c3159d](https://github.com/Clumsy-Coder/myStocksRN/commit/0c3159d33f49113df3aad0b8d940338cd58b2ca3))
+
 ### [1.2.110](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.109...1.2.110) (2020-12-22)
 
 
