@@ -1,3 +1,12 @@
+### [1.2.112](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.111...1.2.112) (2020-12-24)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/lodash from 4.14.165 to 4.14.166 ([#525](https://github.com/Clumsy-Coder/myStocksRN/issues/525)) ([c7efb7a](https://github.com/Clumsy-Coder/myStocksRN/commit/c7efb7af86d0ff2e8b26f6982b79669919ad55b7))
+* **devDep:** bump @types/react-redux from 7.1.12 to 7.1.13 ([#526](https://github.com/Clumsy-Coder/myStocksRN/issues/526)) ([93d96df](https://github.com/Clumsy-Coder/myStocksRN/commit/93d96dfd2dd2f498fa5787de7fbcae7aa79487f8))
+* **devDep:** bump @types/sinon from 9.0.9 to 9.0.10 ([#527](https://github.com/Clumsy-Coder/myStocksRN/issues/527)) ([733f26e](https://github.com/Clumsy-Coder/myStocksRN/commit/733f26e0d17b661e73ef1b3318e3ee6e6aee7ee6))
+
 ### [1.2.111](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.110...1.2.111) (2020-12-22)
 
 
