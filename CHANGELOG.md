@@ -1,3 +1,10 @@
+### [1.2.113](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.112...1.2.113) (2020-12-25)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-redux from 7.1.13 to 7.1.14 ([#528](https://github.com/Clumsy-Coder/myStocksRN/issues/528)) ([c210865](https://github.com/Clumsy-Coder/myStocksRN/commit/c2108656579d546b5436affd0d3574fe7f6af99b))
+
 ### [1.2.112](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.111...1.2.112) (2020-12-24)
 
 
