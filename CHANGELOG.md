@@ -1,3 +1,11 @@
+### [1.2.115](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.114...1.2.115) (2020-12-30)
+
+
+### 📦 Build System
+
+* **devDep:** bump eslint-plugin-react from 7.21.5 to 7.22.0 ([#530](https://github.com/Clumsy-Coder/myStocksRN/issues/530)) ([825ee2d](https://github.com/Clumsy-Coder/myStocksRN/commit/825ee2d336acf4a6c48d4fe38d316569c6e8fab9))
+* **devDep:** bump semantic-release from 17.3.0 to 17.3.1 ([#531](https://github.com/Clumsy-Coder/myStocksRN/issues/531)) ([78b526a](https://github.com/Clumsy-Coder/myStocksRN/commit/78b526a6fecdd73cbcf7910975838a1c9bbdd864))
+
 ### [1.2.114](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.113...1.2.114) (2020-12-29)
 
 
