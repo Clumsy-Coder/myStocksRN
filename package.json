@@ -68,7 +68,7 @@
     "@types/react-native": "^0.63.43",
     "@types/react-native-autocomplete-input": "^4.0.1",
     "@types/react-native-dotenv": "^0.2.0",
-    "@types/react-redux": "^7.1.14",
+    "@types/react-redux": "^7.1.15",
     "@types/react-test-renderer": "^17.0.0",
     "@types/redux-logger": "^3.0.8",
     "@types/redux-mock-store": "^1.0.2",
