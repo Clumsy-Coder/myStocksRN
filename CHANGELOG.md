@@ -1,3 +1,10 @@
+### [1.2.117](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.116...1.2.117) (2021-01-05)
+
+
+### 📦 Build System
+
+* **devDep:** bump eslint-plugin-prettier from 3.3.0 to 3.3.1 ([#535](https://github.com/Clumsy-Coder/myStocksRN/issues/535)) ([0b24fb8](https://github.com/Clumsy-Coder/myStocksRN/commit/0b24fb8e8c8f75ed133c0597a0d3b950d6c94376))
+
 ### [1.2.116](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.115...1.2.116) (2021-01-04)
 
 
