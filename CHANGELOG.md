@@ -1,3 +1,12 @@
+### [1.2.118](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.117...1.2.118) (2021-01-07)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-native from 0.63.43 to 0.63.44 ([#538](https://github.com/Clumsy-Coder/myStocksRN/issues/538)) ([0fdf511](https://github.com/Clumsy-Coder/myStocksRN/commit/0fdf511bba43150ee2f806a045a0245b0c72c3ff))
+* **devDep:** bump husky from 4.3.6 to 4.3.7 ([#537](https://github.com/Clumsy-Coder/myStocksRN/issues/537)) ([df42445](https://github.com/Clumsy-Coder/myStocksRN/commit/df424450775c6ffe7a15b21c0b9feb11191d6f3f))
+* **devDep:** bump sinon from 9.2.2 to 9.2.3 ([#536](https://github.com/Clumsy-Coder/myStocksRN/issues/536)) ([ed448e5](https://github.com/Clumsy-Coder/myStocksRN/commit/ed448e5db2bb0f2e64c0f977df18d2f6b8a991d3))
+
 ### [1.2.117](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.116...1.2.117) (2021-01-05)
 
 
