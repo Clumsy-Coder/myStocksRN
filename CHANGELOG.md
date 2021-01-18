@@ -1,3 +1,13 @@
+### [1.2.124](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.123...1.2.124) (2021-01-18)
+
+
+### 📦 Build System
+
+* **devDep:** bump commitizen from 4.2.2 to 4.2.3 ([#549](https://github.com/Clumsy-Coder/myStocksRN/issues/549)) ([ef5a77f](https://github.com/Clumsy-Coder/myStocksRN/commit/ef5a77f2bc9c79621f131ea93fb071ecb3ff6529))
+* **devDep:** bump eslint from 7.17.0 to 7.18.0 ([#546](https://github.com/Clumsy-Coder/myStocksRN/issues/546)) ([c6bf549](https://github.com/Clumsy-Coder/myStocksRN/commit/c6bf54968897f4107588ea5b27ec18b8071f82d2))
+* **devDep:** bump husky from 4.3.7 to 4.3.8 ([#548](https://github.com/Clumsy-Coder/myStocksRN/issues/548)) ([6d1b909](https://github.com/Clumsy-Coder/myStocksRN/commit/6d1b9097198187bec694d0ab06eba56df86f8c1a))
+* **devDep:** bump semantic-release from 17.3.2 to 17.3.3 ([#547](https://github.com/Clumsy-Coder/myStocksRN/issues/547)) ([4cb524e](https://github.com/Clumsy-Coder/myStocksRN/commit/4cb524e01056b0fcf1070926415a8205813d30d0))
+
 ### [1.2.123](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.122...1.2.123) (2021-01-15)
 
 
