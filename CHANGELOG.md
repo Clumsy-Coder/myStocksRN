@@ -1,3 +1,12 @@
+### [1.2.125](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.124...1.2.125) (2021-01-19)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-vector-icons from 7.1.0 to 8.0.0 ([#551](https://github.com/Clumsy-Coder/myStocksRN/issues/551)) ([9b77ad1](https://github.com/Clumsy-Coder/myStocksRN/commit/9b77ad13b1345c3fe27c249dc0b0c9ad92b91705))
+* **devDep:** bump @types/lodash from 4.14.167 to 4.14.168 ([#550](https://github.com/Clumsy-Coder/myStocksRN/issues/550)) ([c2cf933](https://github.com/Clumsy-Coder/myStocksRN/commit/c2cf933da4d3e70a21479ae7bfee389d2bf24c8e))
+* **devDep:** bump eslint-config-prettier from 7.1.0 to 7.2.0 ([#552](https://github.com/Clumsy-Coder/myStocksRN/issues/552)) ([034cbb1](https://github.com/Clumsy-Coder/myStocksRN/commit/034cbb1a114e0bf8d3fb1227017257eec1cfa634))
+
 ### [1.2.124](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.123...1.2.124) (2021-01-18)
 
 
