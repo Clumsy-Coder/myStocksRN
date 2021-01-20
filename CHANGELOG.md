@@ -1,3 +1,12 @@
+### [1.2.126](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.125...1.2.126) (2021-01-20)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-native from 0.63.45 to 0.63.46 ([#555](https://github.com/Clumsy-Coder/myStocksRN/issues/555)) ([adc9922](https://github.com/Clumsy-Coder/myStocksRN/commit/adc9922d25a300e91e58381fca4e8549d02ab25e))
+* **devDep:** bump enzyme-adapter-react-16 from 1.15.5 to 1.15.6 ([#553](https://github.com/Clumsy-Coder/myStocksRN/issues/553)) ([e279cb9](https://github.com/Clumsy-Coder/myStocksRN/commit/e279cb9a4de1ce8b685a780fb8f3c4725ab52b54))
+* **devDep:** bump semantic-release from 17.3.3 to 17.3.4 ([#554](https://github.com/Clumsy-Coder/myStocksRN/issues/554)) ([d748eea](https://github.com/Clumsy-Coder/myStocksRN/commit/d748eeacb8c854a90f25aa81de2ad6d7c5f862f0))
+
 ### [1.2.125](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.124...1.2.125) (2021-01-19)
 
 
