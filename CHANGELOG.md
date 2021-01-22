@@ -1,3 +1,11 @@
+### [1.2.128](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.127...1.2.128) (2021-01-22)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/native from 5.9.0 to 5.9.1 ([#557](https://github.com/Clumsy-Coder/myStocksRN/issues/557)) ([99f562b](https://github.com/Clumsy-Coder/myStocksRN/commit/99f562b33f5abc13fe51c0bb0c61b67e3c35b652))
+* **devDep:** bump @types/react-redux from 7.1.15 to 7.1.16 ([#558](https://github.com/Clumsy-Coder/myStocksRN/issues/558)) ([9bdd707](https://github.com/Clumsy-Coder/myStocksRN/commit/9bdd7070e290e6b43c38fb24807ed49e1b1f1c59))
+
 ### [1.2.127](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.126...1.2.127) (2021-01-21)
 
 
