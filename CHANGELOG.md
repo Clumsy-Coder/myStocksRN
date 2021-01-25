@@ -1,3 +1,12 @@
+### [1.2.130](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.129...1.2.130) (2021-01-25)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/native from 5.9.1 to 5.9.2 ([#564](https://github.com/Clumsy-Coder/myStocksRN/issues/564)) ([d71d1b0](https://github.com/Clumsy-Coder/myStocksRN/commit/d71d1b087bc194950bf5da13d375e7f7732cb75b))
+* **devDep:** bump @microsoft/tsdoc from 0.12.24 to 0.13.0 ([#560](https://github.com/Clumsy-Coder/myStocksRN/issues/560)) ([9e383fb](https://github.com/Clumsy-Coder/myStocksRN/commit/9e383fbaa91379adc0a95608f56782ab845c1edf))
+* **devDep:** bump sinon from 9.2.3 to 9.2.4 ([#561](https://github.com/Clumsy-Coder/myStocksRN/issues/561)) ([367e43f](https://github.com/Clumsy-Coder/myStocksRN/commit/367e43fc53582b721099ee9b55bf5c62f4af1457))
+
 ### [1.2.129](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.128...1.2.129) (2021-01-22)
 
 
