@@ -1,3 +1,12 @@
+### [1.2.131](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.130...1.2.131) (2021-01-25)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/stack from 5.14.0 to 5.14.1 ([#565](https://github.com/Clumsy-Coder/myStocksRN/issues/565)) ([71d91fd](https://github.com/Clumsy-Coder/myStocksRN/commit/71d91fde998905c838f0ff6581b5ff1e643c4acc))
+* **devDep:** bump eslint-plugin-tsdoc from 0.2.10 to 0.2.11 ([#562](https://github.com/Clumsy-Coder/myStocksRN/issues/562)) ([3b43058](https://github.com/Clumsy-Coder/myStocksRN/commit/3b430582f1d09b969d43c3a31ec9f7315b15559a))
+* **devDep:** bump semantic-release from 17.3.6 to 17.3.7 ([#563](https://github.com/Clumsy-Coder/myStocksRN/issues/563)) ([f582fb3](https://github.com/Clumsy-Coder/myStocksRN/commit/f582fb368f9806d96e0854f6fdbf7660fe535473))
+
 ### [1.2.130](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.129...1.2.130) (2021-01-25)
 
 
