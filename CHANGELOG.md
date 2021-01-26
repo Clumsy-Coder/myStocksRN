@@ -1,3 +1,12 @@
+### [1.2.132](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.131...1.2.132) (2021-01-26)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/stack from 5.14.1 to 5.14.2 ([#566](https://github.com/Clumsy-Coder/myStocksRN/issues/566)) ([369d787](https://github.com/Clumsy-Coder/myStocksRN/commit/369d787aec4b774dd000f84a72ee21e631dc42f6))
+* **deps:** bump react-native-screens from 2.16.1 to 2.17.0 ([#567](https://github.com/Clumsy-Coder/myStocksRN/issues/567)) ([7d63bc2](https://github.com/Clumsy-Coder/myStocksRN/commit/7d63bc230c9446ae1378d84b5f8c94b4149ea5ca))
+* **devDep:** bump faker from 5.1.0 to 5.2.0 ([#568](https://github.com/Clumsy-Coder/myStocksRN/issues/568)) ([a79908c](https://github.com/Clumsy-Coder/myStocksRN/commit/a79908c0928a781f4ee18253897e811898ade098))
+
 ### [1.2.131](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.130...1.2.131) (2021-01-25)
 
 
