@@ -1,3 +1,10 @@
+### [1.2.134](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.133...1.2.134) (2021-01-29)
+
+
+### 📦 Build System
+
+* **devDep:** bump metro-react-native-babel-preset ([#571](https://github.com/Clumsy-Coder/myStocksRN/issues/571)) ([e041627](https://github.com/Clumsy-Coder/myStocksRN/commit/e0416272a463b48b2c8a08c4d8ce0f8f78a90022))
+
 ### [1.2.133](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.132...1.2.133) (2021-01-27)
 
 
