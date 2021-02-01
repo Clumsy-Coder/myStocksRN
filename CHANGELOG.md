@@ -1,3 +1,11 @@
+### [1.2.135](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.134...1.2.135) (2021-02-01)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/faker from 5.1.5 to 5.1.6 ([#574](https://github.com/Clumsy-Coder/myStocksRN/issues/574)) ([ec03547](https://github.com/Clumsy-Coder/myStocksRN/commit/ec0354711e7ba61a3c819f40aede2aaf16c4ab35))
+* **devDep:** bump ts-jest from 26.4.4 to 26.5.0 ([#572](https://github.com/Clumsy-Coder/myStocksRN/issues/572)) ([55628c4](https://github.com/Clumsy-Coder/myStocksRN/commit/55628c4dfb5f1b267aed302aa64a98e6e59876e1))
+
 ### [1.2.134](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.133...1.2.134) (2021-01-29)
 
 
