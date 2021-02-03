@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/runtime": "^7.12.5",
+    "@babel/runtime": "^7.12.13",
     "@google/semantic-release-replace-plugin": "^1.0.2",
     "@microsoft/tsdoc": "^0.13.0",
     "@react-native-community/eslint-config": "^2.0.0",
