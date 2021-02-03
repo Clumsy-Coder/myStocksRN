@@ -1,3 +1,10 @@
+### [1.2.138](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.137...1.2.138) (2021-02-03)
+
+
+### 📦 Build System
+
+* **devDep:** bump faker from 5.2.0 to 5.3.1 ([#578](https://github.com/Clumsy-Coder/myStocksRN/issues/578)) ([a8a14cb](https://github.com/Clumsy-Coder/myStocksRN/commit/a8a14cb0ea4ee5ab4094b2e479046dea7f324196))
+
 ### [1.2.137](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.136...1.2.137) (2021-02-03)
 
 
