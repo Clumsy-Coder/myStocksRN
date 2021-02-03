@@ -1,3 +1,11 @@
+### [1.2.137](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.136...1.2.137) (2021-02-03)
+
+
+### 📦 Build System
+
+* **devDep:** bump @babel/runtime from 7.12.5 to 7.12.13 ([#575](https://github.com/Clumsy-Coder/myStocksRN/issues/575)) ([adc20bb](https://github.com/Clumsy-Coder/myStocksRN/commit/adc20bb218d3f11573db9759ff49de687216d7e4))
+* **devDep:** bump @types/react from 17.0.0 to 17.0.1 ([#577](https://github.com/Clumsy-Coder/myStocksRN/issues/577)) ([51d43c2](https://github.com/Clumsy-Coder/myStocksRN/commit/51d43c2bbfc1f002fb0df00b495c64a3449e98df))
+
 ### [1.2.136](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.135...1.2.136) (2021-02-01)
 
 
