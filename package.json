@@ -64,7 +64,7 @@
     "@types/faker": "^5.1.6",
     "@types/jest": "^26.0.20",
     "@types/lodash": "^4.14.168",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.1",
     "@types/react-native": "^0.63.46",
     "@types/react-native-autocomplete-input": "^4.0.1",
     "@types/react-native-dotenv": "^0.2.0",
