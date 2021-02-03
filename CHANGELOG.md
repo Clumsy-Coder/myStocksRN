@@ -1,3 +1,10 @@
+### [1.2.139](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.138...1.2.139) (2021-02-03)
+
+
+### 📦 Build System
+
+* **devDep:** bump @babel/core from 7.12.10 to 7.12.13 ([#576](https://github.com/Clumsy-Coder/myStocksRN/issues/576)) ([61818ae](https://github.com/Clumsy-Coder/myStocksRN/commit/61818ae8cf88b708b339140005a618bf6eb4ed2e))
+
 ### [1.2.138](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.137...1.2.138) (2021-02-03)
 
 
