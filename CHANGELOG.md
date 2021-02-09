@@ -1,3 +1,11 @@
+### [1.2.142](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.141...1.2.142) (2021-02-09)
+
+
+### 📦 Build System
+
+* **devDep:** bump husky from 4.3.8 to 5.0.9 ([#584](https://github.com/Clumsy-Coder/myStocksRN/issues/584)) ([d304942](https://github.com/Clumsy-Coder/myStocksRN/commit/d304942a119b9162aee821c3ddf3929d895db892))
+* **devDep:** bump semantic-release from 17.3.7 to 17.3.8 ([#585](https://github.com/Clumsy-Coder/myStocksRN/issues/585)) ([a5d4b82](https://github.com/Clumsy-Coder/myStocksRN/commit/a5d4b8237ade6a9b48c37b2fe76bca3b051f16b9))
+
 ### [1.2.141](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.140...1.2.141) (2021-02-05)
 
 
