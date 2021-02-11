@@ -1,3 +1,11 @@
+### [1.2.145](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.144...1.2.145) (2021-02-11)
+
+
+### 📦 Build System
+
+* **devDep:** bump faker from 5.3.1 to 5.4.0 ([#590](https://github.com/Clumsy-Coder/myStocksRN/issues/590)) ([6711796](https://github.com/Clumsy-Coder/myStocksRN/commit/6711796cb023bf6b675e5d9391a43e67987304ea))
+* **devDep:** bump typescript from 4.1.4 to 4.1.5 ([#589](https://github.com/Clumsy-Coder/myStocksRN/issues/589)) ([1c87a82](https://github.com/Clumsy-Coder/myStocksRN/commit/1c87a82e0a92309ecfde7021fa64e004140e003f))
+
 ### [1.2.144](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.143...1.2.144) (2021-02-10)
 
 
