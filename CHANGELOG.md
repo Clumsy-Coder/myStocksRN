@@ -1,3 +1,10 @@
+### [1.2.148](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.147...1.2.148) (2021-02-15)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react-test-renderer from 17.0.0 to 17.0.1 ([#596](https://github.com/Clumsy-Coder/myStocksRN/issues/596)) ([065efda](https://github.com/Clumsy-Coder/myStocksRN/commit/065efdaa27ebe9e6bb1f951e858ffd0ee09c8730))
+
 ### [1.2.147](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.146...1.2.147) (2021-02-15)
 
 
