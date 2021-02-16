@@ -1,3 +1,10 @@
+### [1.2.150](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.149...1.2.150) (2021-02-16)
+
+
+### 📦 Build System
+
+* **devDep:** bump lint-staged from 10.5.3 to 10.5.4 ([#581](https://github.com/Clumsy-Coder/myStocksRN/issues/581)) ([e33afd6](https://github.com/Clumsy-Coder/myStocksRN/commit/e33afd68c4f69ac5c16b674cdd3300e7efb4efa3))
+
 ### [1.2.149](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.148...1.2.149) (2021-02-16)
 
 
