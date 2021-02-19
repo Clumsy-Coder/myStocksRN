@@ -1,3 +1,11 @@
+### [1.2.154](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.153...1.2.154) (2021-02-19)
+
+
+### 📦 Build System
+
+* **devDep:** bump @babel/runtime from 7.12.13 to 7.12.18 ([#603](https://github.com/Clumsy-Coder/myStocksRN/issues/603)) ([eabb7a7](https://github.com/Clumsy-Coder/myStocksRN/commit/eabb7a751b553081457e4fdc64be0a798c3b903a))
+* **devDep:** bump @types/faker from 5.1.6 to 5.1.7 ([#602](https://github.com/Clumsy-Coder/myStocksRN/issues/602)) ([4f56915](https://github.com/Clumsy-Coder/myStocksRN/commit/4f569150ab2b10b28e5a468bdd1089079b2da1e4))
+
 ### [1.2.153](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.152...1.2.153) (2021-02-18)
 
 
