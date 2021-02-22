@@ -1,3 +1,12 @@
+### [1.2.156](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.155...1.2.156) (2021-02-22)
+
+
+### 📦 Build System
+
+* **deps:** bump @react-navigation/native from 5.9.2 to 5.9.3 ([#605](https://github.com/Clumsy-Coder/myStocksRN/issues/605)) ([cfcbb6d](https://github.com/Clumsy-Coder/myStocksRN/commit/cfcbb6da700388d07e04e4b6ecb9ab630a65ff4f))
+* **deps:** bump lodash from 4.17.20 to 4.17.21 ([#606](https://github.com/Clumsy-Coder/myStocksRN/issues/606)) ([bd49a79](https://github.com/Clumsy-Coder/myStocksRN/commit/bd49a7906c79e496f3234eedd6ee9450bd2d10b8))
+* **devDep:** bump husky from 5.0.9 to 5.1.0 ([#604](https://github.com/Clumsy-Coder/myStocksRN/issues/604)) ([f7ae7aa](https://github.com/Clumsy-Coder/myStocksRN/commit/f7ae7aa9acf74174817b5191e415308e49ed7e26))
+
 ### [1.2.155](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.154...1.2.155) (2021-02-19)
 
 
