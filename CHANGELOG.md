@@ -1,3 +1,11 @@
+### [1.2.157](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.156...1.2.157) (2021-02-23)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-gesture-handler from 1.9.0 to 1.10.2 ([#610](https://github.com/Clumsy-Coder/myStocksRN/issues/610)) ([8e3dece](https://github.com/Clumsy-Coder/myStocksRN/commit/8e3dece0cc67422323d117da945c167d360aaff1))
+* **devDep:** bump husky from 5.1.0 to 5.1.1 ([#609](https://github.com/Clumsy-Coder/myStocksRN/issues/609)) ([7226e19](https://github.com/Clumsy-Coder/myStocksRN/commit/7226e19cfe34eec988245216692e730863036fa4))
+
 ### [1.2.156](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.155...1.2.156) (2021-02-22)
 
 
