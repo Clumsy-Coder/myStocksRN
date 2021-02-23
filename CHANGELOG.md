@@ -1,3 +1,10 @@
+### [1.2.158](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.157...1.2.158) (2021-02-23)
+
+
+### 📦 Build System
+
+* **devDep:** bump @babel/runtime from 7.12.18 to 7.13.2 ([#611](https://github.com/Clumsy-Coder/myStocksRN/issues/611)) ([ba1d170](https://github.com/Clumsy-Coder/myStocksRN/commit/ba1d170bbfb4ea3865fb9b2cfff3a00c435c4ee2))
+
 ### [1.2.157](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.156...1.2.157) (2021-02-23)
 
 
