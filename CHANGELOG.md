@@ -1,3 +1,11 @@
+### [1.2.160](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.159...1.2.160) (2021-02-24)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-vector-icons from 8.0.0 to 8.1.0 ([#613](https://github.com/Clumsy-Coder/myStocksRN/issues/613)) ([264aebf](https://github.com/Clumsy-Coder/myStocksRN/commit/264aebf114ef2bbd839227ff53c8ed26c023d6e9))
+* **devDep:** bump ts-jest from 26.5.1 to 26.5.2 ([#614](https://github.com/Clumsy-Coder/myStocksRN/issues/614)) ([88f5ecc](https://github.com/Clumsy-Coder/myStocksRN/commit/88f5ecc0a6e438bae2b8e845646f71d85ae91e4d))
+
 ### [1.2.159](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.158...1.2.159) (2021-02-23)
 
 
