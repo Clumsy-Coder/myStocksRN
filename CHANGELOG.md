@@ -1,3 +1,10 @@
+### [1.2.163](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.162...1.2.163) (2021-02-26)
+
+
+### 📦 Build System
+
+* **devDep:** bump semantic-release from 17.3.9 to 17.4.0 ([#619](https://github.com/Clumsy-Coder/myStocksRN/issues/619)) ([9364a12](https://github.com/Clumsy-Coder/myStocksRN/commit/9364a120c610b3b7cf006d6884fa9550dec8191e))
+
 ### [1.2.162](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.161...1.2.162) (2021-02-25)
 
 
