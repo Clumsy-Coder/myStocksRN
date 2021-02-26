@@ -1,3 +1,10 @@
+### [1.2.164](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.163...1.2.164) (2021-02-26)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-screens from 2.17.1 to 2.18.0 ([#620](https://github.com/Clumsy-Coder/myStocksRN/issues/620)) ([0f711c4](https://github.com/Clumsy-Coder/myStocksRN/commit/0f711c41acf8668b61b86c37a7dd5237287bdfcb))
+
 ### [1.2.163](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.162...1.2.163) (2021-02-26)
 
 
