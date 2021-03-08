@@ -1,3 +1,10 @@
+### [1.2.166](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.165...1.2.166) (2021-03-08)
+
+
+### 📦 Build System
+
+* **devDep:** bump @types/react from 17.0.1 to 17.0.3 ([#624](https://github.com/Clumsy-Coder/myStocksRN/issues/624)) ([da92b6e](https://github.com/Clumsy-Coder/myStocksRN/commit/da92b6e55ca1ccc1b66be3ed853849447ec73fe3))
+
 ### [1.2.165](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.164...1.2.165) (2021-03-01)
 
 
