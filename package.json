@@ -83,7 +83,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.0",
-    "eslint": "^7.20.0",
+    "eslint": "^7.21.0",
     "eslint-config-airbnb-typescript": "^9.0.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-import-resolver-babel-module": "^5.2.0",
@@ -114,7 +114,7 @@
     "redux-mock-store": "^1.5.4",
     "redux-saga-test-plan": "^4.0.1",
     "remote-redux-devtools": "^0.5.16",
-    "semantic-release": "^17.4.0",
+    "semantic-release": "^17.4.1",
     "sinon": "^9.2.4",
     "ts-jest": "^26.5.2",
     "typescript": "^4.1.5"
