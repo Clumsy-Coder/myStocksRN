@@ -1,3 +1,12 @@
+### [1.2.170](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.169...1.2.170) (2021-03-08)
+
+
+### 📦 Build System
+
+* **deps:** bump react-native-reanimated from 1.13.2 to 2.0.0 ([#630](https://github.com/Clumsy-Coder/myStocksRN/issues/630)) ([9c5e265](https://github.com/Clumsy-Coder/myStocksRN/commit/9c5e26515f4fda12458fb475e6c2470d74009afa))
+* **devDep:** bump @types/sinon from 9.0.10 to 9.0.11 ([#628](https://github.com/Clumsy-Coder/myStocksRN/issues/628)) ([f4e2dac](https://github.com/Clumsy-Coder/myStocksRN/commit/f4e2dac77bf1ecb2f9282e2f5703c3b2f591d9ba))
+* **devDep:** bump redux-devtools-extension from 2.13.8 to 2.13.9 ([#629](https://github.com/Clumsy-Coder/myStocksRN/issues/629)) ([635baad](https://github.com/Clumsy-Coder/myStocksRN/commit/635baade61b65ce7261bde624e5cbcf448a1d470))
+
 ### [1.2.169](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.168...1.2.169) (2021-03-08)
 
 
