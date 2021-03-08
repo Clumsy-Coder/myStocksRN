@@ -1,3 +1,10 @@
+### [1.2.168](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.167...1.2.168) (2021-03-08)
+
+
+### 📦 Build System
+
+* **devDep:** bump eslint from 7.20.0 to 7.21.0 ([#626](https://github.com/Clumsy-Coder/myStocksRN/issues/626)) ([b8c29ae](https://github.com/Clumsy-Coder/myStocksRN/commit/b8c29aecf8216caaa38efc34c950b6578c8c14ca))
+
 ### [1.2.167](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.166...1.2.167) (2021-03-08)
 
 
