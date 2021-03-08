@@ -1,3 +1,10 @@
+### [1.2.169](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.168...1.2.169) (2021-03-08)
+
+
+### 📦 Build System
+
+* **devDep:** bump @testing-library/react-native from 7.1.0 to 7.2.0 ([#627](https://github.com/Clumsy-Coder/myStocksRN/issues/627)) ([ba99dba](https://github.com/Clumsy-Coder/myStocksRN/commit/ba99dba22db6540a60d140a0e21e725c46a11881))
+
 ### [1.2.168](https://github.com/Clumsy-Coder/myStocksRN/compare/1.2.167...1.2.168) (2021-03-08)
 
 
