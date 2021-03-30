@@ -48,7 +48,7 @@
     "victory-native": "^35.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.1",
+    "@babel/core": "^7.13.14",
     "@babel/runtime": "^7.13.8",
     "@google/semantic-release-replace-plugin": "^1.0.2",
     "@microsoft/tsdoc": "^0.13.0",
