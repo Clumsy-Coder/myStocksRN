@@ -1,11 +1,12 @@
-name: Dependbot Automerge
-on:
-  pull_request:
-    types: ['opened']
+name: Dependabot Automerge
+on: [push, pull_request]
 
 jobs:
   Automerge:
-    # provided by https://github.com/dependabot/dependabot-core/issues/2268#issuecomment-654608325
+    # deprecated solution: provided by https://github.com/dependabot/dependabot-core/issues/2268#issuecomment-654608325
+    #
+    # current solution
+    # updated using example from https://github.com/fastify/github-action-merge-dependabot
     runs-on: ubuntu-latest
     if: |
       startsWith(github.actor, 'dependabot') &&
@@ -13,14 +14,22 @@ jobs:
       (startsWith(github.event.pull_request.title, 'build(deps):') ||
       startsWith(github.event.pull_request.title, 'build(devDep):'))
     steps:
-      - name: '@dependabot squash and merge'
-        uses: actions/github-script@v2
+      # deprecated solution
+      # - name: '@dependabot squash and merge'
+      #   uses: actions/github-script@v2
+      #   with:
+      #     github-token: ${{secrets.GH_TOKEN_DEPENDABOT}}
+      #     script: |
+      #       await github.issues.createComment({
+      #         owner: context.repo.owner,
+      #         repo: context.payload.repository.name,
+      #         issue_number: context.payload.pull_request.number,
+      #         body: '@dependabot squash and merge'
+      #       })
+      # ##################################################################
+      #
+      # Current solution
+      - name: 'Dependabot squash and merge'
+        uses: fastify/github-action-merge-dependabot@v2.5.0
         with:
-          github-token: ${{secrets.GH_TOKEN_DEPENDABOT}}
-          script: |
-            await github.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.payload.repository.name,
-              issue_number: context.payload.pull_request.number,
-              body: '@dependabot squash and merge'
-            })
+          github-token: ${{ secrets.GITHUB_TOKEN }}
